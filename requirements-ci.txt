@@ -1,0 +1,8 @@
+# Core simulation/test versions from the measured environment; no CAD or ROS.
+numpy==2.5.3
+scipy==1.18.1
+mujoco==3.15.0
+matplotlib==3.11.2
+imageio==2.38.0
+imageio-ffmpeg==0.6.0
+pytest==9.1.1

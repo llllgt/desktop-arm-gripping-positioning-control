@@ -80,7 +80,7 @@ def run(output, *, task=None, order=5, render=False, fingers=True, gravity_compe
                     names = {mujoco.mj_id2name(sim.model, mujoco.mjtObj.mjOBJ_GEOM, int(g)) for g in (c.geom1,c.geom2)}
                     if 'workpiece_geom' in names and any(n in names for n in ('left_pad','right_pad')):
                         contacts += 1
-                    if not ('workpiece_geom' in names) and any(n in names for n in ('pick_nest','place_nest','floor')):
+                    if not ('workpiece_geom' in names) and any(n in names for n in ('pick_nest','place_nest','pick_baseplate','place_baseplate','floor')):
                         # Robot base/floor contact is intentional; any other link hitting fixtures isn't.
                         for geom_id in (c.geom1, c.geom2):
                             body = sim.model.geom_bodyid[int(geom_id)]

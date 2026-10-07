@@ -1,6 +1,8 @@
-# 桌面机械臂工件搬运系统
+# 四自由度机械臂末端工装设计与轨迹控制
 
-基于 OpenMANIPULATOR-X 的机械附件设计与搬运仿真项目。围绕小型工件在两个托座间转运，完成夹指背板、接触垫和托座的参数化建模，四轴机械臂运动学、关节轨迹及 ROS 2 控制接口。适合机械专业学习结构与控制如何配合。
+[![Tests](https://github.com/llllgt/desktop-arm-tooling-control/actions/workflows/tests.yml/badge.svg)](https://github.com/llllgt/desktop-arm-tooling-control/actions/workflows/tests.yml)
+
+基于 OpenMANIPULATOR-X 的末端工装设计与运动控制仿真项目。以小型工件在两个托座间转运为任务，完成夹指背板、接触垫和托座的参数化建模，结合四轴运动学、关节轨迹与 ROS 2 控制接口，验证结构和运动方案。
 
 ![搬运演示](results/native/demo.gif)
 
@@ -13,6 +15,8 @@
 - **控制与仿真**：限力矩位置伺服、动力学偏置补偿、抓取状态流程；工件使用重力和摩擦接触运动，未绑定夹爪或移动工件坐标。
 - **ROS 2**：独立任务节点与仿真控制节点，使用 `FollowJointTrajectory`、`GripperCommand` action 和关节/位姿反馈。
 - **工程校核**：背板线性四面体有限元与悬臂梁公式核对、夹持摩擦估算、碰撞检查及 10 组参数扰动实验。
+
+零件数量、材料假设和装配关系见 [零件清单与装配说明](docs/BOM与装配.md)。
 
 这是有机械附件设计的仿真项目。尚未加工、试装或实机标定；不声称从零设计整台机械臂，也不把模型结果写成实机精度。四轴机构控制位置和径向俯仰，不能独立控制任意六维位姿。
 
@@ -61,6 +65,8 @@ Linux 将 `.venv\Scripts\python` 换成 `.venv/bin/python`。Windows 当前环�
 ```
 
 结构分析细网格约 7 万个四面体，耗时比搬运仿真长。无需每次重跑。当前完整依赖版本见 `requirements-lock.txt`，其中包含 CAD 与验证工具。
+
+GitHub Actions 在 Windows 和 Ubuntu 上运行无需渲染的运动学、轨迹、接触搬运与结构单元测试，使用 `requirements-ci.txt` 固定核心依赖。它不替代 ROS 环境或实机验证；ROS 的验证记录来自本机 Windows 实验。
 
 ## ROS 2 运行
 

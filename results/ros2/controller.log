@@ -1,0 +1,4 @@
+[INFO] [1791361156.515125100] [desktop_arm_simulation]: ROS controller ready: real MuJoCo contact simulation, standard action endpoints
+[ERROR] [1791361158.253409000] [desktop_arm_simulation]: Expected joint1..joint4 and at least two samples
+The following exception was never retrieved: cannot use Destroyable because destruction was requested
+[ERROR] [1791361225.978664600] [rcl]: Failed to remove timer jump callback

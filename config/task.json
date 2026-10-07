@@ -1,0 +1,14 @@
+{
+  "description": "Transfer a 30 x 24 x 20 mm, 30 g workpiece between raised nests",
+  "pick": [0.170, -0.050, 0.065],
+  "place": [0.170, 0.060, 0.065],
+  "pitch": 1.3,
+  "clearance": 0.040,
+  "workpiece_size": [0.030, 0.024, 0.020],
+  "workpiece_mass": 0.030,
+  "gripper_open": 0.012,
+  "gripper_closed": -0.009,
+  "max_velocity": 0.8,
+  "max_acceleration": 1.5,
+  "dwell": 0.8
+}

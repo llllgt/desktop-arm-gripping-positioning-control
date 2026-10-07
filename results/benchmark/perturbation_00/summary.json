@@ -1,0 +1,27 @@
+{
+  "engine": "MuJoCo 3.15.0",
+  "order": 5,
+  "fingers": true,
+  "gravity_compensation": true,
+  "simulation_seconds": 12.342000000000791,
+  "wall_seconds": 0.9844898000592366,
+  "samples": 1235,
+  "joint_rmse_rad": [
+    0.008951618357970675,
+    0.0018033162825109104,
+    0.010145447995120991,
+    0.008692827092807071
+  ],
+  "tcp_rmse_mm": 1.903019254083108,
+  "final_workpiece_xyz_m": [
+    0.16830108754535925,
+    0.05880890609981208,
+    0.06494876094848703
+  ],
+  "placement_error_mm": 2.0754839551290973,
+  "maximum_lift_mm": 39.740182100008845,
+  "pad_contact_samples": 532,
+  "unwanted_contact_samples": 0,
+  "success": true,
+  "object_attachment_used": false
+}

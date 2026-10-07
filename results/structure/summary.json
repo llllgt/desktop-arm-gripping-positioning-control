@@ -1,0 +1,39 @@
+{
+  "boundary": "One short edge fully clamped; 6 N distributed over opposite short edge; small-deformation isotropic 6061-T6 assumption",
+  "coarse": {
+    "resolution": [
+      52,
+      8,
+      14
+    ],
+    "nodes": 7155,
+    "tetrahedra": 34944,
+    "tip_displacement_mm": 0.04607232853999114,
+    "beam_theory_tip_mm": 0.05458385093167701,
+    "relative_deflection_difference": 0.15593480940617044,
+    "nominal_beam_root_stress_mpa": 16.714285714285715,
+    "maximum_von_mises_mpa": 13.764553800129093,
+    "reaction_y_n": -6.000000006593371,
+    "equilibrium_residual_n": -6.593371182361807e-09
+  },
+  "fine": {
+    "resolution": [
+      104,
+      8,
+      14
+    ],
+    "nodes": 14175,
+    "tetrahedra": 69888,
+    "tip_displacement_mm": 0.048303441882997934,
+    "beam_theory_tip_mm": 0.05458385093167701,
+    "relative_deflection_difference": 0.11505983805613695,
+    "nominal_beam_root_stress_mpa": 16.714285714285715,
+    "maximum_von_mises_mpa": 15.260242507692713,
+    "reaction_y_n": -5.999999999525483,
+    "equilibrium_residual_n": 4.745173143305692e-10
+  },
+  "mesh_deflection_change": 0.04842632039034389,
+  "minimum_per_jaw_normal_force_n": 0.367875,
+  "yield_safety_factor_nominal": 14.35897435897436,
+  "scope": "Reference carrier bending calculation only. Adhesive failure, TPU nonlinearity, printed-material anisotropy and actual fit remain unverified."
+}

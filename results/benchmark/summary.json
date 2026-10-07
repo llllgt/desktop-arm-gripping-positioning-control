@@ -1,0 +1,470 @@
+{
+  "seed": 20261007,
+  "cases": [
+    {
+      "case": "quintic",
+      "engine": "MuJoCo 3.15.0",
+      "order": 5,
+      "fingers": true,
+      "gravity_compensation": true,
+      "simulation_seconds": 12.342000000000791,
+      "wall_seconds": 0.9933803000021726,
+      "samples": 1235,
+      "joint_rmse_rad": [
+        0.008951264573645468,
+        0.0018048348018195742,
+        0.01014376755341677,
+        0.008692994068650678
+      ],
+      "tcp_rmse_mm": 1.9025559453662453,
+      "final_workpiece_xyz_m": [
+        0.17054374203510195,
+        0.05983989795900326,
+        0.06494649321197186
+      ],
+      "placement_error_mm": 0.5693426390436629,
+      "maximum_lift_mm": 39.94452454831324,
+      "pad_contact_samples": 529,
+      "unwanted_contact_samples": 0,
+      "success": true,
+      "object_attachment_used": false
+    },
+    {
+      "case": "cubic",
+      "engine": "MuJoCo 3.15.0",
+      "order": 3,
+      "fingers": true,
+      "gravity_compensation": true,
+      "simulation_seconds": 12.482000000000838,
+      "wall_seconds": 1.0245726000284776,
+      "samples": 1249,
+      "joint_rmse_rad": [
+        0.008117541046753553,
+        0.0016811193582016318,
+        0.009211382016391897,
+        0.007897498964000967
+      ],
+      "tcp_rmse_mm": 1.7218661044572172,
+      "final_workpiece_xyz_m": [
+        0.17046899999161627,
+        0.05980865360229617,
+        0.06494650904225632
+      ],
+      "placement_error_mm": 0.5093483273857091,
+      "maximum_lift_mm": 39.90963517008521,
+      "pad_contact_samples": 536,
+      "unwanted_contact_samples": 0,
+      "success": true,
+      "object_attachment_used": false
+    },
+    {
+      "case": "no_feedforward",
+      "engine": "MuJoCo 3.15.0",
+      "order": 5,
+      "fingers": true,
+      "gravity_compensation": false,
+      "simulation_seconds": 12.342000000000791,
+      "wall_seconds": 1.0179858000483364,
+      "samples": 1235,
+      "joint_rmse_rad": [
+        0.008951593385911507,
+        0.0021739788169035093,
+        0.010314059617975171,
+        0.00869257911400042
+      ],
+      "tcp_rmse_mm": 1.9748120299986223,
+      "final_workpiece_xyz_m": [
+        0.170587475804487,
+        0.05988725267703911,
+        0.06494648898037314
+      ],
+      "placement_error_mm": 0.6005857215368837,
+      "maximum_lift_mm": 39.955235139325005,
+      "pad_contact_samples": 529,
+      "unwanted_contact_samples": 0,
+      "success": true,
+      "object_attachment_used": false
+    },
+    {
+      "case": "no_contact_pads",
+      "engine": "MuJoCo 3.15.0",
+      "order": 5,
+      "fingers": false,
+      "gravity_compensation": true,
+      "simulation_seconds": 12.342000000000791,
+      "wall_seconds": 1.125577999977395,
+      "samples": 1235,
+      "joint_rmse_rad": [
+        0.00893339300741635,
+        0.001794654241297213,
+        0.010150588560332909,
+        0.008684101791373093
+      ],
+      "tcp_rmse_mm": 1.9040230424082623,
+      "final_workpiece_xyz_m": [
+        0.16948114671826814,
+        -0.049927848997625354,
+        0.06494652457367835
+      ],
+      "placement_error_mm": 109.92908647666415,
+      "maximum_lift_mm": 39.48562836462763,
+      "pad_contact_samples": 0,
+      "unwanted_contact_samples": 0,
+      "success": false,
+      "object_attachment_used": false
+    },
+    {
+      "case": "perturbation_00",
+      "mass_g": 35.090829630574305,
+      "friction": 1.1635820900595202,
+      "initial_offset_mm": [
+        -1.204310196694149,
+        1.8973039311613953,
+        0.0
+      ],
+      "engine": "MuJoCo 3.15.0",
+      "order": 5,
+      "fingers": true,
+      "gravity_compensation": true,
+      "simulation_seconds": 12.342000000000791,
+      "wall_seconds": 0.9844898000592366,
+      "samples": 1235,
+      "joint_rmse_rad": [
+        0.008951618357970675,
+        0.0018033162825109104,
+        0.010145447995120991,
+        0.008692827092807071
+      ],
+      "tcp_rmse_mm": 1.903019254083108,
+      "final_workpiece_xyz_m": [
+        0.16830108754535925,
+        0.05880890609981208,
+        0.06494876094848703
+      ],
+      "placement_error_mm": 2.0754839551290973,
+      "maximum_lift_mm": 39.740182100008845,
+      "pad_contact_samples": 532,
+      "unwanted_contact_samples": 0,
+      "success": true,
+      "object_attachment_used": false
+    },
+    {
+      "case": "perturbation_01",
+      "mass_g": 28.090168716660738,
+      "friction": 1.1549821894191434,
+      "initial_offset_mm": [
+        -0.6803597340498873,
+        -0.2840223734564154,
+        0.0
+      ],
+      "engine": "MuJoCo 3.15.0",
+      "order": 5,
+      "fingers": true,
+      "gravity_compensation": true,
+      "simulation_seconds": 12.342000000000791,
+      "wall_seconds": 1.0915563999442384,
+      "samples": 1235,
+      "joint_rmse_rad": [
+        0.00895124295519218,
+        0.0018056189145953792,
+        0.010143428630813607,
+        0.00869301054931159
+      ],
+      "tcp_rmse_mm": 1.902500291496755,
+      "final_workpiece_xyz_m": [
+        0.1700787854061473,
+        0.059639811805801725,
+        0.06494648761720252
+      ],
+      "placement_error_mm": 0.372567108819698,
+      "maximum_lift_mm": 39.94128753160184,
+      "pad_contact_samples": 527,
+      "unwanted_contact_samples": 0,
+      "success": true,
+      "object_attachment_used": false
+    },
+    {
+      "case": "perturbation_02",
+      "mass_g": 25.118619429912954,
+      "friction": 0.8278618625561448,
+      "initial_offset_mm": [
+        -1.0360688553672048,
+        -1.615010023237916,
+        0.0
+      ],
+      "engine": "MuJoCo 3.15.0",
+      "order": 5,
+      "fingers": true,
+      "gravity_compensation": true,
+      "simulation_seconds": 12.342000000000791,
+      "wall_seconds": 1.026600299985148,
+      "samples": 1235,
+      "joint_rmse_rad": [
+        0.008951388790065868,
+        0.001808139417010505,
+        0.010142852624300449,
+        0.008693101412284911
+      ],
+      "tcp_rmse_mm": 1.9024885922807735,
+      "final_workpiece_xyz_m": [
+        0.17025621717204262,
+        0.059755079635826665,
+        0.06494654026366183
+      ],
+      "placement_error_mm": 0.3584566465357498,
+      "maximum_lift_mm": 39.950498088122735,
+      "pad_contact_samples": 531,
+      "unwanted_contact_samples": 0,
+      "success": true,
+      "object_attachment_used": false
+    },
+    {
+      "case": "perturbation_03",
+      "mass_g": 24.963021731435845,
+      "friction": 1.1333284939192672,
+      "initial_offset_mm": [
+        0.4829733422467325,
+        1.9725799615860324,
+        0.0
+      ],
+      "engine": "MuJoCo 3.15.0",
+      "order": 5,
+      "fingers": true,
+      "gravity_compensation": true,
+      "simulation_seconds": 12.342000000000791,
+      "wall_seconds": 1.0669588999589905,
+      "samples": 1235,
+      "joint_rmse_rad": [
+        0.008951220981477163,
+        0.0018067432825983755,
+        0.010142576890150462,
+        0.00869329609831724
+      ],
+      "tcp_rmse_mm": 1.9023531581312918,
+      "final_workpiece_xyz_m": [
+        0.16968364866701605,
+        0.0596215814643705,
+        0.06494643915440293
+      ],
+      "placement_error_mm": 0.49613256108602566,
+      "maximum_lift_mm": 40.066498053692776,
+      "pad_contact_samples": 532,
+      "unwanted_contact_samples": 0,
+      "success": true,
+      "object_attachment_used": false
+    },
+    {
+      "case": "perturbation_04",
+      "mass_g": 31.6114089970342,
+      "friction": 1.0589760380930673,
+      "initial_offset_mm": [
+        -0.0005785954214918357,
+        1.9039430264089692,
+        0.0
+      ],
+      "engine": "MuJoCo 3.15.0",
+      "order": 5,
+      "fingers": true,
+      "gravity_compensation": true,
+      "simulation_seconds": 12.342000000000791,
+      "wall_seconds": 1.0307812999235466,
+      "samples": 1235,
+      "joint_rmse_rad": [
+        0.008951360285364899,
+        0.001804115703581711,
+        0.010143877551629023,
+        0.008693162761921638
+      ],
+      "tcp_rmse_mm": 1.9025715812761457,
+      "final_workpiece_xyz_m": [
+        0.1692459123690406,
+        0.05934877325658519,
+        0.06494596978584027
+      ],
+      "placement_error_mm": 0.9978294897159417,
+      "maximum_lift_mm": 40.02389902200715,
+      "pad_contact_samples": 532,
+      "unwanted_contact_samples": 0,
+      "success": true,
+      "object_attachment_used": false
+    },
+    {
+      "case": "perturbation_05",
+      "mass_g": 31.036463909855375,
+      "friction": 1.0759683389029113,
+      "initial_offset_mm": [
+        -1.9150269478202238,
+        0.20631802136317257,
+        0.0
+      ],
+      "engine": "MuJoCo 3.15.0",
+      "order": 5,
+      "fingers": true,
+      "gravity_compensation": true,
+      "simulation_seconds": 12.342000000000791,
+      "wall_seconds": 1.0836712999735028,
+      "samples": 1235,
+      "joint_rmse_rad": [
+        0.008951322507254928,
+        0.001804546729424593,
+        0.010144440544692464,
+        0.008692905551504738
+      ],
+      "tcp_rmse_mm": 1.902762581164434,
+      "final_workpiece_xyz_m": [
+        0.16871728842137085,
+        0.058971433726079256,
+        0.06494967537144897
+      ],
+      "placement_error_mm": 1.64494077158885,
+      "maximum_lift_mm": 39.81523072072718,
+      "pad_contact_samples": 528,
+      "unwanted_contact_samples": 0,
+      "success": true,
+      "object_attachment_used": false
+    },
+    {
+      "case": "perturbation_06",
+      "mass_g": 47.294349076846,
+      "friction": 0.8962778633021743,
+      "initial_offset_mm": [
+        -1.9540306712762094,
+        1.7334715609905864,
+        0.0
+      ],
+      "engine": "MuJoCo 3.15.0",
+      "order": 5,
+      "fingers": true,
+      "gravity_compensation": true,
+      "simulation_seconds": 12.342000000000791,
+      "wall_seconds": 1.0608951000031084,
+      "samples": 1235,
+      "joint_rmse_rad": [
+        0.00895195245742688,
+        0.001799903559023813,
+        0.010148714369720629,
+        0.008692529637680378
+      ],
+      "tcp_rmse_mm": 1.9037699262583507,
+      "final_workpiece_xyz_m": [
+        0.16760473133261047,
+        0.05833764565941657,
+        0.06494619635244207
+      ],
+      "placement_error_mm": 2.9160982108161506,
+      "maximum_lift_mm": 39.56315242316813,
+      "pad_contact_samples": 532,
+      "unwanted_contact_samples": 0,
+      "success": true,
+      "object_attachment_used": false
+    },
+    {
+      "case": "perturbation_07",
+      "mass_g": 46.0947271779764,
+      "friction": 0.9449351868182855,
+      "initial_offset_mm": [
+        -0.9370166151746009,
+        -0.7160953883807569,
+        0.0
+      ],
+      "engine": "MuJoCo 3.15.0",
+      "order": 5,
+      "fingers": true,
+      "gravity_compensation": true,
+      "simulation_seconds": 12.342000000000791,
+      "wall_seconds": 1.1056826999410987,
+      "samples": 1235,
+      "joint_rmse_rad": [
+        0.008951404855767836,
+        0.0018002773728792358,
+        0.010147638718956374,
+        0.008692585481459236
+      ],
+      "tcp_rmse_mm": 1.9033659270161707,
+      "final_workpiece_xyz_m": [
+        0.17009603242446492,
+        0.05940873654152504,
+        0.064952778457807
+      ],
+      "placement_error_mm": 0.6008698510688188,
+      "maximum_lift_mm": 39.82389008801222,
+      "pad_contact_samples": 531,
+      "unwanted_contact_samples": 0,
+      "success": true,
+      "object_attachment_used": false
+    },
+    {
+      "case": "perturbation_08",
+      "mass_g": 48.282156551994035,
+      "friction": 1.136795058812115,
+      "initial_offset_mm": [
+        1.583041120257539,
+        1.6532999135855726,
+        0.0
+      ],
+      "engine": "MuJoCo 3.15.0",
+      "order": 5,
+      "fingers": true,
+      "gravity_compensation": true,
+      "simulation_seconds": 12.342000000000791,
+      "wall_seconds": 1.1411613000091165,
+      "samples": 1235,
+      "joint_rmse_rad": [
+        0.008952102683974155,
+        0.0017997839909004501,
+        0.010148077410040608,
+        0.008692628340873029
+      ],
+      "tcp_rmse_mm": 1.9035922746101357,
+      "final_workpiece_xyz_m": [
+        0.17104119343686416,
+        0.06000649376804185,
+        0.0649462338065128
+      ],
+      "placement_error_mm": 1.042600952212528,
+      "maximum_lift_mm": 39.73133346134314,
+      "pad_contact_samples": 533,
+      "unwanted_contact_samples": 0,
+      "success": true,
+      "object_attachment_used": false
+    },
+    {
+      "case": "perturbation_09",
+      "mass_g": 45.035261526412825,
+      "friction": 1.0505211409176582,
+      "initial_offset_mm": [
+        1.7324690596089722,
+        -0.7952110280452036,
+        0.0
+      ],
+      "engine": "MuJoCo 3.15.0",
+      "order": 5,
+      "fingers": true,
+      "gravity_compensation": true,
+      "simulation_seconds": 12.342000000000791,
+      "wall_seconds": 1.1379262999398634,
+      "samples": 1235,
+      "joint_rmse_rad": [
+        0.008951415417260066,
+        0.001800914917893294,
+        0.010147208583335414,
+        0.008692681313939738
+      ],
+      "tcp_rmse_mm": 1.903296874290604,
+      "final_workpiece_xyz_m": [
+        0.17245592956809908,
+        0.060644576400025435,
+        0.06495352038552088
+      ],
+      "placement_error_mm": 2.5395332511103557,
+      "maximum_lift_mm": 39.86064926106757,
+      "pad_contact_samples": 532,
+      "unwanted_contact_samples": 0,
+      "success": true,
+      "object_attachment_used": false
+    }
+  ],
+  "perturbation_successes": 10,
+  "perturbation_trials": 10,
+  "scope": "Ten small model perturbations; synthetic simulation only; no statistical reliability or real-world success-rate claim."
+}

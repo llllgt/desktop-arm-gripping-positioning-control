@@ -1,0 +1,16 @@
+{
+  "carrier": {
+    "volume_mm3": 728.0000000000001,
+    "valid_solid": true,
+    "mass_g": 1.9656000000000002
+  },
+  "contact_pad": {
+    "volume_mm3": 728.0000000000001,
+    "valid_solid": true,
+    "mass_g": 0.8372000000000002
+  },
+  "workpiece_fixture": {
+    "volume_mm3": 32282.296492588834,
+    "valid_solid": true
+  }
+}

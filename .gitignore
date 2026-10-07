@@ -1,0 +1,16 @@
+.venv/
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+build/
+install/
+log/
+dist/
+results/first-run/
+results/second-run/
+results/third-run/
+results/fourth-run/
+results/initial_model.png
+results/my-run/
+results/structure/fea_fields.npz

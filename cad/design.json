@@ -1,0 +1,11 @@
+{
+  "units": "mm",
+  "carrier": {"length": 26.0, "width": 14.0, "thickness": 2.0, "density_kg_m3": 2700},
+  "contact_pad": {"length": 26.0, "width": 14.0, "thickness": 2.0, "density_kg_m3": 1150},
+  "fixture": {"base_length": 60.0, "base_width": 45.0, "base_thickness": 6.0, "pedestal_length": 24.0, "pedestal_width": 14.0, "total_height": 55.0, "mount_hole_diameter": 4.5, "mount_hole_pitch_x": 44.0, "mount_hole_pitch_y": 29.0},
+  "carrier_material": {"name": "Aluminium 6061-T6 (assumed)", "young_modulus_pa": 69000000000, "poisson_ratio": 0.33, "yield_strength_pa": 240000000},
+  "design_load_n": 6.0,
+  "assumed_contact_friction": 1.2,
+  "grasp_safety_factor": 3.0,
+  "attachment": "Bonded carrier to existing flat jaw face; adhesive strength and actual fit require hardware verification"
+}

@@ -35,7 +35,7 @@ def main():
         ax.grid(alpha=.2)
     for ax in [axes[0,0],axes[0,1],axes[1,0]]:
         ax.set_xlabel('Simulation time / s')
-    fig.suptitle('Desktop arm: measured contact simulation outputs')
+    fig.suptitle('Four-DOF arm: gripping, positioning and motion control\nMeasured contact simulation outputs')
     fig.savefig(ROOT/'results/native/performance.png',dpi=160)
     plt.close(fig)
 

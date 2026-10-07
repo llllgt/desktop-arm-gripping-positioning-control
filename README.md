@@ -1,8 +1,8 @@
-# 四自由度机械臂末端工装设计与轨迹控制
+# 四自由度机械臂夹持与定位机构设计及运动控制
 
-[![Tests](https://github.com/llllgt/desktop-arm-tooling-control/actions/workflows/tests.yml/badge.svg)](https://github.com/llllgt/desktop-arm-tooling-control/actions/workflows/tests.yml)
+[![Tests](https://github.com/llllgt/desktop-arm-gripping-positioning-control/actions/workflows/tests.yml/badge.svg)](https://github.com/llllgt/desktop-arm-gripping-positioning-control/actions/workflows/tests.yml)
 
-基于 OpenMANIPULATOR-X 的末端工装设计与运动控制仿真项目。以小型工件在两个托座间转运为任务，完成夹指背板、接触垫和托座的参数化建模，结合四轴运动学、关节轨迹与 ROS 2 控制接口，验证结构和运动方案。
+基于 OpenMANIPULATOR-X 的夹持附件、定位托座设计与运动控制仿真项目。以小型工件在两个托座间转运为任务，完成夹指背板、接触垫和托座的参数化建模，结合四轴运动学、关节轨迹与 ROS 2 控制接口，验证结构和运动方案。夹持附件安装于机械臂末端，定位托座安装于工作台，二者分别承担夹持与支承定位功能。
 
 ![搬运演示](results/native/demo.gif)
 
@@ -86,5 +86,6 @@ Ubuntu 24.04 + ROS 2 Jazzy 可按文档构建本 ROS 包；该平台尚未实际
 | ROS 控制与任务节点 | `desktop_arm/ros_nodes.py` |
 | 原始测量、演示及分析图 | `results/` |
 | 推荐学习顺序 | [项目阅读路线](docs/项目阅读路线.md) |
+| 简历项目表述参考 | [简历项目表述](docs/简历项目表述.md) |
 
 许可证：Apache-2.0。上游来源及许可证保留，第三方依赖遵循各自许可证。

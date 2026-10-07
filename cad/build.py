@@ -81,7 +81,7 @@ def draw(f,c,p):
     ax.set_xlim(-cl/2-9,cl/2+9);ax.set_ylim(-cw/2-14,cw/2+17)
     for ax in axes:
         ax.set_aspect('equal');ax.set_xlabel('mm');ax.set_ylabel('mm');ax.grid(alpha=.15)
-    fig.suptitle('Desktop arm - Parametric mechanical parts / Units mm / Rev A',fontsize=15)
+    fig.suptitle('Four-DOF arm - Gripping and positioning parts / Units mm / Rev A',fontsize=15)
     fig.savefig(OUT/'engineering_drawing.png',dpi=180)
     fig.savefig(OUT/'engineering_drawing.pdf')
     plt.close(fig)

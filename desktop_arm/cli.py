@@ -5,7 +5,7 @@ from .paths import project_root
 
 
 def main():
-    parser = argparse.ArgumentParser(description='Desktop workpiece transfer tools')
+    parser = argparse.ArgumentParser(description='Four-DOF arm gripping, positioning and motion control')
     sub = parser.add_subparsers(dest='command',required=True)
     sim = sub.add_parser('simulate')
     sim.add_argument('--output',type=Path,default=project_root()/'results/native')

@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <package format="3">
   <name>desktop_arm</name><version>0.1.0</version>
-  <description>Desktop workpiece transfer with mechanical parts and ROS 2 motion control</description>
+  <description>Four-DOF robot arm gripping and positioning mechanism design with ROS 2 motion control</description>
   <maintainer email="935093784@qq.com">赖根涛</maintainer>
   <license>Apache-2.0</license>
   <buildtool_depend>ament_python</buildtool_depend>

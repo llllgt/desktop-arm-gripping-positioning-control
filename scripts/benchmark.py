@@ -1,12 +1,15 @@
 """Small reproducible ablation/perturbation set, not a real-world reliability claim."""
 from pathlib import Path
 import json
+import argparse
 import numpy as np
 from desktop_arm.simulation import run
 from desktop_arm.task import load_task
 
 ROOT=Path(__file__).resolve().parents[1]
-out=ROOT/'results/benchmark';out.mkdir(exist_ok=True)
+parser=argparse.ArgumentParser()
+parser.add_argument('--output',type=Path,default=ROOT/'results/benchmark')
+out=parser.parse_args().output;out.mkdir(parents=True,exist_ok=True)
 cases=[]
 for name,kwargs in [('quintic',{}),('cubic',{'order':3}),('no_feedforward',{'gravity_compensation':False}),('no_contact_pads',{'fingers':False})]:
     cases.append({'case':name,**run(out/name,**kwargs)})

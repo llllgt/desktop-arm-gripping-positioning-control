@@ -1,0 +1,3896 @@
+{
+  "model_revision": "explicit-pad-friction-v2",
+  "masses_g": [
+    20.0,
+    50.0,
+    120.0,
+    200.0
+  ],
+  "frictions": [
+    0.05,
+    0.2,
+    0.6,
+    1.2
+  ],
+  "clearances_mm": [
+    20.0,
+    40.0,
+    60.0
+  ],
+  "cases": [
+    {
+      "case": "m020_mu0.05_h20",
+      "mass_g": 20.0,
+      "friction": 0.05,
+      "clearance_mm": 20.0,
+      "preflight": {
+        "feasible": true,
+        "sample_period_s": 0.02,
+        "samples": 552,
+        "collisions": [],
+        "scope": "Sampled commanded robot versus fixed fixtures/floor; excludes object contacts and self collision. Not a continuous or dynamic safety guarantee.",
+        "minimum_joint_margin_rad": 0.5301868445980169,
+        "maximum_position_jacobian_condition": 2.035671562026895,
+        "planned_duration_s": 10.73999610295014,
+        "phase_durations_s": {
+          "SETTLE": 0.8,
+          "APPROACH_PICK": 1.086121374489774,
+          "DESCEND_PICK": 0.811406768572508,
+          "CLOSE": 0.8,
+          "HOLD": 0.8,
+          "LIFT": 0.811406768572508,
+          "TRANSFER": 1.6051671514373196,
+          "DESCEND_PLACE": 0.8129470199390157,
+          "OPEN": 0.8,
+          "RELEASE_SETTLE": 0.8,
+          "RETRACT": 0.8129470199390157,
+          "FINISH": 0.8
+        }
+      },
+      "engine": "MuJoCo 3.15.0",
+      "model_revision": "explicit-pad-friction-v2",
+      "order": 5,
+      "fingers": true,
+      "gravity_compensation": true,
+      "simulation_seconds": 10.770000000000266,
+      "wall_seconds": 1.2859315001405776,
+      "samples": 1077,
+      "joint_rmse_rad": [
+        0.009728277084455603,
+        0.001672043876765374,
+        0.00608857451282532,
+        0.005591393476207737
+      ],
+      "tcp_rmse_mm": 1.8432713052517864,
+      "final_workpiece_xyz_m": [
+        0.16314763086496248,
+        -0.08663057715282801,
+        0.01194662799435064
+      ],
+      "placement_error_mm": 156.08376405028193,
+      "maximum_lift_mm": 0.5711013166146417,
+      "pad_contact_samples": 14,
+      "unwanted_contact_samples": 0,
+      "unwanted_contact_steps": 0,
+      "success": false,
+      "failure_reasons": [
+        "placement_error",
+        "insufficient_lift"
+      ],
+      "peak_joint_torque_nm": [
+        1.0569743496017132,
+        1.2126455908121017,
+        0.8910764416588144,
+        0.3139739849412422
+      ],
+      "peak_joint_velocity_rad_s": [
+        0.7796243541018576,
+        0.1904533886453867,
+        0.3916451459925241,
+        0.3711915080164466
+      ],
+      "requested_pad_friction": 0.05,
+      "measured_pad_friction_range": [
+        0.05,
+        0.05
+      ],
+      "metal_workpiece_contact_steps": 683,
+      "bilateral_transport_contact_fraction": 0.0,
+      "object_attachment_used": false,
+      "status": "failed"
+    },
+    {
+      "case": "m020_mu0.05_h40",
+      "mass_g": 20.0,
+      "friction": 0.05,
+      "clearance_mm": 40.0,
+      "preflight": {
+        "feasible": true,
+        "sample_period_s": 0.02,
+        "samples": 632,
+        "collisions": [],
+        "scope": "Sampled commanded robot versus fixed fixtures/floor; excludes object contacts and self collision. Not a continuous or dynamic safety guarantee.",
+        "minimum_joint_margin_rad": 0.3600594583340142,
+        "maximum_position_jacobian_condition": 2.035671562026895,
+        "planned_duration_s": 12.308543725567231,
+        "phase_durations_s": {
+          "SETTLE": 0.8,
+          "APPROACH_PICK": 1.086121374489774,
+          "DESCEND_PICK": 1.202191764398952,
+          "CLOSE": 0.8,
+          "HOLD": 0.8,
+          "LIFT": 1.202191764398952,
+          "TRANSFER": 1.6051671514373196,
+          "DESCEND_PLACE": 1.206435835421117,
+          "OPEN": 0.8,
+          "RELEASE_SETTLE": 0.8,
+          "RETRACT": 1.206435835421117,
+          "FINISH": 0.8
+        }
+      },
+      "engine": "MuJoCo 3.15.0",
+      "model_revision": "explicit-pad-friction-v2",
+      "order": 5,
+      "fingers": true,
+      "gravity_compensation": true,
+      "simulation_seconds": 12.342000000000791,
+      "wall_seconds": 1.2520073999185115,
+      "samples": 1235,
+      "joint_rmse_rad": [
+        0.008951051367730138,
+        0.0018192550276897928,
+        0.010141047104050456,
+        0.008692736335613313
+      ],
+      "tcp_rmse_mm": 1.9025920245927477,
+      "final_workpiece_xyz_m": [
+        0.16899990192021375,
+        -0.049972785501204514,
+        0.06494626356155692
+      ],
+      "placement_error_mm": 109.97734600665697,
+      "maximum_lift_mm": 0.5143896558215261,
+      "pad_contact_samples": 186,
+      "unwanted_contact_samples": 0,
+      "unwanted_contact_steps": 0,
+      "success": false,
+      "failure_reasons": [
+        "placement_error",
+        "insufficient_lift"
+      ],
+      "peak_joint_torque_nm": [
+        0.3253938113810335,
+        0.5045039426771591,
+        0.6508004268736407,
+        0.31160639785406374
+      ],
+      "peak_joint_velocity_rad_s": [
+        0.7796247557693022,
+        0.10443729860354985,
+        0.5847222858511806,
+        0.514677385520898
+      ],
+      "requested_pad_friction": 0.05,
+      "measured_pad_friction_range": [
+        0.05,
+        0.05
+      ],
+      "metal_workpiece_contact_steps": 0,
+      "bilateral_transport_contact_fraction": 0.1993041749502982,
+      "object_attachment_used": false,
+      "status": "failed"
+    },
+    {
+      "case": "m020_mu0.05_h60",
+      "mass_g": 20.0,
+      "friction": 0.05,
+      "clearance_mm": 60.0,
+      "preflight": {
+        "feasible": true,
+        "sample_period_s": 0.02,
+        "samples": 702,
+        "collisions": [],
+        "scope": "Sampled commanded robot versus fixed fixtures/floor; excludes object contacts and self collision. Not a continuous or dynamic safety guarantee.",
+        "minimum_joint_margin_rad": 0.17051487943187627,
+        "maximum_position_jacobian_condition": 2.035671562026895,
+        "planned_duration_s": 13.748263116702308,
+        "phase_durations_s": {
+          "SETTLE": 0.8,
+          "APPROACH_PICK": 1.086121374489774,
+          "DESCEND_PICK": 1.5593650450640497,
+          "CLOSE": 0.8,
+          "HOLD": 0.8,
+          "LIFT": 1.5593650450640497,
+          "TRANSFER": 1.6051671514373196,
+          "DESCEND_PLACE": 1.5691222503235578,
+          "OPEN": 0.8,
+          "RELEASE_SETTLE": 0.8,
+          "RETRACT": 1.5691222503235578,
+          "FINISH": 0.8
+        }
+      },
+      "engine": "MuJoCo 3.15.0",
+      "model_revision": "explicit-pad-friction-v2",
+      "order": 5,
+      "fingers": true,
+      "gravity_compensation": true,
+      "simulation_seconds": 13.77800000000127,
+      "wall_seconds": 1.4276363998651505,
+      "samples": 1378,
+      "joint_rmse_rad": [
+        0.00847389836753241,
+        0.003072721660498112,
+        0.014113606485886549,
+        0.011270449722494533
+      ],
+      "tcp_rmse_mm": 2.009327187731137,
+      "final_workpiece_xyz_m": [
+        0.16901145966113143,
+        -0.04997998921122845,
+        0.0649462722799373
+      ],
+      "placement_error_mm": 109.9844449255048,
+      "maximum_lift_mm": 0.5445068479810744,
+      "pad_contact_samples": 185,
+      "unwanted_contact_samples": 0,
+      "unwanted_contact_steps": 0,
+      "success": false,
+      "failure_reasons": [
+        "placement_error",
+        "insufficient_lift"
+      ],
+      "peak_joint_torque_nm": [
+        0.32547015312613325,
+        0.5244504169445148,
+        0.6609447373656643,
+        0.30728472325904477
+      ],
+      "peak_joint_velocity_rad_s": [
+        0.7796259100778621,
+        0.13970298998700448,
+        0.7620753230888833,
+        0.6223413913170158
+      ],
+      "requested_pad_friction": 0.05,
+      "measured_pad_friction_range": [
+        0.05,
+        0.05
+      ],
+      "metal_workpiece_contact_steps": 0,
+      "bilateral_transport_contact_fraction": 0.1691269506537326,
+      "object_attachment_used": false,
+      "status": "failed"
+    },
+    {
+      "case": "m020_mu0.20_h20",
+      "mass_g": 20.0,
+      "friction": 0.2,
+      "clearance_mm": 20.0,
+      "preflight": {
+        "feasible": true,
+        "sample_period_s": 0.02,
+        "samples": 552,
+        "collisions": [],
+        "scope": "Sampled commanded robot versus fixed fixtures/floor; excludes object contacts and self collision. Not a continuous or dynamic safety guarantee.",
+        "minimum_joint_margin_rad": 0.5301868445980169,
+        "maximum_position_jacobian_condition": 2.035671562026895,
+        "planned_duration_s": 10.73999610295014,
+        "phase_durations_s": {
+          "SETTLE": 0.8,
+          "APPROACH_PICK": 1.086121374489774,
+          "DESCEND_PICK": 0.811406768572508,
+          "CLOSE": 0.8,
+          "HOLD": 0.8,
+          "LIFT": 0.811406768572508,
+          "TRANSFER": 1.6051671514373196,
+          "DESCEND_PLACE": 0.8129470199390157,
+          "OPEN": 0.8,
+          "RELEASE_SETTLE": 0.8,
+          "RETRACT": 0.8129470199390157,
+          "FINISH": 0.8
+        }
+      },
+      "engine": "MuJoCo 3.15.0",
+      "model_revision": "explicit-pad-friction-v2",
+      "order": 5,
+      "fingers": true,
+      "gravity_compensation": true,
+      "simulation_seconds": 10.770000000000266,
+      "wall_seconds": 1.14153019990772,
+      "samples": 1077,
+      "joint_rmse_rad": [
+        0.009726661459910795,
+        0.001661912386843618,
+        0.006089001445810281,
+        0.0055914036236013745
+      ],
+      "tcp_rmse_mm": 1.84276535293865,
+      "final_workpiece_xyz_m": [
+        0.16791947422777767,
+        -0.10248845088351198,
+        0.009946627994350645
+      ],
+      "placement_error_mm": 171.57417937208612,
+      "maximum_lift_mm": 0.5532197339805506,
+      "pad_contact_samples": 14,
+      "unwanted_contact_samples": 0,
+      "unwanted_contact_steps": 0,
+      "success": false,
+      "failure_reasons": [
+        "placement_error",
+        "insufficient_lift"
+      ],
+      "peak_joint_torque_nm": [
+        1.0541449939849414,
+        1.1933115833227745,
+        0.8842641350268508,
+        0.31397398494044637
+      ],
+      "peak_joint_velocity_rad_s": [
+        0.7796243541018576,
+        0.18842746283970638,
+        0.3916451459925241,
+        0.3711915080164461
+      ],
+      "requested_pad_friction": 0.2,
+      "measured_pad_friction_range": [
+        0.2,
+        0.2
+      ],
+      "metal_workpiece_contact_steps": 682,
+      "bilateral_transport_contact_fraction": 0.0,
+      "object_attachment_used": false,
+      "status": "failed"
+    },
+    {
+      "case": "m020_mu0.20_h40",
+      "mass_g": 20.0,
+      "friction": 0.2,
+      "clearance_mm": 40.0,
+      "preflight": {
+        "feasible": true,
+        "sample_period_s": 0.02,
+        "samples": 632,
+        "collisions": [],
+        "scope": "Sampled commanded robot versus fixed fixtures/floor; excludes object contacts and self collision. Not a continuous or dynamic safety guarantee.",
+        "minimum_joint_margin_rad": 0.3600594583340142,
+        "maximum_position_jacobian_condition": 2.035671562026895,
+        "planned_duration_s": 12.308543725567231,
+        "phase_durations_s": {
+          "SETTLE": 0.8,
+          "APPROACH_PICK": 1.086121374489774,
+          "DESCEND_PICK": 1.202191764398952,
+          "CLOSE": 0.8,
+          "HOLD": 0.8,
+          "LIFT": 1.202191764398952,
+          "TRANSFER": 1.6051671514373196,
+          "DESCEND_PLACE": 1.206435835421117,
+          "OPEN": 0.8,
+          "RELEASE_SETTLE": 0.8,
+          "RETRACT": 1.206435835421117,
+          "FINISH": 0.8
+        }
+      },
+      "engine": "MuJoCo 3.15.0",
+      "model_revision": "explicit-pad-friction-v2",
+      "order": 5,
+      "fingers": true,
+      "gravity_compensation": true,
+      "simulation_seconds": 12.342000000000791,
+      "wall_seconds": 1.303296099882573,
+      "samples": 1235,
+      "joint_rmse_rad": [
+        0.008951029116897491,
+        0.0018135584570988154,
+        0.010148211373706246,
+        0.008691427395648274
+      ],
+      "tcp_rmse_mm": 1.9040160326290378,
+      "final_workpiece_xyz_m": [
+        0.16966745598749441,
+        -0.05004792308456653,
+        0.06494658534261012
+      ],
+      "placement_error_mm": 110.04843848902422,
+      "maximum_lift_mm": 0.547094135443571,
+      "pad_contact_samples": 186,
+      "unwanted_contact_samples": 0,
+      "unwanted_contact_steps": 0,
+      "success": false,
+      "failure_reasons": [
+        "placement_error",
+        "insufficient_lift"
+      ],
+      "peak_joint_torque_nm": [
+        0.32539381154303015,
+        0.5045039426771663,
+        0.6711149562842778,
+        0.31160639785406374
+      ],
+      "peak_joint_velocity_rad_s": [
+        0.7796247557697465,
+        0.10443729860354985,
+        0.5847222858511806,
+        0.5146773855208983
+      ],
+      "requested_pad_friction": 0.2,
+      "measured_pad_friction_range": [
+        0.2,
+        0.2
+      ],
+      "metal_workpiece_contact_steps": 0,
+      "bilateral_transport_contact_fraction": 0.1779324055666004,
+      "object_attachment_used": false,
+      "status": "failed"
+    },
+    {
+      "case": "m020_mu0.20_h60",
+      "mass_g": 20.0,
+      "friction": 0.2,
+      "clearance_mm": 60.0,
+      "preflight": {
+        "feasible": true,
+        "sample_period_s": 0.02,
+        "samples": 702,
+        "collisions": [],
+        "scope": "Sampled commanded robot versus fixed fixtures/floor; excludes object contacts and self collision. Not a continuous or dynamic safety guarantee.",
+        "minimum_joint_margin_rad": 0.17051487943187627,
+        "maximum_position_jacobian_condition": 2.035671562026895,
+        "planned_duration_s": 13.748263116702308,
+        "phase_durations_s": {
+          "SETTLE": 0.8,
+          "APPROACH_PICK": 1.086121374489774,
+          "DESCEND_PICK": 1.5593650450640497,
+          "CLOSE": 0.8,
+          "HOLD": 0.8,
+          "LIFT": 1.5593650450640497,
+          "TRANSFER": 1.6051671514373196,
+          "DESCEND_PLACE": 1.5691222503235578,
+          "OPEN": 0.8,
+          "RELEASE_SETTLE": 0.8,
+          "RETRACT": 1.5691222503235578,
+          "FINISH": 0.8
+        }
+      },
+      "engine": "MuJoCo 3.15.0",
+      "model_revision": "explicit-pad-friction-v2",
+      "order": 5,
+      "fingers": true,
+      "gravity_compensation": true,
+      "simulation_seconds": 13.77800000000127,
+      "wall_seconds": 1.3638672002125531,
+      "samples": 1378,
+      "joint_rmse_rad": [
+        0.008473876935388357,
+        0.00306778373366233,
+        0.014119104896739558,
+        0.011269114991429213
+      ],
+      "tcp_rmse_mm": 2.0106715211978017,
+      "final_workpiece_xyz_m": [
+        0.1703044655066939,
+        -0.05020276486409526,
+        0.06494655052025262
+      ],
+      "placement_error_mm": 110.20319840994961,
+      "maximum_lift_mm": 0.4923276290126066,
+      "pad_contact_samples": 185,
+      "unwanted_contact_samples": 0,
+      "unwanted_contact_steps": 0,
+      "success": false,
+      "failure_reasons": [
+        "placement_error",
+        "insufficient_lift"
+      ],
+      "peak_joint_torque_nm": [
+        0.3254701533554112,
+        0.5244504169445325,
+        0.6822507067741839,
+        0.30728472325904477
+      ],
+      "peak_joint_velocity_rad_s": [
+        0.7796259100787114,
+        0.1397029899870045,
+        0.7620753230888833,
+        0.6223413913170158
+      ],
+      "requested_pad_friction": 0.2,
+      "measured_pad_friction_range": [
+        0.2,
+        0.2
+      ],
+      "metal_workpiece_contact_steps": 0,
+      "bilateral_transport_contact_fraction": 0.15942640236187264,
+      "object_attachment_used": false,
+      "status": "failed"
+    },
+    {
+      "case": "m020_mu0.60_h20",
+      "mass_g": 20.0,
+      "friction": 0.6,
+      "clearance_mm": 20.0,
+      "preflight": {
+        "feasible": true,
+        "sample_period_s": 0.02,
+        "samples": 552,
+        "collisions": [],
+        "scope": "Sampled commanded robot versus fixed fixtures/floor; excludes object contacts and self collision. Not a continuous or dynamic safety guarantee.",
+        "minimum_joint_margin_rad": 0.5301868445980169,
+        "maximum_position_jacobian_condition": 2.035671562026895,
+        "planned_duration_s": 10.73999610295014,
+        "phase_durations_s": {
+          "SETTLE": 0.8,
+          "APPROACH_PICK": 1.086121374489774,
+          "DESCEND_PICK": 0.811406768572508,
+          "CLOSE": 0.8,
+          "HOLD": 0.8,
+          "LIFT": 0.811406768572508,
+          "TRANSFER": 1.6051671514373196,
+          "DESCEND_PLACE": 0.8129470199390157,
+          "OPEN": 0.8,
+          "RELEASE_SETTLE": 0.8,
+          "RETRACT": 0.8129470199390157,
+          "FINISH": 0.8
+        }
+      },
+      "engine": "MuJoCo 3.15.0",
+      "model_revision": "explicit-pad-friction-v2",
+      "order": 5,
+      "fingers": true,
+      "gravity_compensation": true,
+      "simulation_seconds": 10.770000000000266,
+      "wall_seconds": 1.0232106999028474,
+      "samples": 1077,
+      "joint_rmse_rad": [
+        0.009757182991567625,
+        0.0017436883949265116,
+        0.006083253075888132,
+        0.005592003842753472
+      ],
+      "tcp_rmse_mm": 1.8504019307421122,
+      "final_workpiece_xyz_m": [
+        0.1633518250957721,
+        -0.08938846073339556,
+        0.011946627994350641
+      ],
+      "placement_error_mm": 158.66874522419434,
+      "maximum_lift_mm": 0.2125319511008944,
+      "pad_contact_samples": 17,
+      "unwanted_contact_samples": 0,
+      "unwanted_contact_steps": 0,
+      "success": false,
+      "failure_reasons": [
+        "placement_error",
+        "insufficient_lift"
+      ],
+      "peak_joint_torque_nm": [
+        1.1021798699644236,
+        1.2904936510401726,
+        1.020879433519902,
+        0.31397398492600814
+      ],
+      "peak_joint_velocity_rad_s": [
+        0.7796243541018576,
+        0.19669508454568302,
+        0.3916451459925241,
+        0.3711915080164437
+      ],
+      "requested_pad_friction": 0.6,
+      "measured_pad_friction_range": [
+        0.6,
+        0.6
+      ],
+      "metal_workpiece_contact_steps": 696,
+      "bilateral_transport_contact_fraction": 0.0,
+      "object_attachment_used": false,
+      "status": "failed"
+    },
+    {
+      "case": "m020_mu0.60_h40",
+      "mass_g": 20.0,
+      "friction": 0.6,
+      "clearance_mm": 40.0,
+      "preflight": {
+        "feasible": true,
+        "sample_period_s": 0.02,
+        "samples": 632,
+        "collisions": [],
+        "scope": "Sampled commanded robot versus fixed fixtures/floor; excludes object contacts and self collision. Not a continuous or dynamic safety guarantee.",
+        "minimum_joint_margin_rad": 0.3600594583340142,
+        "maximum_position_jacobian_condition": 2.035671562026895,
+        "planned_duration_s": 12.308543725567231,
+        "phase_durations_s": {
+          "SETTLE": 0.8,
+          "APPROACH_PICK": 1.086121374489774,
+          "DESCEND_PICK": 1.202191764398952,
+          "CLOSE": 0.8,
+          "HOLD": 0.8,
+          "LIFT": 1.202191764398952,
+          "TRANSFER": 1.6051671514373196,
+          "DESCEND_PLACE": 1.206435835421117,
+          "OPEN": 0.8,
+          "RELEASE_SETTLE": 0.8,
+          "RETRACT": 1.206435835421117,
+          "FINISH": 0.8
+        }
+      },
+      "engine": "MuJoCo 3.15.0",
+      "model_revision": "explicit-pad-friction-v2",
+      "order": 5,
+      "fingers": true,
+      "gravity_compensation": true,
+      "simulation_seconds": 12.342000000000791,
+      "wall_seconds": 1.3668519998900592,
+      "samples": 1235,
+      "joint_rmse_rad": [
+        0.008951124951193205,
+        0.0018083910844254448,
+        0.01014212257944982,
+        0.00869316047985739
+      ],
+      "tcp_rmse_mm": 1.9022838200133072,
+      "final_workpiece_xyz_m": [
+        0.16972005591807204,
+        0.05976502293280775,
+        0.06494654071862772
+      ],
+      "placement_error_mm": 0.3693789461753395,
+      "maximum_lift_mm": 38.664343405538496,
+      "pad_contact_samples": 523,
+      "unwanted_contact_samples": 0,
+      "unwanted_contact_steps": 0,
+      "success": true,
+      "failure_reasons": [],
+      "peak_joint_torque_nm": [
+        0.32620493746840395,
+        0.5372136992158794,
+        0.675484436316772,
+        0.3176366651334206
+      ],
+      "peak_joint_velocity_rad_s": [
+        0.7796367351100996,
+        0.10443729860354985,
+        0.5847357328096527,
+        0.5146759315087512
+      ],
+      "requested_pad_friction": 0.6,
+      "measured_pad_friction_range": [
+        0.6,
+        0.6
+      ],
+      "metal_workpiece_contact_steps": 0,
+      "bilateral_transport_contact_fraction": 0.9900596421471173,
+      "object_attachment_used": false,
+      "status": "passed"
+    },
+    {
+      "case": "m020_mu0.60_h60",
+      "mass_g": 20.0,
+      "friction": 0.6,
+      "clearance_mm": 60.0,
+      "preflight": {
+        "feasible": true,
+        "sample_period_s": 0.02,
+        "samples": 702,
+        "collisions": [],
+        "scope": "Sampled commanded robot versus fixed fixtures/floor; excludes object contacts and self collision. Not a continuous or dynamic safety guarantee.",
+        "minimum_joint_margin_rad": 0.17051487943187627,
+        "maximum_position_jacobian_condition": 2.035671562026895,
+        "planned_duration_s": 13.748263116702308,
+        "phase_durations_s": {
+          "SETTLE": 0.8,
+          "APPROACH_PICK": 1.086121374489774,
+          "DESCEND_PICK": 1.5593650450640497,
+          "CLOSE": 0.8,
+          "HOLD": 0.8,
+          "LIFT": 1.5593650450640497,
+          "TRANSFER": 1.6051671514373196,
+          "DESCEND_PLACE": 1.5691222503235578,
+          "OPEN": 0.8,
+          "RELEASE_SETTLE": 0.8,
+          "RETRACT": 1.5691222503235578,
+          "FINISH": 0.8
+        }
+      },
+      "engine": "MuJoCo 3.15.0",
+      "model_revision": "explicit-pad-friction-v2",
+      "order": 5,
+      "fingers": true,
+      "gravity_compensation": true,
+      "simulation_seconds": 13.77800000000127,
+      "wall_seconds": 1.5285767999012023,
+      "samples": 1378,
+      "joint_rmse_rad": [
+        0.008473967003578163,
+        0.00306790075583917,
+        0.014114257349931356,
+        0.011270800946800651
+      ],
+      "tcp_rmse_mm": 2.0090099587279093,
+      "final_workpiece_xyz_m": [
+        0.16997433260287412,
+        0.05986944938201731,
+        0.06494660960968998
+      ],
+      "placement_error_mm": 0.1433625226770789,
+      "maximum_lift_mm": 58.74495529469405,
+      "pad_contact_samples": 596,
+      "unwanted_contact_samples": 0,
+      "unwanted_contact_steps": 0,
+      "success": true,
+      "failure_reasons": [],
+      "peak_joint_torque_nm": [
+        0.32628175397488235,
+        0.5573020733707015,
+        0.6848512121983497,
+        0.31324666914980526
+      ],
+      "peak_joint_velocity_rad_s": [
+        0.7796378980571489,
+        0.13970298998709524,
+        0.7620933844433199,
+        0.6223404493556434
+      ],
+      "requested_pad_friction": 0.6,
+      "measured_pad_friction_range": [
+        0.6,
+        0.6
+      ],
+      "metal_workpiece_contact_steps": 0,
+      "bilateral_transport_contact_fraction": 0.9928300295234078,
+      "object_attachment_used": false,
+      "status": "passed"
+    },
+    {
+      "case": "m020_mu1.20_h20",
+      "mass_g": 20.0,
+      "friction": 1.2,
+      "clearance_mm": 20.0,
+      "preflight": {
+        "feasible": true,
+        "sample_period_s": 0.02,
+        "samples": 552,
+        "collisions": [],
+        "scope": "Sampled commanded robot versus fixed fixtures/floor; excludes object contacts and self collision. Not a continuous or dynamic safety guarantee.",
+        "minimum_joint_margin_rad": 0.5301868445980169,
+        "maximum_position_jacobian_condition": 2.035671562026895,
+        "planned_duration_s": 10.73999610295014,
+        "phase_durations_s": {
+          "SETTLE": 0.8,
+          "APPROACH_PICK": 1.086121374489774,
+          "DESCEND_PICK": 0.811406768572508,
+          "CLOSE": 0.8,
+          "HOLD": 0.8,
+          "LIFT": 0.811406768572508,
+          "TRANSFER": 1.6051671514373196,
+          "DESCEND_PLACE": 0.8129470199390157,
+          "OPEN": 0.8,
+          "RELEASE_SETTLE": 0.8,
+          "RETRACT": 0.8129470199390157,
+          "FINISH": 0.8
+        }
+      },
+      "engine": "MuJoCo 3.15.0",
+      "model_revision": "explicit-pad-friction-v2",
+      "order": 5,
+      "fingers": true,
+      "gravity_compensation": true,
+      "simulation_seconds": 10.770000000000266,
+      "wall_seconds": 1.0593634000979364,
+      "samples": 1077,
+      "joint_rmse_rad": [
+        0.009767130884073815,
+        0.001770207709080169,
+        0.006081580650194452,
+        0.0055923176374607746
+      ],
+      "tcp_rmse_mm": 1.8530767126828096,
+      "final_workpiece_xyz_m": [
+        0.16331325608426078,
+        -0.09003731385031213,
+        0.011946627994350636
+      ],
+      "placement_error_mm": 159.28141251502498,
+      "maximum_lift_mm": 0.27604900953846767,
+      "pad_contact_samples": 18,
+      "unwanted_contact_samples": 0,
+      "unwanted_contact_steps": 0,
+      "success": false,
+      "failure_reasons": [
+        "placement_error",
+        "insufficient_lift"
+      ],
+      "peak_joint_torque_nm": [
+        1.1289837371661662,
+        1.3185547224251977,
+        1.0767091516003164,
+        0.31764156964544554
+      ],
+      "peak_joint_velocity_rad_s": [
+        0.7796243541018576,
+        0.19835800150684063,
+        0.3916451459925241,
+        0.3711915080164411
+      ],
+      "requested_pad_friction": 1.2,
+      "measured_pad_friction_range": [
+        1.2,
+        1.2
+      ],
+      "metal_workpiece_contact_steps": 700,
+      "bilateral_transport_contact_fraction": 0.0,
+      "object_attachment_used": false,
+      "status": "failed"
+    },
+    {
+      "case": "m020_mu1.20_h40",
+      "mass_g": 20.0,
+      "friction": 1.2,
+      "clearance_mm": 40.0,
+      "preflight": {
+        "feasible": true,
+        "sample_period_s": 0.02,
+        "samples": 632,
+        "collisions": [],
+        "scope": "Sampled commanded robot versus fixed fixtures/floor; excludes object contacts and self collision. Not a continuous or dynamic safety guarantee.",
+        "minimum_joint_margin_rad": 0.3600594583340142,
+        "maximum_position_jacobian_condition": 2.035671562026895,
+        "planned_duration_s": 12.308543725567231,
+        "phase_durations_s": {
+          "SETTLE": 0.8,
+          "APPROACH_PICK": 1.086121374489774,
+          "DESCEND_PICK": 1.202191764398952,
+          "CLOSE": 0.8,
+          "HOLD": 0.8,
+          "LIFT": 1.202191764398952,
+          "TRANSFER": 1.6051671514373196,
+          "DESCEND_PLACE": 1.206435835421117,
+          "OPEN": 0.8,
+          "RELEASE_SETTLE": 0.8,
+          "RETRACT": 1.206435835421117,
+          "FINISH": 0.8
+        }
+      },
+      "engine": "MuJoCo 3.15.0",
+      "model_revision": "explicit-pad-friction-v2",
+      "order": 5,
+      "fingers": true,
+      "gravity_compensation": true,
+      "simulation_seconds": 12.342000000000791,
+      "wall_seconds": 1.2692919000983238,
+      "samples": 1235,
+      "joint_rmse_rad": [
+        0.00895115256948262,
+        0.0018090129829595146,
+        0.010141726703957422,
+        0.008693307058629453
+      ],
+      "tcp_rmse_mm": 1.9022291089111447,
+      "final_workpiece_xyz_m": [
+        0.17044350258690863,
+        0.05993971354963649,
+        0.06494655261096881
+      ],
+      "placement_error_mm": 0.45076116080061673,
+      "maximum_lift_mm": 40.042866085332335,
+      "pad_contact_samples": 527,
+      "unwanted_contact_samples": 0,
+      "unwanted_contact_steps": 0,
+      "success": true,
+      "failure_reasons": [],
+      "peak_joint_torque_nm": [
+        0.32625536888127016,
+        0.5373733315412288,
+        0.6753396167583148,
+        0.31779118375300186
+      ],
+      "peak_joint_velocity_rad_s": [
+        0.7796305144677271,
+        0.10443729860354985,
+        0.5847360236500168,
+        0.5146758190682995
+      ],
+      "requested_pad_friction": 1.2,
+      "measured_pad_friction_range": [
+        1.2,
+        1.2
+      ],
+      "metal_workpiece_contact_steps": 0,
+      "bilateral_transport_contact_fraction": 1.0,
+      "object_attachment_used": false,
+      "status": "passed"
+    },
+    {
+      "case": "m020_mu1.20_h60",
+      "mass_g": 20.0,
+      "friction": 1.2,
+      "clearance_mm": 60.0,
+      "preflight": {
+        "feasible": true,
+        "sample_period_s": 0.02,
+        "samples": 702,
+        "collisions": [],
+        "scope": "Sampled commanded robot versus fixed fixtures/floor; excludes object contacts and self collision. Not a continuous or dynamic safety guarantee.",
+        "minimum_joint_margin_rad": 0.17051487943187627,
+        "maximum_position_jacobian_condition": 2.035671562026895,
+        "planned_duration_s": 13.748263116702308,
+        "phase_durations_s": {
+          "SETTLE": 0.8,
+          "APPROACH_PICK": 1.086121374489774,
+          "DESCEND_PICK": 1.5593650450640497,
+          "CLOSE": 0.8,
+          "HOLD": 0.8,
+          "LIFT": 1.5593650450640497,
+          "TRANSFER": 1.6051671514373196,
+          "DESCEND_PLACE": 1.5691222503235578,
+          "OPEN": 0.8,
+          "RELEASE_SETTLE": 0.8,
+          "RETRACT": 1.5691222503235578,
+          "FINISH": 0.8
+        }
+      },
+      "engine": "MuJoCo 3.15.0",
+      "model_revision": "explicit-pad-friction-v2",
+      "order": 5,
+      "fingers": true,
+      "gravity_compensation": true,
+      "simulation_seconds": 13.77800000000127,
+      "wall_seconds": 1.3788720001466572,
+      "samples": 1378,
+      "joint_rmse_rad": [
+        0.008473989315015399,
+        0.0030682636589486312,
+        0.014114070363864051,
+        0.011270854006449319
+      ],
+      "tcp_rmse_mm": 2.009007980067133,
+      "final_workpiece_xyz_m": [
+        0.17062466851543043,
+        0.06008547232315207,
+        0.06494647834501087
+      ],
+      "placement_error_mm": 0.6327565406598553,
+      "maximum_lift_mm": 60.02124256371646,
+      "pad_contact_samples": 597,
+      "unwanted_contact_samples": 0,
+      "unwanted_contact_steps": 0,
+      "success": true,
+      "failure_reasons": [],
+      "peak_joint_torque_nm": [
+        0.32633362716998704,
+        0.5574812831198548,
+        0.6850415111736563,
+        0.31342115826055306
+      ],
+      "peak_joint_velocity_rad_s": [
+        0.7796338781268145,
+        0.13970298998728792,
+        0.7620927971212293,
+        0.6223409184806744
+      ],
+      "requested_pad_friction": 1.2,
+      "measured_pad_friction_range": [
+        1.2,
+        1.2
+      ],
+      "metal_workpiece_contact_steps": 0,
+      "bilateral_transport_contact_fraction": 1.0,
+      "object_attachment_used": false,
+      "status": "passed"
+    },
+    {
+      "case": "m050_mu0.05_h20",
+      "mass_g": 50.0,
+      "friction": 0.05,
+      "clearance_mm": 20.0,
+      "preflight": {
+        "feasible": true,
+        "sample_period_s": 0.02,
+        "samples": 552,
+        "collisions": [],
+        "scope": "Sampled commanded robot versus fixed fixtures/floor; excludes object contacts and self collision. Not a continuous or dynamic safety guarantee.",
+        "minimum_joint_margin_rad": 0.5301868445980169,
+        "maximum_position_jacobian_condition": 2.035671562026895,
+        "planned_duration_s": 10.73999610295014,
+        "phase_durations_s": {
+          "SETTLE": 0.8,
+          "APPROACH_PICK": 1.086121374489774,
+          "DESCEND_PICK": 0.811406768572508,
+          "CLOSE": 0.8,
+          "HOLD": 0.8,
+          "LIFT": 0.811406768572508,
+          "TRANSFER": 1.6051671514373196,
+          "DESCEND_PLACE": 0.8129470199390157,
+          "OPEN": 0.8,
+          "RELEASE_SETTLE": 0.8,
+          "RETRACT": 0.8129470199390157,
+          "FINISH": 0.8
+        }
+      },
+      "engine": "MuJoCo 3.15.0",
+      "model_revision": "explicit-pad-friction-v2",
+      "order": 5,
+      "fingers": true,
+      "gravity_compensation": true,
+      "simulation_seconds": 10.770000000000266,
+      "wall_seconds": 1.0344697998370975,
+      "samples": 1077,
+      "joint_rmse_rad": [
+        0.009808871535723993,
+        0.0018915067075502673,
+        0.0060826384866430215,
+        0.005592174360098216
+      ],
+      "tcp_rmse_mm": 1.8651199589754353,
+      "final_workpiece_xyz_m": [
+        0.16585628686176612,
+        -0.08756717546092568,
+        0.011946627994350619
+      ],
+      "placement_error_mm": 156.86905977042582,
+      "maximum_lift_mm": 1.0614998720338136,
+      "pad_contact_samples": 12,
+      "unwanted_contact_samples": 0,
+      "unwanted_contact_steps": 0,
+      "success": false,
+      "failure_reasons": [
+        "placement_error",
+        "insufficient_lift"
+      ],
+      "peak_joint_torque_nm": [
+        1.3027409790074351,
+        1.6884162903954376,
+        1.3893905329750451,
+        0.33216723084166233
+      ],
+      "peak_joint_velocity_rad_s": [
+        0.7796243541018576,
+        0.22040301866252412,
+        0.3916451459925241,
+        0.37119150801643647
+      ],
+      "requested_pad_friction": 0.05,
+      "measured_pad_friction_range": [
+        0.05,
+        0.05
+      ],
+      "metal_workpiece_contact_steps": 694,
+      "bilateral_transport_contact_fraction": 0.0,
+      "object_attachment_used": false,
+      "status": "failed"
+    },
+    {
+      "case": "m050_mu0.05_h40",
+      "mass_g": 50.0,
+      "friction": 0.05,
+      "clearance_mm": 40.0,
+      "preflight": {
+        "feasible": true,
+        "sample_period_s": 0.02,
+        "samples": 632,
+        "collisions": [],
+        "scope": "Sampled commanded robot versus fixed fixtures/floor; excludes object contacts and self collision. Not a continuous or dynamic safety guarantee.",
+        "minimum_joint_margin_rad": 0.3600594583340142,
+        "maximum_position_jacobian_condition": 2.035671562026895,
+        "planned_duration_s": 12.308543725567231,
+        "phase_durations_s": {
+          "SETTLE": 0.8,
+          "APPROACH_PICK": 1.086121374489774,
+          "DESCEND_PICK": 1.202191764398952,
+          "CLOSE": 0.8,
+          "HOLD": 0.8,
+          "LIFT": 1.202191764398952,
+          "TRANSFER": 1.6051671514373196,
+          "DESCEND_PLACE": 1.206435835421117,
+          "OPEN": 0.8,
+          "RELEASE_SETTLE": 0.8,
+          "RETRACT": 1.206435835421117,
+          "FINISH": 0.8
+        }
+      },
+      "engine": "MuJoCo 3.15.0",
+      "model_revision": "explicit-pad-friction-v2",
+      "order": 5,
+      "fingers": true,
+      "gravity_compensation": true,
+      "simulation_seconds": 12.342000000000791,
+      "wall_seconds": 1.245753799797967,
+      "samples": 1235,
+      "joint_rmse_rad": [
+        0.008951030752039832,
+        0.0018182490613287184,
+        0.010142073613126312,
+        0.008692505416562519
+      ],
+      "tcp_rmse_mm": 1.9028353894746735,
+      "final_workpiece_xyz_m": [
+        0.16877544846234202,
+        -0.05063025897157503,
+        0.06494566000995393
+      ],
+      "placement_error_mm": 110.63704930727616,
+      "maximum_lift_mm": 0.5055468732604179,
+      "pad_contact_samples": 187,
+      "unwanted_contact_samples": 0,
+      "unwanted_contact_steps": 0,
+      "success": false,
+      "failure_reasons": [
+        "placement_error",
+        "insufficient_lift"
+      ],
+      "peak_joint_torque_nm": [
+        0.3253938084221488,
+        0.5045039426769904,
+        0.6567100441293441,
+        0.31160639785406374
+      ],
+      "peak_joint_velocity_rad_s": [
+        0.7796247557573026,
+        0.10443729860354985,
+        0.5847222858511806,
+        0.5146773855208979
+      ],
+      "requested_pad_friction": 0.05,
+      "measured_pad_friction_range": [
+        0.05,
+        0.05
+      ],
+      "metal_workpiece_contact_steps": 0,
+      "bilateral_transport_contact_fraction": 0.19681908548707752,
+      "object_attachment_used": false,
+      "status": "failed"
+    },
+    {
+      "case": "m050_mu0.05_h60",
+      "mass_g": 50.0,
+      "friction": 0.05,
+      "clearance_mm": 60.0,
+      "preflight": {
+        "feasible": true,
+        "sample_period_s": 0.02,
+        "samples": 702,
+        "collisions": [],
+        "scope": "Sampled commanded robot versus fixed fixtures/floor; excludes object contacts and self collision. Not a continuous or dynamic safety guarantee.",
+        "minimum_joint_margin_rad": 0.17051487943187627,
+        "maximum_position_jacobian_condition": 2.035671562026895,
+        "planned_duration_s": 13.748263116702308,
+        "phase_durations_s": {
+          "SETTLE": 0.8,
+          "APPROACH_PICK": 1.086121374489774,
+          "DESCEND_PICK": 1.5593650450640497,
+          "CLOSE": 0.8,
+          "HOLD": 0.8,
+          "LIFT": 1.5593650450640497,
+          "TRANSFER": 1.6051671514373196,
+          "DESCEND_PLACE": 1.5691222503235578,
+          "OPEN": 0.8,
+          "RELEASE_SETTLE": 0.8,
+          "RETRACT": 1.5691222503235578,
+          "FINISH": 0.8
+        }
+      },
+      "engine": "MuJoCo 3.15.0",
+      "model_revision": "explicit-pad-friction-v2",
+      "order": 5,
+      "fingers": true,
+      "gravity_compensation": true,
+      "simulation_seconds": 13.77800000000127,
+      "wall_seconds": 1.3876955998130143,
+      "samples": 1378,
+      "joint_rmse_rad": [
+        0.00847387502152684,
+        0.0030716923123076936,
+        0.014114262012359343,
+        0.011270393044486501
+      ],
+      "tcp_rmse_mm": 2.0095538318426573,
+      "final_workpiece_xyz_m": [
+        0.16880835210257858,
+        -0.05062786704163591,
+        0.06494569211176592
+      ],
+      "placement_error_mm": 110.6342982091902,
+      "maximum_lift_mm": 0.47631689099290886,
+      "pad_contact_samples": 186,
+      "unwanted_contact_samples": 0,
+      "unwanted_contact_steps": 0,
+      "success": false,
+      "failure_reasons": [
+        "placement_error",
+        "insufficient_lift"
+      ],
+      "peak_joint_torque_nm": [
+        0.3254701527924766,
+        0.5244504169444846,
+        0.6673037204875047,
+        0.30728472325904477
+      ],
+      "peak_joint_velocity_rad_s": [
+        0.7796259100764371,
+        0.13970298998700448,
+        0.7620753230888833,
+        0.6223413913170158
+      ],
+      "requested_pad_friction": 0.05,
+      "measured_pad_friction_range": [
+        0.05,
+        0.05
+      ],
+      "metal_workpiece_contact_steps": 0,
+      "bilateral_transport_contact_fraction": 0.16617460986925348,
+      "object_attachment_used": false,
+      "status": "failed"
+    },
+    {
+      "case": "m050_mu0.20_h20",
+      "mass_g": 50.0,
+      "friction": 0.2,
+      "clearance_mm": 20.0,
+      "preflight": {
+        "feasible": true,
+        "sample_period_s": 0.02,
+        "samples": 552,
+        "collisions": [],
+        "scope": "Sampled commanded robot versus fixed fixtures/floor; excludes object contacts and self collision. Not a continuous or dynamic safety guarantee.",
+        "minimum_joint_margin_rad": 0.5301868445980169,
+        "maximum_position_jacobian_condition": 2.035671562026895,
+        "planned_duration_s": 10.73999610295014,
+        "phase_durations_s": {
+          "SETTLE": 0.8,
+          "APPROACH_PICK": 1.086121374489774,
+          "DESCEND_PICK": 0.811406768572508,
+          "CLOSE": 0.8,
+          "HOLD": 0.8,
+          "LIFT": 0.811406768572508,
+          "TRANSFER": 1.6051671514373196,
+          "DESCEND_PLACE": 0.8129470199390157,
+          "OPEN": 0.8,
+          "RELEASE_SETTLE": 0.8,
+          "RETRACT": 0.8129470199390157,
+          "FINISH": 0.8
+        }
+      },
+      "engine": "MuJoCo 3.15.0",
+      "model_revision": "explicit-pad-friction-v2",
+      "order": 5,
+      "fingers": true,
+      "gravity_compensation": true,
+      "simulation_seconds": 10.770000000000266,
+      "wall_seconds": 1.0604784998577088,
+      "samples": 1077,
+      "joint_rmse_rad": [
+        0.009809652422035043,
+        0.0018905863986849918,
+        0.0060825947949481205,
+        0.005592187801007908
+      ],
+      "tcp_rmse_mm": 1.8651908478459258,
+      "final_workpiece_xyz_m": [
+        0.1641995660202705,
+        -0.08870090109468769,
+        0.011946627994350653
+      ],
+      "placement_error_mm": 157.98817456346254,
+      "maximum_lift_mm": 1.1505677295444439,
+      "pad_contact_samples": 12,
+      "unwanted_contact_samples": 0,
+      "unwanted_contact_steps": 0,
+      "success": false,
+      "failure_reasons": [
+        "placement_error",
+        "insufficient_lift"
+      ],
+      "peak_joint_torque_nm": [
+        1.3153738877202805,
+        1.6388658964526073,
+        1.3797653338952698,
+        0.33338878080098766
+      ],
+      "peak_joint_velocity_rad_s": [
+        0.7796243541018576,
+        0.222585075850595,
+        0.3916451459925241,
+        0.3711915080164387
+      ],
+      "requested_pad_friction": 0.2,
+      "measured_pad_friction_range": [
+        0.2,
+        0.2
+      ],
+      "metal_workpiece_contact_steps": 694,
+      "bilateral_transport_contact_fraction": 0.0,
+      "object_attachment_used": false,
+      "status": "failed"
+    },
+    {
+      "case": "m050_mu0.20_h40",
+      "mass_g": 50.0,
+      "friction": 0.2,
+      "clearance_mm": 40.0,
+      "preflight": {
+        "feasible": true,
+        "sample_period_s": 0.02,
+        "samples": 632,
+        "collisions": [],
+        "scope": "Sampled commanded robot versus fixed fixtures/floor; excludes object contacts and self collision. Not a continuous or dynamic safety guarantee.",
+        "minimum_joint_margin_rad": 0.3600594583340142,
+        "maximum_position_jacobian_condition": 2.035671562026895,
+        "planned_duration_s": 12.308543725567231,
+        "phase_durations_s": {
+          "SETTLE": 0.8,
+          "APPROACH_PICK": 1.086121374489774,
+          "DESCEND_PICK": 1.202191764398952,
+          "CLOSE": 0.8,
+          "HOLD": 0.8,
+          "LIFT": 1.202191764398952,
+          "TRANSFER": 1.6051671514373196,
+          "DESCEND_PLACE": 1.206435835421117,
+          "OPEN": 0.8,
+          "RELEASE_SETTLE": 0.8,
+          "RETRACT": 1.206435835421117,
+          "FINISH": 0.8
+        }
+      },
+      "engine": "MuJoCo 3.15.0",
+      "model_revision": "explicit-pad-friction-v2",
+      "order": 5,
+      "fingers": true,
+      "gravity_compensation": true,
+      "simulation_seconds": 12.342000000000791,
+      "wall_seconds": 1.277714200085029,
+      "samples": 1235,
+      "joint_rmse_rad": [
+        0.008951056565682692,
+        0.0018127243460397146,
+        0.01014944375874528,
+        0.008690735242751236
+      ],
+      "tcp_rmse_mm": 1.9042705595615677,
+      "final_workpiece_xyz_m": [
+        0.16900855502819237,
+        -0.04988111993006584,
+        0.06494625557139012
+      ],
+      "placement_error_mm": 109.88560583025077,
+      "maximum_lift_mm": 0.5079985392186931,
+      "pad_contact_samples": 183,
+      "unwanted_contact_samples": 0,
+      "unwanted_contact_steps": 0,
+      "success": false,
+      "failure_reasons": [
+        "placement_error",
+        "insufficient_lift"
+      ],
+      "peak_joint_torque_nm": [
+        0.32539381160129466,
+        0.5045039426771751,
+        0.6783101870472485,
+        0.31160639785406374
+      ],
+      "peak_joint_velocity_rad_s": [
+        0.7796247557703393,
+        0.10443729860354985,
+        0.5847222858511806,
+        0.5146773855208984
+      ],
+      "requested_pad_friction": 0.2,
+      "measured_pad_friction_range": [
+        0.2,
+        0.2
+      ],
+      "metal_workpiece_contact_steps": 0,
+      "bilateral_transport_contact_fraction": 0.15308151093439365,
+      "object_attachment_used": false,
+      "status": "failed"
+    },
+    {
+      "case": "m050_mu0.20_h60",
+      "mass_g": 50.0,
+      "friction": 0.2,
+      "clearance_mm": 60.0,
+      "preflight": {
+        "feasible": true,
+        "sample_period_s": 0.02,
+        "samples": 702,
+        "collisions": [],
+        "scope": "Sampled commanded robot versus fixed fixtures/floor; excludes object contacts and self collision. Not a continuous or dynamic safety guarantee.",
+        "minimum_joint_margin_rad": 0.17051487943187627,
+        "maximum_position_jacobian_condition": 2.035671562026895,
+        "planned_duration_s": 13.748263116702308,
+        "phase_durations_s": {
+          "SETTLE": 0.8,
+          "APPROACH_PICK": 1.086121374489774,
+          "DESCEND_PICK": 1.5593650450640497,
+          "CLOSE": 0.8,
+          "HOLD": 0.8,
+          "LIFT": 1.5593650450640497,
+          "TRANSFER": 1.6051671514373196,
+          "DESCEND_PLACE": 1.5691222503235578,
+          "OPEN": 0.8,
+          "RELEASE_SETTLE": 0.8,
+          "RETRACT": 1.5691222503235578,
+          "FINISH": 0.8
+        }
+      },
+      "engine": "MuJoCo 3.15.0",
+      "model_revision": "explicit-pad-friction-v2",
+      "order": 5,
+      "fingers": true,
+      "gravity_compensation": true,
+      "simulation_seconds": 13.77800000000127,
+      "wall_seconds": 1.411332500167191,
+      "samples": 1378,
+      "joint_rmse_rad": [
+        0.008473884205913673,
+        0.00306709229687914,
+        0.014120103177946205,
+        0.011268576338976365
+      ],
+      "tcp_rmse_mm": 2.01091790914696,
+      "final_workpiece_xyz_m": [
+        0.16905758201412374,
+        -0.04987643568657095,
+        0.06494628883250463
+      ],
+      "placement_error_mm": 109.8804903326099,
+      "maximum_lift_mm": 0.5113843854220868,
+      "pad_contact_samples": 185,
+      "unwanted_contact_samples": 0,
+      "unwanted_contact_steps": 0,
+      "success": false,
+      "failure_reasons": [
+        "placement_error",
+        "insufficient_lift"
+      ],
+      "peak_joint_torque_nm": [
+        0.32547015316150407,
+        0.5244504169445157,
+        0.6897231295866249,
+        0.30728472325904477
+      ],
+      "peak_joint_velocity_rad_s": [
+        0.7796259100779815,
+        0.13970298998700448,
+        0.7620753230888833,
+        0.6223413913170158
+      ],
+      "requested_pad_friction": 0.2,
+      "measured_pad_friction_range": [
+        0.2,
+        0.2
+      ],
+      "metal_workpiece_contact_steps": 0,
+      "bilateral_transport_contact_fraction": 0.13285533530156052,
+      "object_attachment_used": false,
+      "status": "failed"
+    },
+    {
+      "case": "m050_mu0.60_h20",
+      "mass_g": 50.0,
+      "friction": 0.6,
+      "clearance_mm": 20.0,
+      "preflight": {
+        "feasible": true,
+        "sample_period_s": 0.02,
+        "samples": 552,
+        "collisions": [],
+        "scope": "Sampled commanded robot versus fixed fixtures/floor; excludes object contacts and self collision. Not a continuous or dynamic safety guarantee.",
+        "minimum_joint_margin_rad": 0.5301868445980169,
+        "maximum_position_jacobian_condition": 2.035671562026895,
+        "planned_duration_s": 10.73999610295014,
+        "phase_durations_s": {
+          "SETTLE": 0.8,
+          "APPROACH_PICK": 1.086121374489774,
+          "DESCEND_PICK": 0.811406768572508,
+          "CLOSE": 0.8,
+          "HOLD": 0.8,
+          "LIFT": 0.811406768572508,
+          "TRANSFER": 1.6051671514373196,
+          "DESCEND_PLACE": 0.8129470199390157,
+          "OPEN": 0.8,
+          "RELEASE_SETTLE": 0.8,
+          "RETRACT": 0.8129470199390157,
+          "FINISH": 0.8
+        }
+      },
+      "engine": "MuJoCo 3.15.0",
+      "model_revision": "explicit-pad-friction-v2",
+      "order": 5,
+      "fingers": true,
+      "gravity_compensation": true,
+      "simulation_seconds": 10.770000000000266,
+      "wall_seconds": 1.1036590998992324,
+      "samples": 1077,
+      "joint_rmse_rad": [
+        0.009859384198052726,
+        0.002018351179325019,
+        0.0060782311964700485,
+        0.005593856118002995
+      ],
+      "tcp_rmse_mm": 1.8791754925221797,
+      "final_workpiece_xyz_m": [
+        0.163677468479961,
+        -0.10368849109464759,
+        0.011946627994350636
+      ],
+      "placement_error_mm": 172.18756285758337,
+      "maximum_lift_mm": 0.8066697826228514,
+      "pad_contact_samples": 16,
+      "unwanted_contact_samples": 0,
+      "unwanted_contact_steps": 0,
+      "success": false,
+      "failure_reasons": [
+        "placement_error",
+        "insufficient_lift"
+      ],
+      "peak_joint_torque_nm": [
+        1.3210850767798945,
+        1.5923447221607532,
+        1.4704543415957823,
+        0.4955497630134005
+      ],
+      "peak_joint_velocity_rad_s": [
+        0.7796243541018576,
+        0.22019629673000637,
+        0.3916451459925241,
+        0.37119150801642764
+      ],
+      "requested_pad_friction": 0.6,
+      "measured_pad_friction_range": [
+        0.6,
+        0.6
+      ],
+      "metal_workpiece_contact_steps": 717,
+      "bilateral_transport_contact_fraction": 0.0,
+      "object_attachment_used": false,
+      "status": "failed"
+    },
+    {
+      "case": "m050_mu0.60_h40",
+      "mass_g": 50.0,
+      "friction": 0.6,
+      "clearance_mm": 40.0,
+      "preflight": {
+        "feasible": true,
+        "sample_period_s": 0.02,
+        "samples": 632,
+        "collisions": [],
+        "scope": "Sampled commanded robot versus fixed fixtures/floor; excludes object contacts and self collision. Not a continuous or dynamic safety guarantee.",
+        "minimum_joint_margin_rad": 0.3600594583340142,
+        "maximum_position_jacobian_condition": 2.035671562026895,
+        "planned_duration_s": 12.308543725567231,
+        "phase_durations_s": {
+          "SETTLE": 0.8,
+          "APPROACH_PICK": 1.086121374489774,
+          "DESCEND_PICK": 1.202191764398952,
+          "CLOSE": 0.8,
+          "HOLD": 0.8,
+          "LIFT": 1.202191764398952,
+          "TRANSFER": 1.6051671514373196,
+          "DESCEND_PLACE": 1.206435835421117,
+          "OPEN": 0.8,
+          "RELEASE_SETTLE": 0.8,
+          "RETRACT": 1.206435835421117,
+          "FINISH": 0.8
+        }
+      },
+      "engine": "MuJoCo 3.15.0",
+      "model_revision": "explicit-pad-friction-v2",
+      "order": 5,
+      "fingers": true,
+      "gravity_compensation": true,
+      "simulation_seconds": 12.342000000000791,
+      "wall_seconds": 1.3416120000183582,
+      "samples": 1235,
+      "joint_rmse_rad": [
+        0.008951151782529207,
+        0.0018014586530341505,
+        0.010164103669303252,
+        0.00868776899551079
+      ],
+      "tcp_rmse_mm": 1.9072431536404306,
+      "final_workpiece_xyz_m": [
+        0.1702548425148808,
+        -0.050100735302305945,
+        0.06494659357828456
+      ],
+      "placement_error_mm": 110.10104318789041,
+      "maximum_lift_mm": 0.4509889206068818,
+      "pad_contact_samples": 183,
+      "unwanted_contact_samples": 0,
+      "unwanted_contact_steps": 0,
+      "success": false,
+      "failure_reasons": [
+        "placement_error",
+        "insufficient_lift"
+      ],
+      "peak_joint_torque_nm": [
+        0.3253938122442648,
+        0.5045039426772036,
+        0.7243883591242977,
+        0.31160639785406374
+      ],
+      "peak_joint_velocity_rad_s": [
+        0.7796247557723754,
+        0.10443729860354985,
+        0.5847222858511806,
+        0.5146773855208978
+      ],
+      "requested_pad_friction": 0.6,
+      "measured_pad_friction_range": [
+        0.6,
+        0.6
+      ],
+      "metal_workpiece_contact_steps": 0,
+      "bilateral_transport_contact_fraction": 0.12972166998011928,
+      "object_attachment_used": false,
+      "status": "failed"
+    },
+    {
+      "case": "m050_mu0.60_h60",
+      "mass_g": 50.0,
+      "friction": 0.6,
+      "clearance_mm": 60.0,
+      "preflight": {
+        "feasible": true,
+        "sample_period_s": 0.02,
+        "samples": 702,
+        "collisions": [],
+        "scope": "Sampled commanded robot versus fixed fixtures/floor; excludes object contacts and self collision. Not a continuous or dynamic safety guarantee.",
+        "minimum_joint_margin_rad": 0.17051487943187627,
+        "maximum_position_jacobian_condition": 2.035671562026895,
+        "planned_duration_s": 13.748263116702308,
+        "phase_durations_s": {
+          "SETTLE": 0.8,
+          "APPROACH_PICK": 1.086121374489774,
+          "DESCEND_PICK": 1.5593650450640497,
+          "CLOSE": 0.8,
+          "HOLD": 0.8,
+          "LIFT": 1.5593650450640497,
+          "TRANSFER": 1.6051671514373196,
+          "DESCEND_PLACE": 1.5691222503235578,
+          "OPEN": 0.8,
+          "RELEASE_SETTLE": 0.8,
+          "RETRACT": 1.5691222503235578,
+          "FINISH": 0.8
+        }
+      },
+      "engine": "MuJoCo 3.15.0",
+      "model_revision": "explicit-pad-friction-v2",
+      "order": 5,
+      "fingers": true,
+      "gravity_compensation": true,
+      "simulation_seconds": 13.77800000000127,
+      "wall_seconds": 1.5666368000674993,
+      "samples": 1378,
+      "joint_rmse_rad": [
+        0.00847399141336313,
+        0.003057337276454732,
+        0.014130484130513437,
+        0.011266355723346073
+      ],
+      "tcp_rmse_mm": 2.013566539464866,
+      "final_workpiece_xyz_m": [
+        0.1716515616626132,
+        -0.050531950054299266,
+        0.06495043198424333
+      ],
+      "placement_error_mm": 110.54429924568569,
+      "maximum_lift_mm": 0.43712164614481686,
+      "pad_contact_samples": 185,
+      "unwanted_contact_samples": 0,
+      "unwanted_contact_steps": 0,
+      "success": false,
+      "failure_reasons": [
+        "placement_error",
+        "insufficient_lift"
+      ],
+      "peak_joint_torque_nm": [
+        0.3254701531285633,
+        0.524450416944513,
+        0.7206355617172733,
+        0.30728472325904477
+      ],
+      "peak_joint_velocity_rad_s": [
+        0.7796259100777453,
+        0.13970298998700448,
+        0.7620753230888833,
+        0.6223413913170157
+      ],
+      "requested_pad_friction": 0.6,
+      "measured_pad_friction_range": [
+        0.6,
+        0.6
+      ],
+      "metal_workpiece_contact_steps": 0,
+      "bilateral_transport_contact_fraction": 0.11092366090257276,
+      "object_attachment_used": false,
+      "status": "failed"
+    },
+    {
+      "case": "m050_mu1.20_h20",
+      "mass_g": 50.0,
+      "friction": 1.2,
+      "clearance_mm": 20.0,
+      "preflight": {
+        "feasible": true,
+        "sample_period_s": 0.02,
+        "samples": 552,
+        "collisions": [],
+        "scope": "Sampled commanded robot versus fixed fixtures/floor; excludes object contacts and self collision. Not a continuous or dynamic safety guarantee.",
+        "minimum_joint_margin_rad": 0.5301868445980169,
+        "maximum_position_jacobian_condition": 2.035671562026895,
+        "planned_duration_s": 10.73999610295014,
+        "phase_durations_s": {
+          "SETTLE": 0.8,
+          "APPROACH_PICK": 1.086121374489774,
+          "DESCEND_PICK": 0.811406768572508,
+          "CLOSE": 0.8,
+          "HOLD": 0.8,
+          "LIFT": 0.811406768572508,
+          "TRANSFER": 1.6051671514373196,
+          "DESCEND_PLACE": 0.8129470199390157,
+          "OPEN": 0.8,
+          "RELEASE_SETTLE": 0.8,
+          "RETRACT": 0.8129470199390157,
+          "FINISH": 0.8
+        }
+      },
+      "engine": "MuJoCo 3.15.0",
+      "model_revision": "explicit-pad-friction-v2",
+      "order": 5,
+      "fingers": true,
+      "gravity_compensation": true,
+      "simulation_seconds": 10.770000000000266,
+      "wall_seconds": 1.11583389993757,
+      "samples": 1077,
+      "joint_rmse_rad": [
+        0.009890336416942997,
+        0.0021094303809889798,
+        0.006076239181962804,
+        0.0055950775112796145
+      ],
+      "tcp_rmse_mm": 1.8889136737708214,
+      "final_workpiece_xyz_m": [
+        0.16376040865936034,
+        -0.10098300777591797,
+        0.011946627994350643
+      ],
+      "placement_error_mm": 169.6146266506791,
+      "maximum_lift_mm": 0.7199284990257321,
+      "pad_contact_samples": 19,
+      "unwanted_contact_samples": 0,
+      "unwanted_contact_steps": 0,
+      "success": false,
+      "failure_reasons": [
+        "placement_error",
+        "insufficient_lift"
+      ],
+      "peak_joint_torque_nm": [
+        1.3204004977060428,
+        1.6024919384730367,
+        1.5141033753055824,
+        0.585234630898924
+      ],
+      "peak_joint_velocity_rad_s": [
+        0.7796243541018576,
+        0.21907442730616591,
+        0.3916451459925241,
+        0.3711915080163825
+      ],
+      "requested_pad_friction": 1.2,
+      "measured_pad_friction_range": [
+        1.2,
+        1.2
+      ],
+      "metal_workpiece_contact_steps": 730,
+      "bilateral_transport_contact_fraction": 0.0,
+      "object_attachment_used": false,
+      "status": "failed"
+    },
+    {
+      "case": "m050_mu1.20_h40",
+      "mass_g": 50.0,
+      "friction": 1.2,
+      "clearance_mm": 40.0,
+      "preflight": {
+        "feasible": true,
+        "sample_period_s": 0.02,
+        "samples": 632,
+        "collisions": [],
+        "scope": "Sampled commanded robot versus fixed fixtures/floor; excludes object contacts and self collision. Not a continuous or dynamic safety guarantee.",
+        "minimum_joint_margin_rad": 0.3600594583340142,
+        "maximum_position_jacobian_condition": 2.035671562026895,
+        "planned_duration_s": 12.308543725567231,
+        "phase_durations_s": {
+          "SETTLE": 0.8,
+          "APPROACH_PICK": 1.086121374489774,
+          "DESCEND_PICK": 1.202191764398952,
+          "CLOSE": 0.8,
+          "HOLD": 0.8,
+          "LIFT": 1.202191764398952,
+          "TRANSFER": 1.6051671514373196,
+          "DESCEND_PLACE": 1.206435835421117,
+          "OPEN": 0.8,
+          "RELEASE_SETTLE": 0.8,
+          "RETRACT": 1.206435835421117,
+          "FINISH": 0.8
+        }
+      },
+      "engine": "MuJoCo 3.15.0",
+      "model_revision": "explicit-pad-friction-v2",
+      "order": 5,
+      "fingers": true,
+      "gravity_compensation": true,
+      "simulation_seconds": 12.342000000000791,
+      "wall_seconds": 1.3712216999847442,
+      "samples": 1235,
+      "joint_rmse_rad": [
+        0.008951618857202949,
+        0.0017989443762857135,
+        0.010148481909041182,
+        0.008692549879120708
+      ],
+      "tcp_rmse_mm": 1.9035684041380472,
+      "final_workpiece_xyz_m": [
+        0.17073192376465307,
+        0.05974434393584936,
+        0.06495280839643205
+      ],
+      "placement_error_mm": 0.7767235466034323,
+      "maximum_lift_mm": 39.78529850704107,
+      "pad_contact_samples": 530,
+      "unwanted_contact_samples": 0,
+      "unwanted_contact_steps": 0,
+      "success": true,
+      "failure_reasons": [],
+      "peak_joint_torque_nm": [
+        0.3275204009957733,
+        0.5867379510599058,
+        0.7224319343281778,
+        0.32762557071589526
+      ],
+      "peak_joint_velocity_rad_s": [
+        0.7796505741374425,
+        0.10443729860354985,
+        0.5847627952821526,
+        0.5146755489940611
+      ],
+      "requested_pad_friction": 1.2,
+      "measured_pad_friction_range": [
+        1.2,
+        1.2
+      ],
+      "metal_workpiece_contact_steps": 0,
+      "bilateral_transport_contact_fraction": 1.0,
+      "object_attachment_used": false,
+      "status": "passed"
+    },
+    {
+      "case": "m050_mu1.20_h60",
+      "mass_g": 50.0,
+      "friction": 1.2,
+      "clearance_mm": 60.0,
+      "preflight": {
+        "feasible": true,
+        "sample_period_s": 0.02,
+        "samples": 702,
+        "collisions": [],
+        "scope": "Sampled commanded robot versus fixed fixtures/floor; excludes object contacts and self collision. Not a continuous or dynamic safety guarantee.",
+        "minimum_joint_margin_rad": 0.17051487943187627,
+        "maximum_position_jacobian_condition": 2.035671562026895,
+        "planned_duration_s": 13.748263116702308,
+        "phase_durations_s": {
+          "SETTLE": 0.8,
+          "APPROACH_PICK": 1.086121374489774,
+          "DESCEND_PICK": 1.5593650450640497,
+          "CLOSE": 0.8,
+          "HOLD": 0.8,
+          "LIFT": 1.5593650450640497,
+          "TRANSFER": 1.6051671514373196,
+          "DESCEND_PLACE": 1.5691222503235578,
+          "OPEN": 0.8,
+          "RELEASE_SETTLE": 0.8,
+          "RETRACT": 1.5691222503235578,
+          "FINISH": 0.8
+        }
+      },
+      "engine": "MuJoCo 3.15.0",
+      "model_revision": "explicit-pad-friction-v2",
+      "order": 5,
+      "fingers": true,
+      "gravity_compensation": true,
+      "simulation_seconds": 13.77800000000127,
+      "wall_seconds": 1.5058794000651687,
+      "samples": 1378,
+      "joint_rmse_rad": [
+        0.008474427615240672,
+        0.0030641462141288004,
+        0.01411905745675126,
+        0.011270165819304219
+      ],
+      "tcp_rmse_mm": 2.010284068194937,
+      "final_workpiece_xyz_m": [
+        0.1709553463696794,
+        0.0599047564814177,
+        0.06495263586081121
+      ],
+      "placement_error_mm": 0.9612499027685928,
+      "maximum_lift_mm": 59.76260403130336,
+      "pad_contact_samples": 601,
+      "unwanted_contact_samples": 0,
+      "unwanted_contact_steps": 0,
+      "success": true,
+      "failure_reasons": [],
+      "peak_joint_torque_nm": [
+        0.3276238074522553,
+        0.6070888353863784,
+        0.7321087761121365,
+        0.3233278516409541
+      ],
+      "peak_joint_velocity_rad_s": [
+        0.7796610567421712,
+        0.13970298998817904,
+        0.7621293306956307,
+        0.6223396505504051
+      ],
+      "requested_pad_friction": 1.2,
+      "measured_pad_friction_range": [
+        1.2,
+        1.2
+      ],
+      "metal_workpiece_contact_steps": 0,
+      "bilateral_transport_contact_fraction": 1.0,
+      "object_attachment_used": false,
+      "status": "passed"
+    },
+    {
+      "case": "m120_mu0.05_h20",
+      "mass_g": 120.0,
+      "friction": 0.05,
+      "clearance_mm": 20.0,
+      "preflight": {
+        "feasible": true,
+        "sample_period_s": 0.02,
+        "samples": 552,
+        "collisions": [],
+        "scope": "Sampled commanded robot versus fixed fixtures/floor; excludes object contacts and self collision. Not a continuous or dynamic safety guarantee.",
+        "minimum_joint_margin_rad": 0.5301868445980169,
+        "maximum_position_jacobian_condition": 2.035671562026895,
+        "planned_duration_s": 10.73999610295014,
+        "phase_durations_s": {
+          "SETTLE": 0.8,
+          "APPROACH_PICK": 1.086121374489774,
+          "DESCEND_PICK": 0.811406768572508,
+          "CLOSE": 0.8,
+          "HOLD": 0.8,
+          "LIFT": 0.811406768572508,
+          "TRANSFER": 1.6051671514373196,
+          "DESCEND_PLACE": 0.8129470199390157,
+          "OPEN": 0.8,
+          "RELEASE_SETTLE": 0.8,
+          "RETRACT": 0.8129470199390157,
+          "FINISH": 0.8
+        }
+      },
+      "engine": "MuJoCo 3.15.0",
+      "model_revision": "explicit-pad-friction-v2",
+      "order": 5,
+      "fingers": true,
+      "gravity_compensation": true,
+      "simulation_seconds": 10.770000000000266,
+      "wall_seconds": 1.1194702999200672,
+      "samples": 1077,
+      "joint_rmse_rad": [
+        0.010006170343501939,
+        0.0023765557561876995,
+        0.006069600958833234,
+        0.005595821166289681
+      ],
+      "tcp_rmse_mm": 1.9189673337134094,
+      "final_workpiece_xyz_m": [
+        0.16765486893830198,
+        -0.09570919195270967,
+        0.009946627994350653
+      ],
+      "placement_error_mm": 165.17180712050933,
+      "maximum_lift_mm": 1.024229177850375,
+      "pad_contact_samples": 18,
+      "unwanted_contact_samples": 0,
+      "unwanted_contact_steps": 0,
+      "success": false,
+      "failure_reasons": [
+        "placement_error",
+        "insufficient_lift"
+      ],
+      "peak_joint_torque_nm": [
+        1.4050226234011731,
+        1.7749516732377835,
+        1.9140767109239563,
+        0.7522917581742377
+      ],
+      "peak_joint_velocity_rad_s": [
+        0.7796243541018576,
+        0.21300280631610582,
+        0.3916451459925241,
+        0.3711915080155617
+      ],
+      "requested_pad_friction": 0.05,
+      "measured_pad_friction_range": [
+        0.05,
+        0.05
+      ],
+      "metal_workpiece_contact_steps": 761,
+      "bilateral_transport_contact_fraction": 0.0,
+      "object_attachment_used": false,
+      "status": "failed"
+    },
+    {
+      "case": "m120_mu0.05_h40",
+      "mass_g": 120.0,
+      "friction": 0.05,
+      "clearance_mm": 40.0,
+      "preflight": {
+        "feasible": true,
+        "sample_period_s": 0.02,
+        "samples": 632,
+        "collisions": [],
+        "scope": "Sampled commanded robot versus fixed fixtures/floor; excludes object contacts and self collision. Not a continuous or dynamic safety guarantee.",
+        "minimum_joint_margin_rad": 0.3600594583340142,
+        "maximum_position_jacobian_condition": 2.035671562026895,
+        "planned_duration_s": 12.308543725567231,
+        "phase_durations_s": {
+          "SETTLE": 0.8,
+          "APPROACH_PICK": 1.086121374489774,
+          "DESCEND_PICK": 1.202191764398952,
+          "CLOSE": 0.8,
+          "HOLD": 0.8,
+          "LIFT": 1.202191764398952,
+          "TRANSFER": 1.6051671514373196,
+          "DESCEND_PLACE": 1.206435835421117,
+          "OPEN": 0.8,
+          "RELEASE_SETTLE": 0.8,
+          "RETRACT": 1.206435835421117,
+          "FINISH": 0.8
+        }
+      },
+      "engine": "MuJoCo 3.15.0",
+      "model_revision": "explicit-pad-friction-v2",
+      "order": 5,
+      "fingers": true,
+      "gravity_compensation": true,
+      "simulation_seconds": 12.342000000000791,
+      "wall_seconds": 1.377141400007531,
+      "samples": 1235,
+      "joint_rmse_rad": [
+        0.008952052954779388,
+        0.0018152950423688022,
+        0.010143881923804431,
+        0.008693018481677816
+      ],
+      "tcp_rmse_mm": 1.9036082049133551,
+      "final_workpiece_xyz_m": [
+        0.1692617037758465,
+        -0.05115863195852506,
+        0.06494500084490697
+      ],
+      "placement_error_mm": 111.16109735475126,
+      "maximum_lift_mm": 0.42579260087373394,
+      "pad_contact_samples": 188,
+      "unwanted_contact_samples": 0,
+      "unwanted_contact_steps": 0,
+      "success": false,
+      "failure_reasons": [
+        "placement_error",
+        "insufficient_lift"
+      ],
+      "peak_joint_torque_nm": [
+        0.3253938083731711,
+        0.5045039426769726,
+        0.6870956898102918,
+        0.31160639785406374
+      ],
+      "peak_joint_velocity_rad_s": [
+        0.7796247557560163,
+        0.10443729860354985,
+        0.5847222858511806,
+        0.5146773855208984
+      ],
+      "requested_pad_friction": 0.05,
+      "measured_pad_friction_range": [
+        0.05,
+        0.05
+      ],
+      "metal_workpiece_contact_steps": 0,
+      "bilateral_transport_contact_fraction": 0.1908548707753479,
+      "object_attachment_used": false,
+      "status": "failed"
+    },
+    {
+      "case": "m120_mu0.05_h60",
+      "mass_g": 120.0,
+      "friction": 0.05,
+      "clearance_mm": 60.0,
+      "preflight": {
+        "feasible": true,
+        "sample_period_s": 0.02,
+        "samples": 702,
+        "collisions": [],
+        "scope": "Sampled commanded robot versus fixed fixtures/floor; excludes object contacts and self collision. Not a continuous or dynamic safety guarantee.",
+        "minimum_joint_margin_rad": 0.17051487943187627,
+        "maximum_position_jacobian_condition": 2.035671562026895,
+        "planned_duration_s": 13.748263116702308,
+        "phase_durations_s": {
+          "SETTLE": 0.8,
+          "APPROACH_PICK": 1.086121374489774,
+          "DESCEND_PICK": 1.5593650450640497,
+          "CLOSE": 0.8,
+          "HOLD": 0.8,
+          "LIFT": 1.5593650450640497,
+          "TRANSFER": 1.6051671514373196,
+          "DESCEND_PLACE": 1.5691222503235578,
+          "OPEN": 0.8,
+          "RELEASE_SETTLE": 0.8,
+          "RETRACT": 1.5691222503235578,
+          "FINISH": 0.8
+        }
+      },
+      "engine": "MuJoCo 3.15.0",
+      "model_revision": "explicit-pad-friction-v2",
+      "order": 5,
+      "fingers": true,
+      "gravity_compensation": true,
+      "simulation_seconds": 13.77800000000127,
+      "wall_seconds": 1.4899605000391603,
+      "samples": 1378,
+      "joint_rmse_rad": [
+        0.008474887354427139,
+        0.0030693496460716587,
+        0.014115516454929599,
+        0.0112705536341331
+      ],
+      "tcp_rmse_mm": 2.010197022355521,
+      "final_workpiece_xyz_m": [
+        0.16927398234349075,
+        -0.05116314008221767,
+        0.06494499623752756
+      ],
+      "placement_error_mm": 111.16552451182964,
+      "maximum_lift_mm": 0.4130320708217311,
+      "pad_contact_samples": 184,
+      "unwanted_contact_samples": 0,
+      "unwanted_contact_steps": 0,
+      "success": false,
+      "failure_reasons": [
+        "placement_error",
+        "insufficient_lift"
+      ],
+      "peak_joint_torque_nm": [
+        0.32547015377718225,
+        0.5244504169445561,
+        0.6887646183768261,
+        0.30728472325904477
+      ],
+      "peak_joint_velocity_rad_s": [
+        0.7796259100798538,
+        0.1397029899870045,
+        0.7620753230888833,
+        0.6223413913170158
+      ],
+      "requested_pad_friction": 0.05,
+      "measured_pad_friction_range": [
+        0.05,
+        0.05
+      ],
+      "metal_workpiece_contact_steps": 0,
+      "bilateral_transport_contact_fraction": 0.16280050611556304,
+      "object_attachment_used": false,
+      "status": "failed"
+    },
+    {
+      "case": "m120_mu0.20_h20",
+      "mass_g": 120.0,
+      "friction": 0.2,
+      "clearance_mm": 20.0,
+      "preflight": {
+        "feasible": true,
+        "sample_period_s": 0.02,
+        "samples": 552,
+        "collisions": [],
+        "scope": "Sampled commanded robot versus fixed fixtures/floor; excludes object contacts and self collision. Not a continuous or dynamic safety guarantee.",
+        "minimum_joint_margin_rad": 0.5301868445980169,
+        "maximum_position_jacobian_condition": 2.035671562026895,
+        "planned_duration_s": 10.73999610295014,
+        "phase_durations_s": {
+          "SETTLE": 0.8,
+          "APPROACH_PICK": 1.086121374489774,
+          "DESCEND_PICK": 0.811406768572508,
+          "CLOSE": 0.8,
+          "HOLD": 0.8,
+          "LIFT": 0.811406768572508,
+          "TRANSFER": 1.6051671514373196,
+          "DESCEND_PLACE": 0.8129470199390157,
+          "OPEN": 0.8,
+          "RELEASE_SETTLE": 0.8,
+          "RETRACT": 0.8129470199390157,
+          "FINISH": 0.8
+        }
+      },
+      "engine": "MuJoCo 3.15.0",
+      "model_revision": "explicit-pad-friction-v2",
+      "order": 5,
+      "fingers": true,
+      "gravity_compensation": true,
+      "simulation_seconds": 10.770000000000266,
+      "wall_seconds": 1.2291798000223935,
+      "samples": 1077,
+      "joint_rmse_rad": [
+        0.010008191836839939,
+        0.002381386120247696,
+        0.006069866712232341,
+        0.00559596377200852
+      ],
+      "tcp_rmse_mm": 1.919678365386362,
+      "final_workpiece_xyz_m": [
+        0.17120592125524786,
+        -0.11345152058792837,
+        0.011946627994350643
+      ],
+      "placement_error_mm": 181.38782903356062,
+      "maximum_lift_mm": 1.030249995123661,
+      "pad_contact_samples": 17,
+      "unwanted_contact_samples": 0,
+      "unwanted_contact_steps": 0,
+      "success": false,
+      "failure_reasons": [
+        "placement_error",
+        "insufficient_lift"
+      ],
+      "peak_joint_torque_nm": [
+        1.424409470829545,
+        1.8262139453614026,
+        1.9347488257851793,
+        0.7600802051028381
+      ],
+      "peak_joint_velocity_rad_s": [
+        0.7796243541018576,
+        0.2144662076608727,
+        0.3916451459925241,
+        0.3711915080155276
+      ],
+      "requested_pad_friction": 0.2,
+      "measured_pad_friction_range": [
+        0.2,
+        0.2
+      ],
+      "metal_workpiece_contact_steps": 762,
+      "bilateral_transport_contact_fraction": 0.0,
+      "object_attachment_used": false,
+      "status": "failed"
+    },
+    {
+      "case": "m120_mu0.20_h40",
+      "mass_g": 120.0,
+      "friction": 0.2,
+      "clearance_mm": 40.0,
+      "preflight": {
+        "feasible": true,
+        "sample_period_s": 0.02,
+        "samples": 632,
+        "collisions": [],
+        "scope": "Sampled commanded robot versus fixed fixtures/floor; excludes object contacts and self collision. Not a continuous or dynamic safety guarantee.",
+        "minimum_joint_margin_rad": 0.3600594583340142,
+        "maximum_position_jacobian_condition": 2.035671562026895,
+        "planned_duration_s": 12.308543725567231,
+        "phase_durations_s": {
+          "SETTLE": 0.8,
+          "APPROACH_PICK": 1.086121374489774,
+          "DESCEND_PICK": 1.202191764398952,
+          "CLOSE": 0.8,
+          "HOLD": 0.8,
+          "LIFT": 1.202191764398952,
+          "TRANSFER": 1.6051671514373196,
+          "DESCEND_PLACE": 1.206435835421117,
+          "OPEN": 0.8,
+          "RELEASE_SETTLE": 0.8,
+          "RETRACT": 1.206435835421117,
+          "FINISH": 0.8
+        }
+      },
+      "engine": "MuJoCo 3.15.0",
+      "model_revision": "explicit-pad-friction-v2",
+      "order": 5,
+      "fingers": true,
+      "gravity_compensation": true,
+      "simulation_seconds": 12.342000000000791,
+      "wall_seconds": 1.4099786998704076,
+      "samples": 1235,
+      "joint_rmse_rad": [
+        0.008952440002929893,
+        0.0018037829329517656,
+        0.010160794345020898,
+        0.008688376611069982
+      ],
+      "tcp_rmse_mm": 1.9069076304065453,
+      "final_workpiece_xyz_m": [
+        0.16906229316500543,
+        -0.050986155616427484,
+        0.06494527313286537
+      ],
+      "placement_error_mm": 110.99013031640354,
+      "maximum_lift_mm": 0.4714820383619478,
+      "pad_contact_samples": 186,
+      "unwanted_contact_samples": 0,
+      "unwanted_contact_steps": 0,
+      "success": false,
+      "failure_reasons": [
+        "placement_error",
+        "insufficient_lift"
+      ],
+      "peak_joint_torque_nm": [
+        0.3253938084861687,
+        0.5045039426769957,
+        0.7170269196545114,
+        0.31160639785406374
+      ],
+      "peak_joint_velocity_rad_s": [
+        0.779624755757509,
+        0.10443729860354985,
+        0.5847222858511806,
+        0.514677385520898
+      ],
+      "requested_pad_friction": 0.2,
+      "measured_pad_friction_range": [
+        0.2,
+        0.2
+      ],
+      "metal_workpiece_contact_steps": 0,
+      "bilateral_transport_contact_fraction": 0.1679920477137177,
+      "object_attachment_used": false,
+      "status": "failed"
+    },
+    {
+      "case": "m120_mu0.20_h60",
+      "mass_g": 120.0,
+      "friction": 0.2,
+      "clearance_mm": 60.0,
+      "preflight": {
+        "feasible": true,
+        "sample_period_s": 0.02,
+        "samples": 702,
+        "collisions": [],
+        "scope": "Sampled commanded robot versus fixed fixtures/floor; excludes object contacts and self collision. Not a continuous or dynamic safety guarantee.",
+        "minimum_joint_margin_rad": 0.17051487943187627,
+        "maximum_position_jacobian_condition": 2.035671562026895,
+        "planned_duration_s": 13.748263116702308,
+        "phase_durations_s": {
+          "SETTLE": 0.8,
+          "APPROACH_PICK": 1.086121374489774,
+          "DESCEND_PICK": 1.5593650450640497,
+          "CLOSE": 0.8,
+          "HOLD": 0.8,
+          "LIFT": 1.5593650450640497,
+          "TRANSFER": 1.6051671514373196,
+          "DESCEND_PLACE": 1.5691222503235578,
+          "OPEN": 0.8,
+          "RELEASE_SETTLE": 0.8,
+          "RETRACT": 1.5691222503235578,
+          "FINISH": 0.8
+        }
+      },
+      "engine": "MuJoCo 3.15.0",
+      "model_revision": "explicit-pad-friction-v2",
+      "order": 5,
+      "fingers": true,
+      "gravity_compensation": true,
+      "simulation_seconds": 13.77800000000127,
+      "wall_seconds": 1.4798806998878717,
+      "samples": 1378,
+      "joint_rmse_rad": [
+        0.008475225205632942,
+        0.0030593544820848623,
+        0.014127825006294304,
+        0.011267119522171213
+      ],
+      "tcp_rmse_mm": 2.013222945997241,
+      "final_workpiece_xyz_m": [
+        0.16910427839516937,
+        -0.05108610982772322,
+        0.06494508064242308
+      ],
+      "placement_error_mm": 111.0897345841918,
+      "maximum_lift_mm": 0.46739248066636485,
+      "pad_contact_samples": 186,
+      "unwanted_contact_samples": 0,
+      "unwanted_contact_steps": 0,
+      "success": false,
+      "failure_reasons": [
+        "placement_error",
+        "insufficient_lift"
+      ],
+      "peak_joint_torque_nm": [
+        0.3254701533675117,
+        0.5244504169445325,
+        0.725084609251919,
+        0.30728472325904477
+      ],
+      "peak_joint_velocity_rad_s": [
+        0.779625910078701,
+        0.1397029899870045,
+        0.7620753230888833,
+        0.6223413913170158
+      ],
+      "requested_pad_friction": 0.2,
+      "measured_pad_friction_range": [
+        0.2,
+        0.2
+      ],
+      "metal_workpiece_contact_steps": 0,
+      "bilateral_transport_contact_fraction": 0.1433994095318431,
+      "object_attachment_used": false,
+      "status": "failed"
+    },
+    {
+      "case": "m120_mu0.60_h20",
+      "mass_g": 120.0,
+      "friction": 0.6,
+      "clearance_mm": 20.0,
+      "preflight": {
+        "feasible": true,
+        "sample_period_s": 0.02,
+        "samples": 552,
+        "collisions": [],
+        "scope": "Sampled commanded robot versus fixed fixtures/floor; excludes object contacts and self collision. Not a continuous or dynamic safety guarantee.",
+        "minimum_joint_margin_rad": 0.5301868445980169,
+        "maximum_position_jacobian_condition": 2.035671562026895,
+        "planned_duration_s": 10.73999610295014,
+        "phase_durations_s": {
+          "SETTLE": 0.8,
+          "APPROACH_PICK": 1.086121374489774,
+          "DESCEND_PICK": 0.811406768572508,
+          "CLOSE": 0.8,
+          "HOLD": 0.8,
+          "LIFT": 0.811406768572508,
+          "TRANSFER": 1.6051671514373196,
+          "DESCEND_PLACE": 0.8129470199390157,
+          "OPEN": 0.8,
+          "RELEASE_SETTLE": 0.8,
+          "RETRACT": 0.8129470199390157,
+          "FINISH": 0.8
+        }
+      },
+      "engine": "MuJoCo 3.15.0",
+      "model_revision": "explicit-pad-friction-v2",
+      "order": 5,
+      "fingers": true,
+      "gravity_compensation": true,
+      "simulation_seconds": 10.770000000000266,
+      "wall_seconds": 1.128787999972701,
+      "samples": 1077,
+      "joint_rmse_rad": [
+        0.01001765947251418,
+        0.0024044670372078934,
+        0.006071171154847147,
+        0.00559659459319098
+      ],
+      "tcp_rmse_mm": 1.923062496380577,
+      "final_workpiece_xyz_m": [
+        0.1634185233953206,
+        -0.10211593379009368,
+        0.011946627994350653
+      ],
+      "placement_error_mm": 170.7031109971397,
+      "maximum_lift_mm": 1.053954392600545,
+      "pad_contact_samples": 18,
+      "unwanted_contact_samples": 0,
+      "unwanted_contact_steps": 0,
+      "success": false,
+      "failure_reasons": [
+        "placement_error",
+        "insufficient_lift"
+      ],
+      "peak_joint_torque_nm": [
+        1.495696956121762,
+        1.9977417538535711,
+        2.0,
+        0.8032468656835476
+      ],
+      "peak_joint_velocity_rad_s": [
+        0.7796243541018576,
+        0.21537518344016737,
+        0.3916451459925241,
+        0.3711915080153614
+      ],
+      "requested_pad_friction": 0.6,
+      "measured_pad_friction_range": [
+        0.6,
+        0.6
+      ],
+      "metal_workpiece_contact_steps": 770,
+      "bilateral_transport_contact_fraction": 0.0,
+      "object_attachment_used": false,
+      "status": "failed"
+    },
+    {
+      "case": "m120_mu0.60_h40",
+      "mass_g": 120.0,
+      "friction": 0.6,
+      "clearance_mm": 40.0,
+      "preflight": {
+        "feasible": true,
+        "sample_period_s": 0.02,
+        "samples": 632,
+        "collisions": [],
+        "scope": "Sampled commanded robot versus fixed fixtures/floor; excludes object contacts and self collision. Not a continuous or dynamic safety guarantee.",
+        "minimum_joint_margin_rad": 0.3600594583340142,
+        "maximum_position_jacobian_condition": 2.035671562026895,
+        "planned_duration_s": 12.308543725567231,
+        "phase_durations_s": {
+          "SETTLE": 0.8,
+          "APPROACH_PICK": 1.086121374489774,
+          "DESCEND_PICK": 1.202191764398952,
+          "CLOSE": 0.8,
+          "HOLD": 0.8,
+          "LIFT": 1.202191764398952,
+          "TRANSFER": 1.6051671514373196,
+          "DESCEND_PLACE": 1.206435835421117,
+          "OPEN": 0.8,
+          "RELEASE_SETTLE": 0.8,
+          "RETRACT": 1.206435835421117,
+          "FINISH": 0.8
+        }
+      },
+      "engine": "MuJoCo 3.15.0",
+      "model_revision": "explicit-pad-friction-v2",
+      "order": 5,
+      "fingers": true,
+      "gravity_compensation": true,
+      "simulation_seconds": 12.342000000000791,
+      "wall_seconds": 1.3064830000512302,
+      "samples": 1235,
+      "joint_rmse_rad": [
+        0.008952521441832643,
+        0.0017955744826323992,
+        0.010175089962826718,
+        0.008683445344433976
+      ],
+      "tcp_rmse_mm": 1.9096618790800528,
+      "final_workpiece_xyz_m": [
+        0.16961333542019766,
+        -0.050254413172227376,
+        0.06494650472750332
+      ],
+      "placement_error_mm": 110.25510416844055,
+      "maximum_lift_mm": 0.4563227840214956,
+      "pad_contact_samples": 177,
+      "unwanted_contact_samples": 0,
+      "unwanted_contact_steps": 0,
+      "success": false,
+      "failure_reasons": [
+        "placement_error",
+        "insufficient_lift"
+      ],
+      "peak_joint_torque_nm": [
+        0.32539381060409767,
+        0.5045039426771183,
+        0.7838769696140808,
+        0.31160639785406374
+      ],
+      "peak_joint_velocity_rad_s": [
+        0.7796247557664685,
+        0.10443729860354985,
+        0.5854923425329411,
+        0.514677385520898
+      ],
+      "requested_pad_friction": 0.6,
+      "measured_pad_friction_range": [
+        0.6,
+        0.6
+      ],
+      "metal_workpiece_contact_steps": 0,
+      "bilateral_transport_contact_fraction": 0.110337972166998,
+      "object_attachment_used": false,
+      "status": "failed"
+    },
+    {
+      "case": "m120_mu0.60_h60",
+      "mass_g": 120.0,
+      "friction": 0.6,
+      "clearance_mm": 60.0,
+      "preflight": {
+        "feasible": true,
+        "sample_period_s": 0.02,
+        "samples": 702,
+        "collisions": [],
+        "scope": "Sampled commanded robot versus fixed fixtures/floor; excludes object contacts and self collision. Not a continuous or dynamic safety guarantee.",
+        "minimum_joint_margin_rad": 0.17051487943187627,
+        "maximum_position_jacobian_condition": 2.035671562026895,
+        "planned_duration_s": 13.748263116702308,
+        "phase_durations_s": {
+          "SETTLE": 0.8,
+          "APPROACH_PICK": 1.086121374489774,
+          "DESCEND_PICK": 1.5593650450640497,
+          "CLOSE": 0.8,
+          "HOLD": 0.8,
+          "LIFT": 1.5593650450640497,
+          "TRANSFER": 1.6051671514373196,
+          "DESCEND_PLACE": 1.5691222503235578,
+          "OPEN": 0.8,
+          "RELEASE_SETTLE": 0.8,
+          "RETRACT": 1.5691222503235578,
+          "FINISH": 0.8
+        }
+      },
+      "engine": "MuJoCo 3.15.0",
+      "model_revision": "explicit-pad-friction-v2",
+      "order": 5,
+      "fingers": true,
+      "gravity_compensation": true,
+      "simulation_seconds": 13.77800000000127,
+      "wall_seconds": 1.4533822999801487,
+      "samples": 1378,
+      "joint_rmse_rad": [
+        0.008475328167734091,
+        0.0030523761187900888,
+        0.01413906179034176,
+        0.011262337325314382
+      ],
+      "tcp_rmse_mm": 2.0158511027288353,
+      "final_workpiece_xyz_m": [
+        0.16985525147683436,
+        -0.050463407931501336,
+        0.06494639175224935
+      ],
+      "placement_error_mm": 110.46351577702232,
+      "maximum_lift_mm": 0.48454055805528806,
+      "pad_contact_samples": 181,
+      "unwanted_contact_samples": 0,
+      "unwanted_contact_steps": 0,
+      "success": false,
+      "failure_reasons": [
+        "placement_error",
+        "insufficient_lift"
+      ],
+      "peak_joint_torque_nm": [
+        0.3254701532820192,
+        0.5244504169445308,
+        0.7898247310789515,
+        0.30728472325904477
+      ],
+      "peak_joint_velocity_rad_s": [
+        0.7796259100786387,
+        0.1397029899870045,
+        0.7620753230888833,
+        0.6223413913170157
+      ],
+      "requested_pad_friction": 0.6,
+      "measured_pad_friction_range": [
+        0.6,
+        0.6
+      ],
+      "metal_workpiece_contact_steps": 0,
+      "bilateral_transport_contact_fraction": 0.09363137916490932,
+      "object_attachment_used": false,
+      "status": "failed"
+    },
+    {
+      "case": "m120_mu1.20_h20",
+      "mass_g": 120.0,
+      "friction": 1.2,
+      "clearance_mm": 20.0,
+      "preflight": {
+        "feasible": true,
+        "sample_period_s": 0.02,
+        "samples": 552,
+        "collisions": [],
+        "scope": "Sampled commanded robot versus fixed fixtures/floor; excludes object contacts and self collision. Not a continuous or dynamic safety guarantee.",
+        "minimum_joint_margin_rad": 0.5301868445980169,
+        "maximum_position_jacobian_condition": 2.035671562026895,
+        "planned_duration_s": 10.73999610295014,
+        "phase_durations_s": {
+          "SETTLE": 0.8,
+          "APPROACH_PICK": 1.086121374489774,
+          "DESCEND_PICK": 0.811406768572508,
+          "CLOSE": 0.8,
+          "HOLD": 0.8,
+          "LIFT": 0.811406768572508,
+          "TRANSFER": 1.6051671514373196,
+          "DESCEND_PLACE": 0.8129470199390157,
+          "OPEN": 0.8,
+          "RELEASE_SETTLE": 0.8,
+          "RETRACT": 0.8129470199390157,
+          "FINISH": 0.8
+        }
+      },
+      "engine": "MuJoCo 3.15.0",
+      "model_revision": "explicit-pad-friction-v2",
+      "order": 5,
+      "fingers": true,
+      "gravity_compensation": true,
+      "simulation_seconds": 10.770000000000266,
+      "wall_seconds": 1.1119114998728037,
+      "samples": 1077,
+      "joint_rmse_rad": [
+        0.01002561357608696,
+        0.002432258612313862,
+        0.006073037957309307,
+        0.005597156714198275
+      ],
+      "tcp_rmse_mm": 1.9266190600053519,
+      "final_workpiece_xyz_m": [
+        0.16421938408839093,
+        -0.11790184059598058,
+        0.00994662799435065
+      ],
+      "placement_error_mm": 186.31520114297612,
+      "maximum_lift_mm": 1.0776835537058687,
+      "pad_contact_samples": 19,
+      "unwanted_contact_samples": 0,
+      "unwanted_contact_steps": 0,
+      "success": false,
+      "failure_reasons": [
+        "placement_error",
+        "insufficient_lift"
+      ],
+      "peak_joint_torque_nm": [
+        1.5568773511238803,
+        2.0,
+        2.0,
+        0.8098379810724055
+      ],
+      "peak_joint_velocity_rad_s": [
+        0.7796243541018576,
+        0.21722133416160289,
+        0.3916451459925241,
+        0.37119150801514517
+      ],
+      "requested_pad_friction": 1.2,
+      "measured_pad_friction_range": [
+        1.2,
+        1.2
+      ],
+      "metal_workpiece_contact_steps": 777,
+      "bilateral_transport_contact_fraction": 0.0,
+      "object_attachment_used": false,
+      "status": "failed"
+    },
+    {
+      "case": "m120_mu1.20_h40",
+      "mass_g": 120.0,
+      "friction": 1.2,
+      "clearance_mm": 40.0,
+      "preflight": {
+        "feasible": true,
+        "sample_period_s": 0.02,
+        "samples": 632,
+        "collisions": [],
+        "scope": "Sampled commanded robot versus fixed fixtures/floor; excludes object contacts and self collision. Not a continuous or dynamic safety guarantee.",
+        "minimum_joint_margin_rad": 0.3600594583340142,
+        "maximum_position_jacobian_condition": 2.035671562026895,
+        "planned_duration_s": 12.308543725567231,
+        "phase_durations_s": {
+          "SETTLE": 0.8,
+          "APPROACH_PICK": 1.086121374489774,
+          "DESCEND_PICK": 1.202191764398952,
+          "CLOSE": 0.8,
+          "HOLD": 0.8,
+          "LIFT": 1.202191764398952,
+          "TRANSFER": 1.6051671514373196,
+          "DESCEND_PLACE": 1.206435835421117,
+          "OPEN": 0.8,
+          "RELEASE_SETTLE": 0.8,
+          "RETRACT": 1.206435835421117,
+          "FINISH": 0.8
+        }
+      },
+      "engine": "MuJoCo 3.15.0",
+      "model_revision": "explicit-pad-friction-v2",
+      "order": 5,
+      "fingers": true,
+      "gravity_compensation": true,
+      "simulation_seconds": 12.342000000000791,
+      "wall_seconds": 1.3022304000332952,
+      "samples": 1235,
+      "joint_rmse_rad": [
+        0.00896034412176625,
+        0.03858674894098156,
+        0.011421540314695862,
+        0.008671056931414465
+      ],
+      "tcp_rmse_mm": 7.5569339012447765,
+      "final_workpiece_xyz_m": [
+        0.18685380551384595,
+        0.017309810370386577,
+        0.009946627994350626
+      ],
+      "placement_error_mm": 71.67549665055218,
+      "maximum_lift_mm": 38.84420332140123,
+      "pad_contact_samples": 499,
+      "unwanted_contact_samples": 0,
+      "unwanted_contact_steps": 0,
+      "success": false,
+      "failure_reasons": [
+        "placement_error"
+      ],
+      "peak_joint_torque_nm": [
+        0.9709516958349411,
+        2.0,
+        2.0,
+        0.8061764629286472
+      ],
+      "peak_joint_velocity_rad_s": [
+        0.7796977940706581,
+        1.4755310420914962,
+        0.5847222858531724,
+        0.5267829260504782
+      ],
+      "requested_pad_friction": 1.2,
+      "measured_pad_friction_range": [
+        1.2,
+        1.2
+      ],
+      "metal_workpiece_contact_steps": 0,
+      "bilateral_transport_contact_fraction": 0.7862823061630219,
+      "object_attachment_used": false,
+      "status": "failed"
+    },
+    {
+      "case": "m120_mu1.20_h60",
+      "mass_g": 120.0,
+      "friction": 1.2,
+      "clearance_mm": 60.0,
+      "preflight": {
+        "feasible": true,
+        "sample_period_s": 0.02,
+        "samples": 702,
+        "collisions": [],
+        "scope": "Sampled commanded robot versus fixed fixtures/floor; excludes object contacts and self collision. Not a continuous or dynamic safety guarantee.",
+        "minimum_joint_margin_rad": 0.17051487943187627,
+        "maximum_position_jacobian_condition": 2.035671562026895,
+        "planned_duration_s": 13.748263116702308,
+        "phase_durations_s": {
+          "SETTLE": 0.8,
+          "APPROACH_PICK": 1.086121374489774,
+          "DESCEND_PICK": 1.5593650450640497,
+          "CLOSE": 0.8,
+          "HOLD": 0.8,
+          "LIFT": 1.5593650450640497,
+          "TRANSFER": 1.6051671514373196,
+          "DESCEND_PLACE": 1.5691222503235578,
+          "OPEN": 0.8,
+          "RELEASE_SETTLE": 0.8,
+          "RETRACT": 1.5691222503235578,
+          "FINISH": 0.8
+        }
+      },
+      "engine": "MuJoCo 3.15.0",
+      "model_revision": "explicit-pad-friction-v2",
+      "order": 5,
+      "fingers": true,
+      "gravity_compensation": true,
+      "simulation_seconds": 13.77800000000127,
+      "wall_seconds": 1.4327346000354737,
+      "samples": 1378,
+      "joint_rmse_rad": [
+        0.008475604045230936,
+        0.003006547064019518,
+        0.014186926366302817,
+        0.011254986304028625
+      ],
+      "tcp_rmse_mm": 2.028639659510346,
+      "final_workpiece_xyz_m": [
+        0.17377120589523734,
+        -0.04831430874700608,
+        0.06494538975551001
+      ],
+      "placement_error_mm": 108.37995412217535,
+      "maximum_lift_mm": 23.803712544700375,
+      "pad_contact_samples": 194,
+      "unwanted_contact_samples": 0,
+      "unwanted_contact_steps": 0,
+      "success": false,
+      "failure_reasons": [
+        "placement_error",
+        "insufficient_lift"
+      ],
+      "peak_joint_torque_nm": [
+        0.3254701493072929,
+        0.5584093809768333,
+        0.8419895100300856,
+        0.30728472325904477
+      ],
+      "peak_joint_velocity_rad_s": [
+        0.7796259100625078,
+        0.14671019794062662,
+        0.7620777598247531,
+        0.6226223421966255
+      ],
+      "requested_pad_friction": 1.2,
+      "measured_pad_friction_range": [
+        1.2,
+        1.2
+      ],
+      "metal_workpiece_contact_steps": 0,
+      "bilateral_transport_contact_fraction": 0.15858287642345,
+      "object_attachment_used": false,
+      "status": "failed"
+    },
+    {
+      "case": "m200_mu0.05_h20",
+      "mass_g": 200.0,
+      "friction": 0.05,
+      "clearance_mm": 20.0,
+      "preflight": {
+        "feasible": true,
+        "sample_period_s": 0.02,
+        "samples": 552,
+        "collisions": [],
+        "scope": "Sampled commanded robot versus fixed fixtures/floor; excludes object contacts and self collision. Not a continuous or dynamic safety guarantee.",
+        "minimum_joint_margin_rad": 0.5301868445980169,
+        "maximum_position_jacobian_condition": 2.035671562026895,
+        "planned_duration_s": 10.73999610295014,
+        "phase_durations_s": {
+          "SETTLE": 0.8,
+          "APPROACH_PICK": 1.086121374489774,
+          "DESCEND_PICK": 0.811406768572508,
+          "CLOSE": 0.8,
+          "HOLD": 0.8,
+          "LIFT": 0.811406768572508,
+          "TRANSFER": 1.6051671514373196,
+          "DESCEND_PLACE": 0.8129470199390157,
+          "OPEN": 0.8,
+          "RELEASE_SETTLE": 0.8,
+          "RETRACT": 0.8129470199390157,
+          "FINISH": 0.8
+        }
+      },
+      "engine": "MuJoCo 3.15.0",
+      "model_revision": "explicit-pad-friction-v2",
+      "order": 5,
+      "fingers": true,
+      "gravity_compensation": true,
+      "simulation_seconds": 10.770000000000266,
+      "wall_seconds": 1.0530814998783171,
+      "samples": 1077,
+      "joint_rmse_rad": [
+        0.010043280795470916,
+        0.0024125771283391036,
+        0.006070459667058867,
+        0.005593122263904485
+      ],
+      "tcp_rmse_mm": 1.9238336648577745,
+      "final_workpiece_xyz_m": [
+        0.1692876313843887,
+        -0.12561796425909535,
+        0.009946627994350653
+      ],
+      "placement_error_mm": 193.61149215355923,
+      "maximum_lift_mm": 1.2268139734544632,
+      "pad_contact_samples": 10,
+      "unwanted_contact_samples": 0,
+      "unwanted_contact_steps": 0,
+      "success": false,
+      "failure_reasons": [
+        "placement_error",
+        "insufficient_lift"
+      ],
+      "peak_joint_torque_nm": [
+        1.8843828289057,
+        2.0,
+        2.0,
+        0.7360616421565851
+      ],
+      "peak_joint_velocity_rad_s": [
+        0.7796243541018576,
+        0.2580219747946559,
+        0.3916451459925241,
+        0.371191508015322
+      ],
+      "requested_pad_friction": 0.05,
+      "measured_pad_friction_range": [
+        0.05,
+        0.05
+      ],
+      "metal_workpiece_contact_steps": 762,
+      "bilateral_transport_contact_fraction": 0.0,
+      "object_attachment_used": false,
+      "status": "failed"
+    },
+    {
+      "case": "m200_mu0.05_h40",
+      "mass_g": 200.0,
+      "friction": 0.05,
+      "clearance_mm": 40.0,
+      "preflight": {
+        "feasible": true,
+        "sample_period_s": 0.02,
+        "samples": 632,
+        "collisions": [],
+        "scope": "Sampled commanded robot versus fixed fixtures/floor; excludes object contacts and self collision. Not a continuous or dynamic safety guarantee.",
+        "minimum_joint_margin_rad": 0.3600594583340142,
+        "maximum_position_jacobian_condition": 2.035671562026895,
+        "planned_duration_s": 12.308543725567231,
+        "phase_durations_s": {
+          "SETTLE": 0.8,
+          "APPROACH_PICK": 1.086121374489774,
+          "DESCEND_PICK": 1.202191764398952,
+          "CLOSE": 0.8,
+          "HOLD": 0.8,
+          "LIFT": 1.202191764398952,
+          "TRANSFER": 1.6051671514373196,
+          "DESCEND_PLACE": 1.206435835421117,
+          "OPEN": 0.8,
+          "RELEASE_SETTLE": 0.8,
+          "RETRACT": 1.206435835421117,
+          "FINISH": 0.8
+        }
+      },
+      "engine": "MuJoCo 3.15.0",
+      "model_revision": "explicit-pad-friction-v2",
+      "order": 5,
+      "fingers": true,
+      "gravity_compensation": true,
+      "simulation_seconds": 12.342000000000791,
+      "wall_seconds": 1.2121338001452386,
+      "samples": 1235,
+      "joint_rmse_rad": [
+        0.008956357449795255,
+        0.0018140578539046067,
+        0.010144574730238179,
+        0.008693787056251621
+      ],
+      "tcp_rmse_mm": 1.9044856916701418,
+      "final_workpiece_xyz_m": [
+        0.16961775809500496,
+        -0.05081225801536565,
+        0.06494587250599884
+      ],
+      "placement_error_mm": 110.81293049605497,
+      "maximum_lift_mm": 0.13935361641422006,
+      "pad_contact_samples": 186,
+      "unwanted_contact_samples": 0,
+      "unwanted_contact_steps": 0,
+      "success": false,
+      "failure_reasons": [
+        "placement_error",
+        "insufficient_lift"
+      ],
+      "peak_joint_torque_nm": [
+        0.3253938129657783,
+        0.5045039426772231,
+        0.7223151317149146,
+        0.31160639785406374
+      ],
+      "peak_joint_velocity_rad_s": [
+        0.7796247557736715,
+        0.10443729860354985,
+        0.5847222858511806,
+        0.5146773855208981
+      ],
+      "requested_pad_friction": 0.05,
+      "measured_pad_friction_range": [
+        0.05,
+        0.05
+      ],
+      "metal_workpiece_contact_steps": 0,
+      "bilateral_transport_contact_fraction": 0.18986083499005965,
+      "object_attachment_used": false,
+      "status": "failed"
+    },
+    {
+      "case": "m200_mu0.05_h60",
+      "mass_g": 200.0,
+      "friction": 0.05,
+      "clearance_mm": 60.0,
+      "preflight": {
+        "feasible": true,
+        "sample_period_s": 0.02,
+        "samples": 702,
+        "collisions": [],
+        "scope": "Sampled commanded robot versus fixed fixtures/floor; excludes object contacts and self collision. Not a continuous or dynamic safety guarantee.",
+        "minimum_joint_margin_rad": 0.17051487943187627,
+        "maximum_position_jacobian_condition": 2.035671562026895,
+        "planned_duration_s": 13.748263116702308,
+        "phase_durations_s": {
+          "SETTLE": 0.8,
+          "APPROACH_PICK": 1.086121374489774,
+          "DESCEND_PICK": 1.5593650450640497,
+          "CLOSE": 0.8,
+          "HOLD": 0.8,
+          "LIFT": 1.5593650450640497,
+          "TRANSFER": 1.6051671514373196,
+          "DESCEND_PLACE": 1.5691222503235578,
+          "OPEN": 0.8,
+          "RELEASE_SETTLE": 0.8,
+          "RETRACT": 1.5691222503235578,
+          "FINISH": 0.8
+        }
+      },
+      "engine": "MuJoCo 3.15.0",
+      "model_revision": "explicit-pad-friction-v2",
+      "order": 5,
+      "fingers": true,
+      "gravity_compensation": true,
+      "simulation_seconds": 13.77800000000127,
+      "wall_seconds": 1.3796952001284808,
+      "samples": 1378,
+      "joint_rmse_rad": [
+        0.008479464627648186,
+        0.0030682796639659796,
+        0.014117035734353677,
+        0.011269939078672218
+      ],
+      "tcp_rmse_mm": 2.011149330628759,
+      "final_workpiece_xyz_m": [
+        0.16961638563249978,
+        -0.05087783509223913,
+        0.06494575414163228
+      ],
+      "placement_error_mm": 110.8785119729602,
+      "maximum_lift_mm": 0.10387348876822466,
+      "pad_contact_samples": 183,
+      "unwanted_contact_samples": 0,
+      "unwanted_contact_steps": 0,
+      "success": false,
+      "failure_reasons": [
+        "placement_error",
+        "insufficient_lift"
+      ],
+      "peak_joint_torque_nm": [
+        0.3254701565083806,
+        0.5244504169447501,
+        0.7172644197714142,
+        0.30728472325904477
+      ],
+      "peak_joint_velocity_rad_s": [
+        0.7796259100888773,
+        0.13970298998700448,
+        0.7620753230888833,
+        0.6223413913170156
+      ],
+      "requested_pad_friction": 0.05,
+      "measured_pad_friction_range": [
+        0.05,
+        0.05
+      ],
+      "metal_workpiece_contact_steps": 0,
+      "bilateral_transport_contact_fraction": 0.15984816533108392,
+      "object_attachment_used": false,
+      "status": "failed"
+    },
+    {
+      "case": "m200_mu0.20_h20",
+      "mass_g": 200.0,
+      "friction": 0.2,
+      "clearance_mm": 20.0,
+      "preflight": {
+        "feasible": true,
+        "sample_period_s": 0.02,
+        "samples": 552,
+        "collisions": [],
+        "scope": "Sampled commanded robot versus fixed fixtures/floor; excludes object contacts and self collision. Not a continuous or dynamic safety guarantee.",
+        "minimum_joint_margin_rad": 0.5301868445980169,
+        "maximum_position_jacobian_condition": 2.035671562026895,
+        "planned_duration_s": 10.73999610295014,
+        "phase_durations_s": {
+          "SETTLE": 0.8,
+          "APPROACH_PICK": 1.086121374489774,
+          "DESCEND_PICK": 0.811406768572508,
+          "CLOSE": 0.8,
+          "HOLD": 0.8,
+          "LIFT": 0.811406768572508,
+          "TRANSFER": 1.6051671514373196,
+          "DESCEND_PLACE": 0.8129470199390157,
+          "OPEN": 0.8,
+          "RELEASE_SETTLE": 0.8,
+          "RETRACT": 0.8129470199390157,
+          "FINISH": 0.8
+        }
+      },
+      "engine": "MuJoCo 3.15.0",
+      "model_revision": "explicit-pad-friction-v2",
+      "order": 5,
+      "fingers": true,
+      "gravity_compensation": true,
+      "simulation_seconds": 10.770000000000266,
+      "wall_seconds": 1.0158219998702407,
+      "samples": 1077,
+      "joint_rmse_rad": [
+        0.010044346322887253,
+        0.00241278899754915,
+        0.006070758529672173,
+        0.005593237609223244
+      ],
+      "tcp_rmse_mm": 1.9241438191162117,
+      "final_workpiece_xyz_m": [
+        0.16447906330718867,
+        -0.09908674962520596,
+        0.011946627994350636
+      ],
+      "placement_error_mm": 167.79074744886506,
+      "maximum_lift_mm": 1.2259590323397545,
+      "pad_contact_samples": 10,
+      "unwanted_contact_samples": 0,
+      "unwanted_contact_steps": 0,
+      "success": false,
+      "failure_reasons": [
+        "placement_error",
+        "insufficient_lift"
+      ],
+      "peak_joint_torque_nm": [
+        1.8850446651722166,
+        2.0,
+        2.0,
+        0.7421861269544365
+      ],
+      "peak_joint_velocity_rad_s": [
+        0.7796243541018576,
+        0.26220180529748205,
+        0.3916451459925241,
+        0.3711915080153241
+      ],
+      "requested_pad_friction": 0.2,
+      "measured_pad_friction_range": [
+        0.2,
+        0.2
+      ],
+      "metal_workpiece_contact_steps": 762,
+      "bilateral_transport_contact_fraction": 0.0,
+      "object_attachment_used": false,
+      "status": "failed"
+    },
+    {
+      "case": "m200_mu0.20_h40",
+      "mass_g": 200.0,
+      "friction": 0.2,
+      "clearance_mm": 40.0,
+      "preflight": {
+        "feasible": true,
+        "sample_period_s": 0.02,
+        "samples": 632,
+        "collisions": [],
+        "scope": "Sampled commanded robot versus fixed fixtures/floor; excludes object contacts and self collision. Not a continuous or dynamic safety guarantee.",
+        "minimum_joint_margin_rad": 0.3600594583340142,
+        "maximum_position_jacobian_condition": 2.035671562026895,
+        "planned_duration_s": 12.308543725567231,
+        "phase_durations_s": {
+          "SETTLE": 0.8,
+          "APPROACH_PICK": 1.086121374489774,
+          "DESCEND_PICK": 1.202191764398952,
+          "CLOSE": 0.8,
+          "HOLD": 0.8,
+          "LIFT": 1.202191764398952,
+          "TRANSFER": 1.6051671514373196,
+          "DESCEND_PLACE": 1.206435835421117,
+          "OPEN": 0.8,
+          "RELEASE_SETTLE": 0.8,
+          "RETRACT": 1.206435835421117,
+          "FINISH": 0.8
+        }
+      },
+      "engine": "MuJoCo 3.15.0",
+      "model_revision": "explicit-pad-friction-v2",
+      "order": 5,
+      "fingers": true,
+      "gravity_compensation": true,
+      "simulation_seconds": 12.342000000000791,
+      "wall_seconds": 1.258434799965471,
+      "samples": 1235,
+      "joint_rmse_rad": [
+        0.008955929624424496,
+        0.0017959167627447025,
+        0.010169245313095578,
+        0.008687973777223626
+      ],
+      "tcp_rmse_mm": 1.9095693931958122,
+      "final_workpiece_xyz_m": [
+        0.1694635512079961,
+        -0.051138050576914604,
+        0.06494514465611347
+      ],
+      "placement_error_mm": 111.1393587908983,
+      "maximum_lift_mm": 0.3779137003823013,
+      "pad_contact_samples": 187,
+      "unwanted_contact_samples": 0,
+      "unwanted_contact_steps": 0,
+      "success": false,
+      "failure_reasons": [
+        "placement_error",
+        "insufficient_lift"
+      ],
+      "peak_joint_torque_nm": [
+        0.3253938105597385,
+        0.5045039426771059,
+        0.7686245778523464,
+        0.31160639785406374
+      ],
+      "peak_joint_velocity_rad_s": [
+        0.7796247557657214,
+        0.10443729860354985,
+        0.5847222858511806,
+        0.5146773855208979
+      ],
+      "requested_pad_friction": 0.2,
+      "measured_pad_friction_range": [
+        0.2,
+        0.2
+      ],
+      "metal_workpiece_contact_steps": 0,
+      "bilateral_transport_contact_fraction": 0.17147117296222664,
+      "object_attachment_used": false,
+      "status": "failed"
+    },
+    {
+      "case": "m200_mu0.20_h60",
+      "mass_g": 200.0,
+      "friction": 0.2,
+      "clearance_mm": 60.0,
+      "preflight": {
+        "feasible": true,
+        "sample_period_s": 0.02,
+        "samples": 702,
+        "collisions": [],
+        "scope": "Sampled commanded robot versus fixed fixtures/floor; excludes object contacts and self collision. Not a continuous or dynamic safety guarantee.",
+        "minimum_joint_margin_rad": 0.17051487943187627,
+        "maximum_position_jacobian_condition": 2.035671562026895,
+        "planned_duration_s": 13.748263116702308,
+        "phase_durations_s": {
+          "SETTLE": 0.8,
+          "APPROACH_PICK": 1.086121374489774,
+          "DESCEND_PICK": 1.5593650450640497,
+          "CLOSE": 0.8,
+          "HOLD": 0.8,
+          "LIFT": 1.5593650450640497,
+          "TRANSFER": 1.6051671514373196,
+          "DESCEND_PLACE": 1.5691222503235578,
+          "OPEN": 0.8,
+          "RELEASE_SETTLE": 0.8,
+          "RETRACT": 1.5691222503235578,
+          "FINISH": 0.8
+        }
+      },
+      "engine": "MuJoCo 3.15.0",
+      "model_revision": "explicit-pad-friction-v2",
+      "order": 5,
+      "fingers": true,
+      "gravity_compensation": true,
+      "simulation_seconds": 13.77800000000127,
+      "wall_seconds": 1.408053999999538,
+      "samples": 1378,
+      "joint_rmse_rad": [
+        0.008478722144942143,
+        0.003052976608111923,
+        0.014134129860837823,
+        0.011265869186291654
+      ],
+      "tcp_rmse_mm": 2.0155319784610266,
+      "final_workpiece_xyz_m": [
+        0.16946941353235617,
+        -0.051145168381065836,
+        0.0649451296307324
+      ],
+      "placement_error_mm": 111.14644837876082,
+      "maximum_lift_mm": 0.32456983054475474,
+      "pad_contact_samples": 183,
+      "unwanted_contact_samples": 0,
+      "unwanted_contact_steps": 0,
+      "success": false,
+      "failure_reasons": [
+        "placement_error",
+        "insufficient_lift"
+      ],
+      "peak_joint_torque_nm": [
+        0.3254701536173812,
+        0.5244504169445365,
+        0.7737937928553897,
+        0.30728472325904477
+      ],
+      "peak_joint_velocity_rad_s": [
+        0.7796259100788919,
+        0.1397029899870045,
+        0.7620753230888833,
+        0.6223413913170153
+      ],
+      "requested_pad_friction": 0.2,
+      "measured_pad_friction_range": [
+        0.2,
+        0.2
+      ],
+      "metal_workpiece_contact_steps": 0,
+      "bilateral_transport_contact_fraction": 0.14677351328553354,
+      "object_attachment_used": false,
+      "status": "failed"
+    },
+    {
+      "case": "m200_mu0.60_h20",
+      "mass_g": 200.0,
+      "friction": 0.6,
+      "clearance_mm": 20.0,
+      "preflight": {
+        "feasible": true,
+        "sample_period_s": 0.02,
+        "samples": 552,
+        "collisions": [],
+        "scope": "Sampled commanded robot versus fixed fixtures/floor; excludes object contacts and self collision. Not a continuous or dynamic safety guarantee.",
+        "minimum_joint_margin_rad": 0.5301868445980169,
+        "maximum_position_jacobian_condition": 2.035671562026895,
+        "planned_duration_s": 10.73999610295014,
+        "phase_durations_s": {
+          "SETTLE": 0.8,
+          "APPROACH_PICK": 1.086121374489774,
+          "DESCEND_PICK": 0.811406768572508,
+          "CLOSE": 0.8,
+          "HOLD": 0.8,
+          "LIFT": 0.811406768572508,
+          "TRANSFER": 1.6051671514373196,
+          "DESCEND_PLACE": 0.8129470199390157,
+          "OPEN": 0.8,
+          "RELEASE_SETTLE": 0.8,
+          "RETRACT": 0.8129470199390157,
+          "FINISH": 0.8
+        }
+      },
+      "engine": "MuJoCo 3.15.0",
+      "model_revision": "explicit-pad-friction-v2",
+      "order": 5,
+      "fingers": true,
+      "gravity_compensation": true,
+      "simulation_seconds": 10.770000000000266,
+      "wall_seconds": 1.118676400044933,
+      "samples": 1077,
+      "joint_rmse_rad": [
+        0.01005451062844458,
+        0.0024424398167849533,
+        0.006073926020158099,
+        0.005594188330299538
+      ],
+      "tcp_rmse_mm": 1.928739198114852,
+      "final_workpiece_xyz_m": [
+        0.1650819395262329,
+        -0.09469376699312772,
+        0.01194662799435064
+      ],
+      "placement_error_mm": 163.61237467415947,
+      "maximum_lift_mm": 1.2244803111486346,
+      "pad_contact_samples": 10,
+      "unwanted_contact_samples": 0,
+      "unwanted_contact_steps": 0,
+      "success": false,
+      "failure_reasons": [
+        "placement_error",
+        "insufficient_lift"
+      ],
+      "peak_joint_torque_nm": [
+        1.8875236814738372,
+        2.0,
+        2.0,
+        0.7800162811648761
+      ],
+      "peak_joint_velocity_rad_s": [
+        0.7796243541018576,
+        0.2567161616639037,
+        0.3916451459925241,
+        0.3711915080149741
+      ],
+      "requested_pad_friction": 0.6,
+      "measured_pad_friction_range": [
+        0.6,
+        0.6
+      ],
+      "metal_workpiece_contact_steps": 771,
+      "bilateral_transport_contact_fraction": 0.0,
+      "object_attachment_used": false,
+      "status": "failed"
+    },
+    {
+      "case": "m200_mu0.60_h40",
+      "mass_g": 200.0,
+      "friction": 0.6,
+      "clearance_mm": 40.0,
+      "preflight": {
+        "feasible": true,
+        "sample_period_s": 0.02,
+        "samples": 632,
+        "collisions": [],
+        "scope": "Sampled commanded robot versus fixed fixtures/floor; excludes object contacts and self collision. Not a continuous or dynamic safety guarantee.",
+        "minimum_joint_margin_rad": 0.3600594583340142,
+        "maximum_position_jacobian_condition": 2.035671562026895,
+        "planned_duration_s": 12.308543725567231,
+        "phase_durations_s": {
+          "SETTLE": 0.8,
+          "APPROACH_PICK": 1.086121374489774,
+          "DESCEND_PICK": 1.202191764398952,
+          "CLOSE": 0.8,
+          "HOLD": 0.8,
+          "LIFT": 1.202191764398952,
+          "TRANSFER": 1.6051671514373196,
+          "DESCEND_PLACE": 1.206435835421117,
+          "OPEN": 0.8,
+          "RELEASE_SETTLE": 0.8,
+          "RETRACT": 1.206435835421117,
+          "FINISH": 0.8
+        }
+      },
+      "engine": "MuJoCo 3.15.0",
+      "model_revision": "explicit-pad-friction-v2",
+      "order": 5,
+      "fingers": true,
+      "gravity_compensation": true,
+      "simulation_seconds": 12.342000000000791,
+      "wall_seconds": 1.2591013999190181,
+      "samples": 1235,
+      "joint_rmse_rad": [
+        0.008957376944957827,
+        0.0017796119099626538,
+        0.010199487522200394,
+        0.008677696167456698
+      ],
+      "tcp_rmse_mm": 1.9156061626526508,
+      "final_workpiece_xyz_m": [
+        0.16950146396179191,
+        -0.05113373355708776,
+        0.06494516935412672
+      ],
+      "placement_error_mm": 111.13486527151994,
+      "maximum_lift_mm": 0.4480665055664468,
+      "pad_contact_samples": 177,
+      "unwanted_contact_samples": 0,
+      "unwanted_contact_steps": 0,
+      "success": false,
+      "failure_reasons": [
+        "placement_error",
+        "insufficient_lift"
+      ],
+      "peak_joint_torque_nm": [
+        0.32539380782648664,
+        0.5045039426769655,
+        0.8473550225686672,
+        0.31160639785406374
+      ],
+      "peak_joint_velocity_rad_s": [
+        0.7796247557555828,
+        0.10443729860354985,
+        0.585098454676286,
+        0.5146773855208983
+      ],
+      "requested_pad_friction": 0.6,
+      "measured_pad_friction_range": [
+        0.6,
+        0.6
+      ],
+      "metal_workpiece_contact_steps": 0,
+      "bilateral_transport_contact_fraction": 0.11679920477137178,
+      "object_attachment_used": false,
+      "status": "failed"
+    },
+    {
+      "case": "m200_mu0.60_h60",
+      "mass_g": 200.0,
+      "friction": 0.6,
+      "clearance_mm": 60.0,
+      "preflight": {
+        "feasible": true,
+        "sample_period_s": 0.02,
+        "samples": 702,
+        "collisions": [],
+        "scope": "Sampled commanded robot versus fixed fixtures/floor; excludes object contacts and self collision. Not a continuous or dynamic safety guarantee.",
+        "minimum_joint_margin_rad": 0.17051487943187627,
+        "maximum_position_jacobian_condition": 2.035671562026895,
+        "planned_duration_s": 13.748263116702308,
+        "phase_durations_s": {
+          "SETTLE": 0.8,
+          "APPROACH_PICK": 1.086121374489774,
+          "DESCEND_PICK": 1.5593650450640497,
+          "CLOSE": 0.8,
+          "HOLD": 0.8,
+          "LIFT": 1.5593650450640497,
+          "TRANSFER": 1.6051671514373196,
+          "DESCEND_PLACE": 1.5691222503235578,
+          "OPEN": 0.8,
+          "RELEASE_SETTLE": 0.8,
+          "RETRACT": 1.5691222503235578,
+          "FINISH": 0.8
+        }
+      },
+      "engine": "MuJoCo 3.15.0",
+      "model_revision": "explicit-pad-friction-v2",
+      "order": 5,
+      "fingers": true,
+      "gravity_compensation": true,
+      "simulation_seconds": 13.77800000000127,
+      "wall_seconds": 1.453265800140798,
+      "samples": 1378,
+      "joint_rmse_rad": [
+        0.008479995352874208,
+        0.003038558961157125,
+        0.014156247326093411,
+        0.011258031719050798
+      ],
+      "tcp_rmse_mm": 2.0210642950400555,
+      "final_workpiece_xyz_m": [
+        0.16969048400407985,
+        -0.05122458088527959,
+        0.06494499680491653
+      ],
+      "placement_error_mm": 111.22502514546491,
+      "maximum_lift_mm": 0.46396336142930095,
+      "pad_contact_samples": 178,
+      "unwanted_contact_samples": 0,
+      "unwanted_contact_steps": 0,
+      "success": false,
+      "failure_reasons": [
+        "placement_error",
+        "insufficient_lift"
+      ],
+      "peak_joint_torque_nm": [
+        0.32547015362154497,
+        0.5244504169445596,
+        0.8682483729357493,
+        0.30728472325904477
+      ],
+      "peak_joint_velocity_rad_s": [
+        0.7796259100800008,
+        0.1397029899870045,
+        0.7620753230888833,
+        0.6223413913170156
+      ],
+      "requested_pad_friction": 0.6,
+      "measured_pad_friction_range": [
+        0.6,
+        0.6
+      ],
+      "metal_workpiece_contact_steps": 0,
+      "bilateral_transport_contact_fraction": 0.10206663854913539,
+      "object_attachment_used": false,
+      "status": "failed"
+    },
+    {
+      "case": "m200_mu1.20_h20",
+      "mass_g": 200.0,
+      "friction": 1.2,
+      "clearance_mm": 20.0,
+      "preflight": {
+        "feasible": true,
+        "sample_period_s": 0.02,
+        "samples": 552,
+        "collisions": [],
+        "scope": "Sampled commanded robot versus fixed fixtures/floor; excludes object contacts and self collision. Not a continuous or dynamic safety guarantee.",
+        "minimum_joint_margin_rad": 0.5301868445980169,
+        "maximum_position_jacobian_condition": 2.035671562026895,
+        "planned_duration_s": 10.73999610295014,
+        "phase_durations_s": {
+          "SETTLE": 0.8,
+          "APPROACH_PICK": 1.086121374489774,
+          "DESCEND_PICK": 0.811406768572508,
+          "CLOSE": 0.8,
+          "HOLD": 0.8,
+          "LIFT": 0.811406768572508,
+          "TRANSFER": 1.6051671514373196,
+          "DESCEND_PLACE": 0.8129470199390157,
+          "OPEN": 0.8,
+          "RELEASE_SETTLE": 0.8,
+          "RETRACT": 0.8129470199390157,
+          "FINISH": 0.8
+        }
+      },
+      "engine": "MuJoCo 3.15.0",
+      "model_revision": "explicit-pad-friction-v2",
+      "order": 5,
+      "fingers": true,
+      "gravity_compensation": true,
+      "simulation_seconds": 10.770000000000266,
+      "wall_seconds": 1.0635091001167893,
+      "samples": 1077,
+      "joint_rmse_rad": [
+        0.010069030486053607,
+        0.0024975350450039896,
+        0.0060788993988915435,
+        0.005595604227961962
+      ],
+      "tcp_rmse_mm": 1.9360808018462516,
+      "final_workpiece_xyz_m": [
+        0.1657361803972084,
+        -0.11026440750384718,
+        0.009946627994350633
+      ],
+      "placement_error_mm": 178.99447586289838,
+      "maximum_lift_mm": 1.2248201174948763,
+      "pad_contact_samples": 12,
+      "unwanted_contact_samples": 0,
+      "unwanted_contact_steps": 0,
+      "success": false,
+      "failure_reasons": [
+        "placement_error",
+        "insufficient_lift"
+      ],
+      "peak_joint_torque_nm": [
+        1.885887662371175,
+        2.0,
+        2.0,
+        0.8052887690421926
+      ],
+      "peak_joint_velocity_rad_s": [
+        0.7796243541018576,
+        0.23596265485237006,
+        0.3916451459925241,
+        0.3711915080146751
+      ],
+      "requested_pad_friction": 1.2,
+      "measured_pad_friction_range": [
+        1.2,
+        1.2
+      ],
+      "metal_workpiece_contact_steps": 783,
+      "bilateral_transport_contact_fraction": 0.0,
+      "object_attachment_used": false,
+      "status": "failed"
+    },
+    {
+      "case": "m200_mu1.20_h40",
+      "mass_g": 200.0,
+      "friction": 1.2,
+      "clearance_mm": 40.0,
+      "preflight": {
+        "feasible": true,
+        "sample_period_s": 0.02,
+        "samples": 632,
+        "collisions": [],
+        "scope": "Sampled commanded robot versus fixed fixtures/floor; excludes object contacts and self collision. Not a continuous or dynamic safety guarantee.",
+        "minimum_joint_margin_rad": 0.3600594583340142,
+        "maximum_position_jacobian_condition": 2.035671562026895,
+        "planned_duration_s": 12.308543725567231,
+        "phase_durations_s": {
+          "SETTLE": 0.8,
+          "APPROACH_PICK": 1.086121374489774,
+          "DESCEND_PICK": 1.202191764398952,
+          "CLOSE": 0.8,
+          "HOLD": 0.8,
+          "LIFT": 1.202191764398952,
+          "TRANSFER": 1.6051671514373196,
+          "DESCEND_PLACE": 1.206435835421117,
+          "OPEN": 0.8,
+          "RELEASE_SETTLE": 0.8,
+          "RETRACT": 1.206435835421117,
+          "FINISH": 0.8
+        }
+      },
+      "engine": "MuJoCo 3.15.0",
+      "model_revision": "explicit-pad-friction-v2",
+      "order": 5,
+      "fingers": true,
+      "gravity_compensation": true,
+      "simulation_seconds": 12.342000000000791,
+      "wall_seconds": 1.241698799887672,
+      "samples": 1235,
+      "joint_rmse_rad": [
+        0.008958135222597767,
+        0.0017699243771454778,
+        0.010219052048663474,
+        0.008671938686838038
+      ],
+      "tcp_rmse_mm": 1.9198606377336809,
+      "final_workpiece_xyz_m": [
+        0.1705378098003693,
+        -0.050547176446929104,
+        0.06494620409677672
+      ],
+      "placement_error_mm": 110.54849774541965,
+      "maximum_lift_mm": 0.5784339806172295,
+      "pad_contact_samples": 177,
+      "unwanted_contact_samples": 0,
+      "unwanted_contact_steps": 0,
+      "success": false,
+      "failure_reasons": [
+        "placement_error",
+        "insufficient_lift"
+      ],
+      "peak_joint_torque_nm": [
+        0.32539381041124926,
+        0.5467560494005141,
+        0.9540032284391451,
+        0.31160639785406374
+      ],
+      "peak_joint_velocity_rad_s": [
+        0.779624755765775,
+        0.10443729860354985,
+        0.585174326775524,
+        0.5146773855208983
+      ],
+      "requested_pad_friction": 1.2,
+      "measured_pad_friction_range": [
+        1.2,
+        1.2
+      ],
+      "metal_workpiece_contact_steps": 0,
+      "bilateral_transport_contact_fraction": 0.09443339960238568,
+      "object_attachment_used": false,
+      "status": "failed"
+    },
+    {
+      "case": "m200_mu1.20_h60",
+      "mass_g": 200.0,
+      "friction": 1.2,
+      "clearance_mm": 60.0,
+      "preflight": {
+        "feasible": true,
+        "sample_period_s": 0.02,
+        "samples": 702,
+        "collisions": [],
+        "scope": "Sampled commanded robot versus fixed fixtures/floor; excludes object contacts and self collision. Not a continuous or dynamic safety guarantee.",
+        "minimum_joint_margin_rad": 0.17051487943187627,
+        "maximum_position_jacobian_condition": 2.035671562026895,
+        "planned_duration_s": 13.748263116702308,
+        "phase_durations_s": {
+          "SETTLE": 0.8,
+          "APPROACH_PICK": 1.086121374489774,
+          "DESCEND_PICK": 1.5593650450640497,
+          "CLOSE": 0.8,
+          "HOLD": 0.8,
+          "LIFT": 1.5593650450640497,
+          "TRANSFER": 1.6051671514373196,
+          "DESCEND_PLACE": 1.5691222503235578,
+          "OPEN": 0.8,
+          "RELEASE_SETTLE": 0.8,
+          "RETRACT": 1.5691222503235578,
+          "FINISH": 0.8
+        }
+      },
+      "engine": "MuJoCo 3.15.0",
+      "model_revision": "explicit-pad-friction-v2",
+      "order": 5,
+      "fingers": true,
+      "gravity_compensation": true,
+      "simulation_seconds": 13.77800000000127,
+      "wall_seconds": 1.388240700121969,
+      "samples": 1378,
+      "joint_rmse_rad": [
+        0.008480755872863654,
+        0.003026104322505825,
+        0.014174734342963017,
+        0.011251860475942215
+      ],
+      "tcp_rmse_mm": 2.025943746640161,
+      "final_workpiece_xyz_m": [
+        0.17087093758159297,
+        -0.05093935547938601,
+        0.06494541293796573
+      ],
+      "placement_error_mm": 110.94278753573819,
+      "maximum_lift_mm": 0.5287683351458128,
+      "pad_contact_samples": 178,
+      "unwanted_contact_samples": 0,
+      "unwanted_contact_steps": 0,
+      "success": false,
+      "failure_reasons": [
+        "placement_error",
+        "insufficient_lift"
+      ],
+      "peak_joint_torque_nm": [
+        0.3254701528684265,
+        0.5366544772444932,
+        0.9457805265667787,
+        0.30728472325904477
+      ],
+      "peak_joint_velocity_rad_s": [
+        0.7796259100770013,
+        0.1397029899870045,
+        0.7659345467624195,
+        0.6223413913170158
+      ],
+      "requested_pad_friction": 1.2,
+      "measured_pad_friction_range": [
+        1.2,
+        1.2
+      ],
+      "metal_workpiece_contact_steps": 0,
+      "bilateral_transport_contact_fraction": 0.08224377899620414,
+      "object_attachment_used": false,
+      "status": "failed"
+    }
+  ],
+  "passed": 6,
+  "failed": 42,
+  "rejected": 0,
+  "success_rule": "Final 3D centre error < 8 mm, maximum lift > 60% of requested clearance, no unwanted fixture/floor contact at any physics step.",
+  "scope": "48 deterministic factorial configurations, one run each, centred initial workpiece. Not a probability of success, hardware payload rating or universal envelope."
+}

@@ -1,27 +1,49 @@
 {
   "engine": "MuJoCo 3.15.0",
+  "model_revision": "explicit-pad-friction-v2",
   "order": 5,
   "fingers": true,
   "gravity_compensation": true,
   "simulation_seconds": 12.342000000000791,
-  "wall_seconds": 1.026600299985148,
+  "wall_seconds": 1.3785474998876452,
   "samples": 1235,
   "joint_rmse_rad": [
-    0.008951388790065868,
-    0.001808139417010505,
-    0.010142852624300449,
-    0.008693101412284911
+    0.008951217985202268,
+    0.0018061541806596389,
+    0.010142959932537365,
+    0.008693111040150834
   ],
-  "tcp_rmse_mm": 1.9024885922807735,
+  "tcp_rmse_mm": 1.90238048193778,
   "final_workpiece_xyz_m": [
-    0.17025621717204262,
-    0.059755079635826665,
-    0.06494654026366183
+    0.16917934395431644,
+    0.05952788249829223,
+    0.06494614585780754
   ],
-  "placement_error_mm": 0.3584566465357498,
-  "maximum_lift_mm": 39.950498088122735,
-  "pad_contact_samples": 531,
+  "placement_error_mm": 0.9482992931385449,
+  "maximum_lift_mm": 39.615824876291086,
+  "pad_contact_samples": 528,
   "unwanted_contact_samples": 0,
+  "unwanted_contact_steps": 0,
   "success": true,
+  "failure_reasons": [],
+  "peak_joint_torque_nm": [
+    0.3264059196785638,
+    0.5454303984859905,
+    0.683014341052413,
+    0.31916089733630315
+  ],
+  "peak_joint_velocity_rad_s": [
+    0.7796383624440331,
+    0.10443729860354985,
+    0.584739626786975,
+    0.5146759945974084
+  ],
+  "requested_pad_friction": 0.8278618625561448,
+  "measured_pad_friction_range": [
+    0.8278618625561448,
+    0.8278618625561448
+  ],
+  "metal_workpiece_contact_steps": 0,
+  "bilateral_transport_contact_fraction": 0.9985089463220675,
   "object_attachment_used": false
 }

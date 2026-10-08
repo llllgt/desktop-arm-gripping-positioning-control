@@ -1,0 +1,43 @@
+{
+  "load_n": 6.0,
+  "length_mm": 26.0,
+  "width_mm": 14.0,
+  "cases": [
+    {
+      "thickness_mm": 1,
+      "carrier_mass_g": 0.9828,
+      "beam_deflection_mm": 0.4366708074534161,
+      "nominal_root_stress_mpa": 66.85714285714286,
+      "nominal_yield_factor": 3.58974358974359
+    },
+    {
+      "thickness_mm": 1.5,
+      "carrier_mass_g": 1.4742000000000002,
+      "beam_deflection_mm": 0.12938394294916034,
+      "nominal_root_stress_mpa": 29.714285714285708,
+      "nominal_yield_factor": 8.076923076923078
+    },
+    {
+      "thickness_mm": 2,
+      "carrier_mass_g": 1.9656,
+      "beam_deflection_mm": 0.05458385093167701,
+      "nominal_root_stress_mpa": 16.714285714285715,
+      "nominal_yield_factor": 14.35897435897436
+    },
+    {
+      "thickness_mm": 2.5,
+      "carrier_mass_g": 2.4570000000000003,
+      "beam_deflection_mm": 0.02794693167701863,
+      "nominal_root_stress_mpa": 10.697142857142854,
+      "nominal_yield_factor": 22.43589743589744
+    },
+    {
+      "thickness_mm": 3,
+      "carrier_mass_g": 2.9484000000000004,
+      "beam_deflection_mm": 0.016172992868645042,
+      "nominal_root_stress_mpa": 7.428571428571427,
+      "nominal_yield_factor": 32.307692307692314
+    }
+  ],
+  "scope": "Euler-Bernoulli cantilever comparison only. Full short-edge clamp, distributed tip load; not a changed CAD assembly or a measured payload capacity. Adhesive and TPU excluded."
+}

@@ -1,0 +1,24 @@
+{
+  "feasible": true,
+  "sample_period_s": 0.02,
+  "samples": 632,
+  "collisions": [],
+  "scope": "Sampled commanded robot versus fixed fixtures/floor; excludes object contacts and self collision. Not a continuous or dynamic safety guarantee.",
+  "minimum_joint_margin_rad": 0.3600594583340142,
+  "maximum_position_jacobian_condition": 2.035671562026895,
+  "planned_duration_s": 12.308543725567231,
+  "phase_durations_s": {
+    "SETTLE": 0.8,
+    "APPROACH_PICK": 1.086121374489774,
+    "DESCEND_PICK": 1.202191764398952,
+    "CLOSE": 0.8,
+    "HOLD": 0.8,
+    "LIFT": 1.202191764398952,
+    "TRANSFER": 1.6051671514373196,
+    "DESCEND_PLACE": 1.206435835421117,
+    "OPEN": 0.8,
+    "RELEASE_SETTLE": 0.8,
+    "RETRACT": 1.206435835421117,
+    "FINISH": 0.8
+  }
+}

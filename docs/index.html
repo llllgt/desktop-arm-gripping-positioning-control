@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="四自由度机械臂夹持与定位机构设计及运动控制：参数化机械设计、ROS 2 接口和可复现的接触仿真实验。">
+<title>四自由度机械臂 · 夹持、定位与运动控制</title>
+<link rel="stylesheet" href="showcase.css">
+<script defer src="explorer-data.js"></script><script defer src="showcase.js"></script>
+</head>
+<body>
+<header><a class="brand" href="#">ARM / 04 <span>机械设计与运动控制</span></a><nav aria-label="页面导航"><a href="#experiments">工况实验</a><a href="#structure">结构校核</a><a href="#workspace">可达性</a><a href="https://github.com/llllgt/desktop-arm-gripping-positioning-control">GitHub ↗</a></nav></header>
+<main>
+<section class="hero">
+<div><p class="eyebrow">OPENMANIPULATOR-X / ROS 2 / MUJOCO</p><h1>四自由度机械臂<br>夹持与定位机构<br><span>设计及运动控制</span></h1><p class="lead">从夹指附件与定位托座的参数化设计，到四轴轨迹和摩擦接触搬运。用可复现的实验，检验结构与运动方案的适用范围。</p><div class="actions"><a class="primary" href="#experiments">查看工况结果 ↓</a><a href="https://github.com/llllgt/desktop-arm-gripping-positioning-control/blob/main/docs/项目阅读路线.md">阅读设计与代码 ↗</a></div><p class="scope">仿真研究项目 · 尚未加工、试装或实机标定 · 基础机械臂采用公开上游模型</p></div>
+<figure class="hero-media"><img src="https://raw.githubusercontent.com/llllgt/desktop-arm-gripping-positioning-control/main/results/native/demo.gif" alt="默认场景中，机械臂通过摩擦夹持把工件从左侧托座转移至右侧托座" width="640" height="360"><figcaption>默认场景：30 g 矩形工件 / 40 mm 抬升 / 真实接触动力学</figcaption></figure>
+</section>
+<div class="metrics" aria-label="验证摘要"><div><strong id="default-error">—</strong><span>默认仿真放置偏差 / mm</span></div><div><strong>48</strong><span>负载 × 摩擦 × 净空工况</span></div><div><strong id="pass-count">—</strong><span>工况满足搬运标准</span></div><div><strong>0.0483</strong><span>6 N 参考工况 FEM 挠度 / mm</span></div></div>
+<section id="experiments">
+<div class="section-head"><div><p class="eyebrow">01 / OPERATING ENVELOPE</p><h2>看成功，也看边界</h2></div><a href="https://github.com/llllgt/desktop-arm-gripping-positioning-control/blob/main/docs/工况评估.md">实验方法与分析 ↗</a></div>
+<p>20 / 50 / 120 / 200 g 负载，4 档接触摩擦和 3 档抬升高度，每种组合运行一次。选取工况可查看测量曲线和原始数据。每次搬运判据：最终中心偏差 &lt; 8 mm，最大抬升 &gt; 设定高度的 60%，且没有机械臂与托座/地面的非预期接触。</p>
+<div class="panel">
+<div class="controls"><label>抬升高度<select id="clearance"><option value="20">20 mm</option><option value="40" selected>40 mm</option><option value="60">60 mm</option></select></label><label>列表状态<select id="status"><option value="all">全部工况</option><option value="passed">满足标准</option><option value="failed">未满足标准</option></select></label><p id="filter-count" aria-live="polite"></p></div>
+<div class="experiment-grid"><div><h3>负载与摩擦组合</h3><p class="small">点击或用键盘选择一个单元格</p><div id="heatmap" class="table-wrap"></div><p class="legend"><span class="dot pass"></span>满足标准 <span class="dot fail"></span>未满足标准</p></div>
+<article class="detail" aria-live="polite"><p class="eyebrow" id="case-name"></p><h3 id="case-title"></h3><p id="case-status"></p><dl id="case-metrics"></dl><p class="small" id="failure"></p></article></div>
+<div class="charts"><figure><svg id="height-chart" viewBox="0 0 540 220" role="img" aria-label="所选工况的工件高度随仿真时间变化"></svg><figcaption>工件中心高度 / mm，横轴为仿真时间 / s</figcaption></figure><figure><svg id="force-chart" viewBox="0 0 540 220" role="img" aria-label="所选工况左右接触垫的总法向力"></svg><figcaption><span class="left-key">左垫</span> / <span class="right-key">右垫</span> 法向接触力 / N（非电机驱动力）</figcaption></figure></div>
+<details><summary>所选高度下的完整结果表</summary><div class="table-wrap"><table><caption class="sr-only">工况结果</caption><thead><tr><th>负载 / g</th><th>摩擦</th><th>结果</th><th>放置偏差 / mm</th><th>最大抬升 / mm</th></tr></thead><tbody id="results-table"></tbody></table></div></details>
+<p class="small evidence"><a href="https://github.com/llllgt/desktop-arm-gripping-positioning-control/blob/main/results/operating-envelope/summary.json">48 组完整 JSON</a> · <a href="https://raw.githubusercontent.com/llllgt/desktop-arm-gripping-positioning-control/main/results/operating-envelope/traces.zip">下载全部任务配置、结果和原始 CSV</a></p>
+</div><p class="note">这些是固定模型与控制参数下的工况结果。每种组合只运行一次，不能把 6/48 当成统计成功率，也不能把通过的负载当成实机额定负载。20 mm 工况出现额外金属夹指接触；机器人与托座的预检通过，也不代表工件能保持夹持。</p>
+</section>
+<section id="structure"><div class="section-head"><div><p class="eyebrow">02 / MECHANICAL DESIGN</p><h2>背板厚度的重量与刚度取舍</h2></div><a href="https://github.com/llllgt/desktop-arm-gripping-positioning-control/tree/main/cad/generated">STEP / STL / 尺寸图 ↗</a></div>
+<div class="two-col"><div class="panel"><label>背板厚度<select id="thickness"><option value="1">1.0 mm</option><option value="1.5">1.5 mm</option><option value="2" selected>2.0 mm · 当前设计</option><option value="2.5">2.5 mm</option><option value="3">3.0 mm</option></select></label><dl id="structure-metrics"></dl><p class="small">26 × 14 mm 铝背板，短边全固定、另一短边受 6 N 分布载荷，采用 Euler–Bernoulli 梁公式。当前 2 mm 方案另有三维有限元校核：挠度 0.0483 mm。</p><p class="small">此选项仅比较解析参考工况；未更改装配 CAD 或重新计算每个厚度的 FEM。胶粘连接、TPU 非线性和实物装配仍待验证。</p></div><figure class="drawing"><img loading="lazy" src="https://raw.githubusercontent.com/llllgt/desktop-arm-gripping-positioning-control/main/cad/generated/engineering_drawing.png" alt="夹指背板、TPU 接触垫与带安装孔定位托座的尺寸图"><figcaption>夹持附件装在末端；定位托座装在工作台</figcaption></figure></div></section>
+<section id="workspace"><div class="section-head"><div><p class="eyebrow">03 / KINEMATICS &amp; PREFLIGHT</p><h2>任务能否到达，路径是否碰到托座</h2></div><a href="https://github.com/llllgt/desktop-arm-gripping-positioning-control/tree/main/results/assessment">检查输出 ↗</a></div><div class="two-col"><div class="panel"><h3>固定高度的 XY 可达网格</h3><svg id="workspace-chart" viewBox="0 0 540 350" role="img" aria-label="65 mm 高度、1.3 rad 俯仰下的四轴逆运动学可达网格"></svg><p class="small" id="workspace-note"></p><p class="small">绿色单元可求出满足关节限位的逆解，灰色单元不可达。这里没有判断障碍物、夹持宽度或动态稳定性。</p></div><div class="panel"><h3>默认任务的路径预检</h3><dl id="preflight-metrics"></dl><p>沿指令轨迹以不超过 20 ms 的间隔检查机械臂与固定托座、地面的相交；配置错误和不可达点会被拒绝。</p><p class="small">预检不包含工件接触、自碰撞和连续扫掠，不替代执行时的动力学验证。位置雅可比条件数针对 3 × 4 位置雅可比，不是完整位姿性能。</p><pre><code>python -m desktop_arm.cli assess --output E:\Codex\experiments\arm\assessment
+python -m desktop_arm.cli simulate --config config/task.json --preflight --output E:\Codex\experiments\arm\run</code></pre></div></div></section>
+<section class="closing"><h2>从图纸到接口，有完整的阅读路径</h2><p>参数化 CAD → 背板结构校核 → 四轴正逆运动学 → 时间缩放轨迹 → 摩擦接触搬运 → ROS 2 action 通信。</p><div class="actions"><a class="primary" href="https://github.com/llllgt/desktop-arm-gripping-positioning-control">进入项目仓库 ↗</a><a href="https://github.com/llllgt/desktop-arm-gripping-positioning-control/blob/main/docs/ROS运行.md">ROS 2 运行记录 ↗</a><a href="https://github.com/llllgt/desktop-arm-gripping-positioning-control/blob/main/docs/PROVENANCE.md">来源与贡献说明 ↗</a></div></section>
+</main><footer>软件模型实验 / 数据版本 <span id="revision"></span> / 2026-10-08 · 基于 ROBOTIS OpenMANIPULATOR-X，AI 辅助开发，Apache-2.0</footer>
+<noscript>交互图表需要 JavaScript。请通过 GitHub 链接阅读完整实验记录和 JSON 数据。</noscript>
+</body></html>

@@ -3,12 +3,12 @@ from pathlib import Path
 import xml.etree.ElementTree as ET
 import numpy as np
 from .paths import project_root
-from .task import load_task
+from .task import load_task, validate_task
 
 
 def build_scene(task=None, *, fingers=True, output=None):
     rootpath = project_root()
-    task = load_task() if task is None else task
+    task = load_task() if task is None else validate_task(task)
     design = __import__('json').loads((rootpath/'cad/design.json').read_text(encoding='utf-8'))
     fixture = design['fixture']
     root = ET.parse(rootpath / 'assets/upstream/robot.xml').getroot()
@@ -73,6 +73,18 @@ def build_scene(task=None, *, fingers=True, output=None):
             pad_mass=p['length']*p['width']*p['thickness']*p['density_kg_m3']/1e9
             ET.SubElement(attachment,'geom',name=f'{side}_carrier',type='box',pos=f'0.050 {carrier_y} 0',size=f"{c['length']/2000} {c['thickness']/2000} {c['width']/2000}",rgba='0.65 0.72 0.79 1',contype='0',conaffinity='0',mass=str(carrier_mass))
             ET.SubElement(attachment, 'geom', name=f'{side}_pad', type='box', pos=f'0.050 {pad_y} 0', size=f"{p['length']/2000} {p['thickness']/2000} {p['width']/2000}", rgba='0.1 0.75 0.65 1', contype='1', conaffinity='2', friction=f"{task.get('contact_friction',design['assumed_contact_friction'])} 0.02 0.002", condim='4', mass=str(pad_mass))
+        # Equal-priority dynamic geom contacts take max friction. Explicit pairs
+        # let the task set pad/object sliding friction even below object friction.
+        # Keep the old mixed solver parameters (0.02 and 0.008 -> 0.014).
+        contact = root.find('contact')
+        if contact is None:
+            contact = ET.SubElement(root, 'contact')
+        mu = task.get('contact_friction', design['assumed_contact_friction'])
+        for side in ('left', 'right'):
+            ET.SubElement(contact, 'pair', name=f'{side}_grasp', geom1=f'{side}_pad',
+                          geom2='workpiece_geom', condim='4',
+                          friction=f'{mu} {mu} 0.02 0.002 0.002', solref='0.014 1',
+                          solimp='0.9 0.95 0.001 0.5 2', margin='0', gap='0')
     ET.SubElement(root, 'statistic', center='0.12 0 0.12', extent='0.5')
     visual = ET.SubElement(root, 'visual')
     ET.SubElement(visual, 'global', offwidth='1280', offheight='720', azimuth='135', elevation='-25')

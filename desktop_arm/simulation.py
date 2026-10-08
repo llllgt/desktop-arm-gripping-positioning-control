@@ -55,6 +55,14 @@ def run(output, *, task=None, order=5, render=False, fingers=True, gravity_compe
     sim = Simulator(task, fingers)
     phases = plan_task(task, order)
     rows, frames = [], []
+    effective_mu = []
+    peak_torque = np.zeros(4)
+    peak_velocity = np.zeros(4)
+    nonpad_object_contact_steps = 0
+    transport_steps = bilateral_transport_steps = 0
+    unwanted_contact_steps = 0
+    contact_force = np.zeros(6)
+    transport_phases = ('LIFT', 'TRANSFER', 'DESCEND_PLACE')
     writer = None
     preview = None
     if render:
@@ -74,20 +82,39 @@ def run(output, *, task=None, order=5, render=False, fingers=True, gravity_compe
                 command, opening = phase.command(min(i*sim.model.opt.timestep, phase.segment.duration))
                 sim.step(command.position, opening, gravity_compensation)
                 obs = sim.observation()
+                peak_torque = np.maximum(peak_torque, np.abs(sim.data.qfrc_actuator[sim.arm_dof]))
+                peak_velocity = np.maximum(peak_velocity, np.abs(obs['dq']))
                 contacts = 0
                 bad_contacts = 0
-                for c in sim.data.contact:
+                normal_forces = {'left': 0.0, 'right': 0.0}
+                pad_sides = set()
+                nonpad_contact = False
+                for contact_id, c in enumerate(sim.data.contact):
                     names = {mujoco.mj_id2name(sim.model, mujoco.mjtObj.mjOBJ_GEOM, int(g)) for g in (c.geom1,c.geom2)}
                     if 'workpiece_geom' in names and any(n in names for n in ('left_pad','right_pad')):
                         contacts += 1
+                        effective_mu.append(float(c.friction[0]))
+                        mujoco.mj_contactForce(sim.model, sim.data, contact_id, contact_force)
+                        side = 'left' if 'left_pad' in names else 'right'
+                        normal_forces[side] += max(0.0, float(contact_force[0]))
+                        if c.efc_address >= 0 and contact_force[0] > 1e-6:
+                            pad_sides.add(side)
+                    if 'workpiece_geom' in names and any(n in names for n in ('left_metal_contact', 'right_metal_contact')):
+                        nonpad_contact = True
                     if not ('workpiece_geom' in names) and any(n in names for n in ('pick_nest','place_nest','pick_baseplate','place_baseplate','floor')):
                         # Robot base/floor contact is intentional; any other link hitting fixtures isn't.
                         for geom_id in (c.geom1, c.geom2):
                             body = sim.model.geom_bodyid[int(geom_id)]
                             if body not in (0, sim.model.body('link1').id):
                                 bad_contacts += 1
+                nonpad_object_contact_steps += int(nonpad_contact)
+                unwanted_contact_steps += int(bad_contacts > 0)
+                if phase.name in transport_phases:
+                    transport_steps += 1
+                    bilateral_transport_steps += int(len(pad_sides) == 2)
                 if step_count % 5 == 0:
-                    row = {'time':float(sim.data.time), 'phase':phase.name, 'gripper_command':opening, 'pad_contacts':contacts, 'unwanted_contacts':bad_contacts}
+                    row = {'time':float(sim.data.time), 'phase':phase.name, 'gripper_command':opening, 'pad_contacts':contacts, 'unwanted_contacts':bad_contacts,
+                           'left_normal_force_n':normal_forces['left'], 'right_normal_force_n':normal_forces['right']}
                     for j in range(4):
                         row.update({f'q{j+1}_command':command.position[j], f'q{j+1}':obs['q'][j], f'dq{j+1}':obs['dq'][j], f'tau{j+1}':sim.data.qfrc_actuator[sim.arm_dof[j]] + sim.data.qfrc_applied[sim.arm_dof[j]]})
                     for k, axis in enumerate('xyz'):
@@ -120,7 +147,14 @@ def run(output, *, task=None, order=5, render=False, fingers=True, gravity_compe
     object_track = np.array([[r['object_'+a] for a in 'xyz'] for r in rows])
     distance = float(np.linalg.norm(final - task['place']))
     lifted = float(np.max(object_track[:,2]) - task['pick'][2])
-    summary = {'engine':'MuJoCo '+mujoco.__version__, 'order':order, 'fingers':fingers,
+    reasons = []
+    if distance >= .008:
+        reasons.append('placement_error')
+    if lifted <= task['clearance']*.6:
+        reasons.append('insufficient_lift')
+    if unwanted_contact_steps:
+        reasons.append('fixture_collision')
+    summary = {'engine':'MuJoCo '+mujoco.__version__, 'model_revision':'explicit-pad-friction-v2', 'order':order, 'fingers':fingers,
         'gravity_compensation':gravity_compensation, 'simulation_seconds':float(sim.data.time),
         'wall_seconds':time.perf_counter()-started, 'samples':len(rows),
         'joint_rmse_rad':np.sqrt(np.mean((actual-target)**2,axis=0)).tolist(),
@@ -128,7 +162,13 @@ def run(output, *, task=None, order=5, render=False, fingers=True, gravity_compe
         'final_workpiece_xyz_m':final.tolist(), 'placement_error_mm':distance*1000,
         'maximum_lift_mm':lifted*1000, 'pad_contact_samples':sum(r['pad_contacts']>0 for r in rows),
         'unwanted_contact_samples':sum(r['unwanted_contacts']>0 for r in rows),
-        'success':bool(distance < 0.008 and lifted > task['clearance']*0.6 and all(r['unwanted_contacts']==0 for r in rows)),
+        'unwanted_contact_steps':unwanted_contact_steps,
+        'success':not reasons, 'failure_reasons':reasons,
+        'peak_joint_torque_nm':peak_torque.tolist(), 'peak_joint_velocity_rad_s':peak_velocity.tolist(),
+        'requested_pad_friction':task.get('contact_friction',1.2),
+        'measured_pad_friction_range':None if not effective_mu else [min(effective_mu), max(effective_mu)],
+        'metal_workpiece_contact_steps':nonpad_object_contact_steps,
+        'bilateral_transport_contact_fraction':bilateral_transport_steps/max(1,transport_steps),
         'object_attachment_used':False}
     (output/'summary.json').write_text(json.dumps(summary, indent=2),encoding='utf-8')
     if frames:

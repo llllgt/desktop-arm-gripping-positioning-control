@@ -1,4 +1,4 @@
-1791360893.2867961 [INFO] [launch]: All log files can be found below C:\Users\因特那雄奈尔\.ros\log\2026-10-07-16-14-53-221548-LAPTOP-7DRK859D-55120
+1791360893.2867961 [INFO] [launch]: All log files can be found below <ROS_LOG_DIR>
 1791360893.2887940 [INFO] [launch]: Default logging verbosity is set to INFO
 1791360894.3837454 [INFO] [robot_state_publisher.EXE-1]: process started with pid [37276]
 1791360894.3837454 [INFO] [desktop-arm-ros.EXE-2]: process started with pid [37848]
@@ -9,5 +9,5 @@
 1791360954.6237364 [INFO] [desktop-arm-ros.EXE-2]: sending signal 'SIGTERM' to process[desktop-arm-ros.EXE-2]
 1791360954.6237364 [WARNING] [robot_state_publisher.EXE-1]: 'SIGINT' sent to process[robot_state_publisher.EXE-1] not supported on Windows, escalating to 'SIGTERM'
 1791360954.6237364 [INFO] [robot_state_publisher.EXE-1]: sending signal 'SIGTERM' to process[robot_state_publisher.EXE-1]
-1791360954.6262527 [ERROR] [desktop-arm-ros.EXE-2]: process has died [pid 37848, exit code 1, cmd 'C:\pixi_ws\project_ws\install\lib\desktop_arm\desktop-arm-ros.EXE server --output C:/pixi_ws/desktop_arm_source/results/ros_launch --ros-args'].
-1791360954.6332529 [ERROR] [robot_state_publisher.EXE-1]: process has died [pid 37276, exit code 1, cmd 'C:\pixi_ws\ros2-windows\lib\robot_state_publisher\robot_state_publisher.EXE --ros-args --params-file C:\Users\9D9F~1\AppData\Local\Temp\launch_params_ty6cjdbj'].
+1791360954.6262527 [ERROR] [desktop-arm-ros.EXE-2]: process has died [pid 37848, exit code 1, cmd '<PROJECT_INSTALL>\lib\desktop_arm\desktop-arm-ros.EXE server --output <RESULTS_DIR> --ros-args'].
+1791360954.6332529 [ERROR] [robot_state_publisher.EXE-1]: process has died [pid 37276, exit code 1, cmd '<ROS_INSTALL>\lib\robot_state_publisher\robot_state_publisher.EXE --ros-args --params-file <LAUNCH_PARAMS_FILE>'].

@@ -1,5 +1,6 @@
 """Exercise validation and cancellation using actual DDS action requests."""
 import json
+import argparse
 import time
 from pathlib import Path
 import numpy as np
@@ -13,7 +14,7 @@ from desktop_arm.task import plan_task
 from desktop_arm.kinematics import JOINT_NAMES
 
 
-def check():
+def check(output=None):
     q=plan_task()[0].segment.start.tolist()
     def goal(seconds=1):
         g=FollowJointTrajectory.Goal();g.trajectory.joint_names=list(JOINT_NAMES)
@@ -57,16 +58,20 @@ def check():
         report={'local_invalid_cases_rejected':local_cases,'dds_invalid_arm_rejected':True,
                 'dds_invalid_gripper_rejected':True,'dds_overlapping_arm_rejected':True,
                 'dds_cancel_status':result.status,'success':True}
-        root=Path(__file__).resolve().parents[1]
-        (root/'results/ros2/action_checks.json').write_text(json.dumps(report,indent=2))
+        output=Path(__file__).resolve().parents[1]/'results/ros2' if output is None else Path(output)
+        output.mkdir(parents=True,exist_ok=True)
+        (output/'action_checks.json').write_text(json.dumps(report,indent=2),encoding='utf-8')
         print(json.dumps(report),flush=True)
     finally:
         node.destroy_node()
 
 
 if __name__=='__main__':
+    parser=argparse.ArgumentParser(description=__doc__)
+    parser.add_argument('--output',type=Path)
+    args=parser.parse_args()
     rclpy.init()
     try:
-        check()
+        check(args.output)
     finally:
         rclpy.shutdown()

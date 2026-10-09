@@ -1,13 +1,19 @@
-# 来源与贡献边界
+# 来源与开发记录
 
-- 基础机械臂：ROBOTIS OpenMANIPULATOR-X。
-- 上游：https://github.com/ROBOTIS-GIT/open_manipulator
-- 固定版本：jazzy 分支，`9f84095404d3e596267cd520e90963011059ebf6`。
-- `assets/upstream/robot.xml`：上游 `open_manipulator_description/mujoco/open_manipulator_x/open_manipulator_x.xml` 原始副本。
-- `assets/upstream/robot.urdf`：上游 `open_manipulator_description/urdf/open_manipulator_x/open_manipulator_x.urdf` 原始副本。
-- `assets/upstream/meshes/*.stl`：上游 OpenMANIPULATOR-X 网格，单位毫米。
-- 许可证：Apache-2.0；上游 LICENSE 保留于 `assets/upstream/LICENSE`。
+## 上游模型
 
-本项目新增：运动学与轨迹规划实现、搬运场景与物理仿真执行器、ROS 2 接口、参数化夹指附件及工件定位托座、设计校核、验证与展示材料。开发由 Codex/AI 辅助完成；不声称从零设计整台机械臂。
+基础机械臂采用 [ROBOTIS OpenMANIPULATOR-X](https://github.com/ROBOTIS-GIT/open_manipulator)，固定到 jazzy 分支提交 `9f84095404d3e596267cd520e90963011059ebf6`。
 
-参数化附件基于公开 STL 外形拟合，尚未通过实物试装。材料、摩擦和负载是明确的仿真假设；仿真结果不等于实际负载能力或工业精度。
+| 本仓库文件 | 上游来源 |
+|---|---|
+| `assets/upstream/robot.xml` | `open_manipulator_description/mujoco/open_manipulator_x/open_manipulator_x.xml` |
+| `assets/upstream/robot.urdf` | `open_manipulator_description/urdf/open_manipulator_x/open_manipulator_x.urdf` |
+| `assets/upstream/meshes/*.stl` | OpenMANIPULATOR-X 网格，单位毫米 |
+
+上游文件保留原始副本与 Apache-2.0 许可证，见 `assets/upstream/LICENSE`。
+
+## 项目实现
+
+本仓库增加了夹指背板、接触垫和定位托座的参数化设计，以及运动学、轨迹、接触仿真、ROS 2 控制桥、结构计算和验证脚本。基础机械臂、驱动关节和夹爪连杆沿用上游设计。
+
+代码和文档开发使用了 Codex/AI 辅助。验证范围包括数值模型、接触搬运和 ROS 通信；实物加工、装配及硬件标定尚未开展。

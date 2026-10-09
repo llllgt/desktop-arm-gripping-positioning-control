@@ -2,103 +2,113 @@
 
 [![Tests](https://github.com/llllgt/desktop-arm-gripping-positioning-control/actions/workflows/tests.yml/badge.svg)](https://github.com/llllgt/desktop-arm-gripping-positioning-control/actions/workflows/tests.yml)
 
-**[打开交互项目网页](https://llllgt.github.io/desktop-arm-gripping-positioning-control/)** · [48 组工况与结构参数比较](docs/工况评估.md)
+基于 OpenMANIPULATOR-X 的矩形工件搬运仿真。机械部分设计了夹指背板、TPU 接触垫和定位托座；控制部分实现四轴正逆运动学、关节轨迹和 ROS 2 action 接口。工件通过重力与摩擦接触运动，夹取、抬升、转移和放置过程由 MuJoCo 仿真。
 
-基于 OpenMANIPULATOR-X 的夹持附件、定位托座设计与运动控制仿真项目。以小型工件在两个托座间转运为任务，完成夹指背板、接触垫和托座的参数化建模，结合四轴运动学、关节轨迹与 ROS 2 控制接口，验证结构和运动方案。夹持附件安装于机械臂末端，定位托座安装于工作台，二者分别承担夹持与支承定位功能。
+![工件搬运仿真](results/native/demo.gif)
 
-![搬运演示](results/native/demo.gif)
+## 机械设计
 
-基础机械臂来自 [ROBOTIS OpenMANIPULATOR](https://github.com/ROBOTIS-GIT/open_manipulator)，固定到 `9f84095404d3e596267cd520e90963011059ebf6`。原始网格与描述保留于 `assets/upstream`。本仓库是独立扩展项目，贡献边界和 AI 辅助开发说明见 [来源说明](docs/PROVENANCE.md)。
+夹持附件安装在原夹爪两侧，单侧由 26 × 14 × 2 mm 铝背板和同尺寸 TPU 垫组成，计算质量为 2.8028 g。定位托座固定在工作台上，总高 55 mm，顶部支承面为 24 × 14 mm，给夹指留出进入空间。
 
-## 做了什么
+模型由 `cad/design.json` 和 `cad/build.py` 生成。[CAD 文件](cad/generated/) 包含零件 STEP/STL、单侧附件装配 STEP 和参考尺寸图。材料和胶粘连接尚未经过实物验证，当前成果为设计与仿真。
 
-- **机械部分**：26 × 14 × 2 mm 铝背板、TPU 接触垫、带安装孔的定位托座；导出 STEP、STL、装配模型与参考尺寸图。
-- **运动算法**：与上游坐标一致的正运动学、解析逆运动学、雅可比矩阵；三次/五次关节轨迹及速度、加速度约束下的时间缩放。
-- **控制与仿真**：限力矩位置伺服、动力学偏置补偿、抓取状态流程；工件使用重力和摩擦接触运动，未绑定夹爪或移动工件坐标。
-- **ROS 2**：独立任务节点与仿真控制节点，使用 `FollowJointTrajectory`、`GripperCommand` action 和关节/位姿反馈。
-- **工程校核**：背板有限元与梁公式核对、5 档厚度的质量/刚度比较、路径预检与固定高度可达网格、10 组小范围扰动和 48 组负载/摩擦/高度组合仿真。
-- **交互展示**：筛选工况，查看工件高度、双侧接触力、失败判据及厚度比较；曲线读取实际 CSV，原始配置和日志可下载。
+![夹指附件与定位托座尺寸图](cad/generated/engineering_drawing.png)
 
-零件数量、材料假设和装配关系见 [零件清单与装配说明](docs/BOM与装配.md)。
+## 运动与控制
 
-这是有机械附件设计的仿真项目。尚未加工、试装或实机标定；不声称从零设计整台机械臂，也不把模型结果写成实机精度。四轴机构控制位置和径向俯仰，不能独立控制任意六维位姿。
+- 四轴运动学采用上游关节坐标，支持位置和径向俯仰的正解、解析逆解及位置雅可比计算。
+- 三次、五次关节轨迹按速度和加速度限值进行时间缩放；默认使用段端速度、加速度为零的五次轨迹。
+- 位置伺服叠加动力学偏置补偿，关节力矩限制为 ±2 N·m，夹爪驱动力限制为 ±6 N。
+- ROS 2 任务节点通过 `FollowJointTrajectory` 和 `GripperCommand` 驱动仿真控制节点，并接收关节与位姿反馈。
+- 执行前可检查任务参数、目标可达性及采样路径上的托座/地面相交。检查范围见 [工况评估](docs/工况评估.md)。
 
-![机械附件与托座尺寸图](cad/generated/engineering_drawing.png)
+## 仿真结果
 
-## 已测结果
+默认工件为 30 × 24 × 20 mm、30 g，从 (170, −50, 65) mm 搬到 (170, 60, 65) mm。抬升高度设为 40 mm，关节速度、加速度上限分别为 0.8 rad/s 和 1.5 rad/s²。
 
-以下为 `results/native` 中默认场景的数据：30 g 工件、40 mm 抬升净空、关节速度上限 0.8 rad/s、加速度上限 1.5 rad/s²。
-
-| 项目 | 结果 |
+| 测量项 | 结果 |
 |---|---:|
-| 仿真搬运周期 | 12.342 s |
-| 最终工件位置偏差 | 0.569 mm |
+| 搬运周期 | 12.342 s |
+| 最终工件中心偏差 | 0.569 mm |
 | 最大抬升高度 | 39.945 mm |
 | TCP 跟踪 RMS 偏差 | 1.903 mm |
-| 非预期托座接触采样数 | 0 |
-| 10 组扰动实验（摩擦修正后重跑） | 10 组完成搬运，偏差 0.376–2.613 mm |
-| 48 组宽范围工况 | 6 组满足标准、42 组未满足，完整保留失败记录 |
-| 默认路径预检 | 632 个采样配置；最小关节限位余量 0.360 rad |
-| 背板参考工况 FEM 挠度 | 0.0483 mm |
-| 对应梁理论挠度 | 0.0546 mm |
+| 机械臂与托座/地面的非预期接触步数 | 0 |
+| 10 组小范围扰动 | 全部完成，位置偏差 0.376–2.613 mm |
+| ROS 2 双进程搬运 | 位置偏差 0.565 mm |
 
-位置偏差为工件最终中心到目标中心的三维距离。默认成功标准为偏差 < 8 mm、抬升 > 24 mm，且每个物理步均无机械臂与托座/地面非预期接触。它不同于机械臂重复定位精度。扰动范围为质量 20–50 g、接触摩擦 0.8–1.2、初始平面位置 ±2 mm；10 次仿真不能代表实机可靠性。
+位置偏差是最终工件中心到目标中心的三维距离，属于当前场景的仿真结果。判定搬运完成需同时满足偏差 < 8 mm、最大抬升 > 设定高度的 60%，以及无机械臂与托座/地面的非预期接触。
 
-2026-10-08 修正了旧模型中低摩擦设置被工件摩擦 1.2 覆盖的问题，新增实际接触摩擦记录并重跑受影响实验。48 组实验扩大到 20–200 g、μ=0.05–1.2、20–60 mm 抬升；大量失败用来识别当前模型的适用边界，不能把 6/48 当成统计成功率。详见 [修正说明、工况结果与预检范围](docs/工况评估.md)。
+![关节误差、工件位置、力矩及扰动实验](results/native/performance.png)
 
-完整证据见 [实验记录](docs/实验记录.md)、[设计说明](docs/设计说明.md) 和原始 JSON/CSV。
+### 负载、摩擦和抬升高度
 
-## 先运行本地仿真
+48 组组合覆盖负载 20/50/120/200 g、垫与工件摩擦 0.05/0.2/0.6/1.2，以及抬升高度 20/40/60 mm。每组运行一次，其中 6 组完成搬运，42 组未完成。
 
-Python 3.12，Windows 或 Linux。当前 Windows 的既有 `.venv` 可继续使用。新建 Windows 环境与包缓存按本项目约定放在 E 盘，在仓库根目录执行：
+![48 组工况结果](results/operating-envelope/envelope.png)
+
+通过的组合为：20 g、摩擦 0.6 或 1.2、抬升 40 或 60 mm；50 g、摩擦 1.2、抬升 40 或 60 mm。20 mm 高度的所有组合均出现额外金属夹指接触。详细结果、失败判据和摩擦模型修正记录见 [工况评估](docs/工况评估.md)，原始配置与 CSV 保存在 [数据压缩包](results/operating-envelope/traces.zip)。这些离散工况用于检查参数影响，不构成实机负载额定值或统计成功率。
+
+### 背板结构校核
+
+参考边界为铝背板一短边全固定，另一短边受 6 N 分布载荷。69888 个线性四面体的端部挠度为 0.0483 mm，梁理论值为 0.0546 mm；网格细化后的挠度变化为 4.84%。另比较了 1–3 mm 厚度的背板质量、挠度和名义应力。
+
+![背板厚度与质量、刚度的关系](results/operating-envelope/structure_tradeoff.png)
+
+该计算覆盖背板的简化弯曲工况。胶层、TPU 非线性和加工装配误差尚未验证，详见 [设计说明](docs/设计说明.md) 和 [零件清单](docs/BOM与装配.md)。
+
+## 运行
+
+需要 Python 3.12。以下命令均在仓库根目录执行，路径相对于仓库；虚拟环境和输出目录可自行指定。普通仿真不依赖 ROS。
+
+Windows PowerShell：
 
 ```powershell
-$env:PIP_CACHE_DIR='E:\Codex\cache\pip'
-python -m venv E:\Codex\environments\desktop-arm
-$ArmPython='E:\Codex\environments\desktop-arm\Scripts\python.exe'
-& $ArmPython -m pip install -e ".[cad,test]"
-& $ArmPython -m desktop_arm.cli simulate --config config/task.json --preflight --output E:\Codex\experiments\desktop-arm\my-run --render
-& $ArmPython -m pytest -q
+python -m venv .venv
+.venv\Scripts\python -m pip install -e ".[cad,test]"
+.venv\Scripts\python -m desktop_arm.cli simulate --config config/task.json --preflight --output results/my-run --render
+.venv\Scripts\python -m pytest -q
 ```
 
-Linux 可使用 `/path/to/environment/bin/python`，自行选择环境与缓存目录。仿真计算使用 CPU，渲染使用图形环境，无需训练模型或额外购买硬件。无显示环境可先去掉 `--render`；Linux 无界面渲染需自行配置 MuJoCo EGL/OSMesa。
+Linux：
 
-生成 CAD、重新跑对比实验或结构分析：
+```bash
+python3 -m venv .venv
+.venv/bin/python -m pip install -e ".[cad,test]"
+.venv/bin/python -m desktop_arm.cli simulate --config config/task.json --preflight --output results/my-run
+.venv/bin/python -m pytest -q
+```
+
+`--render` 输出视频和 GIF，需要可用的图形环境；无显示环境先运行不带此参数的仿真。依赖快照见 `requirements-lock.txt`，CI 使用 `requirements-ci.txt`。
+
+生成 CAD 和分析数据（Linux 使用 `.venv/bin/python`）：
 
 ```powershell
 .venv\Scripts\python cad/build.py
 .venv\Scripts\python scripts/generate_urdf.py
-.venv\Scripts\python scripts/benchmark.py --output E:\Codex\experiments\desktop-arm\benchmark-v2
-.venv\Scripts\python -m desktop_arm.cli assess --output E:\Codex\experiments\desktop-arm\assessment
-.venv\Scripts\python scripts/operating_envelope.py --output E:\Codex\experiments\desktop-arm\operating-envelope
+.venv\Scripts\python scripts/benchmark.py --output results/my-benchmark
+.venv\Scripts\python -m desktop_arm.cli assess --output results/my-assessment
+.venv\Scripts\python scripts/operating_envelope.py --output results/my-envelope
 .venv\Scripts\python -m desktop_arm.structure
-.venv\Scripts\python scripts/plot_results.py
 ```
 
-结构分析细网格约 7 万个四面体，耗时比搬运仿真长。无需每次重跑。当前完整依赖版本见 `requirements-lock.txt`，其中包含 CAD 与验证工具。
+ROS 2 的环境配置、接口和验证记录见 [ROS 运行说明](docs/ROS运行.md)。已验证 Windows Jazzy 的双进程通信与安装后 launch；Ubuntu ROS 运行及 RViz 显示尚未验证。当前接口为 MuJoCo 仿真控制桥，未接入实机驱动、MoveIt 或 ros2_control。
 
-GitHub Actions 在 Windows 和 Ubuntu 上运行 23 项无需渲染的运动学、轨迹、接触搬运、配置/预检与结构测试，使用 `requirements-ci.txt` 固定核心依赖。它不替代 ROS 环境或实机验证；ROS 的验证记录来自本机 Windows 实验。交互网页源文件位于 `docs/index.html`，生成方式见 [工况评估](docs/工况评估.md)。
+## 测试
 
-## ROS 2 运行
+GitHub Actions 在 Windows 和 Ubuntu 上执行 23 项测试，覆盖运动学与独立模型核对、轨迹端点和约束、摩擦接触搬运、任务参数与路径检查，以及 CAD/URDF 质量惯量一致性和有限元校核。ROS action 的非法目标拒绝、重叠目标拒绝和取消验证另有 [通信记录](results/ros2/action_checks.json)。
 
-ROS 环境与普通 Python 虚拟环境分开激活，运行方式见 [ROS 安装与验证](docs/ROS运行.md)。本机安装于 `C:\pixi_ws`，项目脚本 `scripts/ros_runtime.cmd` 用于运行实际双进程验证。普通仿真不依赖 ROS。
+测量方法、轨迹对照和结构网格结果见 [实验记录](docs/实验记录.md)。
 
-Ubuntu 24.04 + ROS 2 Jazzy 可按文档构建本 ROS 包；该平台尚未实际验证。RViz、robot_state_publisher 的集成 launch 文件提供在 `ros2/launch`，图形界面的运行状态另见验证记录。没有集成 MoveIt、Gazebo 或上游实机驱动。
+## 目录
 
-## 文件在哪里
-
-| 内容 | 路径 |
+| 目录 | 内容 |
 |---|---|
-| 机械设计参数及生成程序 | `cad/design.json`、`cad/build.py` |
-| 可编辑 STEP / STL / 尺寸图 | `cad/generated/` |
-| 任务点、负载及轨迹限制 | `config/task.json` |
-| 运动学、轨迹、状态流程 | `desktop_arm/kinematics.py`、`trajectory.py`、`task.py` |
-| 接触模型与执行器 | `desktop_arm/scene.py`、`simulation.py` |
-| 路径预检与可达性 | `desktop_arm/assessment.py` |
-| 工况实验与网页数据构建 | `scripts/operating_envelope.py`、`scripts/build_showcase.py` |
-| ROS 控制与任务节点 | `desktop_arm/ros_nodes.py` |
-| 原始测量、演示及分析图 | `results/` |
-| 推荐学习顺序 | [项目阅读路线](docs/项目阅读路线.md) |
-| 简历项目表述参考 | [简历项目表述](docs/简历项目表述.md) |
+| `cad/` | 参数化零件、STEP/STL 和尺寸图 |
+| `config/` | 任务点、负载、夹爪行程及轨迹限值 |
+| `desktop_arm/` | 运动学、轨迹、接触仿真、预检和 ROS 节点 |
+| `scripts/` | CAD 导出、工况实验与 ROS 验证脚本 |
+| `results/` | 测量日志、汇总、图表和演示 |
+| `tests/` | 自动测试 |
+| `docs/` | 设计、运行和实验说明；[源码阅读索引](docs/项目阅读路线.md) |
 
-许可证：Apache-2.0。上游来源及许可证保留，第三方依赖遵循各自许可证。
+基础机械臂采用 [ROBOTIS OpenMANIPULATOR](https://github.com/ROBOTIS-GIT/open_manipulator) 的固定版本，模型与许可证保留在 `assets/upstream`。来源和开发记录见 [PROVENANCE](docs/PROVENANCE.md)。许可证为 Apache-2.0。

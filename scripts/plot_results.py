@@ -30,12 +30,12 @@ def main():
         cases=[json.loads(p.read_text()) for p in sorted((ROOT/'results/benchmark').glob('perturbation_*/summary.json'))]
     axes[1,1].bar(np.arange(1,len(cases)+1),[v['placement_error_mm'] for v in cases],color='#168e89')
     axes[1,1].set_xlabel('Perturbation trial');axes[1,1].set_ylabel('Placement error / mm')
-    axes[1,1].set_title('10 simulated trials; not hardware reliability')
+    axes[1,1].set_title('10 perturbed task configurations')
     for ax in axes.ravel():
         ax.grid(alpha=.2)
     for ax in [axes[0,0],axes[0,1],axes[1,0]]:
         ax.set_xlabel('Simulation time / s')
-    fig.suptitle('Four-DOF arm: gripping, positioning and motion control\nMeasured contact simulation outputs')
+    fig.suptitle('Four-DOF arm: pick-and-place simulation')
     fig.savefig(ROOT/'results/native/performance.png',dpi=160)
     plt.close(fig)
 

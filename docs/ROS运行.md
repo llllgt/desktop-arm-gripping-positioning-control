@@ -1,18 +1,8 @@
-# ROS 运行与验证
+# ROS 2 运行与验证
 
-## 本机可直接复现
+本项目使用 ROS 2 Jazzy。任务节点发送轨迹和夹爪 action，控制节点运行 MuJoCo 并发布实际关节状态及工具、工件位姿。Windows 下已验证双进程搬运和安装后的 launch；Ubuntu 移植步骤及 RViz 配置尚未实测。
 
-Windows 官方 ROS 2 Jazzy 二进制运行时已解压到 `C:\pixi_ws\ros2-windows`，通过 Pixi 的用户目录环境提供依赖。未修改全局 Python、未安装系统服务。项目本身的普通 Python 环境在 `.venv`。
-
-在仓库根目录运行：
-
-```powershell
-.\scripts\run_ros.ps1
-```
-
-脚本寻找已安装的 `pixi`，或当前工作区中下载的 `../tmp/runtime_downloads/pixi/pixi.exe`；也可通过 `-Pixi` 显式传入路径。它激活 ROS 与 control_msgs，启动两个独立进程，先做 action 拒绝/取消验证，再完整搬运，结果写入 `results/ros2`。预期用时约一分钟，定时器在本机慢于真实时间。
-
-控制端点：
+## 接口
 
 | 类型 | 名称 |
 |---|---|
@@ -23,43 +13,69 @@ Windows 官方 ROS 2 Jazzy 二进制运行时已解压到 `C:\pixi_ws\ros2-windo
 | String topic | `/desktop_arm/phase` |
 | Trigger service | `/desktop_arm/save_results`、`/desktop_arm/shutdown` |
 
-双进程验证使用 `ROS_DOMAIN_ID=47`，避免与同机默认 ROS 节点混用。
+控制桥接受从零时刻开始的四关节位置采样轨迹，以线性插值驱动模型。当前实现覆盖本任务使用的 action 子集，完整容差语义、实机驱动和 ros2_control 插件未实现。
 
-## 本机依赖记录
+## Windows 环境
 
-- ROS 2 Jazzy Windows 官方二进制：20260128 版本。
-- 官方 Pixi 配置/锁文件：`C:\pixi_ws\pixi.toml`、`pixi.lock`。
-- 仓库留有其副本 `docs/ros-pixi.toml` 与 `docs/ros-pixi.lock`；该锁文件反映官方环境，本机后续的 colcon-core pip 更新单独记录在 Python 快照中。
-- 本机二进制包不含 control_msgs，从 [ros-controls/control_msgs](https://github.com/ros-controls/control_msgs) jazzy 分支构建；固定提交 `2eaaa5440d6dc2291601ea445b83015a663f5f88`，包版本 5.10.0。
-- control_msgs 安装：`C:\pixi_ws\control_ws\install`。
-- 编译使用已有 VS 2022 Build Tools、可携式 Windows SDK 10.0.22621.0 与 Ninja；SDK 在 `C:\pixi_ws\windows_sdk`。未安装全局 SDK。
-- 本机成功使用的编译脚本保留为 `scripts/build_control_msgs.cmd`；需要先准备上述 SDK、编译器和 control_msgs 源码，脚本本身不下载安装这些依赖。
-- 官方依赖中旧 colcon-core 与输出插件不兼容，本机将 colcon-core 更新至 0.21.3；其余 Python 依赖快照见 `ros-python-lock.txt`。
-- 项目数值计算依赖来自 `.venv/Lib/site-packages`，版本见仓库根目录 `requirements-lock.txt`。
+先按 [Jazzy Windows 安装说明](https://docs.ros.org/en/jazzy/Installation/Windows-Install-Binary.html) 配置运行时、Pixi 和兼容的 Python。还需安装或构建 control_msgs。目录由使用者选择，脚本不固定盘符；以下名称表示所需的目录结构：
 
-`C:\pixi_ws\desktop_arm_source` 是指向此项目的目录联接，用于避开 Windows 批处理和某些原生工具对中文路径的编码问题。实际代码仍在原项目目录。
-
-## ROS 包与 launch 验证
-
-本机已成功以 `ament_python` 构建项目，安装在 `C:\pixi_ws\project_ws\install`。在已激活 Pixi、ROS 和 control_msgs 的命令窗口中：
-
-```bat
-call C:\pixi_ws\project_ws\install\local_setup.bat
-set "PYTHONPATH=C:\pixi_ws\desktop_arm_source\.venv\Lib\site-packages;%PYTHONPATH%"
-ros2 launch desktop_arm transfer.launch.py output:=C:/pixi_ws/desktop_arm_source/results/ros_launch rviz:=false
+```text
+<ROS_DEPENDENCY_WORKSPACE>/
+  pixi.toml
+  pixi.lock
+  ros2-windows/local_setup.bat
+  control_ws/install/local_setup.bat
 ```
 
-实际验证包括：安装后 action 节点、robot_state_publisher、资源加载与完整搬运，最终偏差 0.5590 mm、抬升 39.9562 mm。数据在 `results/ros_launch`。
+在仓库根目录调用：
 
-任务完成后 launch 关闭其他节点；Windows 不支持它使用的 SIGINT 关闭方式，会升级为终止信号，日志可能记录服务节点退出码 1。搬运客户端正常退出，保存的物理结果成功。无 RViz 图形界面验证；`rviz:=true` 及对应配置已提供，但显示效果未实测。
+```powershell
+.\scripts\run_ros.ps1 -RosHome '<ROS_DEPENDENCY_WORKSPACE>' -Output results/ros2-run
+```
 
-## 另一台 Windows 机器
+`-RosHome` 填写上述依赖工作区的实际路径，也可通过 `DESKTOP_ARM_ROS_HOME` 环境变量提供。Pixi 默认从 PATH 查找；不在 PATH 时加 `-Pixi '<PIXI_EXECUTABLE>'`。数值依赖默认使用仓库 `.venv/Lib/site-packages`；外部虚拟环境可通过 `-PythonPackages '<ENV_SITE_PACKAGES>'` 指定。
 
-先按 [官方 Jazzy Windows 二进制安装说明](https://docs.ros.org/en/jazzy/Installation/Windows-Install-Binary.html) 配置同一 Python 主版本运行时，安装/构建 control_msgs，再调整 `scripts/ros_runtime.cmd` 的两处安装路径。这里的 `C:\pixi_ws` 和下载工具是本机环境，不会随 Git 仓库上传。ROS 配置复杂于普通仿真，建议先确认 README 中无 ROS 的搬运运行成功。
+脚本启动控制与任务两个独立进程，先检查非法目标拒绝和任务取消，再执行搬运。输出包括 summary、trajectory 和 action 检查日志。验证进程使用 `ROS_DOMAIN_ID=47`，运行日志写入指定输出目录。
 
-## Ubuntu 24.04 / ROS 2 Jazzy（未实测）
+### control_msgs 构建
 
-以下是按包依赖提供的移植步骤，不列为已验证平台。先安装官方 ROS 2 Jazzy，再安装消息依赖：
+在已配置 MSVC、Windows SDK 和 Ninja 的开发者命令提示符中，准备 control_msgs 源码后执行：
+
+```bat
+scripts\build_control_msgs.cmd "<ROS_DEPENDENCY_WORKSPACE>" "<CONTROL_MSGS_WORKSPACE>"
+```
+
+脚本使用当前命令窗口的编译器与 SDK 环境，构建工作区中的 control_msgs，不负责下载依赖。
+
+### 包安装与 launch
+
+在激活 Pixi、ROS 和 control_msgs 的环境中，将本仓库作为 `ament_python` 包放入 ROS 工作区并运行 `colcon build --merge-install`。激活该工作区的 install 后，在仓库根目录执行：
+
+```bat
+set "PYTHONPATH=%CD%\.venv\Lib\site-packages;%PYTHONPATH%"
+ros2 launch desktop_arm transfer.launch.py output:=results/ros-launch-run rviz:=false
+```
+
+路径含空格或中文时，须核对批处理参数和原生工具的路径编码支持。`rviz:=true` 可启用已有 RViz 配置，但显示效果尚未验证。
+
+## 验证环境记录
+
+2026-10-07 的 Windows 验证使用：
+
+- 官方 Jazzy Windows 二进制，20260128 版本。
+- control_msgs 5.10.0，jazzy 分支提交 `2eaaa5440d6dc2291601ea445b83015a663f5f88`。
+- VS 2022 Build Tools、Windows SDK 10.0.22621.0、Ninja。
+- colcon-core 0.21.3；更新该版本以处理官方依赖中的输出插件兼容问题。
+
+Pixi 配置和锁文件见 `ros-pixi.toml`、`ros-pixi.lock`，Python 快照见 `ros-python-lock.txt`；数值计算依赖见仓库根目录 `requirements-lock.txt`。
+
+双进程结果位于 `results/ros2`：最终位置偏差 0.5650 mm、最大抬升 39.9496 mm，仿真时间 13.550 s，包含启动和 action 检查的墙钟时间约 69.8 s。Windows 定时回调慢于真实时间。
+
+安装后 launch 结果位于 `results/ros_launch`：位置偏差 0.5590 mm、抬升 39.9562 mm，包含 robot_state_publisher 和完整搬运。任务客户端正常结束；清理其他节点时，Windows 将 SIGINT 升级为 SIGTERM，服务节点日志记录退出码 1。公开 launch 日志中的用户目录、电脑名和临时文件路径已替换为占位符，时间戳、消息及退出状态保留。
+
+## Ubuntu 24.04（待验证）
+
+先安装官方 ROS 2 Jazzy，再安装消息包：
 
 ```bash
 sudo apt install ros-jazzy-control-msgs ros-jazzy-trajectory-msgs \
@@ -69,7 +85,7 @@ source /opt/ros/jazzy/setup.bash
 python3 -m venv --system-site-packages .rosvenv
 source .rosvenv/bin/activate
 python -m pip install -e .
-python scripts/verify_ros.py
+python scripts/verify_ros.py --output results/ros2-run
 ```
 
-正式部署前核对 DDS、图形驱动和包安装路径。默认验证不渲染、不需要 Gazebo 或 MoveIt。ROS 接口支持本项目所需的轨迹位置采样与夹爪位置指令，未实现完整 action 容差、硬件驱动或 ros2_control 控制器。
+这些步骤根据包依赖整理，尚未在 Ubuntu 上完成 ROS 通信验证。

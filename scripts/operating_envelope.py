@@ -46,6 +46,24 @@ def structure_tradeoff(output):
     return report
 
 
+def plot_envelope(cases, output):
+    output=Path(output)
+    output.mkdir(parents=True,exist_ok=True)
+    fig,axes=plt.subplots(1,3,figsize=(13,4),layout='constrained')
+    for ax,h in zip(axes,CLEARANCES):
+        grid=np.full((4,4),np.nan)
+        for i,m in enumerate(MASSES):
+            for j,mu in enumerate(FRICTIONS):
+                c=next(c for c in cases if c['mass_g']==m*1000 and c['friction']==mu and c['clearance_mm']==h*1000)
+                grid[i,j]=1 if c['status']=='passed' else (0 if c['status']=='failed' else -1)
+                ax.text(j,i,'PASS' if c['status']=='passed' else ('FAIL' if c['status']=='failed' else 'REJECT'),ha='center',va='center',fontsize=9)
+        ax.imshow(grid,vmin=-1,vmax=1,cmap=matplotlib.colors.ListedColormap(['#b7c4ce','#f4c0ab','#a0dace']))
+        ax.set(xticks=range(4),xticklabels=FRICTIONS,yticks=range(4),yticklabels=[round(m*1000) for m in MASSES],
+               xlabel='Pad sliding friction',ylabel='Workpiece mass / g',title=f'Clearance {round(h*1000)} mm')
+    fig.suptitle('Load, pad friction and lift height: 48 simulation cases')
+    fig.savefig(output/'envelope.png',dpi=160);plt.close(fig)
+
+
 def main():
     parser=argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--output',type=Path,required=True)
@@ -82,19 +100,7 @@ def main():
         'scope':'48 deterministic factorial configurations, one run each, centred initial workpiece. '
         'Not a probability of success, hardware payload rating or universal envelope.'}
     (out/'summary.json').write_text(json.dumps(summary,indent=2),encoding='utf-8')
-    fig,axes=plt.subplots(1,3,figsize=(13,4),layout='constrained')
-    for ax,h in zip(axes,CLEARANCES):
-        grid=np.full((4,4),np.nan)
-        for i,m in enumerate(MASSES):
-            for j,mu in enumerate(FRICTIONS):
-                c=next(c for c in cases if c['mass_g']==m*1000 and c['friction']==mu and c['clearance_mm']==h*1000)
-                grid[i,j]=1 if c['status']=='passed' else (0 if c['status']=='failed' else -1)
-                ax.text(j,i,'PASS' if c['status']=='passed' else ('FAIL' if c['status']=='failed' else 'REJECT'),ha='center',va='center',fontsize=9)
-        ax.imshow(grid,vmin=-1,vmax=1,cmap=matplotlib.colors.ListedColormap(['#b7c4ce','#f4c0ab','#a0dace']))
-        ax.set(xticks=range(4),xticklabels=FRICTIONS,yticks=range(4),yticklabels=[round(m*1000) for m in MASSES],
-               xlabel='Measured pad sliding friction',ylabel='Workpiece mass / g',title=f'Clearance {round(h*1000)} mm')
-    fig.suptitle('48 simulated configurations; PASS/FAIL are model outcomes, not reliability')
-    fig.savefig(out/'envelope.png',dpi=160);plt.close(fig)
+    plot_envelope(cases,out)
     structure_tradeoff(out)
     assess(out/'assessment')
     print(json.dumps({k:summary[k] for k in ('passed','failed','rejected')}),flush=True)

@@ -25,11 +25,13 @@ from std_srvs.srv import Trigger
 from builtin_interfaces.msg import Duration
 from .kinematics import JOINT_NAMES, LIMITS, forward
 from .simulation import Simulator
-from .task import plan_task
+from .task import load_task, plan_task
+from .contacts import collision_pairs
+from .assessment import preflight
 from .paths import project_root
 
 
-def validate_points(names,points):
+def validate_points(names,points,velocity_limit=.8):
     if tuple(names)!=JOINT_NAMES or len(points)<2:
         raise ValueError('Expected joint1..joint4 and at least two samples')
     times=np.array([p.time_from_start.sec+p.time_from_start.nanosec*1e-9 for p in points])
@@ -40,15 +42,15 @@ def validate_points(names,points):
         raise ValueError('Sample times must increase strictly')
     if np.any(positions<LIMITS[:,0]-1e-9) or np.any(positions>LIMITS[:,1]+1e-9):
         raise ValueError('Joint limit violation')
-    if np.any(np.abs(np.diff(positions,axis=0)/np.diff(times)[:,None])>0.8001):
-        raise ValueError('Command exceeds configured 0.8 rad/s speed limit')
+    if np.any(np.abs(np.diff(positions,axis=0)/np.diff(times)[:,None])>np.asarray(velocity_limit)+.0001):
+        raise ValueError('Command exceeds configured joint speed limit')
     return times,positions
 
 
 class SimulationController(Node):
-    def __init__(self,output):
+    def __init__(self,output,task=None):
         super().__init__('desktop_arm_simulation')
-        self.sim=Simulator()
+        self.sim=Simulator(task)
         self.output=Path(output)
         self.output.mkdir(parents=True,exist_ok=True)
         self.lock=threading.RLock()
@@ -61,6 +63,8 @@ class SimulationController(Node):
         self.rows=[]
         self.started=time.perf_counter()
         self.accepted_goals=0
+        self.unwanted_contact_steps=0
+        self.object_obstacle_contact_steps=0
         group=ReentrantCallbackGroup()
         self.joints=self.create_publisher(JointState,'/joint_states',10)
         self.object_pub=self.create_publisher(PoseStamped,'/desktop_arm/object_pose',10)
@@ -79,7 +83,7 @@ class SimulationController(Node):
 
     def accept_arm(self,goal):
         try:
-            validate_points(goal.trajectory.joint_names,goal.trajectory.points)
+            validate_points(goal.trajectory.joint_names,goal.trajectory.points,self.sim.task['max_velocity'])
         except (ValueError,TypeError) as e:
             self.get_logger().error(str(e))
             return GoalResponse.REJECT
@@ -99,7 +103,7 @@ class SimulationController(Node):
         return GoalResponse.ACCEPT
 
     def execute_arm(self,handle):
-        times,positions=validate_points(handle.request.trajectory.joint_names,handle.request.trajectory.points)
+        times,positions=validate_points(handle.request.trajectory.joint_names,handle.request.trajectory.points,self.sim.task['max_velocity'])
         with self.lock:
             start=self.sim.data.time
             self.accepted_goals+=1
@@ -141,7 +145,7 @@ class SimulationController(Node):
         while rclpy.ok():
             with self.lock:
                 elapsed=self.sim.data.time-start
-                u=float(np.clip(elapsed/.8,0,1))
+                u=float(np.clip(elapsed/self.sim.task['dwell'],0,1))
                 s=10*u**3-15*u**4+6*u**5
                 self.opening=original+s*(handle.request.command.position-original)
                 # Honour the requested total effort within the 6 N design cap.
@@ -155,7 +159,7 @@ class SimulationController(Node):
                     self.gripper_busy=False
                 handle.canceled()
                 return result
-            if elapsed>=.8:
+            if elapsed>=self.sim.task['dwell']:
                 break
             time.sleep(.01)
         result.reached_goal=abs(result.position-handle.request.command.position)<.0005
@@ -168,6 +172,9 @@ class SimulationController(Node):
     def tick(self):
         with self.lock:
             self.sim.step(self.command,self.opening)
+            pairs=collision_pairs(self.sim.model,self.sim.data,carried_object=True)
+            self.unwanted_contact_steps+=int(any('workpiece_geom' not in pair for pair in pairs))
+            self.object_obstacle_contact_steps+=int(any('workpiece_geom' in pair for pair in pairs))
             if self.tick_count%5==0:
                 obs=self.sim.observation()
                 row={'time':float(self.sim.data.time),'phase':self.phase}
@@ -211,12 +218,17 @@ class SimulationController(Node):
         target=np.array([[r[f'q{i}_command'] for i in range(1,5)] for r in rows])
         distance=float(np.linalg.norm(final-task['place']))
         lift=float(max(r['object_z'] for r in rows)-task['pick'][2])
+        pickup_lift=float(max((r['object_z'] for r in rows if r['phase']=='LIFT'),default=task['pick'][2])-task['pick'][2])
         summary={'execution':'Two ROS 2 nodes, standard trajectory/gripper actions over DDS, MuJoCo contact physics',
             'arm_action_goals':self.accepted_goals,'joint_state_samples':len(rows),
             'simulation_seconds':self.sim.data.time,'wall_seconds':time.perf_counter()-self.started,
             'joint_rmse_rad':np.sqrt(np.mean((actual-target)**2,axis=0)).tolist(),
             'placement_error_mm':distance*1000,'maximum_lift_mm':lift*1000,
-            'final_workpiece_xyz_m':final.tolist(),'success':bool(distance<.008 and lift>.024),
+            'pickup_lift_mm':pickup_lift*1000,
+            'final_workpiece_xyz_m':final.tolist(),
+            'unwanted_contact_steps':self.unwanted_contact_steps,
+            'object_obstacle_contact_steps':self.object_obstacle_contact_steps,
+            'success':bool(distance<.008 and pickup_lift>task['clearance']*.6 and not self.unwanted_contact_steps and not self.object_obstacle_contact_steps),
             'object_attachment_used':False}
         (self.output/'summary.json').write_text(json.dumps(summary,indent=2),encoding='utf-8')
         response.success=True;response.message=json.dumps(summary)
@@ -229,8 +241,9 @@ class SimulationController(Node):
 
 
 class TransferClient(Node):
-    def __init__(self):
+    def __init__(self,task=None):
         super().__init__('desktop_arm_transfer')
+        self.task=load_task() if task is None else task
         self.arm=ActionClient(self,FollowJointTrajectory,'/arm_controller/follow_joint_trajectory')
         self.gripper=ActionClient(self,GripperCommand,'/gripper_controller/gripper_cmd')
         self.phase_pub=self.create_publisher(String,'/desktop_arm/phase',10)
@@ -244,9 +257,12 @@ class TransferClient(Node):
         return future.result()
 
     def execute(self):
+        report=preflight(self.task)
+        if not report['feasible']:
+            raise RuntimeError(report['rejection'])
         if not self.arm.wait_for_server(timeout_sec=20) or not self.gripper.wait_for_server(timeout_sec=20):
             raise RuntimeError('Controller action server unavailable')
-        for phase in plan_task():
+        for phase in plan_task(self.task):
             msg=String();msg.data=phase.name;self.phase_pub.publish(msg)
             self.get_logger().info('Executing '+phase.name)
             goal=FollowJointTrajectory.Goal()
@@ -285,10 +301,12 @@ def main():
     parser=argparse.ArgumentParser()
     parser.add_argument('mode',choices=['server','task'])
     parser.add_argument('--output',type=Path,default=project_root()/'results/ros2')
+    parser.add_argument('--config',type=Path)
     args,ros_args=parser.parse_known_args()
+    task=load_task(args.config)
     rclpy.init(args=ros_args)
     if args.mode=='server':
-        node=SimulationController(args.output)
+        node=SimulationController(args.output,task)
         executor=MultiThreadedExecutor(num_threads=4);executor.add_node(node)
         try:
             while rclpy.ok() and (node.shutdown_at is None or time.monotonic()<node.shutdown_at):
@@ -296,7 +314,7 @@ def main():
         finally:
             executor.shutdown();node.destroy_node();rclpy.shutdown()
     else:
-        node=TransferClient()
+        node=TransferClient(task)
         try:
             node.execute()
         finally:

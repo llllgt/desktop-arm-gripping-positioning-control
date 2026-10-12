@@ -1,0 +1,630 @@
+{
+  "scenarios": [
+    {
+      "name": "baseline",
+      "config": "config/task.json",
+      "preflight": {
+        "feasible": true,
+        "sample_period_s": 0.02,
+        "samples": 632,
+        "collisions": [],
+        "scope": "Sampled robot versus fixed scene and carried box versus obstacles; carried box assumes no slip relative to the pick pose. Excludes self collision and object/support contacts. Not a continuous or dynamic safety guarantee.",
+        "minimum_joint_margin_rad": 0.3600594583340142,
+        "maximum_position_jacobian_condition": 2.035671562026895,
+        "planned_duration_s": 12.308543725567231,
+        "phase_durations_s": {
+          "SETTLE": 0.8,
+          "APPROACH_PICK": 1.086121374489774,
+          "DESCEND_PICK": 1.202191764398952,
+          "CLOSE": 0.8,
+          "HOLD": 0.8,
+          "LIFT": 1.202191764398952,
+          "TRANSFER": 1.6051671514373196,
+          "DESCEND_PLACE": 1.206435835421117,
+          "OPEN": 0.8,
+          "RELEASE_SETTLE": 0.8,
+          "RETRACT": 1.206435835421117,
+          "FINISH": 0.8
+        }
+      },
+      "simulation": {
+        "engine": "MuJoCo 3.15.0",
+        "model_revision": "multi-task-contact-v3",
+        "order": 5,
+        "fingers": true,
+        "gravity_compensation": true,
+        "simulation_seconds": 12.342000000000791,
+        "wall_seconds": 2.099206499988213,
+        "samples": 1235,
+        "joint_rmse_rad": [
+          0.008951264573645468,
+          0.0018048348018195742,
+          0.01014376755341677,
+          0.008692994068650678
+        ],
+        "tcp_rmse_mm": 1.9025559453662453,
+        "final_workpiece_xyz_m": [
+          0.17054374203510195,
+          0.05983989795900326,
+          0.06494649321197186
+        ],
+        "placement_error_mm": 0.5693426390436629,
+        "maximum_lift_mm": 39.94452454831324,
+        "pad_contact_samples": 529,
+        "pickup_lift_mm": 39.913066038404516,
+        "unwanted_contact_samples": 0,
+        "unwanted_contact_steps": 0,
+        "object_obstacle_contact_steps": 0,
+        "success": true,
+        "failure_reasons": [],
+        "peak_joint_torque_nm": [
+          0.3267171738356822,
+          0.5538119614725101,
+          0.6910473984964014,
+          0.32105708370119146
+        ],
+        "peak_joint_velocity_rad_s": [
+          0.7796362223433613,
+          0.10443729860354985,
+          0.5847448372915514,
+          0.5146755489939931
+        ],
+        "requested_pad_friction": 1.2,
+        "measured_pad_friction_range": [
+          1.2,
+          1.2
+        ],
+        "metal_workpiece_contact_steps": 0,
+        "bilateral_transport_contact_fraction": 1.0,
+        "object_attachment_used": false
+      }
+    },
+    {
+      "name": "blocked_direct",
+      "config": "config/tasks/blocked_direct.json",
+      "preflight": {
+        "feasible": false,
+        "sample_period_s": 0.02,
+        "samples": 597,
+        "collisions": [
+          {
+            "phase": "TRANSFER",
+            "geoms": [
+              "obstacle_1",
+              "left_metal_contact"
+            ]
+          },
+          {
+            "phase": "TRANSFER",
+            "geoms": [
+              "obstacle_1",
+              "left_pad"
+            ]
+          },
+          {
+            "phase": "TRANSFER",
+            "geoms": [
+              "obstacle_1",
+              "right_metal_contact"
+            ]
+          },
+          {
+            "phase": "TRANSFER",
+            "geoms": [
+              "obstacle_1",
+              "right_pad"
+            ]
+          },
+          {
+            "phase": "TRANSFER",
+            "geoms": [
+              "obstacle_1",
+              "workpiece_geom"
+            ]
+          }
+        ],
+        "scope": "Sampled robot versus fixed scene and carried box versus obstacles; carried box assumes no slip relative to the pick pose. Excludes self collision and object/support contacts. Not a continuous or dynamic safety guarantee.",
+        "minimum_joint_margin_rad": 0.3600594583340142,
+        "maximum_position_jacobian_condition": 2.035671562026895,
+        "planned_duration_s": 11.622422351077457,
+        "phase_durations_s": {
+          "SETTLE": 0.8,
+          "APPROACH_PICK": 0.4,
+          "DESCEND_PICK": 1.202191764398952,
+          "CLOSE": 0.8,
+          "HOLD": 0.8,
+          "LIFT": 1.202191764398952,
+          "TRANSFER": 1.6051671514373196,
+          "DESCEND_PLACE": 1.206435835421117,
+          "OPEN": 0.8,
+          "RELEASE_SETTLE": 0.8,
+          "RETRACT": 1.206435835421117,
+          "FINISH": 0.8
+        },
+        "rejection": "Commanded robot or carried box intersects fixed scene at sampled configurations"
+      }
+    },
+    {
+      "name": "higher",
+      "config": "config/tasks/higher.json",
+      "preflight": {
+        "feasible": true,
+        "sample_period_s": 0.02,
+        "samples": 654,
+        "collisions": [],
+        "scope": "Sampled robot versus fixed scene and carried box versus obstacles; carried box assumes no slip relative to the pick pose. Excludes self collision and object/support contacts. Not a continuous or dynamic safety guarantee.",
+        "minimum_joint_margin_rad": 0.05915951656549656,
+        "maximum_position_jacobian_condition": 2.035671562026895,
+        "planned_duration_s": 12.77554916759599,
+        "phase_durations_s": {
+          "SETTLE": 0.8,
+          "APPROACH_PICK": 1.086121374489774,
+          "DESCEND_PICK": 1.202191764398952,
+          "CLOSE": 0.8,
+          "HOLD": 0.8,
+          "LIFT": 1.202191764398952,
+          "TRANSFER": 1.6051671514373196,
+          "DESCEND_PLACE": 1.4399385564354963,
+          "OPEN": 0.8,
+          "RELEASE_SETTLE": 0.8,
+          "RETRACT": 1.4399385564354963,
+          "FINISH": 0.8
+        }
+      },
+      "simulation": {
+        "engine": "MuJoCo 3.15.0",
+        "model_revision": "multi-task-contact-v3",
+        "order": 5,
+        "fingers": true,
+        "gravity_compensation": true,
+        "simulation_seconds": 12.806000000000946,
+        "wall_seconds": 2.047209299984388,
+        "samples": 1281,
+        "joint_rmse_rad": [
+          0.008789047717333322,
+          0.003665634968172561,
+          0.012683569306224725,
+          0.009467143086090996
+        ],
+        "tcp_rmse_mm": 1.8792414133092392,
+        "final_workpiece_xyz_m": [
+          0.1706071766930978,
+          0.059892698546194785,
+          0.09494648169916163
+        ],
+        "placement_error_mm": 0.6189033423358647,
+        "maximum_lift_mm": 69.66476272805119,
+        "pad_contact_samples": 551,
+        "pickup_lift_mm": 39.913066038404516,
+        "unwanted_contact_samples": 0,
+        "unwanted_contact_steps": 0,
+        "object_obstacle_contact_steps": 0,
+        "success": true,
+        "failure_reasons": [],
+        "peak_joint_torque_nm": [
+          0.326903434187642,
+          0.6025030870279782,
+          0.6910473984964014,
+          0.31160639785406374
+        ],
+        "peak_joint_velocity_rad_s": [
+          0.7796380534785079,
+          0.19609071269323317,
+          0.6989559671482694,
+          0.5141611268801418
+        ],
+        "requested_pad_friction": 1.2,
+        "measured_pad_friction_range": [
+          1.2,
+          1.2
+        ],
+        "metal_workpiece_contact_steps": 0,
+        "bilateral_transport_contact_fraction": 1.0,
+        "object_attachment_used": false
+      }
+    },
+    {
+      "name": "lower",
+      "config": "config/tasks/lower.json",
+      "preflight": {
+        "feasible": true,
+        "sample_period_s": 0.02,
+        "samples": 622,
+        "collisions": [],
+        "scope": "Sampled robot versus fixed scene and carried box versus obstacles; carried box assumes no slip relative to the pick pose. Excludes self collision and object/support contacts. Not a continuous or dynamic safety guarantee.",
+        "minimum_joint_margin_rad": 0.36352692391078656,
+        "maximum_position_jacobian_condition": 2.280717075451751,
+        "planned_duration_s": 12.12692035681074,
+        "phase_durations_s": {
+          "SETTLE": 0.8,
+          "APPROACH_PICK": 1.086121374489774,
+          "DESCEND_PICK": 1.202191764398952,
+          "CLOSE": 0.8,
+          "HOLD": 0.8,
+          "LIFT": 1.202191764398952,
+          "TRANSFER": 1.6051671514373196,
+          "DESCEND_PLACE": 1.1156241510428713,
+          "OPEN": 0.8,
+          "RELEASE_SETTLE": 0.8,
+          "RETRACT": 1.1156241510428713,
+          "FINISH": 0.8
+        }
+      },
+      "simulation": {
+        "engine": "MuJoCo 3.15.0",
+        "model_revision": "multi-task-contact-v3",
+        "order": 5,
+        "fingers": true,
+        "gravity_compensation": true,
+        "simulation_seconds": 12.15800000000073,
+        "wall_seconds": 2.0882283999817446,
+        "samples": 1216,
+        "joint_rmse_rad": [
+          0.009020932950058694,
+          0.0014665183345622561,
+          0.009811762376489858,
+          0.009023595209652091
+        ],
+        "tcp_rmse_mm": 1.9687382603059087,
+        "final_workpiece_xyz_m": [
+          0.1705687494879746,
+          0.05984273742465818,
+          0.04494648405652953
+        ],
+        "placement_error_mm": 0.5925128301395921,
+        "maximum_lift_mm": 39.94407320148324,
+        "pad_contact_samples": 519,
+        "pickup_lift_mm": 39.913066038404516,
+        "unwanted_contact_samples": 0,
+        "unwanted_contact_steps": 0,
+        "object_obstacle_contact_steps": 0,
+        "success": true,
+        "failure_reasons": [],
+        "peak_joint_torque_nm": [
+          0.3267661029433242,
+          0.520515535148153,
+          0.6910473984964014,
+          0.3430114824777206
+        ],
+        "peak_joint_velocity_rad_s": [
+          0.7796465086816823,
+          0.10443729860354985,
+          0.5826706600848696,
+          0.5404335172362565
+        ],
+        "requested_pad_friction": 1.2,
+        "measured_pad_friction_range": [
+          1.2,
+          1.2
+        ],
+        "metal_workpiece_contact_steps": 0,
+        "bilateral_transport_contact_fraction": 1.0,
+        "object_attachment_used": false
+      }
+    },
+    {
+      "name": "over_barrier",
+      "config": "config/tasks/over_barrier.json",
+      "preflight": {
+        "feasible": true,
+        "sample_period_s": 0.02,
+        "samples": 685,
+        "collisions": [],
+        "scope": "Sampled robot versus fixed scene and carried box versus obstacles; carried box assumes no slip relative to the pick pose. Excludes self collision and object/support contacts. Not a continuous or dynamic safety guarantee.",
+        "minimum_joint_margin_rad": 0.22091199391512384,
+        "maximum_position_jacobian_condition": 2.035671562026895,
+        "planned_duration_s": 13.319674650380449,
+        "phase_durations_s": {
+          "SETTLE": 0.8,
+          "APPROACH_PICK": 0.4,
+          "DESCEND_PICK": 1.202191764398952,
+          "CLOSE": 0.8,
+          "HOLD": 0.8,
+          "LIFT": 1.202191764398952,
+          "TRANSFER_VIA_1": 0.8447669122928572,
+          "TRANSFER_VIA_2": 1.6051671514373196,
+          "TRANSFER": 0.8524853870101334,
+          "DESCEND_PLACE": 1.206435835421117,
+          "OPEN": 0.8,
+          "RELEASE_SETTLE": 0.8,
+          "RETRACT": 1.206435835421117,
+          "FINISH": 0.8
+        }
+      },
+      "simulation": {
+        "engine": "MuJoCo 3.15.0",
+        "model_revision": "multi-task-contact-v3",
+        "order": 5,
+        "fingers": true,
+        "gravity_compensation": true,
+        "simulation_seconds": 13.35800000000113,
+        "wall_seconds": 2.2346351000014693,
+        "samples": 1336,
+        "joint_rmse_rad": [
+          0.007508640892913255,
+          0.0018990033019409627,
+          0.010528964970224935,
+          0.008871292741666089
+        ],
+        "tcp_rmse_mm": 1.711520708899647,
+        "final_workpiece_xyz_m": [
+          0.17057211846250803,
+          0.060001015481122,
+          0.06494650898692264
+        ],
+        "placement_error_mm": 0.5746145271610229,
+        "maximum_lift_mm": 54.778647968330404,
+        "pad_contact_samples": 697,
+        "pickup_lift_mm": 39.91023436021178,
+        "unwanted_contact_samples": 0,
+        "unwanted_contact_steps": 0,
+        "object_obstacle_contact_steps": 0,
+        "success": true,
+        "failure_reasons": [],
+        "peak_joint_torque_nm": [
+          0.3267302347038239,
+          0.5889967717828849,
+          0.6910473340007783,
+          0.32106640724794033
+        ],
+        "peak_joint_velocity_rad_s": [
+          0.7796375186454323,
+          0.10781062327162305,
+          0.5847451404432141,
+          0.5146755489940384
+        ],
+        "requested_pad_friction": 1.2,
+        "measured_pad_friction_range": [
+          1.2,
+          1.2
+        ],
+        "metal_workpiece_contact_steps": 0,
+        "bilateral_transport_contact_fraction": 1.0,
+        "object_attachment_used": false
+      }
+    },
+    {
+      "name": "radial",
+      "config": "config/tasks/radial.json",
+      "preflight": {
+        "feasible": true,
+        "sample_period_s": 0.02,
+        "samples": 636,
+        "collisions": [],
+        "scope": "Sampled robot versus fixed scene and carried box versus obstacles; carried box assumes no slip relative to the pick pose. Excludes self collision and object/support contacts. Not a continuous or dynamic safety guarantee.",
+        "minimum_joint_margin_rad": 0.2895358089926616,
+        "maximum_position_jacobian_condition": 2.035671562026895,
+        "planned_duration_s": 12.400922370950099,
+        "phase_durations_s": {
+          "SETTLE": 0.8,
+          "APPROACH_PICK": 1.086121374489774,
+          "DESCEND_PICK": 1.202191764398952,
+          "CLOSE": 0.8,
+          "HOLD": 0.8,
+          "LIFT": 1.202191764398952,
+          "TRANSFER": 1.5390694032084387,
+          "DESCEND_PLACE": 1.2856740322269906,
+          "OPEN": 0.8,
+          "RELEASE_SETTLE": 0.8,
+          "RETRACT": 1.2856740322269906,
+          "FINISH": 0.8
+        }
+      },
+      "simulation": {
+        "engine": "MuJoCo 3.15.0",
+        "model_revision": "multi-task-contact-v3",
+        "order": 5,
+        "fingers": true,
+        "gravity_compensation": true,
+        "simulation_seconds": 12.432000000000821,
+        "wall_seconds": 1.8682641999912448,
+        "samples": 1244,
+        "joint_rmse_rad": [
+          0.00851031671082159,
+          0.00396296868570137,
+          0.011406433730507851,
+          0.008888666707613657
+        ],
+        "tcp_rmse_mm": 1.9447504137993215,
+        "final_workpiece_xyz_m": [
+          0.20051968746064278,
+          0.059803789751681304,
+          0.06494648881542409
+        ],
+        "placement_error_mm": 0.5580653771461966,
+        "maximum_lift_mm": 41.14991210474006,
+        "pad_contact_samples": 530,
+        "pickup_lift_mm": 39.913066038404516,
+        "unwanted_contact_samples": 0,
+        "unwanted_contact_steps": 0,
+        "object_obstacle_contact_steps": 0,
+        "success": true,
+        "failure_reasons": [],
+        "peak_joint_torque_nm": [
+          0.3259054002776196,
+          0.6839307122167853,
+          0.6910473984964014,
+          0.31321487102025003
+        ],
+        "peak_joint_velocity_rad_s": [
+          0.7473968851214063,
+          0.3345090064115462,
+          0.6235175477751846,
+          0.5189446106816467
+        ],
+        "requested_pad_friction": 1.2,
+        "measured_pad_friction_range": [
+          1.2,
+          1.2
+        ],
+        "metal_workpiece_contact_steps": 0,
+        "bilateral_transport_contact_fraction": 1.0,
+        "object_attachment_used": false
+      }
+    },
+    {
+      "name": "reverse",
+      "config": "config/tasks/reverse.json",
+      "preflight": {
+        "feasible": true,
+        "sample_period_s": 0.02,
+        "samples": 637,
+        "collisions": [],
+        "scope": "Sampled robot versus fixed scene and carried box versus obstacles; carried box assumes no slip relative to the pick pose. Excludes self collision and object/support contacts. Not a continuous or dynamic safety guarantee.",
+        "minimum_joint_margin_rad": 0.3600594583340142,
+        "maximum_position_jacobian_condition": 2.035671562026895,
+        "planned_duration_s": 12.404328414997025,
+        "phase_durations_s": {
+          "SETTLE": 0.8,
+          "APPROACH_PICK": 1.1819060639195667,
+          "DESCEND_PICK": 1.206435835421117,
+          "CLOSE": 0.8,
+          "HOLD": 0.8,
+          "LIFT": 1.206435835421117,
+          "TRANSFER": 1.6051671514373196,
+          "DESCEND_PLACE": 1.202191764398952,
+          "OPEN": 0.8,
+          "RELEASE_SETTLE": 0.8,
+          "RETRACT": 1.202191764398952,
+          "FINISH": 0.8
+        }
+      },
+      "simulation": {
+        "engine": "MuJoCo 3.15.0",
+        "model_revision": "multi-task-contact-v3",
+        "order": 5,
+        "fingers": true,
+        "gravity_compensation": true,
+        "simulation_seconds": 12.436000000000822,
+        "wall_seconds": 1.9267875000077765,
+        "samples": 1244,
+        "joint_rmse_rad": [
+          0.009217095432369208,
+          0.0020295607391453067,
+          0.010143963242495531,
+          0.008663093402143673
+        ],
+        "tcp_rmse_mm": 1.942745150316047,
+        "final_workpiece_xyz_m": [
+          0.170510374178259,
+          -0.05009566615756287,
+          0.06494652354540699
+        ],
+        "placement_error_mm": 0.5220091442994367,
+        "maximum_lift_mm": 39.9776653527546,
+        "pad_contact_samples": 530,
+        "pickup_lift_mm": 39.9434738689102,
+        "unwanted_contact_samples": 0,
+        "unwanted_contact_steps": 0,
+        "object_obstacle_contact_steps": 0,
+        "success": true,
+        "failure_reasons": [],
+        "peak_joint_torque_nm": [
+          0.32690358966573996,
+          0.5426664692178242,
+          0.6911401328443176,
+          0.3214101670054106
+        ],
+        "peak_joint_velocity_rad_s": [
+          0.7796763735766243,
+          0.13774637914394444,
+          0.5847493375259191,
+          0.5146773855192286
+        ],
+        "requested_pad_friction": 1.2,
+        "measured_pad_friction_range": [
+          1.2,
+          1.2
+        ],
+        "metal_workpiece_contact_steps": 0,
+        "bilateral_transport_contact_fraction": 1.0,
+        "object_attachment_used": false
+      }
+    },
+    {
+      "name": "side_detour",
+      "config": "config/tasks/side_detour.json",
+      "preflight": {
+        "feasible": true,
+        "sample_period_s": 0.02,
+        "samples": 786,
+        "collisions": [],
+        "scope": "Sampled robot versus fixed scene and carried box versus obstacles; carried box assumes no slip relative to the pick pose. Excludes self collision and object/support contacts. Not a continuous or dynamic safety guarantee.",
+        "minimum_joint_margin_rad": 0.29215589823840493,
+        "maximum_position_jacobian_condition": 2.035671562026895,
+        "planned_duration_s": 15.337207469455047,
+        "phase_durations_s": {
+          "SETTLE": 0.8,
+          "APPROACH_PICK": 0.4,
+          "DESCEND_PICK": 1.202191764398952,
+          "CLOSE": 0.8,
+          "HOLD": 0.8,
+          "LIFT": 1.202191764398952,
+          "TRANSFER_VIA_1": 1.3613704416155563,
+          "TRANSFER_VIA_2": 2.6135485130644085,
+          "TRANSFER": 1.345033315134943,
+          "DESCEND_PLACE": 1.206435835421117,
+          "OPEN": 0.8,
+          "RELEASE_SETTLE": 0.8,
+          "RETRACT": 1.206435835421117,
+          "FINISH": 0.8
+        }
+      },
+      "simulation": {
+        "engine": "MuJoCo 3.15.0",
+        "model_revision": "multi-task-contact-v3",
+        "order": 5,
+        "fingers": true,
+        "gravity_compensation": true,
+        "simulation_seconds": 15.374000000001804,
+        "wall_seconds": 2.726710999995703,
+        "samples": 1538,
+        "joint_rmse_rad": [
+          0.009858212282950656,
+          0.008018094543107519,
+          0.01120440752211569,
+          0.007872334427763665
+        ],
+        "tcp_rmse_mm": 1.85367722180639,
+        "final_workpiece_xyz_m": [
+          0.17051096467242507,
+          0.060083897739964226,
+          0.06494652557582993
+        ],
+        "placement_error_mm": 0.5205605068365038,
+        "maximum_lift_mm": 43.503718344026915,
+        "pad_contact_samples": 896,
+        "pickup_lift_mm": 39.91023436021178,
+        "unwanted_contact_samples": 0,
+        "unwanted_contact_steps": 0,
+        "object_obstacle_contact_steps": 0,
+        "success": true,
+        "failure_reasons": [],
+        "peak_joint_torque_nm": [
+          0.2579091305196215,
+          0.7110997378088726,
+          0.6910473340007783,
+          0.3210581096734586
+        ],
+        "peak_joint_velocity_rad_s": [
+          0.7990787058488095,
+          0.6603167876527746,
+          0.584744840137717,
+          0.5146755489939465
+        ],
+        "requested_pad_friction": 1.2,
+        "measured_pad_friction_range": [
+          1.2,
+          1.2
+        ],
+        "metal_workpiece_contact_steps": 0,
+        "bilateral_transport_contact_fraction": 0.9981921487603306,
+        "object_attachment_used": false
+      }
+    }
+  ],
+  "executed": 7,
+  "completed": 7,
+  "preflight_rejected": 1,
+  "scope": "One deterministic run per executable scenario, same 30 g box and contact model."
+}

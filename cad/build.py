@@ -14,17 +14,23 @@ from matplotlib.patches import Rectangle, Circle
 ROOT=Path(__file__).resolve().parents[1]
 config=json.loads((ROOT/'cad/design.json').read_text(encoding='utf-8'))
 OUT=ROOT/'cad/generated'
-OUT.mkdir(exist_ok=True)
 
-def build():
-    c,p,f=config['carrier'],config['contact_pad'],config['fixture']
-    carrier=cq.Workplane('XY').box(c['length'],c['width'],c['thickness'],centered=(True,True,False))
-    pad=cq.Workplane('XY').box(p['length'],p['width'],p['thickness'],centered=(True,True,False))
+def make_fixture(f, total_height=None):
+    height=f['total_height'] if total_height is None else total_height
+    if not height>f['base_thickness']:
+        raise ValueError('Fixture height must exceed base thickness')
     base=cq.Workplane('XY').box(f['base_length'],f['base_width'],f['base_thickness'],centered=(True,True,False))
     holes=[(sx*f['mount_hole_pitch_x']/2,sy*f['mount_hole_pitch_y']/2) for sx in (-1,1) for sy in (-1,1)]
     base=base.faces('>Z').workplane().pushPoints(holes).hole(f['mount_hole_diameter'])
-    pedestal=cq.Workplane('XY',origin=(0,0,f['base_thickness'])).box(f['pedestal_length'],f['pedestal_width'],f['total_height']-f['base_thickness'],centered=(True,True,False))
-    fixture=base.union(pedestal)
+    pedestal=cq.Workplane('XY',origin=(0,0,f['base_thickness'])).box(f['pedestal_length'],f['pedestal_width'],height-f['base_thickness'],centered=(True,True,False))
+    return base.union(pedestal)
+
+def build():
+    OUT.mkdir(exist_ok=True)
+    c,p,f=config['carrier'],config['contact_pad'],config['fixture']
+    carrier=cq.Workplane('XY').box(c['length'],c['width'],c['thickness'],centered=(True,True,False))
+    pad=cq.Workplane('XY').box(p['length'],p['width'],p['thickness'],centered=(True,True,False))
+    fixture=make_fixture(f)
     assembly=cq.Assembly(name='jaw_contact_attachment')
     assembly.add(carrier,name='carrier_6061',color=cq.Color(0.65,0.72,0.79))
     assembly.add(pad,name='contact_pad_TPU',loc=cq.Location(cq.Vector(0,0,c['thickness'])),color=cq.Color(0.10,0.75,0.65))

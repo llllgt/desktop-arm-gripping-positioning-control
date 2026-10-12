@@ -1,0 +1,12 @@
+{
+  "pick": {
+    "height_mm": 55.0,
+    "volume_mm3": 32282.296492588834,
+    "valid_solid": true
+  },
+  "place": {
+    "height_mm": 35.0,
+    "volume_mm3": 25562.296492588845,
+    "valid_solid": true
+  }
+}

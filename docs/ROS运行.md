@@ -37,6 +37,8 @@
 
 脚本启动控制与任务两个独立进程，先检查非法目标拒绝和任务取消，再执行搬运。输出包括 summary、trajectory 和 action 检查日志。验证进程使用 `ROS_DOMAIN_ID=47`，运行日志写入指定输出目录。
 
+加 `-Config config/tasks/side_detour.json` 可切换任务，并向两个节点传入同一配置；验证入口先保存配置和路径预检，拒绝相交的路径。控制节点按配置使用关节限速和夹爪动作时间。高工位、侧绕任务已验证，结果见 [搬运任务](搬运任务.md)。
+
 ### control_msgs 构建
 
 在已配置 MSVC、Windows SDK 和 Ninja 的开发者命令提示符中，准备 control_msgs 源码后执行：
@@ -57,6 +59,8 @@ ros2 launch desktop_arm transfer.launch.py output:=results/ros-launch-run rviz:=
 ```
 
 路径含空格或中文时，须核对批处理参数和原生工具的路径编码支持。`rviz:=true` 可启用已有 RViz 配置，但显示效果尚未验证。
+
+launch 另支持 `config:=<TASK_CONFIG_PATH>`。本次新任务通过源码双进程入口验证；带新配置参数的安装后 launch 尚未重新运行。
 
 ## 验证环境记录
 

@@ -1,0 +1,26 @@
+{
+  "feasible": true,
+  "sample_period_s": 0.02,
+  "samples": 685,
+  "collisions": [],
+  "scope": "Sampled robot versus fixed scene and carried box versus obstacles; carried box assumes no slip relative to the pick pose. Excludes self collision and object/support contacts. Not a continuous or dynamic safety guarantee.",
+  "minimum_joint_margin_rad": 0.22091199391512384,
+  "maximum_position_jacobian_condition": 2.035671562026895,
+  "planned_duration_s": 13.319674650380449,
+  "phase_durations_s": {
+    "SETTLE": 0.8,
+    "APPROACH_PICK": 0.4,
+    "DESCEND_PICK": 1.202191764398952,
+    "CLOSE": 0.8,
+    "HOLD": 0.8,
+    "LIFT": 1.202191764398952,
+    "TRANSFER_VIA_1": 0.8447669122928572,
+    "TRANSFER_VIA_2": 1.6051671514373196,
+    "TRANSFER": 0.8524853870101334,
+    "DESCEND_PLACE": 1.206435835421117,
+    "OPEN": 0.8,
+    "RELEASE_SETTLE": 0.8,
+    "RETRACT": 1.206435835421117,
+    "FINISH": 0.8
+  }
+}

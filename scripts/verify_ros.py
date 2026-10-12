@@ -1,6 +1,7 @@
 """Run two independent ROS processes in the activated official ROS environment."""
 import os
 import argparse
+import json
 from pathlib import Path
 import subprocess
 import sys
@@ -9,20 +10,31 @@ import time
 ROOT=Path(__file__).resolve().parents[1]
 parser=argparse.ArgumentParser(description=__doc__)
 parser.add_argument('--output',type=Path,default=ROOT/'results/ros2')
-output=parser.parse_args().output.resolve()
+parser.add_argument('--config',type=Path)
+args=parser.parse_args()
+output=args.output.resolve()
+config_args=[] if args.config is None else ['--config',str(args.config.resolve())]
 output.mkdir(parents=True,exist_ok=True)
+from desktop_arm.task import load_task
+from desktop_arm.assessment import preflight
+task=load_task(args.config)
+report=preflight(task)
+(output/'config.json').write_text(json.dumps(task,indent=2)+'\n',encoding='utf-8')
+(output/'preflight.json').write_text(json.dumps(report,indent=2)+'\n',encoding='utf-8')
+if not report['feasible']:
+    raise RuntimeError(report['rejection'])
 env=os.environ.copy()
 env['ROS_DOMAIN_ID']='47'
 env['PYTHONUNBUFFERED']='1'
 with (output/'controller.log').open('w',encoding='utf-8') as log:
-    server=subprocess.Popen([sys.executable,'-m','desktop_arm.ros_nodes','server','--output',str(output)],cwd=ROOT,env=env,stdout=log,stderr=subprocess.STDOUT)
+    server=subprocess.Popen([sys.executable,'-m','desktop_arm.ros_nodes','server','--output',str(output),*config_args],cwd=ROOT,env=env,stdout=log,stderr=subprocess.STDOUT)
     try:
         time.sleep(2)
         checks=subprocess.run([sys.executable,str(ROOT/'scripts/check_ros_actions.py'),'--output',str(output)],cwd=ROOT,env=env,capture_output=True,text=True,encoding='utf-8',errors='replace',timeout=60)
         (output/'action_checks.log').write_text((checks.stdout+'\n'+checks.stderr).rstrip()+'\n',encoding='utf-8')
         if checks.returncode:
             raise RuntimeError('ROS action validation failed; see action_checks.log')
-        client=subprocess.run([sys.executable,'-m','desktop_arm.ros_nodes','task'],cwd=ROOT,env=env,capture_output=True,text=True,encoding='utf-8',errors='replace',timeout=180)
+        client=subprocess.run([sys.executable,'-m','desktop_arm.ros_nodes','task',*config_args],cwd=ROOT,env=env,capture_output=True,text=True,encoding='utf-8',errors='replace',timeout=180)
         (output/'task.log').write_text(client.stdout+'\n'+client.stderr,encoding='utf-8')
         print(client.stdout,flush=True)
         print(client.stderr,flush=True)

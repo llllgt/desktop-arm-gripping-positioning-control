@@ -2,7 +2,8 @@ param(
     [string]$RosHome=$env:DESKTOP_ARM_ROS_HOME,
     [string]$Pixi='',
     [string]$PythonPackages='',
-    [string]$Output=''
+    [string]$Output='',
+    [string]$Config=''
 )
 $ErrorActionPreference='Stop'
 if (-not $RosHome) { throw 'Pass -RosHome with the ROS dependency workspace, or set DESKTOP_ARM_ROS_HOME.' }
@@ -24,6 +25,7 @@ $settings=@{
     DESKTOP_ARM_ROS_HOME=$RosHome
     DESKTOP_ARM_PYTHON_PACKAGES=$PythonPackages
     DESKTOP_ARM_OUTPUT=$Output
+    DESKTOP_ARM_TASK_CONFIG=$(if ($Config) { (Resolve-Path -LiteralPath $Config).Path } else { '' })
     ROS_LOG_DIR=(Join-Path $Output 'ros-logs')
 }
 $previous=@{}

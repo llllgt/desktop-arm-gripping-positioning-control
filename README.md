@@ -21,6 +21,7 @@
 - 位置伺服叠加动力学偏置补偿，关节力矩限制为 ±2 N·m，夹爪驱动力限制为 ±6 N。
 - ROS 2 任务节点通过 `FollowJointTrajectory` 和 `GripperCommand` 驱动仿真控制节点，并接收关节与位姿反馈。
 - 执行前可检查任务参数、目标可达性及采样路径上的托座/地面相交。检查范围见 [工况评估](docs/工况评估.md)。
+- 任务可指定不同高度的托座、固定隔挡和转移途经点；各段仍使用受速度、加速度约束的关节轨迹。
 
 ## 仿真结果
 
@@ -39,6 +40,33 @@
 位置偏差是最终工件中心到目标中心的三维距离，属于当前场景的仿真结果。判定搬运完成需同时满足偏差 < 8 mm、最大抬升 > 设定高度的 60%，以及无机械臂与托座/地面的非预期接触。
 
 ![关节误差、工件位置、力矩及扰动实验](results/native/performance.png)
+
+### 不同搬运任务
+
+在相同的 30 g 工件和夹持参数下，增加了反向搬运、径向转移、高低工位及隔挡搬运。托座高度由任务配置指定，并导出了 35、55、85 mm 托座的 [STEP/STL](cad/task-fixtures/)。
+
+| 场景 | 放置偏差 / mm | 周期 / s | 结果 |
+|---|---:|---:|---|
+| 原同高工位 | 0.569 | 12.342 | 完成 |
+| 反向搬运 | 0.522 | 12.436 | 完成 |
+| 径向与转角同时变化 | 0.558 | 12.432 | 完成 |
+| 55 → 85 mm 高工位 | 0.619 | 12.806 | 完成 |
+| 55 → 35 mm 低工位 | 0.593 | 12.158 | 完成 |
+| 穿过 100 mm 隔挡的直接路径 | — | — | 预检拒绝 |
+| 隔挡侧绕，两个途经点 | 0.521 | 15.374 | 完成 |
+| 抬高跨越隔挡，两个途经点 | 0.575 | 13.358 | 完成 |
+
+![不同任务的水平路径](results/task-suite/paths.png)
+
+![工件中心高度随时间变化](results/task-suite/heights.png)
+
+隔挡场景使用相同起终点和障碍尺寸。侧绕路径经过 x = 100 mm 的两个点；跨越路径将工具中心抬到 z = 120 mm。7 个可执行场景均未记录到机械臂与固定场景、工件与隔挡的碰撞，拾取抬升阶段达到约 39.9 mm。带途经点的路径由配置给定，预检按 20 ms 间隔检查；目前没有自动搜索全局避障路径。
+
+每个场景执行一次，结果用于比较任务和路径，不是统计成功率。配置、判据及 ROS 验证见 [搬运任务](docs/搬运任务.md)，完整 CSV 与配置见 [原始记录](results/task-suite/traces.zip)。
+
+高工位与侧绕任务另通过 Windows ROS 2 双进程执行，位置偏差分别为 0.609、0.520 mm，均无固定场景碰撞；ROS 时间包含启动和 action 检查，与表中原生仿真周期分别记录。
+
+![隔挡侧绕搬运](results/task-suite/side_detour/demo.gif)
 
 ### 负载、摩擦和抬升高度
 
@@ -88,6 +116,8 @@ python3 -m venv .venv
 .venv\Scripts\python scripts/benchmark.py --output results/my-benchmark
 .venv\Scripts\python -m desktop_arm.cli assess --output results/my-assessment
 .venv\Scripts\python scripts/operating_envelope.py --output results/my-envelope
+.venv\Scripts\python scripts/task_suite.py --output results/my-tasks
+.venv\Scripts\python scripts/export_task_fixtures.py --config config/tasks/higher.json --output results/my-fixtures
 .venv\Scripts\python -m desktop_arm.structure
 ```
 
@@ -95,7 +125,7 @@ ROS 2 的环境配置、接口和验证记录见 [ROS 运行说明](docs/ROS运�
 
 ## 测试
 
-GitHub Actions 在 Windows 和 Ubuntu 上执行 23 项测试，覆盖运动学与独立模型核对、轨迹端点和约束、摩擦接触搬运、任务参数与路径检查，以及 CAD/URDF 质量惯量一致性和有限元校核。ROS action 的非法目标拒绝、重叠目标拒绝和取消验证另有 [通信记录](results/ros2/action_checks.json)。
+自动测试共 35 项，覆盖运动学与独立模型核对、轨迹端点和约束、摩擦接触搬运、任务参数与路径检查，以及 CAD/URDF 质量惯量一致性和有限元校核。新增测试检查高低工位放置、隔挡直达拒绝、侧绕与跨越执行，以及被夹工件与障碍的碰撞。GitHub Actions 分别在 Windows 和 Ubuntu 执行；ROS action 的非法目标拒绝、重叠目标拒绝和取消验证另有 [通信记录](results/ros2/action_checks.json)。
 
 测量方法、轨迹对照和结构网格结果见 [实验记录](docs/实验记录.md)。
 

@@ -44,13 +44,16 @@ def build_scene(task=None, *, fingers=True, output=None):
     ET.SubElement(world, 'geom', name='floor', type='plane', size='0.6 0.6 0.01', rgba='0.09 0.13 0.19 1', contype='2', conaffinity='1')
     for label in ('pick', 'place'):
         p = task[label]
-        if not np.isclose(p[2]-task['workpiece_size'][2]/2,fixture['total_height']/1000,atol=1e-9):
-            raise ValueError('Task workpiece centre must agree with the CAD support height')
         halfheight = (p[2] - task['workpiece_size'][2]/2)/2
         ET.SubElement(world, 'geom', name=label+'_nest', type='box', pos=f'{p[0]} {p[1]} {halfheight}', size=f"{fixture['pedestal_length']/2000} {fixture['pedestal_width']/2000} {halfheight}", rgba='0.22 0.32 0.42 1', contype='2', conaffinity='3', friction='0.9 0.01 0.001')
         halfbase=fixture['base_thickness']/2000
         ET.SubElement(world, 'geom', name=label+'_baseplate', type='box', pos=f'{p[0]} {p[1]} {halfbase}', size=f"{fixture['base_length']/2000} {fixture['base_width']/2000} {halfbase}", rgba='0.22 0.32 0.42 1', contype='2', conaffinity='3')
         ET.SubElement(world, 'site', name=label+'_target', pos=' '.join(map(str,p)), size='0.002', rgba='0.2 0.7 1 1')
+    for i, obstacle in enumerate(task.get('obstacles', [])):
+        ET.SubElement(world, 'geom', name=f'obstacle_{i+1}', type='box',
+                      pos=' '.join(map(str, obstacle['position'])),
+                      size=' '.join(str(s/2) for s in obstacle['size']),
+                      rgba='0.65 0.50 0.32 1', contype='2', conaffinity='3')
     object_position = np.array(task['pick']) + np.array(task.get('initial_workpiece_offset',[0,0,0]))
     obj = ET.SubElement(world, 'body', name='workpiece', pos=' '.join(map(str,object_position)))
     ET.SubElement(obj, 'freejoint', name='workpiece_free')

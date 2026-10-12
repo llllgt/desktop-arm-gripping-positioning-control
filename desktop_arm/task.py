@@ -36,7 +36,7 @@ def validate_task(task):
     missing = [key for key in required if key not in task]
     if missing:
         raise ValueError('Missing task parameters: ' + ', '.join(missing))
-    for key in ('pick', 'place', 'workpiece_size', 'initial_workpiece_offset'):
+    for key in ('pick', 'place', 'workpiece_size', 'initial_workpiece_offset', 'home'):
         value = np.asarray(task.get(key, [0, 0, 0]), dtype=float)
         if value.shape != (3,) or not np.all(np.isfinite(value)):
             raise ValueError(f'{key} must contain three finite values in metres')
@@ -57,11 +57,38 @@ def validate_task(task):
     if not (-.01 <= task['gripper_closed'] < task['gripper_open'] <= .019):
         raise ValueError('Gripper targets must obey -0.01 <= closed < open <= 0.019 m')
     design = json.loads((project_root()/'cad/design.json').read_text(encoding='utf-8'))
+    heights = task.get('fixture_heights', {})
+    if not isinstance(heights, dict) or set(heights) - {'pick', 'place'}:
+        raise ValueError('fixture_heights accepts only pick and place heights in metres')
     for key in ('pick', 'place'):
+        height = np.asarray(heights.get(key, design['fixture']['total_height']/1000), dtype=float)
+        if height.shape != () or not np.isfinite(height) or height <= design['fixture']['base_thickness']/1000:
+            raise ValueError(f'{key} fixture height must exceed base thickness')
         if not np.isclose(task[key][2] - task['workpiece_size'][2]/2,
-                          design['fixture']['total_height']/1000, rtol=0, atol=1e-9):
+                          height, rtol=0, atol=1e-9):
             raise ValueError(f'{key} height must agree with CAD fixture and half workpiece height')
+    waypoints = np.asarray(task.get('transfer_waypoints', []), dtype=float)
+    if waypoints.size and (waypoints.ndim != 2 or waypoints.shape[1] != 3 or not np.all(np.isfinite(waypoints))):
+        raise ValueError('transfer_waypoints must be a list of finite xyz positions in metres')
+    if waypoints.size == 0 and task.get('transfer_waypoints', []) != []:
+        raise ValueError('transfer_waypoints must be an empty list or xyz positions')
+    obstacles = task.get('obstacles', [])
+    if not isinstance(obstacles, list):
+        raise ValueError('obstacles must be a list of boxes')
+    for obstacle in obstacles:
+        if not isinstance(obstacle, dict) or set(obstacle) != {'position', 'size'}:
+            raise ValueError('Each obstacle requires position and full size in metres')
+        position = np.asarray(obstacle['position'], dtype=float)
+        size = np.asarray(obstacle['size'], dtype=float)
+        if position.shape != (3,) or size.shape != (3,) or not np.all(np.isfinite([position, size])) or np.any(size <= 0):
+            raise ValueError('Obstacle position/size must contain three finite values; size must be positive')
+        if position[2] < size[2]/2:
+            raise ValueError('Obstacle must not extend below the floor')
     return task
+
+
+def is_transport_phase(name):
+    return name in ('LIFT', 'TRANSFER', 'DESCEND_PLACE') or name.startswith('TRANSFER_VIA_')
 
 
 def plan_task(task=None, order=5):
@@ -72,6 +99,7 @@ def plan_task(task=None, order=5):
     home = np.array(task['pick'], dtype=float)
     home[1] = 0
     home[2] += task['clearance']
+    home = np.asarray(task.get('home', home), dtype=float)
     q = inverse(home, task['pitch'])
     opening = task['gripper_open']
     phases = []
@@ -88,7 +116,10 @@ def plan_task(task=None, order=5):
         add(name, inverse(p, pitch, q), opening)
     add('CLOSE', q, task['gripper_closed'], task['dwell'])
     add('HOLD', q, opening, task['dwell'])
-    for name, p in [('LIFT', pick+above), ('TRANSFER', place+above), ('DESCEND_PLACE', place)]:
+    route = [('LIFT', pick+above)]
+    route += [(f'TRANSFER_VIA_{i+1}', np.asarray(p)) for i, p in enumerate(task.get('transfer_waypoints', []))]
+    route += [('TRANSFER', place+above), ('DESCEND_PLACE', place)]
+    for name, p in route:
         add(name, inverse(p, pitch, q), opening)
     add('OPEN', q, task['gripper_open'], task['dwell'])
     add('RELEASE_SETTLE', q, opening, task['dwell'])

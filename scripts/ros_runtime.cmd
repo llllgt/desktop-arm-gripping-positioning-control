@@ -13,5 +13,9 @@ if not defined DESKTOP_ARM_OUTPUT set "DESKTOP_ARM_OUTPUT=%~dp0..\results\ros2"
 set "DESKTOP_ARM_ROOT=%~dp0.."
 set "PYTHONPATH=%~dp0..;%DESKTOP_ARM_PYTHON_PACKAGES%;%PYTHONPATH%"
 set "PYTHONIOENCODING=utf-8"
-python "%~dp0verify_ros.py" --output "%DESKTOP_ARM_OUTPUT%"
+if defined DESKTOP_ARM_TASK_CONFIG (
+  python "%~dp0verify_ros.py" --output "%DESKTOP_ARM_OUTPUT%" --config "%DESKTOP_ARM_TASK_CONFIG%"
+) else (
+  python "%~dp0verify_ros.py" --output "%DESKTOP_ARM_OUTPUT%"
+)
 exit /b %errorlevel%

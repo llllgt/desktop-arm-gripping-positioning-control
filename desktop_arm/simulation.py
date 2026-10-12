@@ -6,7 +6,8 @@ import time
 import numpy as np
 import mujoco
 from .scene import load_model
-from .task import load_task, plan_task
+from .task import load_task, plan_task, is_transport_phase
+from .contacts import collision_pairs
 from .kinematics import forward
 
 
@@ -62,7 +63,7 @@ def run(output, *, task=None, order=5, render=False, fingers=True, gravity_compe
     transport_steps = bilateral_transport_steps = 0
     unwanted_contact_steps = 0
     contact_force = np.zeros(6)
-    transport_phases = ('LIFT', 'TRANSFER', 'DESCEND_PLACE')
+    object_obstacle_steps = 0
     writer = None
     preview = None
     if render:
@@ -85,7 +86,9 @@ def run(output, *, task=None, order=5, render=False, fingers=True, gravity_compe
                 peak_torque = np.maximum(peak_torque, np.abs(sim.data.qfrc_actuator[sim.arm_dof]))
                 peak_velocity = np.maximum(peak_velocity, np.abs(obs['dq']))
                 contacts = 0
-                bad_contacts = 0
+                collisions = collision_pairs(sim.model, sim.data, carried_object=True)
+                bad_contacts = sum('workpiece_geom' not in pair for pair in collisions)
+                object_obstacle_steps += int(any('workpiece_geom' in pair for pair in collisions))
                 normal_forces = {'left': 0.0, 'right': 0.0}
                 pad_sides = set()
                 nonpad_contact = False
@@ -101,15 +104,9 @@ def run(output, *, task=None, order=5, render=False, fingers=True, gravity_compe
                             pad_sides.add(side)
                     if 'workpiece_geom' in names and any(n in names for n in ('left_metal_contact', 'right_metal_contact')):
                         nonpad_contact = True
-                    if not ('workpiece_geom' in names) and any(n in names for n in ('pick_nest','place_nest','pick_baseplate','place_baseplate','floor')):
-                        # Robot base/floor contact is intentional; any other link hitting fixtures isn't.
-                        for geom_id in (c.geom1, c.geom2):
-                            body = sim.model.geom_bodyid[int(geom_id)]
-                            if body not in (0, sim.model.body('link1').id):
-                                bad_contacts += 1
                 nonpad_object_contact_steps += int(nonpad_contact)
                 unwanted_contact_steps += int(bad_contacts > 0)
-                if phase.name in transport_phases:
+                if is_transport_phase(phase.name):
                     transport_steps += 1
                     bilateral_transport_steps += int(len(pad_sides) == 2)
                 if step_count % 5 == 0:
@@ -147,22 +144,27 @@ def run(output, *, task=None, order=5, render=False, fingers=True, gravity_compe
     object_track = np.array([[r['object_'+a] for a in 'xyz'] for r in rows])
     distance = float(np.linalg.norm(final - task['place']))
     lifted = float(np.max(object_track[:,2]) - task['pick'][2])
+    pickup_lift = float(max(r['object_z'] for r in rows if r['phase']=='LIFT') - task['pick'][2])
     reasons = []
     if distance >= .008:
         reasons.append('placement_error')
-    if lifted <= task['clearance']*.6:
+    if pickup_lift <= task['clearance']*.6:
         reasons.append('insufficient_lift')
     if unwanted_contact_steps:
         reasons.append('fixture_collision')
-    summary = {'engine':'MuJoCo '+mujoco.__version__, 'model_revision':'explicit-pad-friction-v2', 'order':order, 'fingers':fingers,
+    if object_obstacle_steps:
+        reasons.append('object_obstacle_collision')
+    summary = {'engine':'MuJoCo '+mujoco.__version__, 'model_revision':'multi-task-contact-v3', 'order':order, 'fingers':fingers,
         'gravity_compensation':gravity_compensation, 'simulation_seconds':float(sim.data.time),
         'wall_seconds':time.perf_counter()-started, 'samples':len(rows),
         'joint_rmse_rad':np.sqrt(np.mean((actual-target)**2,axis=0)).tolist(),
         'tcp_rmse_mm':float(np.sqrt(np.mean(np.sum(errors**2,axis=1)))*1000),
         'final_workpiece_xyz_m':final.tolist(), 'placement_error_mm':distance*1000,
         'maximum_lift_mm':lifted*1000, 'pad_contact_samples':sum(r['pad_contacts']>0 for r in rows),
+        'pickup_lift_mm':pickup_lift*1000,
         'unwanted_contact_samples':sum(r['unwanted_contacts']>0 for r in rows),
         'unwanted_contact_steps':unwanted_contact_steps,
+        'object_obstacle_contact_steps':object_obstacle_steps,
         'success':not reasons, 'failure_reasons':reasons,
         'peak_joint_torque_nm':peak_torque.tolist(), 'peak_joint_velocity_rad_s':peak_velocity.tolist(),
         'requested_pad_friction':task.get('contact_friction',1.2),

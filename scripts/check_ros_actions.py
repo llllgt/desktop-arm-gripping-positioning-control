@@ -10,12 +10,13 @@ from control_msgs.action import FollowJointTrajectory, GripperCommand
 from trajectory_msgs.msg import JointTrajectoryPoint
 from builtin_interfaces.msg import Duration
 from desktop_arm.ros_nodes import TransferClient, validate_points
-from desktop_arm.task import plan_task
+from desktop_arm.task import load_task, plan_task
 from desktop_arm.kinematics import JOINT_NAMES
 
 
-def check(output=None):
-    q=plan_task()[0].segment.start.tolist()
+def check(output=None, config=None):
+    task=load_task(config)
+    q=plan_task(task)[0].segment.start.tolist()
     def goal(seconds=1):
         g=FollowJointTrajectory.Goal();g.trajectory.joint_names=list(JOINT_NAMES)
         for sec in (0,seconds):
@@ -40,7 +41,7 @@ def check(output=None):
             local_cases+=1
         else:
             raise AssertionError('Malformed trajectory accepted')
-    node=TransferClient()
+    node=TransferClient(task)
     try:
         assert node.arm.wait_for_server(timeout_sec=20)
         assert node.gripper.wait_for_server(timeout_sec=20)
@@ -69,9 +70,10 @@ def check(output=None):
 if __name__=='__main__':
     parser=argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--output',type=Path)
+    parser.add_argument('--config',type=Path)
     args=parser.parse_args()
     rclpy.init()
     try:
-        check(args.output)
+        check(args.output,args.config)
     finally:
         rclpy.shutdown()

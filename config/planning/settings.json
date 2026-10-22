@@ -1,0 +1,22 @@
+{
+  "bounds_m": [
+    [
+      0.08,
+      0.22
+    ],
+    [
+      -0.08,
+      0.08
+    ],
+    [
+      0.105,
+      0.145
+    ]
+  ],
+  "resolution_m": 0.02,
+  "obstacle_margin_m": 0.003,
+  "grasp_opening_allowance_m": 0.002,
+  "joint_step_rad": 0.02,
+  "endpoint_neighbors": 16,
+  "max_grid_nodes": 3000
+}

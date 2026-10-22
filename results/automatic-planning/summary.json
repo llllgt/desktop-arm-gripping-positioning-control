@@ -1,0 +1,486 @@
+{
+  "scenarios": [
+    {
+      "name": "clear",
+      "planned": true,
+      "completed": true,
+      "rejection": null,
+      "planning_seconds": 0.41726719999860507,
+      "expanded_nodes": 0,
+      "checked_edges": 2,
+      "waypoints": 0,
+      "planned_transfer_s": 1.6051671514373196,
+      "simulation_s": 11.654000000000561,
+      "placement_error_mm": 0.5689916641089932,
+      "minimum_clearance_mm": null,
+      "failure_reasons": []
+    },
+    {
+      "name": "central",
+      "planned": true,
+      "completed": true,
+      "rejection": null,
+      "planning_seconds": 0.9281952000019373,
+      "expanded_nodes": 64,
+      "checked_edges": 327,
+      "waypoints": 2,
+      "planned_transfer_s": 3.041590095742495,
+      "simulation_s": 13.096000000001043,
+      "placement_error_mm": 0.5015942008576241,
+      "minimum_clearance_mm": 5.0056733429724165,
+      "failure_reasons": []
+    },
+    {
+      "name": "shifted",
+      "planned": true,
+      "completed": true,
+      "rejection": null,
+      "planning_seconds": 1.8785284999903524,
+      "expanded_nodes": 67,
+      "checked_edges": 308,
+      "waypoints": 2,
+      "planned_transfer_s": 2.856106687126454,
+      "simulation_s": 12.912000000000981,
+      "placement_error_mm": 0.4713326646187303,
+      "minimum_clearance_mm": 6.7134567995890215,
+      "failure_reasons": []
+    },
+    {
+      "name": "two_obstacles",
+      "planned": true,
+      "completed": true,
+      "rejection": null,
+      "planning_seconds": 0.89968570000201,
+      "expanded_nodes": 56,
+      "checked_edges": 288,
+      "waypoints": 2,
+      "planned_transfer_s": 3.2768652623833754,
+      "simulation_s": 13.334000000001122,
+      "placement_error_mm": 0.491720367124702,
+      "minimum_clearance_mm": 2.200211764859869,
+      "failure_reasons": []
+    },
+    {
+      "name": "tall_outer",
+      "planned": true,
+      "completed": true,
+      "rejection": null,
+      "planning_seconds": 1.5236195999896154,
+      "expanded_nodes": 55,
+      "checked_edges": 228,
+      "waypoints": 1,
+      "planned_transfer_s": 2.2405892502848745,
+      "simulation_s": 12.294000000000775,
+      "placement_error_mm": 0.4643538150712081,
+      "minimum_clearance_mm": 4.8032750226527385,
+      "failure_reasons": []
+    },
+    {
+      "name": "cycle_blocked",
+      "planned": false,
+      "completed": false,
+      "rejection": "Transfer route found, but approach/lift/place/retract preflight failed",
+      "planning_seconds": 0.9756428000109736,
+      "expanded_nodes": 68,
+      "checked_edges": 304,
+      "waypoints": 0,
+      "planned_transfer_s": null,
+      "simulation_s": null,
+      "placement_error_mm": null,
+      "minimum_clearance_mm": null,
+      "failure_reasons": []
+    },
+    {
+      "name": "endpoint_blocked",
+      "planned": false,
+      "completed": false,
+      "rejection": "Transfer endpoint intersects fixed scene with the planning envelope",
+      "planning_seconds": 0.1023358999955235,
+      "expanded_nodes": 0,
+      "checked_edges": 0,
+      "waypoints": 0,
+      "planned_transfer_s": null,
+      "simulation_s": null,
+      "placement_error_mm": null,
+      "minimum_clearance_mm": null,
+      "failure_reasons": []
+    },
+    {
+      "name": "restricted_grid",
+      "planned": false,
+      "completed": false,
+      "rejection": "No route found in the configured lattice and endpoint connections",
+      "planning_seconds": 0.1265377000090666,
+      "expanded_nodes": 7,
+      "checked_edges": 25,
+      "waypoints": 0,
+      "planned_transfer_s": null,
+      "simulation_s": null,
+      "placement_error_mm": null,
+      "minimum_clearance_mm": null,
+      "failure_reasons": []
+    }
+  ],
+  "sensitivity": [
+    {
+      "resolution_mm": 10.0,
+      "margin_mm": 1.0,
+      "name": "grid10_margin01",
+      "planned": true,
+      "completed": true,
+      "rejection": null,
+      "planning_seconds": 3.4012604000017745,
+      "expanded_nodes": 498,
+      "checked_edges": 2012,
+      "waypoints": 2,
+      "planned_transfer_s": 2.757545350151816,
+      "simulation_s": 12.814000000000949,
+      "placement_error_mm": 0.4539632224631688,
+      "minimum_clearance_mm": 5.0990908837604625,
+      "failure_reasons": []
+    },
+    {
+      "resolution_mm": 10.0,
+      "margin_mm": 3.0,
+      "name": "grid10_margin03",
+      "planned": true,
+      "completed": true,
+      "rejection": null,
+      "planning_seconds": 3.5123222999973223,
+      "expanded_nodes": 474,
+      "checked_edges": 2029,
+      "waypoints": 2,
+      "planned_transfer_s": 2.949159897705028,
+      "simulation_s": 13.004000000001012,
+      "placement_error_mm": 0.4775964134796299,
+      "minimum_clearance_mm": 5.073677357212286,
+      "failure_reasons": []
+    },
+    {
+      "resolution_mm": 10.0,
+      "margin_mm": 5.0,
+      "name": "grid10_margin05",
+      "planned": true,
+      "completed": true,
+      "rejection": null,
+      "planning_seconds": 4.347867900010897,
+      "expanded_nodes": 531,
+      "checked_edges": 2254,
+      "waypoints": 2,
+      "planned_transfer_s": 2.9836579267063184,
+      "simulation_s": 13.038000000001023,
+      "placement_error_mm": 0.4699811650475388,
+      "minimum_clearance_mm": 5.059640473799075,
+      "failure_reasons": []
+    },
+    {
+      "resolution_mm": 20.0,
+      "margin_mm": 1.0,
+      "name": "grid20_margin01",
+      "planned": true,
+      "completed": true,
+      "rejection": null,
+      "planning_seconds": 3.9482056999986526,
+      "expanded_nodes": 68,
+      "checked_edges": 318,
+      "waypoints": 2,
+      "planned_transfer_s": 2.856106687126454,
+      "simulation_s": 12.912000000000981,
+      "placement_error_mm": 0.4713326646187303,
+      "minimum_clearance_mm": 5.062046784941987,
+      "failure_reasons": []
+    },
+    {
+      "resolution_mm": 20.0,
+      "margin_mm": 3.0,
+      "name": "grid20_margin03",
+      "planned": true,
+      "completed": true,
+      "rejection": null,
+      "planning_seconds": 2.315388000002713,
+      "expanded_nodes": 64,
+      "checked_edges": 327,
+      "waypoints": 2,
+      "planned_transfer_s": 3.041590095742495,
+      "simulation_s": 13.096000000001043,
+      "placement_error_mm": 0.5015942008576241,
+      "minimum_clearance_mm": 5.0056733429724165,
+      "failure_reasons": []
+    },
+    {
+      "resolution_mm": 20.0,
+      "margin_mm": 5.0,
+      "name": "grid20_margin05",
+      "planned": true,
+      "completed": true,
+      "rejection": null,
+      "planning_seconds": 2.711763700004667,
+      "expanded_nodes": 81,
+      "checked_edges": 384,
+      "waypoints": 2,
+      "planned_transfer_s": 3.182157684881839,
+      "simulation_s": 13.23800000000109,
+      "placement_error_mm": 0.4970988577554824,
+      "minimum_clearance_mm": 5.279495728279411,
+      "failure_reasons": []
+    },
+    {
+      "resolution_mm": 30.0,
+      "margin_mm": 1.0,
+      "name": "grid30_margin01",
+      "planned": true,
+      "completed": true,
+      "rejection": null,
+      "planning_seconds": 1.452811399998609,
+      "expanded_nodes": 24,
+      "checked_edges": 127,
+      "waypoints": 2,
+      "planned_transfer_s": 3.002124597082994,
+      "simulation_s": 13.05600000000103,
+      "placement_error_mm": 0.47462555077349156,
+      "minimum_clearance_mm": 3.7701300796043964,
+      "failure_reasons": []
+    },
+    {
+      "resolution_mm": 30.0,
+      "margin_mm": 3.0,
+      "name": "grid30_margin03",
+      "planned": true,
+      "completed": true,
+      "rejection": null,
+      "planning_seconds": 0.826844399998663,
+      "expanded_nodes": 24,
+      "checked_edges": 128,
+      "waypoints": 2,
+      "planned_transfer_s": 3.3327722962225197,
+      "simulation_s": 13.38600000000114,
+      "placement_error_mm": 0.4989638671086317,
+      "minimum_clearance_mm": 12.07746235725892,
+      "failure_reasons": []
+    },
+    {
+      "resolution_mm": 30.0,
+      "margin_mm": 5.0,
+      "name": "grid30_margin05",
+      "planned": true,
+      "completed": true,
+      "rejection": null,
+      "planning_seconds": 1.3035301999916555,
+      "expanded_nodes": 23,
+      "checked_edges": 133,
+      "waypoints": 2,
+      "planned_transfer_s": 3.3327722962225197,
+      "simulation_s": 13.38600000000114,
+      "placement_error_mm": 0.4989638671086317,
+      "minimum_clearance_mm": 12.07746235725892,
+      "failure_reasons": []
+    }
+  ],
+  "comparisons": [
+    {
+      "name": "raw_astar",
+      "planned_transfer_s": 4.466958264533481,
+      "engine": "MuJoCo 3.15.0",
+      "model_revision": "multi-task-contact-v3",
+      "order": 5,
+      "fingers": true,
+      "gravity_compensation": true,
+      "simulation_seconds": 14.532000000001522,
+      "wall_seconds": 3.7181915000110166,
+      "samples": 1454,
+      "joint_rmse_rad": [
+        0.004653901178767074,
+        0.001999512100596644,
+        0.009719145545131223,
+        0.008762477593950851
+      ],
+      "tcp_rmse_mm": 1.374625203212285,
+      "final_workpiece_xyz_m": [
+        0.17037302615594085,
+        0.0599948774038474,
+        0.06494657737480367
+      ],
+      "placement_error_mm": 0.37686699363331394,
+      "maximum_lift_mm": 59.74108017750881,
+      "pad_contact_samples": 813,
+      "pickup_lift_mm": 39.91023436021178,
+      "unwanted_contact_samples": 0,
+      "unwanted_contact_steps": 0,
+      "object_obstacle_contact_steps": 0,
+      "success": true,
+      "failure_reasons": [],
+      "peak_joint_torque_nm": [
+        0.2968772901338781,
+        0.5718429193385113,
+        0.6910473340007783,
+        0.3348187100683049
+      ],
+      "peak_joint_velocity_rad_s": [
+        0.34517212943655506,
+        0.1375027754750812,
+        0.5847447070148132,
+        0.5146755489939743
+      ],
+      "requested_pad_friction": 1.2,
+      "measured_pad_friction_range": [
+        1.2,
+        1.2
+      ],
+      "metal_workpiece_contact_steps": 0,
+      "bilateral_transport_contact_fraction": 0.9988409156766155,
+      "transport_gripper_range_m": [
+        [
+          -0.00826578787847669,
+          -0.006521584548527058
+        ],
+        [
+          -0.00802841039527574,
+          -0.005966369744468053
+        ]
+      ],
+      "minimum_transport_obstacle_clearance_mm": 5.031960317140509,
+      "closest_transport_obstacle_pair": [
+        "obstacle_1",
+        "left_carrier"
+      ],
+      "object_attachment_used": false
+    },
+    {
+      "name": "manual_side",
+      "planned_transfer_s": 5.319952269814908,
+      "engine": "MuJoCo 3.15.0",
+      "model_revision": "multi-task-contact-v3",
+      "order": 5,
+      "fingers": true,
+      "gravity_compensation": true,
+      "simulation_seconds": 15.374000000001804,
+      "wall_seconds": 2.992149800003972,
+      "samples": 1538,
+      "joint_rmse_rad": [
+        0.009858212282950656,
+        0.008018094543107519,
+        0.01120440752211569,
+        0.007872334427763665
+      ],
+      "tcp_rmse_mm": 1.85367722180639,
+      "final_workpiece_xyz_m": [
+        0.17051096467242507,
+        0.060083897739964226,
+        0.06494652557582993
+      ],
+      "placement_error_mm": 0.5205605068365038,
+      "maximum_lift_mm": 43.503718344026915,
+      "pad_contact_samples": 896,
+      "pickup_lift_mm": 39.91023436021178,
+      "unwanted_contact_samples": 0,
+      "unwanted_contact_steps": 0,
+      "object_obstacle_contact_steps": 0,
+      "success": true,
+      "failure_reasons": [],
+      "peak_joint_torque_nm": [
+        0.2579091305196215,
+        0.7110997378088726,
+        0.6910473340007783,
+        0.3210581096734586
+      ],
+      "peak_joint_velocity_rad_s": [
+        0.7990787058488095,
+        0.6603167876527746,
+        0.584744840137717,
+        0.5146755489939465
+      ],
+      "requested_pad_friction": 1.2,
+      "measured_pad_friction_range": [
+        1.2,
+        1.2
+      ],
+      "metal_workpiece_contact_steps": 0,
+      "bilateral_transport_contact_fraction": 0.9981921487603306,
+      "transport_gripper_range_m": [
+        [
+          -0.008275334835034303,
+          -0.006521584548527058
+        ],
+        [
+          -0.008042496895569016,
+          -0.005966369744468053
+        ]
+      ],
+      "minimum_transport_obstacle_clearance_mm": 3.462743687018756,
+      "closest_transport_obstacle_pair": [
+        "obstacle_1",
+        "right_metal_contact"
+      ],
+      "object_attachment_used": false
+    },
+    {
+      "name": "manual_over",
+      "planned_transfer_s": 3.3024194507403104,
+      "engine": "MuJoCo 3.15.0",
+      "model_revision": "multi-task-contact-v3",
+      "order": 5,
+      "fingers": true,
+      "gravity_compensation": true,
+      "simulation_seconds": 13.35800000000113,
+      "wall_seconds": 4.218406799991499,
+      "samples": 1336,
+      "joint_rmse_rad": [
+        0.007508640892913255,
+        0.0018990033019409627,
+        0.010528964970224935,
+        0.008871292741666089
+      ],
+      "tcp_rmse_mm": 1.711520708899647,
+      "final_workpiece_xyz_m": [
+        0.17057211846250803,
+        0.060001015481122,
+        0.06494650898692264
+      ],
+      "placement_error_mm": 0.5746145271610229,
+      "maximum_lift_mm": 54.778647968330404,
+      "pad_contact_samples": 697,
+      "pickup_lift_mm": 39.91023436021178,
+      "unwanted_contact_samples": 0,
+      "unwanted_contact_steps": 0,
+      "object_obstacle_contact_steps": 0,
+      "success": true,
+      "failure_reasons": [],
+      "peak_joint_torque_nm": [
+        0.3267302347038239,
+        0.5889967717828849,
+        0.6910473340007783,
+        0.32106640724794033
+      ],
+      "peak_joint_velocity_rad_s": [
+        0.7796375186454323,
+        0.10781062327162305,
+        0.5847451404432141,
+        0.5146755489940384
+      ],
+      "requested_pad_friction": 1.2,
+      "measured_pad_friction_range": [
+        1.2,
+        1.2
+      ],
+      "metal_workpiece_contact_steps": 0,
+      "bilateral_transport_contact_fraction": 1.0,
+      "transport_gripper_range_m": [
+        [
+          -0.008133064506614123,
+          -0.006521584548527058
+        ],
+        [
+          -0.007859815779347261,
+          -0.005966369744468053
+        ]
+      ],
+      "minimum_transport_obstacle_clearance_mm": 0.08573205509385116,
+      "closest_transport_obstacle_pair": [
+        "obstacle_1",
+        "left_carrier"
+      ],
+      "object_attachment_used": false
+    }
+  ],
+  "scope": "One deterministic simulation per configuration. Search wall time is platform dependent; sampling, model geometry and grasp assumptions do not establish hardware safety."
+}

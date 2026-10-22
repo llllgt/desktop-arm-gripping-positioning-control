@@ -39,6 +39,8 @@
 
 加 `-Config config/tasks/side_detour.json` 可切换任务，并向两个节点传入同一配置；验证入口先保存配置和路径预检，拒绝相交的路径。控制节点按配置使用关节限速和夹爪动作时间。高工位、侧绕任务已验证，结果见 [搬运任务](搬运任务.md)。
 
+自动规划输出的 `resolved_task.json` 也可通过 `-Config` 传入。双障碍搜索结果已通过 ROS 执行，位置偏差 0.476 mm，详见 [自动避障规划](自动避障规划.md)。action 检查脚本读取同一任务配置，在该任务的初始位姿验证保持、重叠拒绝和取消。
+
 ### control_msgs 构建
 
 在已配置 MSVC、Windows SDK 和 Ninja 的开发者命令提示符中，准备 control_msgs 源码后执行：

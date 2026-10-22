@@ -19,13 +19,32 @@ def main():
     assess.add_argument('--config',type=Path)
     assess.add_argument('--order',type=int,choices=[3,5],default=5)
     assess.add_argument('--output',type=Path,default=project_root()/'results/assessment')
+    planner = sub.add_parser('plan',help='Search a collision-checked transfer route and save a resolved task')
+    planner.add_argument('--config',type=Path)
+    planner.add_argument('--settings',type=Path)
+    planner.add_argument('--output',type=Path,required=True)
+    planner.add_argument('--execute',action='store_true')
+    planner.add_argument('--render',action='store_true')
     args = parser.parse_args()
     from .task import load_task
     try:
         task = load_task(args.config)
     except (ValueError, OSError) as error:
         parser.error(str(error))
-    if args.command == 'simulate':
+    if args.command == 'plan':
+        from .planning import run
+        if args.render and not args.execute:
+            parser.error('--render requires --execute')
+        try:
+            settings = None if args.settings is None else json.loads(args.settings.read_text(encoding='utf-8'))
+            report = run(args.output,task,settings=settings,execute=args.execute,render=args.render)
+        except (ValueError, OSError) as error:
+            parser.error(str(error))
+        print(json.dumps(report,indent=2))
+        if not report['success'] or ('execution' in report and
+                (not report['execution']['success'] or not report['observed_opening_within_envelope'])):
+            parser.exit(2)
+    elif args.command == 'simulate':
         from .simulation import run
         if args.preflight:
             from .assessment import preflight

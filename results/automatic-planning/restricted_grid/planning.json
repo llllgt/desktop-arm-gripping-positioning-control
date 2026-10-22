@@ -1,0 +1,39 @@
+{
+  "success": false,
+  "algorithm": "Cartesian lattice A* + duration-based path shortcutting",
+  "settings": {
+    "bounds_m": [
+      [
+        0.16,
+        0.18
+      ],
+      [
+        -0.08,
+        0.08
+      ],
+      [
+        0.105,
+        0.105
+      ]
+    ],
+    "resolution_m": 0.02,
+    "obstacle_margin_m": 0.003,
+    "grasp_opening_allowance_m": 0.002,
+    "joint_step_rad": 0.02,
+    "endpoint_neighbors": 16,
+    "max_grid_nodes": 3000
+  },
+  "scope": "Fixed pitch, selected IK branch, bounded finite lattice; sampled robot/carried-box versus fixed scene, no self-collision or continuous-sweep guarantee.",
+  "expanded_nodes": 7,
+  "grid_nodes": 18,
+  "checked_edges": 25,
+  "collision_samples": 114,
+  "grasp_opening_range_m": [
+    -0.009,
+    -0.0021335654653064345
+  ],
+  "direct_duration_s": 1.6051671514373196,
+  "direct_feasible": false,
+  "wall_seconds": 0.1265377000090666,
+  "rejection": "No route found in the configured lattice and endpoint connections"
+}

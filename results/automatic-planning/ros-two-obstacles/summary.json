@@ -1,0 +1,25 @@
+{
+  "execution": "Two ROS 2 nodes, standard trajectory/gripper actions over DDS, MuJoCo contact physics",
+  "arm_action_goals": 15,
+  "joint_state_samples": 1461,
+  "simulation_seconds": 14.642000000001559,
+  "wall_seconds": 64.13048859999981,
+  "joint_rmse_rad": [
+    0.00608850827607836,
+    0.0029346348342189593,
+    0.010612241340591303,
+    0.008825946048302377
+  ],
+  "placement_error_mm": 0.47624729165513435,
+  "maximum_lift_mm": 60.18328465803721,
+  "pickup_lift_mm": 39.92100791453673,
+  "final_workpiece_xyz_m": [
+    0.17047085860075237,
+    0.05995260566165032,
+    0.06494654499463305
+  ],
+  "unwanted_contact_steps": 0,
+  "object_obstacle_contact_steps": 0,
+  "success": true,
+  "object_attachment_used": false
+}

@@ -30,7 +30,7 @@ with (output/'controller.log').open('w',encoding='utf-8') as log:
     server=subprocess.Popen([sys.executable,'-m','desktop_arm.ros_nodes','server','--output',str(output),*config_args],cwd=ROOT,env=env,stdout=log,stderr=subprocess.STDOUT)
     try:
         time.sleep(2)
-        checks=subprocess.run([sys.executable,str(ROOT/'scripts/check_ros_actions.py'),'--output',str(output)],cwd=ROOT,env=env,capture_output=True,text=True,encoding='utf-8',errors='replace',timeout=60)
+        checks=subprocess.run([sys.executable,str(ROOT/'scripts/check_ros_actions.py'),'--output',str(output),*config_args],cwd=ROOT,env=env,capture_output=True,text=True,encoding='utf-8',errors='replace',timeout=60)
         (output/'action_checks.log').write_text((checks.stdout+'\n'+checks.stderr).rstrip()+'\n',encoding='utf-8')
         if checks.returncode:
             raise RuntimeError('ROS action validation failed; see action_checks.log')

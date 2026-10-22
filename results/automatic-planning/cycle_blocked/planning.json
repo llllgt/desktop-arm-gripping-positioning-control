@@ -1,0 +1,202 @@
+{
+  "success": false,
+  "algorithm": "Cartesian lattice A* + duration-based path shortcutting",
+  "settings": {
+    "bounds_m": [
+      [
+        0.08,
+        0.22
+      ],
+      [
+        -0.08,
+        0.08
+      ],
+      [
+        0.105,
+        0.145
+      ]
+    ],
+    "resolution_m": 0.02,
+    "obstacle_margin_m": 0.003,
+    "grasp_opening_allowance_m": 0.002,
+    "joint_step_rad": 0.02,
+    "endpoint_neighbors": 16,
+    "max_grid_nodes": 3000
+  },
+  "scope": "Fixed pitch, selected IK branch, bounded finite lattice; sampled robot/carried-box versus fixed scene, no self-collision or continuous-sweep guarantee.",
+  "expanded_nodes": 68,
+  "grid_nodes": 142,
+  "checked_edges": 304,
+  "collision_samples": 2056,
+  "grasp_opening_range_m": [
+    -0.009,
+    -0.0021335654653064345
+  ],
+  "direct_duration_s": 1.6051671514373196,
+  "direct_feasible": false,
+  "raw_joint_path_rad": [
+    [
+      -0.30648456484986236,
+      -0.07921542062195608,
+      -0.22725765546725718,
+      1.6064730760892134
+    ],
+    [
+      -0.20963984587421253,
+      0.14708160404464055,
+      -0.5081640124465975,
+      1.661082408401957
+    ],
+    [
+      -0.0958591471100132,
+      0.3210081916098925,
+      -0.7628177127275045,
+      1.7418095211176121
+    ],
+    [
+      0.0,
+      0.30971054192661285,
+      -0.7452284991265007,
+      1.735517957199888
+    ],
+    [
+      0.0958591471100132,
+      0.3210081916098925,
+      -0.7628177127275045,
+      1.7418095211176121
+    ],
+    [
+      0.2096398458742125,
+      0.14708160404464055,
+      -0.5081640124465975,
+      1.661082408401957
+    ],
+    [
+      0.3430239404207035,
+      0.024759921650364003,
+      -0.34931277779464964,
+      1.6245528561442857
+    ],
+    [
+      0.3629257710117328,
+      -0.0527913390995115,
+      -0.25714920256647433,
+      1.6099405416659858
+    ]
+  ],
+  "raw_transfer_duration_s": 5.612251435143032,
+  "preflight": {
+    "feasible": false,
+    "sample_period_s": 0.02,
+    "samples": 695,
+    "collisions": [
+      {
+        "phase": "SETTLE",
+        "geoms": [
+          "obstacle_1",
+          "left_metal_contact"
+        ]
+      },
+      {
+        "phase": "APPROACH_PICK",
+        "geoms": [
+          "obstacle_1",
+          "left_metal_contact"
+        ]
+      },
+      {
+        "phase": "DESCEND_PICK",
+        "geoms": [
+          "obstacle_1",
+          ""
+        ]
+      },
+      {
+        "phase": "DESCEND_PICK",
+        "geoms": [
+          "obstacle_1",
+          "left_metal_contact"
+        ]
+      },
+      {
+        "phase": "CLOSE",
+        "geoms": [
+          "obstacle_1",
+          ""
+        ]
+      },
+      {
+        "phase": "CLOSE",
+        "geoms": [
+          "obstacle_1",
+          "left_metal_contact"
+        ]
+      },
+      {
+        "phase": "HOLD",
+        "geoms": [
+          "obstacle_1",
+          ""
+        ]
+      },
+      {
+        "phase": "LIFT",
+        "geoms": [
+          "obstacle_1",
+          ""
+        ]
+      },
+      {
+        "phase": "DESCEND_PLACE",
+        "geoms": [
+          "obstacle_1",
+          ""
+        ]
+      },
+      {
+        "phase": "OPEN",
+        "geoms": [
+          "obstacle_1",
+          ""
+        ]
+      },
+      {
+        "phase": "RELEASE_SETTLE",
+        "geoms": [
+          "obstacle_1",
+          ""
+        ]
+      },
+      {
+        "phase": "RETRACT",
+        "geoms": [
+          "obstacle_1",
+          ""
+        ]
+      }
+    ],
+    "scope": "Sampled robot versus fixed scene and carried box versus obstacles; carried box assumes no slip relative to the pick pose. Excludes self collision and object/support contacts. Not a continuous or dynamic safety guarantee.",
+    "minimum_joint_margin_rad": 0.22819047888238808,
+    "maximum_position_jacobian_condition": 2.035671562026895,
+    "planned_duration_s": 13.536546241323782,
+    "phase_durations_s": {
+      "SETTLE": 0.8,
+      "APPROACH_PICK": 0.4,
+      "DESCEND_PICK": 1.202191764398952,
+      "CLOSE": 0.8,
+      "HOLD": 0.8,
+      "LIFT": 1.202191764398952,
+      "TRANSFER_VIA_1": 1.0398120369217332,
+      "TRANSFER_VIA_2": 1.0843736312932069,
+      "TRANSFER": 1.3951053734687033,
+      "DESCEND_PLACE": 1.206435835421117,
+      "OPEN": 0.8,
+      "RELEASE_SETTLE": 0.8,
+      "RETRACT": 1.206435835421117,
+      "FINISH": 0.8
+    },
+    "rejection": "Commanded robot or carried box intersects fixed scene at sampled configurations"
+  },
+  "wall_seconds": 0.9756428000109736,
+  "rejection": "Transfer route found, but approach/lift/place/retract preflight failed"
+}

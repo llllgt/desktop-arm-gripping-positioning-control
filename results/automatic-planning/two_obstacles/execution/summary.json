@@ -1,0 +1,66 @@
+{
+  "engine": "MuJoCo 3.15.0",
+  "model_revision": "multi-task-contact-v3",
+  "order": 5,
+  "fingers": true,
+  "gravity_compensation": true,
+  "simulation_seconds": 13.334000000001122,
+  "wall_seconds": 9.447344599990174,
+  "samples": 1334,
+  "joint_rmse_rad": [
+    0.006349575957396639,
+    0.0030560096397471617,
+    0.011035478077382204,
+    0.00917810398224856
+  ],
+  "tcp_rmse_mm": 1.606971444358062,
+  "final_workpiece_xyz_m": [
+    0.17048685370988206,
+    0.05995636067758337,
+    0.06494653978901695
+  ],
+  "placement_error_mm": 0.491720367124702,
+  "maximum_lift_mm": 60.17318889070103,
+  "pad_contact_samples": 695,
+  "pickup_lift_mm": 39.91023436021178,
+  "unwanted_contact_samples": 0,
+  "unwanted_contact_steps": 0,
+  "object_obstacle_contact_steps": 0,
+  "success": true,
+  "failure_reasons": [],
+  "peak_joint_torque_nm": [
+    0.31938233831776586,
+    0.618727424825483,
+    0.6910473340007783,
+    0.32104027938083846
+  ],
+  "peak_joint_velocity_rad_s": [
+    0.6715603089431351,
+    0.22218057825799528,
+    0.584745029459448,
+    0.514675548994038
+  ],
+  "requested_pad_friction": 1.2,
+  "measured_pad_friction_range": [
+    1.2,
+    1.2
+  ],
+  "metal_workpiece_contact_steps": 0,
+  "bilateral_transport_contact_fraction": 1.0,
+  "transport_gripper_range_m": [
+    [
+      -0.008130528433969463,
+      -0.006521584548527058
+    ],
+    [
+      -0.007856545298711102,
+      -0.005966369744468053
+    ]
+  ],
+  "minimum_transport_obstacle_clearance_mm": 2.200211764859869,
+  "closest_transport_obstacle_pair": [
+    "obstacle_2",
+    ""
+  ],
+  "object_attachment_used": false
+}

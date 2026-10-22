@@ -1,0 +1,252 @@
+{
+  "success": true,
+  "algorithm": "Cartesian lattice A* + duration-based path shortcutting",
+  "settings": {
+    "bounds_m": [
+      [
+        0.08,
+        0.22
+      ],
+      [
+        -0.08,
+        0.08
+      ],
+      [
+        0.105,
+        0.145
+      ]
+    ],
+    "resolution_m": 0.01,
+    "obstacle_margin_m": 0.005,
+    "grasp_opening_allowance_m": 0.002,
+    "joint_step_rad": 0.02,
+    "endpoint_neighbors": 16,
+    "max_grid_nodes": 3000
+  },
+  "scope": "Fixed pitch, selected IK branch, bounded finite lattice; sampled robot/carried-box versus fixed scene, no self-collision or continuous-sweep guarantee.",
+  "expanded_nodes": 531,
+  "grid_nodes": 942,
+  "checked_edges": 2254,
+  "collision_samples": 11178,
+  "grasp_opening_range_m": [
+    -0.009,
+    -0.0021335654653064345
+  ],
+  "direct_duration_s": 1.6051671514373196,
+  "direct_feasible": false,
+  "raw_joint_path_rad": [
+    [
+      -0.30648456484986236,
+      -0.07921542062195608,
+      -0.22725765546725718,
+      1.6064730760892134
+    ],
+    [
+      -0.2639637236257046,
+      -0.148776138501857,
+      -0.23792572253517186,
+      1.686701861037029
+    ],
+    [
+      -0.2140606835638215,
+      -0.20650807220939138,
+      -0.26846430068267857,
+      1.77497237289207
+    ],
+    [
+      -0.13432144195296855,
+      -0.14379916612681054,
+      -0.3319281841612538,
+      1.7757273502880644
+    ],
+    [
+      -0.06746502452190471,
+      -0.1516961042779854,
+      -0.32368056146508417,
+      1.7753766657430696
+    ],
+    [
+      0.0,
+      -0.15433254771586746,
+      -0.32094344422874466,
+      1.7752759919446122
+    ],
+    [
+      0.06746502452190471,
+      -0.1516961042779854,
+      -0.32368056146508417,
+      1.7753766657430696
+    ],
+    [
+      0.13432144195296855,
+      -0.14379916612681054,
+      -0.3319281841612538,
+      1.7757273502880644
+    ],
+    [
+      0.19999295660618124,
+      -0.13067575686010358,
+      -0.3457973693354841,
+      1.7764731261955877
+    ],
+    [
+      0.28212373214271536,
+      -0.18775376096754082,
+      -0.286957665981352,
+      1.7747114269488928
+    ],
+    [
+      0.32579911527267047,
+      -0.125976463872277,
+      -0.2619654873361328,
+      1.6879419512084097
+    ],
+    [
+      0.36292577101173296,
+      -0.0527913390995115,
+      -0.25714920256647433,
+      1.6099405416659858
+    ],
+    [
+      0.3629257710117328,
+      -0.0527913390995115,
+      -0.25714920256647433,
+      1.6099405416659858
+    ]
+  ],
+  "raw_transfer_duration_s": 6.317145627534572,
+  "preflight": {
+    "feasible": true,
+    "sample_period_s": 0.02,
+    "samples": 669,
+    "collisions": [],
+    "scope": "Sampled robot versus fixed scene and carried box versus obstacles; carried box assumes no slip relative to the pick pose. Excludes self collision and object/support contacts. Not a continuous or dynamic safety guarantee.",
+    "minimum_joint_margin_rad": 0.19502762710792987,
+    "maximum_position_jacobian_condition": 2.035671562026895,
+    "planned_duration_s": 13.000913126346457,
+    "phase_durations_s": {
+      "SETTLE": 0.8,
+      "APPROACH_PICK": 0.4,
+      "DESCEND_PICK": 1.202191764398952,
+      "CLOSE": 0.8,
+      "HOLD": 0.8,
+      "LIFT": 1.202191764398952,
+      "TRANSFER_VIA_1": 0.8053285638685698,
+      "TRANSFER_VIA_2": 1.3819604576491236,
+      "TRANSFER": 0.7963689051886249,
+      "DESCEND_PLACE": 1.206435835421117,
+      "OPEN": 0.8,
+      "RELEASE_SETTLE": 0.8,
+      "RETRACT": 1.206435835421117,
+      "FINISH": 0.8
+    }
+  },
+  "waypoints_m": [
+    [
+      0.15,
+      -0.029999999999999995,
+      0.12499999999999999
+    ],
+    [
+      0.14999999999999997,
+      0.039999999999999994,
+      0.12500000000000003
+    ]
+  ],
+  "transfer_duration_s": 2.9836579267063184,
+  "task_duration_s": 13.000913126346457,
+  "joint_path_rad": [
+    [
+      -0.30648456484986236,
+      -0.07921542062195608,
+      -0.22725765546725718,
+      1.6064730760892134
+    ],
+    [
+      -0.2140606835638215,
+      -0.20650807220939182,
+      -0.2684643006826781,
+      1.77497237289207
+    ],
+    [
+      0.28212373214271547,
+      -0.18775376096754082,
+      -0.286957665981352,
+      1.7747114269488928
+    ],
+    [
+      0.3629257710117328,
+      -0.0527913390995115,
+      -0.25714920256647433,
+      1.6099405416659858
+    ]
+  ],
+  "wall_seconds": 4.347867900010897,
+  "execution": {
+    "engine": "MuJoCo 3.15.0",
+    "model_revision": "multi-task-contact-v3",
+    "order": 5,
+    "fingers": true,
+    "gravity_compensation": true,
+    "simulation_seconds": 13.038000000001023,
+    "wall_seconds": 4.886666999998852,
+    "samples": 1304,
+    "joint_rmse_rad": [
+      0.006424981909463509,
+      0.00345354736718777,
+      0.009861114652181572,
+      0.009231544469838563
+    ],
+    "tcp_rmse_mm": 1.6333853950057868,
+    "final_workpiece_xyz_m": [
+      0.17046048392343457,
+      0.05992267364718145,
+      0.06494654453332413
+    ],
+    "placement_error_mm": 0.4699811650475388,
+    "maximum_lift_mm": 59.75448458352725,
+    "pad_contact_samples": 665,
+    "pickup_lift_mm": 39.91023436021178,
+    "unwanted_contact_samples": 0,
+    "unwanted_contact_steps": 0,
+    "object_obstacle_contact_steps": 0,
+    "success": true,
+    "failure_reasons": [],
+    "peak_joint_torque_nm": [
+      0.31751569881907216,
+      0.6674883547677091,
+      0.6910473340007783,
+      0.33523527270182285
+    ],
+    "peak_joint_velocity_rad_s": [
+      0.6705171305034332,
+      0.3139723265713964,
+      0.5847450817303192,
+      0.5146755489940523
+    ],
+    "requested_pad_friction": 1.2,
+    "measured_pad_friction_range": [
+      1.2,
+      1.2
+    ],
+    "metal_workpiece_contact_steps": 0,
+    "bilateral_transport_contact_fraction": 1.0,
+    "transport_gripper_range_m": [
+      [
+        -0.008090168405808446,
+        -0.006521584548527058
+      ],
+      [
+        -0.007805392727336007,
+        -0.005966369744468053
+      ]
+    ],
+    "minimum_transport_obstacle_clearance_mm": 5.059640473799075,
+    "closest_transport_obstacle_pair": [
+      "obstacle_1",
+      "right_carrier"
+    ],
+    "object_attachment_used": false
+  },
+  "observed_opening_within_envelope": true
+}

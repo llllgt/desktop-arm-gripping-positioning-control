@@ -49,7 +49,7 @@ class Simulator:
                 'object': self.data.xpos[self.object_body].copy()}
 
 
-def run(output, *, task=None, order=5, render=False, fingers=True, gravity_compensation=True):
+def run(output, *, task=None, order=5, render=False, fingers=True, gravity_compensation=True, measure_clearance=False):
     task = load_task() if task is None else task
     output = Path(output)
     output.mkdir(parents=True, exist_ok=True)
@@ -64,6 +64,13 @@ def run(output, *, task=None, order=5, render=False, fingers=True, gravity_compe
     unwanted_contact_steps = 0
     contact_force = np.zeros(6)
     object_obstacle_steps = 0
+    gripper_qpos = [sim.model.joint(f'gripper_{side}_joint').qposadr[0] for side in ('left', 'right')]
+    grip_min, grip_max = np.full(2, np.inf), np.full(2, -np.inf)
+    minimum_gap, closest_pair = np.inf, None
+    obstacle_ids = [i for i in range(sim.model.ngeom) if sim.model.geom(i).name.startswith('obstacle_')]
+    moving_ids = [i for i in range(sim.model.ngeom)
+                  if sim.model.geom_bodyid[i] not in (0, sim.model.body('link1').id)
+                  and (sim.model.geom_contype[i] or sim.model.geom(i).name.endswith('_carrier'))]
     writer = None
     preview = None
     if render:
@@ -109,6 +116,15 @@ def run(output, *, task=None, order=5, render=False, fingers=True, gravity_compe
                 if is_transport_phase(phase.name):
                     transport_steps += 1
                     bilateral_transport_steps += int(len(pad_sides) == 2)
+                    grip_min = np.minimum(grip_min, sim.data.qpos[gripper_qpos])
+                    grip_max = np.maximum(grip_max, sim.data.qpos[gripper_qpos])
+                    if measure_clearance:
+                        for obstacle in obstacle_ids:
+                            for moving in moving_ids:
+                                gap = mujoco.mj_geomDistance(sim.model, sim.data, obstacle, moving, 1.0, None)
+                                if gap<minimum_gap:
+                                    minimum_gap = gap
+                                    closest_pair = [sim.model.geom(obstacle).name, sim.model.geom(moving).name]
                 if step_count % 5 == 0:
                     row = {'time':float(sim.data.time), 'phase':phase.name, 'gripper_command':opening, 'pad_contacts':contacts, 'unwanted_contacts':bad_contacts,
                            'left_normal_force_n':normal_forces['left'], 'right_normal_force_n':normal_forces['right']}
@@ -154,6 +170,8 @@ def run(output, *, task=None, order=5, render=False, fingers=True, gravity_compe
         reasons.append('fixture_collision')
     if object_obstacle_steps:
         reasons.append('object_obstacle_collision')
+    if measure_clearance and minimum_gap<0:
+        reasons.append('obstacle_clearance_violation')
     summary = {'engine':'MuJoCo '+mujoco.__version__, 'model_revision':'multi-task-contact-v3', 'order':order, 'fingers':fingers,
         'gravity_compensation':gravity_compensation, 'simulation_seconds':float(sim.data.time),
         'wall_seconds':time.perf_counter()-started, 'samples':len(rows),
@@ -171,6 +189,9 @@ def run(output, *, task=None, order=5, render=False, fingers=True, gravity_compe
         'measured_pad_friction_range':None if not effective_mu else [min(effective_mu), max(effective_mu)],
         'metal_workpiece_contact_steps':nonpad_object_contact_steps,
         'bilateral_transport_contact_fraction':bilateral_transport_steps/max(1,transport_steps),
+        'transport_gripper_range_m':np.column_stack([grip_min, grip_max]).tolist(),
+        'minimum_transport_obstacle_clearance_mm':float(minimum_gap*1000) if np.isfinite(minimum_gap) else None,
+        'closest_transport_obstacle_pair':closest_pair,
         'object_attachment_used':False}
     (output/'summary.json').write_text(json.dumps(summary, indent=2),encoding='utf-8')
     if frames:

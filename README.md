@@ -23,6 +23,29 @@
 - 执行前可检查任务参数、目标可达性及采样路径上的托座/地面相交。检查范围见 [工况评估](docs/工况评估.md)。
 - 任务可指定不同高度的托座、固定隔挡和转移途经点；各段仍使用受速度、加速度约束的关节轨迹。
 
+## 自动避障搬运
+
+输入工位和障碍物位置后，程序在固定工具俯仰下用 A* 搜索转移路径。候选点先经过逆运动学和关节限位检查，连接两点时检查整段关节插值；代价使用满足速度、加速度约束的段时长。搜索完成后，对路径中的可直连节点重新检查并缩短转移时间。
+
+碰撞模型包含机械臂、被夹工件，以及夹指背板、接触垫和金属板在估算夹持开度范围内占据的空间。默认将障碍物各面向外扩张 3 mm，再用原始尺寸模型执行接触仿真，测量实际间隙。
+
+| 中央隔挡场景 | 转移阶段计划时间 / s | 完整仿真周期 / s | 测得最小障碍间隙 / mm |
+|---|---:|---:|---:|
+| 原手工侧绕路径 | 5.320 | 15.374 | 3.463 |
+| 原手工跨越路径 | 3.302 | 13.358 | 0.086 |
+| A* 原始网格路径 | 4.467 | 14.532 | 5.032 |
+| A* 路径缩短后 | 3.042 | 13.096 | 5.006 |
+
+原手工跨越路径的最近部位是左侧背板。新增的间隙测量将背板也计入检查；只看接触碰撞次数无法体现这条路径的间隙有多小。路径缩短使本例转移阶段的计划时间减少 31.9%，该比例针对同一次 A* 搜索所得的原始路径，不代表全局最优。
+
+![自动搜索后的工件运动轨迹与拒绝场景](results/automatic-planning/automatic_paths.png)
+
+8 个场景中，5 个规划后完成仿真，位置偏差为 0.464–0.569 mm；其余 3 个分别因转移端点受阻、完整抓放流程相交或限定网格内无路而拒绝执行。另比较了 10/20/30 mm 网格和 1/3/5 mm 障碍扩张量的 9 组组合，全部完成本次中央隔挡搬运。双障碍自动路径通过 Windows ROS 2 双进程执行，放置偏差为 0.476 mm。
+
+![双障碍自动路径执行](results/automatic-planning/two_obstacles/execution/demo.gif)
+
+规划是有界网格、选定逆解分支上的离线搜索。几何检查采用采样和无滑移夹持假设；默认 3 mm 障碍扩张下，双障碍场景的执行最小间隙为 2.200 mm，说明扩张量不能直接作为动态间隙保证。参数、失败案例、ROS 日志和复现方法见 [自动规划说明](docs/自动避障规划.md)，原始数据见 [记录压缩包](results/automatic-planning/traces.zip)。
+
 ## 仿真结果
 
 默认工件为 30 × 24 × 20 mm、30 g，从 (170, −50, 65) mm 搬到 (170, 60, 65) mm。抬升高度设为 40 mm，关节速度、加速度上限分别为 0.8 rad/s 和 1.5 rad/s²。
@@ -60,7 +83,7 @@
 
 ![工件中心高度随时间变化](results/task-suite/heights.png)
 
-隔挡场景使用相同起终点和障碍尺寸。侧绕路径经过 x = 100 mm 的两个点；跨越路径将工具中心抬到 z = 120 mm。7 个可执行场景均未记录到机械臂与固定场景、工件与隔挡的碰撞，拾取抬升阶段达到约 39.9 mm。带途经点的路径由配置给定，预检按 20 ms 间隔检查；目前没有自动搜索全局避障路径。
+这组预设路径实验使用相同起终点和障碍尺寸。侧绕路径经过 x = 100 mm 的两个点；跨越路径将工具中心抬到 z = 120 mm。7 个可执行场景均未记录到机械臂与固定场景、工件与隔挡的碰撞，拾取抬升阶段达到约 39.9 mm。途经点由配置给定，预检按 20 ms 间隔检查；后续自动搜索结果见上节。
 
 每个场景执行一次，结果用于比较任务和路径，不是统计成功率。配置、判据及 ROS 验证见 [搬运任务](docs/搬运任务.md)，完整 CSV 与配置见 [原始记录](results/task-suite/traces.zip)。
 
@@ -118,6 +141,8 @@ python3 -m venv .venv
 .venv\Scripts\python scripts/operating_envelope.py --output results/my-envelope
 .venv\Scripts\python scripts/task_suite.py --output results/my-tasks
 .venv\Scripts\python scripts/export_task_fixtures.py --config config/tasks/higher.json --output results/my-fixtures
+.venv\Scripts\python -m desktop_arm.cli plan --config config/planning/two_obstacles.json --output results/my-plan --execute
+.venv\Scripts\python scripts/planning_benchmark.py --output results/my-planning-benchmark
 .venv\Scripts\python -m desktop_arm.structure
 ```
 
@@ -125,7 +150,7 @@ ROS 2 的环境配置、接口和验证记录见 [ROS 运行说明](docs/ROS运�
 
 ## 测试
 
-自动测试共 35 项，覆盖运动学与独立模型核对、轨迹端点和约束、摩擦接触搬运、任务参数与路径检查，以及 CAD/URDF 质量惯量一致性和有限元校核。新增测试检查高低工位放置、隔挡直达拒绝、侧绕与跨越执行，以及被夹工件与障碍的碰撞。GitHub Actions 分别在 Windows 和 Ubuntu 执行；ROS action 的非法目标拒绝、重叠目标拒绝和取消验证另有 [通信记录](results/ros2/action_checks.json)。
+自动测试共 49 项，覆盖运动学与独立模型核对、轨迹端点和约束、摩擦接触搬运、任务参数与路径检查，以及 CAD/URDF 质量惯量一致性和有限元校核。自动规划测试另检查段中碰撞、夹指开度包络、路径缩短后执行、加密采样验证、结果复现、受限网格失败和完整流程拒绝。GitHub Actions 分别在 Windows 和 Ubuntu 执行；ROS action 的非法目标拒绝、重叠目标拒绝和取消验证另有 [通信记录](results/ros2/action_checks.json)。
 
 测量方法、轨迹对照和结构网格结果见 [实验记录](docs/实验记录.md)。
 

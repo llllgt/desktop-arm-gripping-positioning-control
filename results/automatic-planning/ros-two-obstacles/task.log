@@ -1,0 +1,16 @@
+{"execution": "Two ROS 2 nodes, standard trajectory/gripper actions over DDS, MuJoCo contact physics", "arm_action_goals": 15, "joint_state_samples": 1461, "simulation_seconds": 14.642000000001559, "wall_seconds": 64.13048859999981, "joint_rmse_rad": [0.00608850827607836, 0.0029346348342189593, 0.010612241340591303, 0.008825946048302377], "placement_error_mm": 0.47624729165513435, "maximum_lift_mm": 60.18328465803721, "pickup_lift_mm": 39.92100791453673, "final_workpiece_xyz_m": [0.17047085860075237, 0.05995260566165032, 0.06494654499463305], "unwanted_contact_steps": 0, "object_obstacle_contact_steps": 0, "success": true, "object_attachment_used": false}
+
+[INFO] [1792651408.807859600] [desktop_arm_transfer]: Executing SETTLE
+[INFO] [1792651412.599360600] [desktop_arm_transfer]: Executing APPROACH_PICK
+[INFO] [1792651414.430695200] [desktop_arm_transfer]: Executing DESCEND_PICK
+[INFO] [1792651419.769534000] [desktop_arm_transfer]: Executing CLOSE
+[INFO] [1792651423.267608000] [desktop_arm_transfer]: Executing HOLD
+[INFO] [1792651426.719115200] [desktop_arm_transfer]: Executing LIFT
+[INFO] [1792651432.264439900] [desktop_arm_transfer]: Executing TRANSFER_VIA_1
+[INFO] [1792651435.836061500] [desktop_arm_transfer]: Executing TRANSFER_VIA_2
+[INFO] [1792651441.536498200] [desktop_arm_transfer]: Executing TRANSFER
+[INFO] [1792651445.717987400] [desktop_arm_transfer]: Executing DESCEND_PLACE
+[INFO] [1792651450.651666400] [desktop_arm_transfer]: Executing OPEN
+[INFO] [1792651454.148543700] [desktop_arm_transfer]: Executing RELEASE_SETTLE
+[INFO] [1792651457.703479300] [desktop_arm_transfer]: Executing RETRACT
+[INFO] [1792651462.549764000] [desktop_arm_transfer]: Executing FINISH

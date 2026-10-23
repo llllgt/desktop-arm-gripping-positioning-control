@@ -3,9 +3,12 @@ param(
     [string]$Pixi='',
     [string]$PythonPackages='',
     [string]$Output='',
-    [string]$Config=''
+    [string]$Config='',
+    [switch]$Contact,
+    [switch]$StopDuringScan
 )
 $ErrorActionPreference='Stop'
+if ($StopDuringScan -and -not $Contact) { throw '-StopDuringScan requires -Contact.' }
 if (-not $RosHome) { throw 'Pass -RosHome with the ROS dependency workspace, or set DESKTOP_ARM_ROS_HOME.' }
 $RosHome=(Resolve-Path -LiteralPath $RosHome).Path
 foreach ($relative in @('pixi.toml','ros2-windows/local_setup.bat','control_ws/install/local_setup.bat')) {
@@ -26,6 +29,7 @@ $settings=@{
     DESKTOP_ARM_PYTHON_PACKAGES=$PythonPackages
     DESKTOP_ARM_OUTPUT=$Output
     DESKTOP_ARM_TASK_CONFIG=$(if ($Config) { (Resolve-Path -LiteralPath $Config).Path } else { '' })
+    DESKTOP_ARM_CONTACT_STOP=$(if ($StopDuringScan) { '1' } else { '' })
     ROS_LOG_DIR=(Join-Path $Output 'ros-logs')
 }
 $previous=@{}
@@ -34,7 +38,8 @@ try {
         $previous[$key]=[Environment]::GetEnvironmentVariable($key,'Process')
         [Environment]::SetEnvironmentVariable($key,$settings[$key],'Process')
     }
-    & $Pixi run --manifest-path (Join-Path $RosHome 'pixi.toml') cmd /d /c (Join-Path $PSScriptRoot 'ros_runtime.cmd')
+    $runtimeScript=if ($Contact) { 'ros_contact_runtime.cmd' } else { 'ros_runtime.cmd' }
+    & $Pixi run --manifest-path (Join-Path $RosHome 'pixi.toml') cmd /d /c (Join-Path $PSScriptRoot $runtimeScript)
     if ($LASTEXITCODE -ne 0) { throw "ROS verification failed ($LASTEXITCODE). See logs in the output directory." }
 } finally {
     foreach ($key in $previous.Keys) { [Environment]::SetEnvironmentVariable($key,$previous[$key],'Process') }

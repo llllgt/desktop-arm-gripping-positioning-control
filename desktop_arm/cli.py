@@ -25,7 +25,23 @@ def main():
     planner.add_argument('--output',type=Path,required=True)
     planner.add_argument('--execute',action='store_true')
     planner.add_argument('--render',action='store_true')
+    contact = sub.add_parser('contact', help='Run a spring-probe force-control surface scan')
+    contact.add_argument('--config', type=Path)
+    contact.add_argument('--output', type=Path, required=True)
+    contact.add_argument('--render', action='store_true')
     args = parser.parse_args()
+    if args.command == 'contact':
+        from .contact_process import run_contact
+        from .force_control import ContactConfig
+        try:
+            config = ContactConfig(**json.loads(args.config.read_text(encoding='utf-8-sig'))) if args.config else ContactConfig()
+            report = run_contact(args.output, config, render=args.render)
+        except (ValueError, TypeError, OSError) as error:
+            parser.error(str(error))
+        print(json.dumps(report, indent=2))
+        if not report['success']:
+            parser.exit(2)
+        return
     from .task import load_task
     try:
         task = load_task(args.config)

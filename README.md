@@ -2,7 +2,7 @@
 
 [![Tests](https://github.com/llllgt/desktop-arm-gripping-positioning-control/actions/workflows/tests.yml/badge.svg)](https://github.com/llllgt/desktop-arm-gripping-positioning-control/actions/workflows/tests.yml)
 
-基于 OpenMANIPULATOR-X 的矩形工件搬运仿真。机械部分设计了夹指背板、TPU 接触垫和定位托座；控制部分实现四轴正逆运动学、关节轨迹和 ROS 2 action 接口。工件通过重力与摩擦接触运动，夹取、抬升、转移和放置过程由 MuJoCo 仿真。
+基于 OpenMANIPULATOR-X 的工件搬运与恒力接触仿真。机械部分设计了夹指背板、TPU 接触垫和定位托座；控制部分实现四轴正逆运动学、关节轨迹和 ROS 2 action 接口。工件通过重力与摩擦接触运动，夹取、抬升、转移和放置过程由 MuJoCo 仿真。接触作业使用独立的弹簧探头模型，研究工件高度误差、弹簧刚度和力反馈对表面扫描的影响。
 
 ![工件搬运仿真](results/native/demo.gif)
 
@@ -22,6 +22,29 @@
 - ROS 2 任务节点通过 `FollowJointTrajectory` 和 `GripperCommand` 驱动仿真控制节点，并接收关节与位姿反馈。
 - 执行前可检查任务参数、目标可达性及采样路径上的托座/地面相交。检查范围见 [工况评估](docs/工况评估.md)。
 - 任务可指定不同高度的托座、固定隔挡和转移途经点；各段仍使用受速度、加速度约束的关节轨迹。
+
+## 恒力接触作业
+
+机械臂末端增加一个轴向浮动探头，在工件表面完成 50 mm 直线扫描。探头采用弹簧、阻尼和行程限位的等效结构模型；水平位置按五次曲线运动，竖直方向根据接触力调整高度。控制器只接收名义表面高度和力信号，不读取实际工件高度或倾角。
+
+目标接触力为世界 Z 方向 2 N，默认弹簧刚度 800 N/m。仿真接触力经过噪声、10 ms 延迟和低通滤波后送入导纳控制器；结果中的力误差用未加噪声的物理仿真值计算。
+
+| 对照工况 | 固定高度控制力 RMS 误差 / N | 力反馈控制力 RMS 误差 / N |
+|---|---:|---:|
+| 水平面，名义高度 | 0.083 | 0.007 |
+| 水平面，实际高出 2 mm | 1.353 | 0.007 |
+| 水平面，实际低于 2 mm | 1.517 | 0.008 |
+| 倾斜 3° 的表面 | 0.672 | 0.081 |
+
+表中使用相同的 800 N/m 探头，扫描时间均为 8 s。力反馈组的实际扫描接触比例均为 100%；固定高度组在低表面工况出现短时失去接触。
+
+![接触力、探头压缩量和高度误差对照](results/contact-control/force_comparison.png)
+
+26 个工况包含 400/800/1600 N/m 弹簧、±2 mm 高度误差、倾斜表面、传感器扰动和故障。14 个满足本实验判据，12 个未满足。2 s 快速扫描的力 RMS 误差为 0.573 N，接触比例为 94.2%；加入 +0.45 N 传感器零偏后，力反馈误差为 0.415 N。缺失工件、超力和探头行程不足均触发退让，最终接触力降为零。结果来自每个配置一次仿真，不表示实机成功率。
+
+![弹簧探头接触扫描](results/contact-control/demo.gif)
+
+ROS 2 提供力和关节数据发布、任务启动及停止退让服务。Windows 双进程验证分别检查了完整扫描和中途停止；停止测试按预期结束扫描并退出接触。该模块尚未接入实物力传感器，也未模拟材料去除、表面质量或孔轴装配。探头结构参数、控制方程、故障记录与复现命令见 [接触作业说明](docs/恒力接触作业.md)，[原始数据](results/contact-control/traces.zip) 保留全部通过和未通过工况。
 
 ## 自动避障搬运
 
@@ -143,6 +166,8 @@ python3 -m venv .venv
 .venv\Scripts\python scripts/export_task_fixtures.py --config config/tasks/higher.json --output results/my-fixtures
 .venv\Scripts\python -m desktop_arm.cli plan --config config/planning/two_obstacles.json --output results/my-plan --execute
 .venv\Scripts\python scripts/planning_benchmark.py --output results/my-planning-benchmark
+.venv\Scripts\python -m desktop_arm.cli contact --config config/contact/tilted_surface.json --output results/my-contact --render
+.venv\Scripts\python scripts/contact_benchmark.py --output results/my-contact-benchmark
 .venv\Scripts\python -m desktop_arm.structure
 ```
 
@@ -150,7 +175,7 @@ ROS 2 的环境配置、接口和验证记录见 [ROS 运行说明](docs/ROS运�
 
 ## 测试
 
-自动测试共 49 项，覆盖运动学与独立模型核对、轨迹端点和约束、摩擦接触搬运、任务参数与路径检查，以及 CAD/URDF 质量惯量一致性和有限元校核。自动规划测试另检查段中碰撞、夹指开度包络、路径缩短后执行、加密采样验证、结果复现、受限网格失败和完整流程拒绝。GitHub Actions 分别在 Windows 和 Ubuntu 执行；ROS action 的非法目标拒绝、重叠目标拒绝和取消验证另有 [通信记录](results/ros2/action_checks.json)。
+自动测试共 66 项，覆盖运动学与独立模型核对、轨迹端点和约束、摩擦接触搬运、任务参数与路径检查，以及 CAD/URDF 质量惯量一致性和有限元校核。自动规划测试另检查段中碰撞、夹指开度包络、路径缩短后执行、加密采样验证、结果复现、受限网格失败和完整流程拒绝。接触作业测试检查力坐标与符号、弹簧静力平衡、传感器延迟、固定高度与力反馈对照、快速扫描失效及故障退让。GitHub Actions 分别在 Windows 和 Ubuntu 执行；ROS action 的非法目标拒绝、重叠目标拒绝和取消验证另有 [通信记录](results/ros2/action_checks.json)。
 
 测量方法、轨迹对照和结构网格结果见 [实验记录](docs/实验记录.md)。
 

@@ -1,0 +1,55 @@
+{
+  "passed": true,
+  "start_accepted": true,
+  "duplicate_start_rejected": true,
+  "idle_stop_rejected": true,
+  "stop_during_scan": true,
+  "stop_accepted": true,
+  "force_messages": 494,
+  "joint_messages": 494,
+  "phases": [
+    "APPROACH",
+    "DONE",
+    "RETRACT",
+    "SCAN",
+    "SETTLE_FORCE"
+  ],
+  "timestamps_strictly_increasing": true,
+  "elapsed_wall_seconds": 28.640999999974156,
+  "execution": {
+    "engine": "MuJoCo 3.15.0",
+    "model_revision": "spring-probe-v1",
+    "success": false,
+    "failure_reasons": [
+      "external_stop",
+      "incomplete_scan"
+    ],
+    "controller_abort": "external_stop",
+    "scan_complete": false,
+    "scan_samples": 48,
+    "scan_force_rmse_n": 0.0026338061798679537,
+    "scan_mean_force_n": 1.9976267612094627,
+    "scan_contact_fraction": 1.0,
+    "peak_force_n": 1.9996720660971543,
+    "maximum_compression_mm": 2.2793511573300993,
+    "peak_joint_torque_nm": [
+      3.40515648257125e-07,
+      0.40482089366797425,
+      0.4291465546947366,
+      0.18961690118788965
+    ],
+    "peak_joint_speed_rad_s": [
+      2.4681906758704357e-08,
+      0.01696854988828175,
+      0.09849665888337639,
+      0.08151795429770609
+    ],
+    "unexpected_contact_steps": 0,
+    "final_force_n": 0.0,
+    "simulation_seconds": 4.933999999999679,
+    "samples": 2467,
+    "effective_sensor_delay_s": 0.01,
+    "surface_geometry_supplied_to_controller": false,
+    "force_channel": "simulated probe/plate contact force, world Z"
+  }
+}

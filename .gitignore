@@ -14,3 +14,6 @@ results/fourth-run/
 results/initial_model.png
 results/my-run/
 results/structure/fea_fields.npz
+results/my-contact/
+results/my-contact-benchmark/
+results/my-probe-layout.png

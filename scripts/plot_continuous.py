@@ -25,9 +25,9 @@ def plots(output,records):
             xyz=np.array([d['tcp_'+a] for a in 'xyz'])*1000
             ax.plot(*xyz,color=colors[mode],lw=1.2,label=mode)
         ax.set(xlabel='X / mm',ylabel='Y / mm',zlabel='Z / mm',title=name.replace('_',' ').title())
-        ax.view_init(elev=25,azim=-60);ax.set_box_aspect([1,1,.7])
+        ax.view_init(elev=25,azim=-60);ax.set_box_aspect([1,1,.7],zoom=.86)
     ax.legend(fontsize=8,loc='upper left')
-    fig.savefig(output/'spatial_paths.png',dpi=170);plt.close(fig)
+    fig.savefig(output/'spatial_paths.png',dpi=170,bbox_inches='tight',pad_inches=.2);plt.close(fig)
     fig,axes=plt.subplots(2,2,figsize=(11,7),layout='constrained')
     for r in (r for r in records if r['family']=='multi_corner'):
         d=trace(output,r['name']);t=d['time']-d['time'][0];color=colors[r['variant']]

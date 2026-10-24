@@ -72,6 +72,8 @@ def validate_task(task):
         raise ValueError('transfer_waypoints must be a list of finite xyz positions in metres')
     if waypoints.size == 0 and task.get('transfer_waypoints', []) != []:
         raise ValueError('transfer_waypoints must be an empty list or xyz positions')
+    if 'curve_transfer' in task and not isinstance(task['curve_transfer'], dict):
+        raise ValueError('curve_transfer must be an object')
     obstacles = task.get('obstacles', [])
     if not isinstance(obstacles, list):
         raise ValueError('obstacles must be a list of boxes')
@@ -93,6 +95,8 @@ def is_transport_phase(name):
 
 def plan_task(task=None, order=5):
     task = load_task() if task is None else validate_task(task)
+    if 'curve_transfer' in task and order != 5:
+        raise ValueError('Continuous transfer requires quintic approach segments')
     # Begin above the work plane with the tool already oriented for approach.
     # A direct joint-space swing from a horizontal tool would sweep the long
     # jaws through the workpiece before reaching the first waypoint.
@@ -106,6 +110,10 @@ def plan_task(task=None, order=5):
     def add(name, target, grip, minimum=0.4):
         nonlocal q, opening
         segment = Segment(q, target, order=order, velocity=task['max_velocity'], acceleration=task['max_acceleration'], min_duration=minimum)
+        if 'curve_transfer' in task:
+            from .continuous import limits4
+            jerk = limits4(task['curve_transfer'].get('jerk_limit', 8.), 'jerk')
+            segment.duration = max(segment.duration, float(np.max(np.cbrt(60*np.abs(segment.delta)/jerk)))*1.002)
         phases.append(Phase(name, segment, opening, grip))
         q, opening = np.array(target), grip
     pick, place = np.array(task['pick']), np.array(task['place'])
@@ -116,11 +124,20 @@ def plan_task(task=None, order=5):
         add(name, inverse(p, pitch, q), opening)
     add('CLOSE', q, task['gripper_closed'], task['dwell'])
     add('HOLD', q, opening, task['dwell'])
-    route = [('LIFT', pick+above)]
-    route += [(f'TRANSFER_VIA_{i+1}', np.asarray(p)) for i, p in enumerate(task.get('transfer_waypoints', []))]
-    route += [('TRANSFER', place+above), ('DESCEND_PLACE', place)]
-    for name, p in route:
-        add(name, inverse(p, pitch, q), opening)
+    add('LIFT', inverse(pick+above, pitch, q), opening)
+    if 'curve_transfer' in task:
+        from .continuous import build_curve
+        curve = build_curve(task)
+        if np.max(np.abs(q-curve.start)) > 1e-7:
+            raise ValueError('Curve initial IK branch differs from the pickup branch')
+        phases.append(Phase('TRANSFER', curve, opening, opening))
+        q = curve.end.copy()
+    else:
+        route = [(f'TRANSFER_VIA_{i+1}', np.asarray(p)) for i, p in enumerate(task.get('transfer_waypoints', []))]
+        route += [('TRANSFER', place+above)]
+        for name, p in route:
+            add(name, inverse(p, pitch, q), opening)
+    add('DESCEND_PLACE', inverse(place, pitch, q), opening)
     add('OPEN', q, task['gripper_open'], task['dwell'])
     add('RELEASE_SETTLE', q, opening, task['dwell'])
     add('RETRACT', inverse(place+above, pitch, q), opening)

@@ -57,6 +57,10 @@ class SimulationController(Node):
         self.command=self.sim.observation()['q']
         self.opening=self.sim.task['gripper_open']
         self.arm_busy=self.gripper_busy=False
+        self.active_curve = self.pending_curve = None
+        self.curve_start_time = 0.0
+        self.command_velocity = None
+        self.curve_action_peaks = []
         self.shutdown_requested=False
         self.shutdown_at=None
         self.phase='WAITING'
@@ -83,7 +87,14 @@ class SimulationController(Node):
 
     def accept_arm(self,goal):
         try:
-            validate_points(goal.trajectory.joint_names,goal.trajectory.points,self.sim.task['max_velocity'])
+            times, positions = validate_points(goal.trajectory.joint_names,goal.trajectory.points,self.sim.task['max_velocity'])
+            curve = None
+            if 'curve_transfer' in self.sim.task:
+                from .action_trajectory import ActionTrajectory
+                curve = ActionTrajectory(times, positions, [p.velocities for p in goal.trajectory.points],
+                                         [p.accelerations for p in goal.trajectory.points],
+                                         velocity=self.sim.task['max_velocity'], acceleration=self.sim.task['max_acceleration'],
+                                         jerk=self.sim.task['curve_transfer'].get('jerk_limit',8.))
         except (ValueError,TypeError) as e:
             self.get_logger().error(str(e))
             return GoalResponse.REJECT
@@ -91,6 +102,7 @@ class SimulationController(Node):
             if self.arm_busy:
                 return GoalResponse.REJECT
             self.arm_busy=True
+            self.pending_curve=curve
         return GoalResponse.ACCEPT
 
     def accept_gripper(self,goal):
@@ -107,16 +119,23 @@ class SimulationController(Node):
         with self.lock:
             start=self.sim.data.time
             self.accepted_goals+=1
+            self.active_curve = self.pending_curve
+            self.curve_start_time = start
+            if self.active_curve is not None:
+                self.curve_action_peaks.append(self.active_curve.peaks.tolist())
         result=FollowJointTrajectory.Result()
         try:
             while rclpy.ok():
                 with self.lock:
                     elapsed=self.sim.data.time-start
-                    self.command=np.array([np.interp(elapsed,times,positions[:,i]) for i in range(4)])
+                    if self.active_curve is None:
+                        self.command=np.array([np.interp(elapsed,times,positions[:,i]) for i in range(4)])
                     obs=self.sim.observation()
                 if handle.is_cancel_requested:
                     with self.lock:
                         self.command=obs['q']
+                        self.active_curve=None
+                        self.command_velocity=None
                     handle.canceled()
                     result.error_code=FollowJointTrajectory.Result.SUCCESSFUL
                     result.error_string='Canceled; controller holds current measured position'
@@ -128,6 +147,8 @@ class SimulationController(Node):
                 feedback.error.positions=(self.command-obs['q']).tolist()
                 handle.publish_feedback(feedback)
                 if elapsed>=times[-1]:
+                    with self.lock:
+                        self.command=positions[-1].copy()
                     break
                 time.sleep(.01)
             handle.succeed()
@@ -135,6 +156,8 @@ class SimulationController(Node):
             return result
         finally:
             with self.lock:
+                self.active_curve=None
+                self.command_velocity=None
                 self.arm_busy=False
 
     def execute_gripper(self,handle):
@@ -171,7 +194,12 @@ class SimulationController(Node):
 
     def tick(self):
         with self.lock:
-            self.sim.step(self.command,self.opening)
+            if self.active_curve is not None:
+                sample = self.active_curve.sample(self.sim.data.time-self.curve_start_time)
+                self.command = sample.position
+                use_ff = self.phase=='TRANSFER' and self.sim.task['curve_transfer'].get('velocity_feedforward',True)
+                self.command_velocity = sample.velocity if use_ff else None
+            self.sim.step(self.command,self.opening,velocity=self.command_velocity)
             pairs=collision_pairs(self.sim.model,self.sim.data,carried_object=True)
             self.unwanted_contact_steps+=int(any('workpiece_geom' not in pair for pair in pairs))
             self.object_obstacle_contact_steps+=int(any('workpiece_geom' in pair for pair in pairs))
@@ -230,6 +258,13 @@ class SimulationController(Node):
             'object_obstacle_contact_steps':self.object_obstacle_contact_steps,
             'success':bool(distance<.008 and pickup_lift>task['clearance']*.6 and not self.unwanted_contact_steps and not self.object_obstacle_contact_steps),
             'object_attachment_used':False}
+        if 'curve_transfer' in task:
+            from .continuous import build_curve
+            from .motion_experiment import analyze_trace
+            summary['curve_plan'] = build_curve(task).report()
+            summary['curve_tracking'] = analyze_trace(self.output/'trajectory.csv',build_curve(task))
+            summary['action_interpolation'] = 'Quintic Hermite q/v/a evaluated at every 2 ms simulation step'
+            summary['validated_action_peak_v_a_jerk'] = self.curve_action_peaks
         (self.output/'summary.json').write_text(json.dumps(summary,indent=2),encoding='utf-8')
         response.success=True;response.message=json.dumps(summary)
         return response
@@ -282,7 +317,7 @@ class TransferClient(Node):
                 grip_handle=self.wait(self.gripper.send_goal_async(g))
                 if not grip_handle.accepted:
                     raise RuntimeError('Gripper goal rejected')
-            result=self.wait(arm_handle.get_result_async())
+            result=self.wait(arm_handle.get_result_async(),timeout=max(60,phase.segment.duration*12+20))
             if result.result.error_code!=FollowJointTrajectory.Result.SUCCESSFUL:
                 raise RuntimeError(result.result.error_string)
             if grip_handle is not None:

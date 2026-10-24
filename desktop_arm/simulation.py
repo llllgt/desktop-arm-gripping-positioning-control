@@ -31,7 +31,7 @@ class Simulator:
         self.data.ctrl[:] = [*home, self.task['gripper_open']]
         mujoco.mj_forward(self.model, self.data)
 
-    def step(self, command, gripper, gravity_compensation=True):
+    def step(self, command, gripper, gravity_compensation=True, velocity=None):
         self.data.ctrl[:4] = command
         self.data.ctrl[4] = gripper
         self.data.qfrc_applied[:] = 0
@@ -40,6 +40,13 @@ class Simulator:
             # force/torque limits still constrain the COMPLETE control effort.
             gains = self.model.actuator_gainprm[:4, 0]
             self.data.ctrl[:4] += self.data.qfrc_bias[self.arm_dof] / gains
+        if velocity is not None:
+            velocity = np.asarray(velocity, dtype=float)
+            if velocity.shape != (4,) or not np.all(np.isfinite(velocity)):
+                raise ValueError('Expected four finite commanded joint velocities')
+            # MuJoCo position actuators use -kv*qdot. Adding kv*qdot_desired
+            # through the servo target gives PD tracking within the same torque cap.
+            self.data.ctrl[:4] += -self.model.actuator_biasprm[:4,2]*velocity/self.model.actuator_gainprm[:4,0]
         mujoco.mj_step(self.model, self.data)
 
     def observation(self):
@@ -80,15 +87,36 @@ def run(output, *, task=None, order=5, render=False, fingers=True, gravity_compe
     camera = mujoco.MjvCamera()
     camera.lookat[:] = [0.13, 0.01, 0.12]
     camera.distance, camera.azimuth, camera.elevation = 0.68, 135, -25
+    if 'curve_transfer' in task:
+        camera.lookat[:] = [.13, 0, .13]
+        camera.distance, camera.azimuth, camera.elevation = .5, 225, -30
     started = time.perf_counter()
     frame_stride = round(1/(30*sim.model.opt.timestep))
+    reference_path = None
+    if render and 'curve_transfer' in task:
+        from .continuous import build_curve
+        reference_path = build_curve(task).reference(np.linspace(0,1,180))[:,:3]
+    trail = []
+    def draw_path(points, color, width):
+        for a, b in zip(points, points[1:]):
+            if renderer.scene.ngeom >= renderer.scene.maxgeom:
+                break
+            if np.linalg.norm(b-a) < 1e-9:
+                continue
+            geom = renderer.scene.geoms[renderer.scene.ngeom]
+            mujoco.mjv_initGeom(geom, mujoco.mjtGeom.mjGEOM_LINE, np.zeros(3), np.zeros(3), np.eye(3).ravel(), np.array(color,dtype=np.float32))
+            mujoco.mjv_connector(geom, mujoco.mjtGeom.mjGEOM_LINE, width, a, b)
+            renderer.scene.ngeom += 1
     step_count = 0
     try:
         for phase in phases:
             n = int(np.ceil(phase.segment.duration / sim.model.opt.timestep))
             for i in range(n + 1):
                 command, opening = phase.command(min(i*sim.model.opt.timestep, phase.segment.duration))
-                sim.step(command.position, opening, gravity_compensation)
+                feedforward = (phase.name == 'TRANSFER' and 'curve_transfer' in task and
+                               task['curve_transfer'].get('velocity_feedforward', True))
+                sim.step(command.position, opening, gravity_compensation,
+                         velocity=command.velocity if feedforward else None)
                 obs = sim.observation()
                 peak_torque = np.maximum(peak_torque, np.abs(sim.data.qfrc_actuator[sim.arm_dof]))
                 peak_velocity = np.maximum(peak_velocity, np.abs(obs['dq']))
@@ -129,6 +157,9 @@ def run(output, *, task=None, order=5, render=False, fingers=True, gravity_compe
                     row = {'time':float(sim.data.time), 'phase':phase.name, 'gripper_command':opening, 'pad_contacts':contacts, 'unwanted_contacts':bad_contacts,
                            'left_normal_force_n':normal_forces['left'], 'right_normal_force_n':normal_forces['right']}
                     for j in range(4):
+                        row[f'dq{j+1}_command'] = command.velocity[j]
+                        row[f'ddq{j+1}_command'] = command.acceleration[j]
+                        row[f'jerk{j+1}_command'] = command.jerk[j] if hasattr(command, 'jerk') else None
                         row.update({f'q{j+1}_command':command.position[j], f'q{j+1}':obs['q'][j], f'dq{j+1}':obs['dq'][j], f'tau{j+1}':sim.data.qfrc_actuator[sim.arm_dof[j]] + sim.data.qfrc_applied[sim.arm_dof[j]]})
                     for k, axis in enumerate('xyz'):
                         row['tcp_'+axis] = obs['tcp'][k]
@@ -137,11 +168,16 @@ def run(output, *, task=None, order=5, render=False, fingers=True, gravity_compe
                     rows.append(row)
                 if renderer is not None and step_count % frame_stride == 0:
                     renderer.update_scene(sim.data, camera=camera)
+                    if reference_path is not None:
+                        draw_path(reference_path, [.2,.8,1, .65], 2)
+                        if phase.name == 'TRANSFER':
+                            trail.append(obs['tcp'].copy())
+                        draw_path(trail, [1,.65,.1,1], 3)
                     frame = renderer.render().copy()
                     writer.append_data(frame)
                     if step_count % (frame_stride*3) == 0:
                         frames.append(frame[::2,::2])
-                    if preview is None and phase.name == 'TRANSFER':
+                    if preview is None and phase.name == 'TRANSFER' and (reference_path is None or i >= n//2):
                         preview = frame
                 step_count += 1
     finally:
@@ -172,7 +208,7 @@ def run(output, *, task=None, order=5, render=False, fingers=True, gravity_compe
         reasons.append('object_obstacle_collision')
     if measure_clearance and minimum_gap<0:
         reasons.append('obstacle_clearance_violation')
-    summary = {'engine':'MuJoCo '+mujoco.__version__, 'model_revision':'multi-task-contact-v3', 'order':order, 'fingers':fingers,
+    summary = {'engine':'MuJoCo '+mujoco.__version__, 'model_revision':'continuous-transfer-v1' if 'curve_transfer' in task else 'multi-task-contact-v3', 'order':order, 'fingers':fingers,
         'gravity_compensation':gravity_compensation, 'simulation_seconds':float(sim.data.time),
         'wall_seconds':time.perf_counter()-started, 'samples':len(rows),
         'joint_rmse_rad':np.sqrt(np.mean((actual-target)**2,axis=0)).tolist(),

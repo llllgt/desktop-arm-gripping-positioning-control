@@ -20,7 +20,7 @@ def check(output=None, config=None):
     def goal(seconds=1):
         g=FollowJointTrajectory.Goal();g.trajectory.joint_names=list(JOINT_NAMES)
         for sec in (0,seconds):
-            p=JointTrajectoryPoint();p.positions=q;p.time_from_start=Duration(sec=sec)
+            p=JointTrajectoryPoint();p.positions=q;p.velocities=[0.]*4;p.accelerations=[0.]*4;p.time_from_start=Duration(sec=sec)
             g.trajectory.points.append(p)
         return g
     g=goal()

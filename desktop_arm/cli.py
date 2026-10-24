@@ -29,6 +29,10 @@ def main():
     contact.add_argument('--config', type=Path)
     contact.add_argument('--output', type=Path, required=True)
     contact.add_argument('--render', action='store_true')
+    motion = sub.add_parser('motion', help='Execute a continuous pose curve with v/a/jerk limits')
+    motion.add_argument('--config', type=Path, required=True)
+    motion.add_argument('--output', type=Path, required=True)
+    motion.add_argument('--render', action='store_true')
     args = parser.parse_args()
     if args.command == 'contact':
         from .contact_process import run_contact
@@ -47,7 +51,16 @@ def main():
         task = load_task(args.config)
     except (ValueError, OSError) as error:
         parser.error(str(error))
-    if args.command == 'plan':
+    if args.command == 'motion':
+        from .motion_experiment import run_motion
+        try:
+            report = run_motion(args.output, task, render=args.render)
+        except (ValueError, OSError) as error:
+            parser.error(str(error))
+        print(json.dumps(report, indent=2))
+        if not report['success']:
+            parser.exit(2)
+    elif args.command == 'plan':
         from .planning import run
         if args.render and not args.execute:
             parser.error('--render requires --execute')

@@ -34,7 +34,7 @@ with (output/'controller.log').open('w',encoding='utf-8') as log:
         (output/'action_checks.log').write_text((checks.stdout+'\n'+checks.stderr).rstrip()+'\n',encoding='utf-8')
         if checks.returncode:
             raise RuntimeError('ROS action validation failed; see action_checks.log')
-        client=subprocess.run([sys.executable,'-m','desktop_arm.ros_nodes','task',*config_args],cwd=ROOT,env=env,capture_output=True,text=True,encoding='utf-8',errors='replace',timeout=180)
+        client=subprocess.run([sys.executable,'-m','desktop_arm.ros_nodes','task',*config_args],cwd=ROOT,env=env,capture_output=True,text=True,encoding='utf-8',errors='replace',timeout=max(180,report['planned_duration_s']*12+90))
         (output/'task.log').write_text(client.stdout+'\n'+client.stderr,encoding='utf-8')
         print(client.stdout,flush=True)
         print(client.stderr,flush=True)

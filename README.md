@@ -2,9 +2,11 @@
 
 [![Tests](https://github.com/llllgt/desktop-arm-gripping-positioning-control/actions/workflows/tests.yml/badge.svg)](https://github.com/llllgt/desktop-arm-gripping-positioning-control/actions/workflows/tests.yml)
 
-基于 OpenMANIPULATOR-X 的工件搬运与恒力接触仿真。机械部分设计了夹指背板、TPU 接触垫和定位托座；控制部分实现四轴正逆运动学、关节轨迹和 ROS 2 action 接口。工件通过重力与摩擦接触运动，夹取、抬升、转移和放置过程由 MuJoCo 仿真。接触作业使用独立的弹簧探头模型，研究工件高度误差、弹簧刚度和力反馈对表面扫描的影响。
+基于 OpenMANIPULATOR-X 的工件搬运与恒力接触仿真。机械部分设计了夹指背板、TPU 接触垫和定位托座；控制部分实现四轴正逆运动学、连续位姿样条、速度/加速度/jerk 时间缩放和 ROS 2 action 接口。工件通过重力与摩擦接触运动，夹取、抬升、转移和放置过程由 MuJoCo 仿真。接触作业使用独立的弹簧探头模型，研究工件高度误差、弹簧刚度和力反馈对表面扫描的影响。
 
-![工件搬运仿真](results/native/demo.gif)
+![夹持工件沿空间连续曲线运动](results/continuous-motion/demo.gif)
+
+蓝色为参考曲线，橙色为已执行的末端路径。工件通过夹指摩擦接触运动。基础搬运演示保留在 [原始记录](results/native/demo.gif)。
 
 ## 机械设计
 
@@ -22,6 +24,28 @@
 - ROS 2 任务节点通过 `FollowJointTrajectory` 和 `GripperCommand` 驱动仿真控制节点，并接收关节与位姿反馈。
 - 执行前可检查任务参数、目标可达性及采样路径上的托座/地面相交。检查范围见 [工况评估](docs/工况评估.md)。
 - 任务可指定不同高度的托座、固定隔挡和转移途经点；各段仍使用受速度、加速度约束的关节轨迹。
+
+## 连续轨迹控制
+
+转移阶段支持空间八字、升高螺旋和多拐弯样条，位置与工具径向俯仰同步变化。输入 8–100 个 `[x, y, z, pitch]` 位姿点，生成七次样条并逐点求解连续的逆运动学分支；中间途经点不要求停下。该机械臂仍为四自由度，不能独立指定任意六维姿态。
+
+关节位置、速度、加速度和 jerk 的极值通过分段多项式驻点与端点计算，再统一调整运动时长。默认限值为 0.8 rad/s、1.5 rad/s²、8 rad/s³。执行时在原位置伺服上加入速度前馈，驱动力矩仍限制为 ±2 N·m。
+
+![三种复杂曲线的参考路径与实际执行路径](results/continuous-motion/spatial_paths.png)
+
+| 轨迹 | 位姿点数 | 逐点停走转移时间 / s | 连续转移时间 / s | 连续运动跟踪 RMS，关闭 → 开启速度前馈 / mm |
+|---|---:|---:|---:|---:|
+| 空间八字 | 19 | 18.139 | 12.567 | 1.843 → 0.134 |
+| 升高螺旋 | 23 | 19.446 | 15.416 | 1.188 → 0.128 |
+| 多拐弯样条 | 11 | 11.689 | 8.717 | 2.346 → 0.168 |
+
+三组均在仿真中夹持 30 g 工件完成搬运。表中的跟踪误差比较同一时刻的指令和实际 TCP，限于转移阶段；开启前馈后的最终放置偏差分别为 0.747、0.335、0.623 mm。逐点基线同样满足速度、加速度和 jerk 限值，但它走的是途经点之间的关节直线，几何路径与连续样条不同。
+
+![运动时间、关节速度、jerk 和跟踪误差对照](results/continuous-motion/motion_comparison.png)
+
+另做了参数分配和 jerk 限值对照。多拐弯轨迹的 jerk 上限从 8 降到 2 rad/s³ 后，转移时间由 8.717 s 增至 12.714 s；升到 30 rad/s³ 后时间未缩短，因为加速度约束仍起作用。16 个配置中有 14 个执行并完成搬运，另 2 个因路径相交或逆解检查失败而拒绝执行。
+
+ROS 连续任务使用带位置、速度、加速度的五次 Hermite 插值，在每个 2 ms 仿真步计算指令。Windows 双进程多拐弯实验的跟踪 RMS 误差为 0.168 mm，放置偏差为 0.619 mm。七次原生样条与 ROS 五次插值的连续性区别、轮廓误差定义、失败工况及复现命令见 [连续轨迹说明](docs/连续轨迹控制.md)，完整数据见 [实验记录压缩包](results/continuous-motion/traces.zip)。
 
 ## 恒力接触作业
 
@@ -166,6 +190,8 @@ python3 -m venv .venv
 .venv\Scripts\python scripts/export_task_fixtures.py --config config/tasks/higher.json --output results/my-fixtures
 .venv\Scripts\python -m desktop_arm.cli plan --config config/planning/two_obstacles.json --output results/my-plan --execute
 .venv\Scripts\python scripts/planning_benchmark.py --output results/my-planning-benchmark
+.venv\Scripts\python -m desktop_arm.cli motion --config config/continuous/spatial_eight.json --output results/my-motion --render
+.venv\Scripts\python scripts/continuous_benchmark.py --output results/my-motion-benchmark
 .venv\Scripts\python -m desktop_arm.cli contact --config config/contact/tilted_surface.json --output results/my-contact --render
 .venv\Scripts\python scripts/contact_benchmark.py --output results/my-contact-benchmark
 .venv\Scripts\python -m desktop_arm.structure
@@ -175,7 +201,7 @@ ROS 2 的环境配置、接口和验证记录见 [ROS 运行说明](docs/ROS运�
 
 ## 测试
 
-自动测试共 66 项，覆盖运动学与独立模型核对、轨迹端点和约束、摩擦接触搬运、任务参数与路径检查，以及 CAD/URDF 质量惯量一致性和有限元校核。自动规划测试另检查段中碰撞、夹指开度包络、路径缩短后执行、加密采样验证、结果复现、受限网格失败和完整流程拒绝。接触作业测试检查力坐标与符号、弹簧静力平衡、传感器延迟、固定高度与力反馈对照、快速扫描失效及故障退让。GitHub Actions 分别在 Windows 和 Ubuntu 执行；ROS action 的非法目标拒绝、重叠目标拒绝和取消验证另有 [通信记录](results/ros2/action_checks.json)。
+自动测试共 79 项，覆盖运动学与独立模型核对、轨迹端点和约束、摩擦接触搬运、任务参数与路径检查，以及 CAD/URDF 质量惯量一致性和有限元校核。自动规划测试另检查段中碰撞、夹指开度包络、路径缩短后执行、加密采样验证、结果复现、受限网格失败和完整流程拒绝。连续轨迹测试检查导数、点间极值、逆解连续性、ROS 插值约束和带载跟踪。接触作业测试检查力坐标与符号、弹簧静力平衡、传感器延迟、固定高度与力反馈对照、快速扫描失效及故障退让。GitHub Actions 分别在 Windows 和 Ubuntu 执行；ROS action 的非法目标拒绝、重叠目标拒绝和取消验证另有 [通信记录](results/ros2/action_checks.json)。
 
 测量方法、轨迹对照和结构网格结果见 [实验记录](docs/实验记录.md)。
 

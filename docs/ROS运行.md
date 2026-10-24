@@ -99,3 +99,7 @@ python scripts/verify_ros.py --output results/ros2-run
 ## 恒力接触任务
 
 接触作业使用单独的 `desktop_arm.ros_contact` 节点，发布模拟力与关节状态，通过 Trigger 服务启动及停止退让。Windows 可用 `scripts/run_ros.ps1 -Contact` 运行独立观察进程验证，增加 `-StopDuringScan` 检查中途停止。参数、消息含义与测量记录见 [恒力接触作业](恒力接触作业.md#ros-2-接口)。
+
+## 连续曲线搬运
+
+配置包含 `curve_transfer` 时，action 服务使用带速度和加速度的五次 Hermite 插值，在每个仿真步更新指令并检查插值区间内部的限值。原位置插值接口继续支持原有任务。多拐弯曲线与原搬运均通过双进程验证，具体记录见 [连续轨迹控制](连续轨迹控制.md#ros-2-执行)。

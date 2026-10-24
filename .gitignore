@@ -17,3 +17,5 @@ results/structure/fea_fields.npz
 results/my-contact/
 results/my-contact-benchmark/
 results/my-probe-layout.png
+results/my-motion/
+results/my-motion-benchmark/

@@ -1,0 +1,4370 @@
+[
+  {
+    "name": "spatial_eight_stop",
+    "family": "spatial_eight",
+    "variant": "stop",
+    "task": {
+      "description": "spatial_eight continuous pose trajectory",
+      "pick": [
+        0.17,
+        -0.05,
+        0.065
+      ],
+      "place": [
+        0.17,
+        0.06,
+        0.065
+      ],
+      "pitch": 1.3,
+      "clearance": 0.04,
+      "workpiece_size": [
+        0.03,
+        0.024,
+        0.02
+      ],
+      "workpiece_mass": 0.03,
+      "gripper_open": 0.012,
+      "gripper_closed": -0.009,
+      "max_velocity": 0.8,
+      "max_acceleration": 1.5,
+      "dwell": 0.8,
+      "curve_transfer": {
+        "poses": [
+          [
+            0.17,
+            -0.05,
+            0.105,
+            1.3
+          ],
+          [
+            0.15,
+            0.0,
+            0.129,
+            1.18
+          ],
+          [
+            0.160332453,
+            0.026162951,
+            0.128391036,
+            1.218268343
+          ],
+          [
+            0.169091883,
+            0.037,
+            0.126656854,
+            1.250710678
+          ],
+          [
+            0.174944747,
+            0.026162951,
+            0.124061467,
+            1.272387953
+          ],
+          [
+            0.177,
+            0.0,
+            0.121,
+            1.28
+          ],
+          [
+            0.174944747,
+            -0.026162951,
+            0.117938533,
+            1.272387953
+          ],
+          [
+            0.169091883,
+            -0.037,
+            0.115343146,
+            1.250710678
+          ],
+          [
+            0.160332453,
+            -0.026162951,
+            0.113608964,
+            1.218268343
+          ],
+          [
+            0.15,
+            -0.0,
+            0.113,
+            1.18
+          ],
+          [
+            0.139667547,
+            0.026162951,
+            0.113608964,
+            1.141731657
+          ],
+          [
+            0.130908117,
+            0.037,
+            0.115343146,
+            1.109289322
+          ],
+          [
+            0.125055253,
+            0.026162951,
+            0.117938533,
+            1.087612047
+          ],
+          [
+            0.123,
+            0.0,
+            0.121,
+            1.08
+          ],
+          [
+            0.125055253,
+            -0.026162951,
+            0.124061467,
+            1.087612047
+          ],
+          [
+            0.130908117,
+            -0.037,
+            0.126656854,
+            1.109289322
+          ],
+          [
+            0.139667547,
+            -0.026162951,
+            0.128391036,
+            1.141731657
+          ],
+          [
+            0.15,
+            -0.0,
+            0.129,
+            1.18
+          ],
+          [
+            0.17,
+            0.06,
+            0.105,
+            1.3
+          ]
+        ],
+        "mode": "stop",
+        "jerk_limit": 8.0,
+        "ik_samples": 401,
+        "velocity_feedforward": true,
+        "parameterization": "chord"
+      }
+    },
+    "report": {
+      "plan": {
+        "mode": "stop",
+        "parameterization": "chord",
+        "transfer_duration_s": 18.139151921281993,
+        "via_poses": 19,
+        "interior_stops": 17,
+        "joint_spline_degree": 7,
+        "cartesian_fit_midpoint_error_mm": 2.444588472997114e-11,
+        "peak_velocity_rad_s": [
+          0.5876554036716145,
+          0.46377971041222654,
+          0.3230645422460318,
+          0.14513374087578235
+        ],
+        "peak_acceleration_rad_s2": [
+          1.494017952119713,
+          1.2210700614391687,
+          1.1237214105317817,
+          0.5794733535259514
+        ],
+        "peak_jerk_rad_s3": [
+          7.9521913619146405,
+          7.952191361914639,
+          7.95219136191464,
+          4.707142617909883
+        ],
+        "retiming": "Global duration scaling from polynomial extrema; not time-optimal",
+        "joint_limits_checked_between_knots": true
+      },
+      "velocity_feedforward": true,
+      "preflight": {
+        "feasible": true,
+        "sample_period_s": 0.02,
+        "samples": 1510,
+        "collisions": [],
+        "scope": "Sampled robot versus fixed scene and carried box versus obstacles; carried box assumes no slip relative to the pick pose. Excludes self collision and object/support contacts. Not a continuous or dynamic safety guarantee.",
+        "minimum_joint_margin_rad": 0.22977891522522476,
+        "maximum_position_jacobian_condition": 2.035671562026895,
+        "planned_duration_s": 29.92816879143274,
+        "phase_durations_s": {
+          "SETTLE": 0.8,
+          "APPROACH_PICK": 1.3223842819155485,
+          "DESCEND_PICK": 1.4149940178682336,
+          "CLOSE": 0.8,
+          "HOLD": 0.8,
+          "LIFT": 1.4149940178682336,
+          "TRANSFER": 18.139151921281993,
+          "DESCEND_PLACE": 1.418322276249366,
+          "OPEN": 0.8,
+          "RELEASE_SETTLE": 0.8,
+          "RETRACT": 1.418322276249366,
+          "FINISH": 0.8
+        }
+      },
+      "execution": {
+        "engine": "MuJoCo 3.15.0",
+        "model_revision": "continuous-transfer-v1",
+        "order": 5,
+        "fingers": true,
+        "gravity_compensation": true,
+        "simulation_seconds": 29.959999999994274,
+        "wall_seconds": 4.9898025000002235,
+        "samples": 2996,
+        "joint_rmse_rad": [
+          0.0025838238871162527,
+          0.001125845625049738,
+          0.006038322165909228,
+          0.005182529233611259
+        ],
+        "tcp_rmse_mm": 0.7871473023872966,
+        "final_workpiece_xyz_m": [
+          0.17080576368037548,
+          0.06018539956467244,
+          0.06494635534942067
+        ],
+        "placement_error_mm": 0.8285564891597464,
+        "maximum_lift_mm": 63.74181298399375,
+        "pad_contact_samples": 2218,
+        "pickup_lift_mm": 39.88875458371083,
+        "unwanted_contact_samples": 0,
+        "unwanted_contact_steps": 0,
+        "object_obstacle_contact_steps": 0,
+        "success": true,
+        "failure_reasons": [],
+        "peak_joint_torque_nm": [
+          0.3198850748641089,
+          0.6819532633689,
+          0.63657082012881,
+          0.27518293909810154
+        ],
+        "peak_joint_velocity_rad_s": [
+          0.5913638254911666,
+          0.46693966876225007,
+          0.49808381123537165,
+          0.4383651725629358
+        ],
+        "requested_pad_friction": 1.2,
+        "measured_pad_friction_range": [
+          1.2,
+          1.2
+        ],
+        "metal_workpiece_contact_steps": 0,
+        "bilateral_transport_contact_fraction": 0.9946620913163664,
+        "transport_gripper_range_m": [
+          [
+            -0.008275059913378941,
+            -0.006521171797892073
+          ],
+          [
+            -0.0080415655142424,
+            -0.005965985980567142
+          ]
+        ],
+        "minimum_transport_obstacle_clearance_mm": null,
+        "closest_transport_obstacle_pair": null,
+        "object_attachment_used": false
+      },
+      "tracking": {
+        "samples": 1814,
+        "tcp_tracking_rms_mm": 0.13243515886123053,
+        "tcp_tracking_max_mm": 0.31276989832220387,
+        "actual_contour_rms_mm": 0.9346084356600177,
+        "command_contour_rms_mm": 0.9416665301311151,
+        "pitch_tracking_rms_deg": 0.036972185118384786,
+        "peak_actual_tcp_speed_mm_s": 111.62292940192373,
+        "peak_actual_joint_velocity_rad_s": [
+          0.5913523220179302,
+          0.46693033526021305,
+          0.32662634013343605,
+          0.14711514824261063
+        ],
+        "pitch_command_range_deg": [
+          61.879441878129796,
+          74.48451336550825
+        ],
+        "reference_extent_xyz_mm": [
+          54.22135373632411,
+          109.99999999999999,
+          25.112859366097766
+        ],
+        "contour_method": "Nearest of 20001 ideal spline points; geometric distance, not time-indexed error"
+      },
+      "success": true
+    }
+  },
+  {
+    "name": "spatial_eight_continuous",
+    "family": "spatial_eight",
+    "variant": "continuous",
+    "task": {
+      "description": "spatial_eight continuous pose trajectory",
+      "pick": [
+        0.17,
+        -0.05,
+        0.065
+      ],
+      "place": [
+        0.17,
+        0.06,
+        0.065
+      ],
+      "pitch": 1.3,
+      "clearance": 0.04,
+      "workpiece_size": [
+        0.03,
+        0.024,
+        0.02
+      ],
+      "workpiece_mass": 0.03,
+      "gripper_open": 0.012,
+      "gripper_closed": -0.009,
+      "max_velocity": 0.8,
+      "max_acceleration": 1.5,
+      "dwell": 0.8,
+      "curve_transfer": {
+        "poses": [
+          [
+            0.17,
+            -0.05,
+            0.105,
+            1.3
+          ],
+          [
+            0.15,
+            0.0,
+            0.129,
+            1.18
+          ],
+          [
+            0.160332453,
+            0.026162951,
+            0.128391036,
+            1.218268343
+          ],
+          [
+            0.169091883,
+            0.037,
+            0.126656854,
+            1.250710678
+          ],
+          [
+            0.174944747,
+            0.026162951,
+            0.124061467,
+            1.272387953
+          ],
+          [
+            0.177,
+            0.0,
+            0.121,
+            1.28
+          ],
+          [
+            0.174944747,
+            -0.026162951,
+            0.117938533,
+            1.272387953
+          ],
+          [
+            0.169091883,
+            -0.037,
+            0.115343146,
+            1.250710678
+          ],
+          [
+            0.160332453,
+            -0.026162951,
+            0.113608964,
+            1.218268343
+          ],
+          [
+            0.15,
+            -0.0,
+            0.113,
+            1.18
+          ],
+          [
+            0.139667547,
+            0.026162951,
+            0.113608964,
+            1.141731657
+          ],
+          [
+            0.130908117,
+            0.037,
+            0.115343146,
+            1.109289322
+          ],
+          [
+            0.125055253,
+            0.026162951,
+            0.117938533,
+            1.087612047
+          ],
+          [
+            0.123,
+            0.0,
+            0.121,
+            1.08
+          ],
+          [
+            0.125055253,
+            -0.026162951,
+            0.124061467,
+            1.087612047
+          ],
+          [
+            0.130908117,
+            -0.037,
+            0.126656854,
+            1.109289322
+          ],
+          [
+            0.139667547,
+            -0.026162951,
+            0.128391036,
+            1.141731657
+          ],
+          [
+            0.15,
+            -0.0,
+            0.129,
+            1.18
+          ],
+          [
+            0.17,
+            0.06,
+            0.105,
+            1.3
+          ]
+        ],
+        "mode": "continuous",
+        "jerk_limit": 8.0,
+        "ik_samples": 401,
+        "velocity_feedforward": false,
+        "parameterization": "chord"
+      }
+    },
+    "report": {
+      "plan": {
+        "mode": "continuous",
+        "parameterization": "chord",
+        "transfer_duration_s": 12.56686111940696,
+        "via_poses": 19,
+        "interior_stops": 0,
+        "joint_spline_degree": 7,
+        "cartesian_fit_midpoint_error_mm": 2.444588472997114e-11,
+        "peak_velocity_rad_s": [
+          0.42968905215945824,
+          0.32666943609876925,
+          0.38869029533028804,
+          0.17694501114050987
+        ],
+        "peak_acceleration_rad_s2": [
+          1.4940179521197128,
+          0.5728842528415028,
+          0.7289995940200227,
+          0.29260435277673563
+        ],
+        "peak_jerk_rad_s3": [
+          4.969441425221722,
+          2.2719591675102,
+          2.924472239724101,
+          1.2818828692894093
+        ],
+        "retiming": "Global duration scaling from polynomial extrema; not time-optimal",
+        "joint_limits_checked_between_knots": true
+      },
+      "velocity_feedforward": false,
+      "preflight": {
+        "feasible": true,
+        "sample_period_s": 0.02,
+        "samples": 1232,
+        "collisions": [],
+        "scope": "Sampled robot versus fixed scene and carried box versus obstacles; carried box assumes no slip relative to the pick pose. Excludes self collision and object/support contacts. Not a continuous or dynamic safety guarantee.",
+        "minimum_joint_margin_rad": 0.22969519896329804,
+        "maximum_position_jacobian_condition": 2.035671562026895,
+        "planned_duration_s": 24.355877989557708,
+        "phase_durations_s": {
+          "SETTLE": 0.8,
+          "APPROACH_PICK": 1.3223842819155485,
+          "DESCEND_PICK": 1.4149940178682336,
+          "CLOSE": 0.8,
+          "HOLD": 0.8,
+          "LIFT": 1.4149940178682336,
+          "TRANSFER": 12.56686111940696,
+          "DESCEND_PLACE": 1.418322276249366,
+          "OPEN": 0.8,
+          "RELEASE_SETTLE": 0.8,
+          "RETRACT": 1.418322276249366,
+          "FINISH": 0.8
+        }
+      },
+      "execution": {
+        "engine": "MuJoCo 3.15.0",
+        "model_revision": "continuous-transfer-v1",
+        "order": 5,
+        "fingers": true,
+        "gravity_compensation": true,
+        "simulation_seconds": 24.387999999997362,
+        "wall_seconds": 3.213537000003271,
+        "samples": 2439,
+        "joint_rmse_rad": [
+          0.008399565519413787,
+          0.005749822552489423,
+          0.008193533908785031,
+          0.006092375892444017
+        ],
+        "tcp_rmse_mm": 1.5806233671575596,
+        "final_workpiece_xyz_m": [
+          0.1707232928618013,
+          0.0601524712640253,
+          0.06494641303983292
+        ],
+        "placement_error_mm": 0.7411286073186707,
+        "maximum_lift_mm": 64.6477237979692,
+        "pad_contact_samples": 1660,
+        "pickup_lift_mm": 39.88875458371083,
+        "unwanted_contact_samples": 0,
+        "unwanted_contact_steps": 0,
+        "object_obstacle_contact_steps": 0,
+        "success": true,
+        "failure_reasons": [],
+        "peak_joint_torque_nm": [
+          0.3123120704609903,
+          0.5815678194268123,
+          0.63657082012881,
+          0.27517705140235194
+        ],
+        "peak_joint_velocity_rad_s": [
+          0.43266136244328346,
+          0.32552681212471846,
+          0.4980838122083051,
+          0.4383651725629358
+        ],
+        "requested_pad_friction": 1.2,
+        "measured_pad_friction_range": [
+          1.2,
+          1.2
+        ],
+        "metal_workpiece_contact_steps": 0,
+        "bilateral_transport_contact_fraction": 0.9955872809863725,
+        "transport_gripper_range_m": [
+          [
+            -0.008275081334138623,
+            -0.006521171797892073
+          ],
+          [
+            -0.008042324748420933,
+            -0.005965985980567142
+          ]
+        ],
+        "minimum_transport_obstacle_clearance_mm": null,
+        "closest_transport_obstacle_pair": null,
+        "object_attachment_used": false
+      },
+      "tracking": {
+        "samples": 1257,
+        "tcp_tracking_rms_mm": 1.8430250239256385,
+        "tcp_tracking_max_mm": 2.9609723008318523,
+        "actual_contour_rms_mm": 0.09745383150301984,
+        "command_contour_rms_mm": 0.007165671113725524,
+        "pitch_tracking_rms_deg": 0.17455473205094096,
+        "peak_actual_tcp_speed_mm_s": 63.5319462515901,
+        "peak_actual_joint_velocity_rad_s": [
+          0.42752812248925354,
+          0.3255165737526041,
+          0.3875264175663774,
+          0.1764708204231238
+        ],
+        "pitch_command_range_deg": [
+          61.860721172921586,
+          74.4845133668158
+        ],
+        "reference_extent_xyz_mm": [
+          54.22135373632411,
+          109.99999999999999,
+          25.112859366097766
+        ],
+        "contour_method": "Nearest of 20001 ideal spline points; geometric distance, not time-indexed error"
+      },
+      "success": true
+    }
+  },
+  {
+    "name": "spatial_eight_continuous_ff",
+    "family": "spatial_eight",
+    "variant": "continuous_ff",
+    "task": {
+      "description": "spatial_eight continuous pose trajectory",
+      "pick": [
+        0.17,
+        -0.05,
+        0.065
+      ],
+      "place": [
+        0.17,
+        0.06,
+        0.065
+      ],
+      "pitch": 1.3,
+      "clearance": 0.04,
+      "workpiece_size": [
+        0.03,
+        0.024,
+        0.02
+      ],
+      "workpiece_mass": 0.03,
+      "gripper_open": 0.012,
+      "gripper_closed": -0.009,
+      "max_velocity": 0.8,
+      "max_acceleration": 1.5,
+      "dwell": 0.8,
+      "curve_transfer": {
+        "poses": [
+          [
+            0.17,
+            -0.05,
+            0.105,
+            1.3
+          ],
+          [
+            0.15,
+            0.0,
+            0.129,
+            1.18
+          ],
+          [
+            0.160332453,
+            0.026162951,
+            0.128391036,
+            1.218268343
+          ],
+          [
+            0.169091883,
+            0.037,
+            0.126656854,
+            1.250710678
+          ],
+          [
+            0.174944747,
+            0.026162951,
+            0.124061467,
+            1.272387953
+          ],
+          [
+            0.177,
+            0.0,
+            0.121,
+            1.28
+          ],
+          [
+            0.174944747,
+            -0.026162951,
+            0.117938533,
+            1.272387953
+          ],
+          [
+            0.169091883,
+            -0.037,
+            0.115343146,
+            1.250710678
+          ],
+          [
+            0.160332453,
+            -0.026162951,
+            0.113608964,
+            1.218268343
+          ],
+          [
+            0.15,
+            -0.0,
+            0.113,
+            1.18
+          ],
+          [
+            0.139667547,
+            0.026162951,
+            0.113608964,
+            1.141731657
+          ],
+          [
+            0.130908117,
+            0.037,
+            0.115343146,
+            1.109289322
+          ],
+          [
+            0.125055253,
+            0.026162951,
+            0.117938533,
+            1.087612047
+          ],
+          [
+            0.123,
+            0.0,
+            0.121,
+            1.08
+          ],
+          [
+            0.125055253,
+            -0.026162951,
+            0.124061467,
+            1.087612047
+          ],
+          [
+            0.130908117,
+            -0.037,
+            0.126656854,
+            1.109289322
+          ],
+          [
+            0.139667547,
+            -0.026162951,
+            0.128391036,
+            1.141731657
+          ],
+          [
+            0.15,
+            -0.0,
+            0.129,
+            1.18
+          ],
+          [
+            0.17,
+            0.06,
+            0.105,
+            1.3
+          ]
+        ],
+        "mode": "continuous",
+        "jerk_limit": 8.0,
+        "ik_samples": 401,
+        "velocity_feedforward": true,
+        "parameterization": "chord"
+      }
+    },
+    "report": {
+      "plan": {
+        "mode": "continuous",
+        "parameterization": "chord",
+        "transfer_duration_s": 12.56686111940696,
+        "via_poses": 19,
+        "interior_stops": 0,
+        "joint_spline_degree": 7,
+        "cartesian_fit_midpoint_error_mm": 2.444588472997114e-11,
+        "peak_velocity_rad_s": [
+          0.42968905215945824,
+          0.32666943609876925,
+          0.38869029533028804,
+          0.17694501114050987
+        ],
+        "peak_acceleration_rad_s2": [
+          1.4940179521197128,
+          0.5728842528415028,
+          0.7289995940200227,
+          0.29260435277673563
+        ],
+        "peak_jerk_rad_s3": [
+          4.969441425221722,
+          2.2719591675102,
+          2.924472239724101,
+          1.2818828692894093
+        ],
+        "retiming": "Global duration scaling from polynomial extrema; not time-optimal",
+        "joint_limits_checked_between_knots": true
+      },
+      "velocity_feedforward": true,
+      "preflight": {
+        "feasible": true,
+        "sample_period_s": 0.02,
+        "samples": 1232,
+        "collisions": [],
+        "scope": "Sampled robot versus fixed scene and carried box versus obstacles; carried box assumes no slip relative to the pick pose. Excludes self collision and object/support contacts. Not a continuous or dynamic safety guarantee.",
+        "minimum_joint_margin_rad": 0.22969519896329804,
+        "maximum_position_jacobian_condition": 2.035671562026895,
+        "planned_duration_s": 24.355877989557708,
+        "phase_durations_s": {
+          "SETTLE": 0.8,
+          "APPROACH_PICK": 1.3223842819155485,
+          "DESCEND_PICK": 1.4149940178682336,
+          "CLOSE": 0.8,
+          "HOLD": 0.8,
+          "LIFT": 1.4149940178682336,
+          "TRANSFER": 12.56686111940696,
+          "DESCEND_PLACE": 1.418322276249366,
+          "OPEN": 0.8,
+          "RELEASE_SETTLE": 0.8,
+          "RETRACT": 1.418322276249366,
+          "FINISH": 0.8
+        }
+      },
+      "execution": {
+        "engine": "MuJoCo 3.15.0",
+        "model_revision": "continuous-transfer-v1",
+        "order": 5,
+        "fingers": true,
+        "gravity_compensation": true,
+        "simulation_seconds": 24.387999999997362,
+        "wall_seconds": 13.156916400010232,
+        "samples": 2439,
+        "joint_rmse_rad": [
+          0.002849479768451999,
+          0.0012131183347478536,
+          0.006687435479325711,
+          0.005740566586768955
+        ],
+        "tcp_rmse_mm": 0.8700703666535423,
+        "final_workpiece_xyz_m": [
+          0.17072837314094702,
+          0.0601558848504566,
+          0.06494640923800528
+        ],
+        "placement_error_mm": 0.7467928018038625,
+        "maximum_lift_mm": 64.66572903840299,
+        "pad_contact_samples": 1660,
+        "pickup_lift_mm": 39.88875458371083,
+        "unwanted_contact_samples": 0,
+        "unwanted_contact_steps": 0,
+        "object_obstacle_contact_steps": 0,
+        "success": true,
+        "failure_reasons": [],
+        "peak_joint_torque_nm": [
+          0.3146391100149941,
+          0.5828544805359428,
+          0.63657082012881,
+          0.27517874404941267
+        ],
+        "peak_joint_velocity_rad_s": [
+          0.43266136244328346,
+          0.327849856244014,
+          0.4980838125453646,
+          0.4383651725629355
+        ],
+        "requested_pad_friction": 1.2,
+        "measured_pad_friction_range": [
+          1.2,
+          1.2
+        ],
+        "metal_workpiece_contact_steps": 0,
+        "bilateral_transport_contact_fraction": 0.9955872809863725,
+        "transport_gripper_range_m": [
+          [
+            -0.00827511295551047,
+            -0.006521171797892073
+          ],
+          [
+            -0.008042303985815449,
+            -0.005965985980567142
+          ]
+        ],
+        "minimum_transport_obstacle_clearance_mm": null,
+        "closest_transport_obstacle_pair": null,
+        "object_attachment_used": false
+      },
+      "tracking": {
+        "samples": 1257,
+        "tcp_tracking_rms_mm": 0.13441411371714476,
+        "tcp_tracking_max_mm": 0.2079019136355574,
+        "actual_contour_rms_mm": 0.09017988784956504,
+        "command_contour_rms_mm": 0.007165671113725524,
+        "pitch_tracking_rms_deg": 0.036589527483323926,
+        "peak_actual_tcp_speed_mm_s": 63.827156971326545,
+        "peak_actual_joint_velocity_rad_s": [
+          0.4316595030205771,
+          0.3278478834635822,
+          0.3898308084878258,
+          0.17742534074338537
+        ],
+        "pitch_command_range_deg": [
+          61.860721172921586,
+          74.4845133668158
+        ],
+        "reference_extent_xyz_mm": [
+          54.22135373632411,
+          109.99999999999999,
+          25.112859366097766
+        ],
+        "contour_method": "Nearest of 20001 ideal spline points; geometric distance, not time-indexed error"
+      },
+      "success": true
+    }
+  },
+  {
+    "name": "rising_helix_stop",
+    "family": "rising_helix",
+    "variant": "stop",
+    "task": {
+      "description": "rising_helix continuous pose trajectory",
+      "pick": [
+        0.17,
+        -0.05,
+        0.065
+      ],
+      "place": [
+        0.17,
+        0.06,
+        0.065
+      ],
+      "pitch": 1.3,
+      "clearance": 0.04,
+      "workpiece_size": [
+        0.03,
+        0.024,
+        0.02
+      ],
+      "workpiece_mass": 0.03,
+      "gripper_open": 0.012,
+      "gripper_closed": -0.009,
+      "max_velocity": 0.8,
+      "max_acceleration": 1.5,
+      "dwell": 0.8,
+      "curve_transfer": {
+        "poses": [
+          [
+            0.17,
+            -0.05,
+            0.105,
+            1.3
+          ],
+          [
+            0.145,
+            -0.035,
+            0.108,
+            1.12
+          ],
+          [
+            0.156349762,
+            -0.031185228,
+            0.1092,
+            1.128719478
+          ],
+          [
+            0.165225425,
+            -0.020572484,
+            0.1104,
+            1.15297718
+          ],
+          [
+            0.169692209,
+            -0.005475206,
+            0.1116,
+            1.187485243
+          ],
+          [
+            0.168776413,
+            0.010815595,
+            0.1128,
+            1.22472136
+          ],
+          [
+            0.16267767,
+            0.024748737,
+            0.114,
+            1.256568542
+          ],
+          [
+            0.152725425,
+            0.033286978,
+            0.1152,
+            1.276084521
+          ],
+          [
+            0.141089138,
+            0.034569092,
+            0.1164,
+            1.279015067
+          ],
+          [
+            0.130305369,
+            0.028315595,
+            0.1176,
+            1.26472136
+          ],
+          [
+            0.122724837,
+            0.015889667,
+            0.1188,
+            1.23631924
+          ],
+          [
+            0.12,
+            0.0,
+            0.12,
+            1.2
+          ],
+          [
+            0.122724837,
+            -0.015889667,
+            0.1212,
+            1.16368076
+          ],
+          [
+            0.130305369,
+            -0.028315595,
+            0.1224,
+            1.13527864
+          ],
+          [
+            0.141089138,
+            -0.034569092,
+            0.1236,
+            1.120984933
+          ],
+          [
+            0.152725425,
+            -0.033286978,
+            0.1248,
+            1.123915479
+          ],
+          [
+            0.16267767,
+            -0.024748737,
+            0.126,
+            1.143431458
+          ],
+          [
+            0.168776413,
+            -0.010815595,
+            0.1272,
+            1.17527864
+          ],
+          [
+            0.169692209,
+            0.005475206,
+            0.1284,
+            1.212514757
+          ],
+          [
+            0.165225425,
+            0.020572484,
+            0.1296,
+            1.24702282
+          ],
+          [
+            0.156349762,
+            0.031185228,
+            0.1308,
+            1.271280522
+          ],
+          [
+            0.145,
+            0.035,
+            0.132,
+            1.28
+          ],
+          [
+            0.17,
+            0.06,
+            0.105,
+            1.3
+          ]
+        ],
+        "mode": "stop",
+        "jerk_limit": 8.0,
+        "ik_samples": 401,
+        "velocity_feedforward": true,
+        "parameterization": "chord"
+      }
+    },
+    "report": {
+      "plan": {
+        "mode": "stop",
+        "parameterization": "chord",
+        "transfer_duration_s": 19.446025759175306,
+        "via_poses": 23,
+        "interior_stops": 21,
+        "joint_spline_degree": 7,
+        "cartesian_fit_midpoint_error_mm": 7.61799458001901e-11,
+        "peak_velocity_rad_s": [
+          0.3181757397362724,
+          0.6003831594502524,
+          0.6097185900412933,
+          0.40386761468428545
+        ],
+        "peak_acceleration_rad_s2": [
+          1.1151865925937317,
+          1.4711429715605047,
+          1.4940179521197128,
+          1.256416186756063
+        ],
+        "peak_jerk_rad_s3": [
+          7.952191361914642,
+          7.952191361914642,
+          7.952191361914639,
+          7.95219136191464
+        ],
+        "retiming": "Global duration scaling from polynomial extrema; not time-optimal",
+        "joint_limits_checked_between_knots": true
+      },
+      "velocity_feedforward": true,
+      "preflight": {
+        "feasible": true,
+        "sample_period_s": 0.02,
+        "samples": 1576,
+        "collisions": [],
+        "scope": "Sampled robot versus fixed scene and carried box versus obstacles; carried box assumes no slip relative to the pick pose. Excludes self collision and object/support contacts. Not a continuous or dynamic safety guarantee.",
+        "minimum_joint_margin_rad": 0.15622730778565908,
+        "maximum_position_jacobian_condition": 2.035671562026895,
+        "planned_duration_s": 31.235042629326053,
+        "phase_durations_s": {
+          "SETTLE": 0.8,
+          "APPROACH_PICK": 1.3223842819155485,
+          "DESCEND_PICK": 1.4149940178682336,
+          "CLOSE": 0.8,
+          "HOLD": 0.8,
+          "LIFT": 1.4149940178682336,
+          "TRANSFER": 19.446025759175306,
+          "DESCEND_PLACE": 1.418322276249366,
+          "OPEN": 0.8,
+          "RELEASE_SETTLE": 0.8,
+          "RETRACT": 1.418322276249366,
+          "FINISH": 0.8
+        }
+      },
+      "execution": {
+        "engine": "MuJoCo 3.15.0",
+        "model_revision": "continuous-transfer-v1",
+        "order": 5,
+        "fingers": true,
+        "gravity_compensation": true,
+        "simulation_seconds": 31.26799999999355,
+        "wall_seconds": 5.326655899989419,
+        "samples": 3127,
+        "joint_rmse_rad": [
+          0.0025271346986675183,
+          0.001092773348038514,
+          0.005912814448016622,
+          0.005072454892862009
+        ],
+        "tcp_rmse_mm": 0.7706214034044412,
+        "final_workpiece_xyz_m": [
+          0.17040227385920617,
+          0.06002964554110188,
+          0.06494656822267741
+        ],
+        "placement_error_mm": 0.4068882779531633,
+        "maximum_lift_mm": 64.92458505612042,
+        "pad_contact_samples": 2350,
+        "pickup_lift_mm": 39.88875458371083,
+        "unwanted_contact_samples": 0,
+        "unwanted_contact_steps": 0,
+        "object_obstacle_contact_steps": 0,
+        "success": true,
+        "failure_reasons": [],
+        "peak_joint_torque_nm": [
+          0.25651028871500614,
+          0.7113532124295858,
+          0.63657082012881,
+          0.31828698766400976
+        ],
+        "peak_joint_velocity_rad_s": [
+          0.43266136244328346,
+          0.6040457917552218,
+          0.6131890796292433,
+          0.4383651725629354
+        ],
+        "requested_pad_friction": 1.2,
+        "measured_pad_friction_range": [
+          1.2,
+          1.2
+        ],
+        "metal_workpiece_contact_steps": 0,
+        "bilateral_transport_contact_fraction": 0.9947958725886048,
+        "transport_gripper_range_m": [
+          [
+            -0.008275097786984592,
+            -0.006521171797892073
+          ],
+          [
+            -0.00804251799083359,
+            -0.005965985980567142
+          ]
+        ],
+        "minimum_transport_obstacle_clearance_mm": null,
+        "closest_transport_obstacle_pair": null,
+        "object_attachment_used": false
+      },
+      "tracking": {
+        "samples": 1945,
+        "tcp_tracking_rms_mm": 0.12894559029878072,
+        "tcp_tracking_max_mm": 0.27161085552040126,
+        "actual_contour_rms_mm": 0.9458759407597311,
+        "command_contour_rms_mm": 0.9593496354912184,
+        "pitch_tracking_rms_deg": 0.026512864509250084,
+        "peak_actual_tcp_speed_mm_s": 89.27170519405942,
+        "peak_actual_joint_velocity_rad_s": [
+          0.32176666943276844,
+          0.6040427551816393,
+          0.6131863576439975,
+          0.40749815816749924
+        ],
+        "pitch_command_range_deg": [
+          64.17127305465259,
+          74.48451336551597
+        ],
+        "reference_extent_xyz_mm": [
+          50.545104383507415,
+          110.00000000000001,
+          27.186126143249904
+        ],
+        "contour_method": "Nearest of 20001 ideal spline points; geometric distance, not time-indexed error"
+      },
+      "success": true
+    }
+  },
+  {
+    "name": "rising_helix_continuous",
+    "family": "rising_helix",
+    "variant": "continuous",
+    "task": {
+      "description": "rising_helix continuous pose trajectory",
+      "pick": [
+        0.17,
+        -0.05,
+        0.065
+      ],
+      "place": [
+        0.17,
+        0.06,
+        0.065
+      ],
+      "pitch": 1.3,
+      "clearance": 0.04,
+      "workpiece_size": [
+        0.03,
+        0.024,
+        0.02
+      ],
+      "workpiece_mass": 0.03,
+      "gripper_open": 0.012,
+      "gripper_closed": -0.009,
+      "max_velocity": 0.8,
+      "max_acceleration": 1.5,
+      "dwell": 0.8,
+      "curve_transfer": {
+        "poses": [
+          [
+            0.17,
+            -0.05,
+            0.105,
+            1.3
+          ],
+          [
+            0.145,
+            -0.035,
+            0.108,
+            1.12
+          ],
+          [
+            0.156349762,
+            -0.031185228,
+            0.1092,
+            1.128719478
+          ],
+          [
+            0.165225425,
+            -0.020572484,
+            0.1104,
+            1.15297718
+          ],
+          [
+            0.169692209,
+            -0.005475206,
+            0.1116,
+            1.187485243
+          ],
+          [
+            0.168776413,
+            0.010815595,
+            0.1128,
+            1.22472136
+          ],
+          [
+            0.16267767,
+            0.024748737,
+            0.114,
+            1.256568542
+          ],
+          [
+            0.152725425,
+            0.033286978,
+            0.1152,
+            1.276084521
+          ],
+          [
+            0.141089138,
+            0.034569092,
+            0.1164,
+            1.279015067
+          ],
+          [
+            0.130305369,
+            0.028315595,
+            0.1176,
+            1.26472136
+          ],
+          [
+            0.122724837,
+            0.015889667,
+            0.1188,
+            1.23631924
+          ],
+          [
+            0.12,
+            0.0,
+            0.12,
+            1.2
+          ],
+          [
+            0.122724837,
+            -0.015889667,
+            0.1212,
+            1.16368076
+          ],
+          [
+            0.130305369,
+            -0.028315595,
+            0.1224,
+            1.13527864
+          ],
+          [
+            0.141089138,
+            -0.034569092,
+            0.1236,
+            1.120984933
+          ],
+          [
+            0.152725425,
+            -0.033286978,
+            0.1248,
+            1.123915479
+          ],
+          [
+            0.16267767,
+            -0.024748737,
+            0.126,
+            1.143431458
+          ],
+          [
+            0.168776413,
+            -0.010815595,
+            0.1272,
+            1.17527864
+          ],
+          [
+            0.169692209,
+            0.005475206,
+            0.1284,
+            1.212514757
+          ],
+          [
+            0.165225425,
+            0.020572484,
+            0.1296,
+            1.24702282
+          ],
+          [
+            0.156349762,
+            0.031185228,
+            0.1308,
+            1.271280522
+          ],
+          [
+            0.145,
+            0.035,
+            0.132,
+            1.28
+          ],
+          [
+            0.17,
+            0.06,
+            0.105,
+            1.3
+          ]
+        ],
+        "mode": "continuous",
+        "jerk_limit": 8.0,
+        "ik_samples": 401,
+        "velocity_feedforward": false,
+        "parameterization": "chord"
+      }
+    },
+    "report": {
+      "plan": {
+        "mode": "continuous",
+        "parameterization": "chord",
+        "transfer_duration_s": 15.415848683258174,
+        "via_poses": 23,
+        "interior_stops": 0,
+        "joint_spline_degree": 7,
+        "cartesian_fit_midpoint_error_mm": 7.61799458001901e-11,
+        "peak_velocity_rad_s": [
+          0.21591269412183545,
+          0.5558892350300557,
+          0.5642287692277062,
+          0.2587027340027629
+        ],
+        "peak_acceleration_rad_s2": [
+          0.2205851655477681,
+          1.4940179521197128,
+          1.3171882695415702,
+          0.6274425322337437
+        ],
+        "peak_jerk_rad_s3": [
+          0.3541729259801937,
+          5.210963892129278,
+          5.561307486450485,
+          2.692421805780018
+        ],
+        "retiming": "Global duration scaling from polynomial extrema; not time-optimal",
+        "joint_limits_checked_between_knots": true
+      },
+      "velocity_feedforward": false,
+      "preflight": {
+        "feasible": true,
+        "sample_period_s": 0.02,
+        "samples": 1374,
+        "collisions": [],
+        "scope": "Sampled robot versus fixed scene and carried box versus obstacles; carried box assumes no slip relative to the pick pose. Excludes self collision and object/support contacts. Not a continuous or dynamic safety guarantee.",
+        "minimum_joint_margin_rad": 0.15590937599523969,
+        "maximum_position_jacobian_condition": 2.035671562026895,
+        "planned_duration_s": 27.204865553408922,
+        "phase_durations_s": {
+          "SETTLE": 0.8,
+          "APPROACH_PICK": 1.3223842819155485,
+          "DESCEND_PICK": 1.4149940178682336,
+          "CLOSE": 0.8,
+          "HOLD": 0.8,
+          "LIFT": 1.4149940178682336,
+          "TRANSFER": 15.415848683258174,
+          "DESCEND_PLACE": 1.418322276249366,
+          "OPEN": 0.8,
+          "RELEASE_SETTLE": 0.8,
+          "RETRACT": 1.418322276249366,
+          "FINISH": 0.8
+        }
+      },
+      "execution": {
+        "engine": "MuJoCo 3.15.0",
+        "model_revision": "continuous-transfer-v1",
+        "order": 5,
+        "fingers": true,
+        "gravity_compensation": true,
+        "simulation_seconds": 27.235999999995784,
+        "wall_seconds": 3.6710259999963455,
+        "samples": 2724,
+        "joint_rmse_rad": [
+          0.005070559116342165,
+          0.005348380406448031,
+          0.007921649767127295,
+          0.006204118056796767
+        ],
+        "tcp_rmse_mm": 1.2120386211035368,
+        "final_workpiece_xyz_m": [
+          0.17033021465279133,
+          0.06000062178083041,
+          0.06494658834853012
+        ],
+        "placement_error_mm": 0.3345069626214539,
+        "maximum_lift_mm": 65.43664405209942,
+        "pad_contact_samples": 1946,
+        "pickup_lift_mm": 39.88875458371083,
+        "unwanted_contact_samples": 0,
+        "unwanted_contact_steps": 0,
+        "object_obstacle_contact_steps": 0,
+        "success": true,
+        "failure_reasons": [],
+        "peak_joint_torque_nm": [
+          0.24610396162909254,
+          0.6686156332322604,
+          0.6466195771448966,
+          0.2750414485183228
+        ],
+        "peak_joint_velocity_rad_s": [
+          0.43266136244328346,
+          0.5532332290250337,
+          0.5616387775069641,
+          0.4383651725629356
+        ],
+        "requested_pad_friction": 1.2,
+        "measured_pad_friction_range": [
+          1.2,
+          1.2
+        ],
+        "metal_workpiece_contact_steps": 0,
+        "bilateral_transport_contact_fraction": 0.9951801949830211,
+        "transport_gripper_range_m": [
+          [
+            -0.008275096561718112,
+            -0.006521171797892073
+          ],
+          [
+            -0.008042360806894931,
+            -0.005965985980567142
+          ]
+        ],
+        "minimum_transport_obstacle_clearance_mm": null,
+        "closest_transport_obstacle_pair": null,
+        "object_attachment_used": false
+      },
+      "tracking": {
+        "samples": 1542,
+        "tcp_tracking_rms_mm": 1.1882815406835874,
+        "tcp_tracking_max_mm": 2.147294521661218,
+        "actual_contour_rms_mm": 0.08108135586042431,
+        "command_contour_rms_mm": 0.005477711396294431,
+        "pitch_tracking_rms_deg": 0.17324232318026095,
+        "peak_actual_tcp_speed_mm_s": 45.54979679709754,
+        "peak_actual_joint_velocity_rad_s": [
+          0.21583534923823702,
+          0.5531974320730255,
+          0.5616280042343539,
+          0.25752752529791423
+        ],
+        "pitch_command_range_deg": [
+          63.691490863222,
+          74.48451336670743
+        ],
+        "reference_extent_xyz_mm": [
+          50.545104383507415,
+          110.00000000000001,
+          27.186126143249904
+        ],
+        "contour_method": "Nearest of 20001 ideal spline points; geometric distance, not time-indexed error"
+      },
+      "success": true
+    }
+  },
+  {
+    "name": "rising_helix_continuous_ff",
+    "family": "rising_helix",
+    "variant": "continuous_ff",
+    "task": {
+      "description": "rising_helix continuous pose trajectory",
+      "pick": [
+        0.17,
+        -0.05,
+        0.065
+      ],
+      "place": [
+        0.17,
+        0.06,
+        0.065
+      ],
+      "pitch": 1.3,
+      "clearance": 0.04,
+      "workpiece_size": [
+        0.03,
+        0.024,
+        0.02
+      ],
+      "workpiece_mass": 0.03,
+      "gripper_open": 0.012,
+      "gripper_closed": -0.009,
+      "max_velocity": 0.8,
+      "max_acceleration": 1.5,
+      "dwell": 0.8,
+      "curve_transfer": {
+        "poses": [
+          [
+            0.17,
+            -0.05,
+            0.105,
+            1.3
+          ],
+          [
+            0.145,
+            -0.035,
+            0.108,
+            1.12
+          ],
+          [
+            0.156349762,
+            -0.031185228,
+            0.1092,
+            1.128719478
+          ],
+          [
+            0.165225425,
+            -0.020572484,
+            0.1104,
+            1.15297718
+          ],
+          [
+            0.169692209,
+            -0.005475206,
+            0.1116,
+            1.187485243
+          ],
+          [
+            0.168776413,
+            0.010815595,
+            0.1128,
+            1.22472136
+          ],
+          [
+            0.16267767,
+            0.024748737,
+            0.114,
+            1.256568542
+          ],
+          [
+            0.152725425,
+            0.033286978,
+            0.1152,
+            1.276084521
+          ],
+          [
+            0.141089138,
+            0.034569092,
+            0.1164,
+            1.279015067
+          ],
+          [
+            0.130305369,
+            0.028315595,
+            0.1176,
+            1.26472136
+          ],
+          [
+            0.122724837,
+            0.015889667,
+            0.1188,
+            1.23631924
+          ],
+          [
+            0.12,
+            0.0,
+            0.12,
+            1.2
+          ],
+          [
+            0.122724837,
+            -0.015889667,
+            0.1212,
+            1.16368076
+          ],
+          [
+            0.130305369,
+            -0.028315595,
+            0.1224,
+            1.13527864
+          ],
+          [
+            0.141089138,
+            -0.034569092,
+            0.1236,
+            1.120984933
+          ],
+          [
+            0.152725425,
+            -0.033286978,
+            0.1248,
+            1.123915479
+          ],
+          [
+            0.16267767,
+            -0.024748737,
+            0.126,
+            1.143431458
+          ],
+          [
+            0.168776413,
+            -0.010815595,
+            0.1272,
+            1.17527864
+          ],
+          [
+            0.169692209,
+            0.005475206,
+            0.1284,
+            1.212514757
+          ],
+          [
+            0.165225425,
+            0.020572484,
+            0.1296,
+            1.24702282
+          ],
+          [
+            0.156349762,
+            0.031185228,
+            0.1308,
+            1.271280522
+          ],
+          [
+            0.145,
+            0.035,
+            0.132,
+            1.28
+          ],
+          [
+            0.17,
+            0.06,
+            0.105,
+            1.3
+          ]
+        ],
+        "mode": "continuous",
+        "jerk_limit": 8.0,
+        "ik_samples": 401,
+        "velocity_feedforward": true,
+        "parameterization": "chord"
+      }
+    },
+    "report": {
+      "plan": {
+        "mode": "continuous",
+        "parameterization": "chord",
+        "transfer_duration_s": 15.415848683258174,
+        "via_poses": 23,
+        "interior_stops": 0,
+        "joint_spline_degree": 7,
+        "cartesian_fit_midpoint_error_mm": 7.61799458001901e-11,
+        "peak_velocity_rad_s": [
+          0.21591269412183545,
+          0.5558892350300557,
+          0.5642287692277062,
+          0.2587027340027629
+        ],
+        "peak_acceleration_rad_s2": [
+          0.2205851655477681,
+          1.4940179521197128,
+          1.3171882695415702,
+          0.6274425322337437
+        ],
+        "peak_jerk_rad_s3": [
+          0.3541729259801937,
+          5.210963892129278,
+          5.561307486450485,
+          2.692421805780018
+        ],
+        "retiming": "Global duration scaling from polynomial extrema; not time-optimal",
+        "joint_limits_checked_between_knots": true
+      },
+      "velocity_feedforward": true,
+      "preflight": {
+        "feasible": true,
+        "sample_period_s": 0.02,
+        "samples": 1374,
+        "collisions": [],
+        "scope": "Sampled robot versus fixed scene and carried box versus obstacles; carried box assumes no slip relative to the pick pose. Excludes self collision and object/support contacts. Not a continuous or dynamic safety guarantee.",
+        "minimum_joint_margin_rad": 0.15590937599523969,
+        "maximum_position_jacobian_condition": 2.035671562026895,
+        "planned_duration_s": 27.204865553408922,
+        "phase_durations_s": {
+          "SETTLE": 0.8,
+          "APPROACH_PICK": 1.3223842819155485,
+          "DESCEND_PICK": 1.4149940178682336,
+          "CLOSE": 0.8,
+          "HOLD": 0.8,
+          "LIFT": 1.4149940178682336,
+          "TRANSFER": 15.415848683258174,
+          "DESCEND_PLACE": 1.418322276249366,
+          "OPEN": 0.8,
+          "RELEASE_SETTLE": 0.8,
+          "RETRACT": 1.418322276249366,
+          "FINISH": 0.8
+        }
+      },
+      "execution": {
+        "engine": "MuJoCo 3.15.0",
+        "model_revision": "continuous-transfer-v1",
+        "order": 5,
+        "fingers": true,
+        "gravity_compensation": true,
+        "simulation_seconds": 27.235999999995784,
+        "wall_seconds": 16.411344499967527,
+        "samples": 2724,
+        "joint_rmse_rad": [
+          0.0026967802766083475,
+          0.0011483519667869614,
+          0.006331609617164448,
+          0.005432180535551536
+        ],
+        "tcp_rmse_mm": 0.8240097013950571,
+        "final_workpiece_xyz_m": [
+          0.17033036080472902,
+          0.06000091752191829,
+          0.06494658831294396
+        ],
+        "placement_error_mm": 0.33465192583016806,
+        "maximum_lift_mm": 65.49722608915489,
+        "pad_contact_samples": 1946,
+        "pickup_lift_mm": 39.88875458371083,
+        "unwanted_contact_samples": 0,
+        "unwanted_contact_steps": 0,
+        "object_obstacle_contact_steps": 0,
+        "success": true,
+        "failure_reasons": [],
+        "peak_joint_torque_nm": [
+          0.24610396162909254,
+          0.6721476348907593,
+          0.6479608161784682,
+          0.27504133666786856
+        ],
+        "peak_joint_velocity_rad_s": [
+          0.43266136244328346,
+          0.5584890986719594,
+          0.5669076196223629,
+          0.4383651725629355
+        ],
+        "requested_pad_friction": 1.2,
+        "measured_pad_friction_range": [
+          1.2,
+          1.2
+        ],
+        "metal_workpiece_contact_steps": 0,
+        "bilateral_transport_contact_fraction": 0.9949611129367948,
+        "transport_gripper_range_m": [
+          [
+            -0.008275098614156106,
+            -0.006521171797892073
+          ],
+          [
+            -0.008042364839274752,
+            -0.005965985980567142
+          ]
+        ],
+        "minimum_transport_obstacle_clearance_mm": null,
+        "closest_transport_obstacle_pair": null,
+        "object_attachment_used": false
+      },
+      "tracking": {
+        "samples": 1542,
+        "tcp_tracking_rms_mm": 0.1281707638437834,
+        "tcp_tracking_max_mm": 0.21990072816729203,
+        "actual_contour_rms_mm": 0.0793128183298251,
+        "command_contour_rms_mm": 0.005477711396294431,
+        "pitch_tracking_rms_deg": 0.02975207548386289,
+        "peak_actual_tcp_speed_mm_s": 45.82154627095282,
+        "peak_actual_joint_velocity_rad_s": [
+          0.215988083125223,
+          0.5584890986719594,
+          0.566896801132098,
+          0.25988556760325027
+        ],
+        "pitch_command_range_deg": [
+          63.691490863222,
+          74.48451336670743
+        ],
+        "reference_extent_xyz_mm": [
+          50.545104383507415,
+          110.00000000000001,
+          27.186126143249904
+        ],
+        "contour_method": "Nearest of 20001 ideal spline points; geometric distance, not time-indexed error"
+      },
+      "success": true
+    }
+  },
+  {
+    "name": "multi_corner_stop",
+    "family": "multi_corner",
+    "variant": "stop",
+    "task": {
+      "description": "multi_corner continuous pose trajectory",
+      "pick": [
+        0.17,
+        -0.05,
+        0.065
+      ],
+      "place": [
+        0.17,
+        0.06,
+        0.065
+      ],
+      "pitch": 1.3,
+      "clearance": 0.04,
+      "workpiece_size": [
+        0.03,
+        0.024,
+        0.02
+      ],
+      "workpiece_mass": 0.03,
+      "gripper_open": 0.012,
+      "gripper_closed": -0.009,
+      "max_velocity": 0.8,
+      "max_acceleration": 1.5,
+      "dwell": 0.8,
+      "curve_transfer": {
+        "poses": [
+          [
+            0.17,
+            -0.05,
+            0.105,
+            1.3
+          ],
+          [
+            0.145,
+            -0.045,
+            0.12,
+            1.15
+          ],
+          [
+            0.12,
+            -0.025,
+            0.135,
+            1.15
+          ],
+          [
+            0.12,
+            0.025,
+            0.135,
+            1.15
+          ],
+          [
+            0.145,
+            0.04,
+            0.12,
+            1.15
+          ],
+          [
+            0.18,
+            0.025,
+            0.11,
+            1.15
+          ],
+          [
+            0.18,
+            -0.02,
+            0.11,
+            1.15
+          ],
+          [
+            0.155,
+            -0.03,
+            0.13,
+            1.15
+          ],
+          [
+            0.135,
+            0.0,
+            0.14,
+            1.15
+          ],
+          [
+            0.155,
+            0.03,
+            0.13,
+            1.15
+          ],
+          [
+            0.17,
+            0.06,
+            0.105,
+            1.3
+          ]
+        ],
+        "mode": "stop",
+        "jerk_limit": 8.0,
+        "ik_samples": 401,
+        "velocity_feedforward": true,
+        "parameterization": "uniform"
+      }
+    },
+    "report": {
+      "plan": {
+        "mode": "stop",
+        "parameterization": "uniform",
+        "transfer_duration_s": 11.68889992128183,
+        "via_poses": 11,
+        "interior_stops": 9,
+        "joint_spline_degree": 7,
+        "cartesian_fit_midpoint_error_mm": 2.3593973932988644e-12,
+        "peak_velocity_rad_s": [
+          0.6579541733372178,
+          0.5261191828306611,
+          0.3712441621971623,
+          0.37873443559311093
+        ],
+        "peak_acceleration_rad_s2": [
+          1.4940179521197128,
+          1.4340228669555262,
+          1.0118859665031994,
+          1.2166941090326155
+        ],
+        "peak_jerk_rad_s3": [
+          7.952191361914641,
+          7.9521913619146405,
+          5.6112848877736505,
+          7.95219136191464
+        ],
+        "retiming": "Global duration scaling from polynomial extrema; not time-optimal",
+        "joint_limits_checked_between_knots": true
+      },
+      "velocity_feedforward": true,
+      "preflight": {
+        "feasible": true,
+        "sample_period_s": 0.02,
+        "samples": 1188,
+        "collisions": [],
+        "scope": "Sampled robot versus fixed scene and carried box versus obstacles; carried box assumes no slip relative to the pick pose. Excludes self collision and object/support contacts. Not a continuous or dynamic safety guarantee.",
+        "minimum_joint_margin_rad": 0.22869001464273442,
+        "maximum_position_jacobian_condition": 2.035671562026895,
+        "planned_duration_s": 23.477916791432577,
+        "phase_durations_s": {
+          "SETTLE": 0.8,
+          "APPROACH_PICK": 1.3223842819155485,
+          "DESCEND_PICK": 1.4149940178682336,
+          "CLOSE": 0.8,
+          "HOLD": 0.8,
+          "LIFT": 1.4149940178682336,
+          "TRANSFER": 11.68889992128183,
+          "DESCEND_PLACE": 1.418322276249366,
+          "OPEN": 0.8,
+          "RELEASE_SETTLE": 0.8,
+          "RETRACT": 1.418322276249366,
+          "FINISH": 0.8
+        }
+      },
+      "execution": {
+        "engine": "MuJoCo 3.15.0",
+        "model_revision": "continuous-transfer-v1",
+        "order": 5,
+        "fingers": true,
+        "gravity_compensation": true,
+        "simulation_seconds": 23.50999999999785,
+        "wall_seconds": 3.8686450999812223,
+        "samples": 2351,
+        "joint_rmse_rad": [
+          0.002908167781478671,
+          0.0012497247776459075,
+          0.006811401059377796,
+          0.005846361811093104
+        ],
+        "tcp_rmse_mm": 0.8887252279024707,
+        "final_workpiece_xyz_m": [
+          0.1705956273180608,
+          0.060105072329789684,
+          0.06494648725377512
+        ],
+        "placement_error_mm": 0.6071867180005235,
+        "maximum_lift_mm": 73.67375760620567,
+        "pad_contact_samples": 1572,
+        "pickup_lift_mm": 39.88875458371083,
+        "unwanted_contact_samples": 0,
+        "unwanted_contact_steps": 0,
+        "object_obstacle_contact_steps": 0,
+        "success": true,
+        "failure_reasons": [],
+        "peak_joint_torque_nm": [
+          0.3204731971989929,
+          0.7092408484375063,
+          0.63657082012881,
+          0.3241394255140335
+        ],
+        "peak_joint_velocity_rad_s": [
+          0.6612231251113362,
+          0.5301231210595565,
+          0.4980838062634202,
+          0.4383651725629358
+        ],
+        "requested_pad_friction": 1.2,
+        "measured_pad_friction_range": [
+          1.2,
+          1.2
+        ],
+        "metal_workpiece_contact_steps": 0,
+        "bilateral_transport_contact_fraction": 0.9957335535370218,
+        "transport_gripper_range_m": [
+          [
+            -0.008275414637730724,
+            -0.006521171797892073
+          ],
+          [
+            -0.008042758356765692,
+            -0.005965985980567142
+          ]
+        ],
+        "minimum_transport_obstacle_clearance_mm": null,
+        "closest_transport_obstacle_pair": null,
+        "object_attachment_used": false
+      },
+      "tracking": {
+        "samples": 1169,
+        "tcp_tracking_rms_mm": 0.1696265824532278,
+        "tcp_tracking_max_mm": 0.3462276281406359,
+        "actual_contour_rms_mm": 2.686430775350947,
+        "command_contour_rms_mm": 2.6980449325055584,
+        "pitch_tracking_rms_deg": 0.04267707932816349,
+        "peak_actual_tcp_speed_mm_s": 82.47195254302437,
+        "peak_actual_joint_velocity_rad_s": [
+          0.661186296680585,
+          0.5301098244810049,
+          0.373766854574589,
+          0.38232508467538745
+        ],
+        "pitch_command_range_deg": [
+          65.89014644004466,
+          74.48451336510539
+        ],
+        "reference_extent_xyz_mm": [
+          65.25388116908181,
+          109.99999999999999,
+          39.47998585308179
+        ],
+        "contour_method": "Nearest of 20001 ideal spline points; geometric distance, not time-indexed error"
+      },
+      "success": true
+    }
+  },
+  {
+    "name": "multi_corner_continuous",
+    "family": "multi_corner",
+    "variant": "continuous",
+    "task": {
+      "description": "multi_corner continuous pose trajectory",
+      "pick": [
+        0.17,
+        -0.05,
+        0.065
+      ],
+      "place": [
+        0.17,
+        0.06,
+        0.065
+      ],
+      "pitch": 1.3,
+      "clearance": 0.04,
+      "workpiece_size": [
+        0.03,
+        0.024,
+        0.02
+      ],
+      "workpiece_mass": 0.03,
+      "gripper_open": 0.012,
+      "gripper_closed": -0.009,
+      "max_velocity": 0.8,
+      "max_acceleration": 1.5,
+      "dwell": 0.8,
+      "curve_transfer": {
+        "poses": [
+          [
+            0.17,
+            -0.05,
+            0.105,
+            1.3
+          ],
+          [
+            0.145,
+            -0.045,
+            0.12,
+            1.15
+          ],
+          [
+            0.12,
+            -0.025,
+            0.135,
+            1.15
+          ],
+          [
+            0.12,
+            0.025,
+            0.135,
+            1.15
+          ],
+          [
+            0.145,
+            0.04,
+            0.12,
+            1.15
+          ],
+          [
+            0.18,
+            0.025,
+            0.11,
+            1.15
+          ],
+          [
+            0.18,
+            -0.02,
+            0.11,
+            1.15
+          ],
+          [
+            0.155,
+            -0.03,
+            0.13,
+            1.15
+          ],
+          [
+            0.135,
+            0.0,
+            0.14,
+            1.15
+          ],
+          [
+            0.155,
+            0.03,
+            0.13,
+            1.15
+          ],
+          [
+            0.17,
+            0.06,
+            0.105,
+            1.3
+          ]
+        ],
+        "mode": "continuous",
+        "jerk_limit": 8.0,
+        "ik_samples": 401,
+        "velocity_feedforward": false,
+        "parameterization": "uniform"
+      }
+    },
+    "report": {
+      "plan": {
+        "mode": "continuous",
+        "parameterization": "uniform",
+        "transfer_duration_s": 8.716561094066947,
+        "via_poses": 11,
+        "interior_stops": 0,
+        "joint_spline_degree": 7,
+        "cartesian_fit_midpoint_error_mm": 2.3593973932988644e-12,
+        "peak_velocity_rad_s": [
+          0.5903492629419758,
+          0.651580041562596,
+          0.431861889015855,
+          0.2778769666536427
+        ],
+        "peak_acceleration_rad_s2": [
+          0.9088340779727621,
+          1.4940179521197126,
+          1.1693612112321168,
+          0.7827528577379014
+        ],
+        "peak_jerk_rad_s3": [
+          2.9196760683398786,
+          6.169727267136879,
+          6.019854257706631,
+          3.543822637223131
+        ],
+        "retiming": "Global duration scaling from polynomial extrema; not time-optimal",
+        "joint_limits_checked_between_knots": true
+      },
+      "velocity_feedforward": false,
+      "preflight": {
+        "feasible": true,
+        "sample_period_s": 0.02,
+        "samples": 1039,
+        "collisions": [],
+        "scope": "Sampled robot versus fixed scene and carried box versus obstacles; carried box assumes no slip relative to the pick pose. Excludes self collision and object/support contacts. Not a continuous or dynamic safety guarantee.",
+        "minimum_joint_margin_rad": 0.1901838449603972,
+        "maximum_position_jacobian_condition": 2.035671562026895,
+        "planned_duration_s": 20.505577964217693,
+        "phase_durations_s": {
+          "SETTLE": 0.8,
+          "APPROACH_PICK": 1.3223842819155485,
+          "DESCEND_PICK": 1.4149940178682336,
+          "CLOSE": 0.8,
+          "HOLD": 0.8,
+          "LIFT": 1.4149940178682336,
+          "TRANSFER": 8.716561094066947,
+          "DESCEND_PLACE": 1.418322276249366,
+          "OPEN": 0.8,
+          "RELEASE_SETTLE": 0.8,
+          "RETRACT": 1.418322276249366,
+          "FINISH": 0.8
+        }
+      },
+      "execution": {
+        "engine": "MuJoCo 3.15.0",
+        "model_revision": "continuous-transfer-v1",
+        "order": 5,
+        "fingers": true,
+        "gravity_compensation": true,
+        "simulation_seconds": 20.537999999999496,
+        "wall_seconds": 2.742735800042283,
+        "samples": 2054,
+        "joint_rmse_rad": [
+          0.008090051516594397,
+          0.007241745342616808,
+          0.008167110372966075,
+          0.007610179898039012
+        ],
+        "tcp_rmse_mm": 1.7957100801957198,
+        "final_workpiece_xyz_m": [
+          0.17060772205977212,
+          0.0601082864514243,
+          0.06494648123220269
+        ],
+        "placement_error_mm": 0.6196098094787273,
+        "maximum_lift_mm": 78.29095976007255,
+        "pad_contact_samples": 1276,
+        "pickup_lift_mm": 39.88875458371083,
+        "unwanted_contact_samples": 0,
+        "unwanted_contact_steps": 0,
+        "object_obstacle_contact_steps": 0,
+        "success": true,
+        "failure_reasons": [],
+        "peak_joint_torque_nm": [
+          0.24610396162909254,
+          0.7106664316745537,
+          0.63657082012881,
+          0.2751608493709341
+        ],
+        "peak_joint_velocity_rad_s": [
+          0.5892070062126854,
+          0.6484671357108145,
+          0.4980838111428326,
+          0.4383651725629355
+        ],
+        "requested_pad_friction": 1.2,
+        "measured_pad_friction_range": [
+          1.2,
+          1.2
+        ],
+        "metal_workpiece_contact_steps": 0,
+        "bilateral_transport_contact_fraction": 0.9948096885813149,
+        "transport_gripper_range_m": [
+          [
+            -0.008275193270144868,
+            -0.006521171797892073
+          ],
+          [
+            -0.008042511591954644,
+            -0.005965985980567142
+          ]
+        ],
+        "minimum_transport_obstacle_clearance_mm": null,
+        "closest_transport_obstacle_pair": null,
+        "object_attachment_used": false
+      },
+      "tracking": {
+        "samples": 872,
+        "tcp_tracking_rms_mm": 2.346302656320537,
+        "tcp_tracking_max_mm": 4.398320596626895,
+        "actual_contour_rms_mm": 0.11340818704663913,
+        "command_contour_rms_mm": 0.006308658535561758,
+        "pitch_tracking_rms_deg": 0.32733970696305037,
+        "peak_actual_tcp_speed_mm_s": 95.07643132928692,
+        "peak_actual_joint_velocity_rad_s": [
+          0.5891696273981112,
+          0.6484657946662207,
+          0.42902333187352126,
+          0.27717399717004965
+        ],
+        "pitch_command_range_deg": [
+          62.447791433508954,
+          74.48451336552579
+        ],
+        "reference_extent_xyz_mm": [
+          65.25388116908181,
+          109.99999999999999,
+          39.47998585308179
+        ],
+        "contour_method": "Nearest of 20001 ideal spline points; geometric distance, not time-indexed error"
+      },
+      "success": true
+    }
+  },
+  {
+    "name": "multi_corner_continuous_ff",
+    "family": "multi_corner",
+    "variant": "continuous_ff",
+    "task": {
+      "description": "multi_corner continuous pose trajectory",
+      "pick": [
+        0.17,
+        -0.05,
+        0.065
+      ],
+      "place": [
+        0.17,
+        0.06,
+        0.065
+      ],
+      "pitch": 1.3,
+      "clearance": 0.04,
+      "workpiece_size": [
+        0.03,
+        0.024,
+        0.02
+      ],
+      "workpiece_mass": 0.03,
+      "gripper_open": 0.012,
+      "gripper_closed": -0.009,
+      "max_velocity": 0.8,
+      "max_acceleration": 1.5,
+      "dwell": 0.8,
+      "curve_transfer": {
+        "poses": [
+          [
+            0.17,
+            -0.05,
+            0.105,
+            1.3
+          ],
+          [
+            0.145,
+            -0.045,
+            0.12,
+            1.15
+          ],
+          [
+            0.12,
+            -0.025,
+            0.135,
+            1.15
+          ],
+          [
+            0.12,
+            0.025,
+            0.135,
+            1.15
+          ],
+          [
+            0.145,
+            0.04,
+            0.12,
+            1.15
+          ],
+          [
+            0.18,
+            0.025,
+            0.11,
+            1.15
+          ],
+          [
+            0.18,
+            -0.02,
+            0.11,
+            1.15
+          ],
+          [
+            0.155,
+            -0.03,
+            0.13,
+            1.15
+          ],
+          [
+            0.135,
+            0.0,
+            0.14,
+            1.15
+          ],
+          [
+            0.155,
+            0.03,
+            0.13,
+            1.15
+          ],
+          [
+            0.17,
+            0.06,
+            0.105,
+            1.3
+          ]
+        ],
+        "mode": "continuous",
+        "jerk_limit": 8.0,
+        "ik_samples": 401,
+        "velocity_feedforward": true,
+        "parameterization": "uniform"
+      }
+    },
+    "report": {
+      "plan": {
+        "mode": "continuous",
+        "parameterization": "uniform",
+        "transfer_duration_s": 8.716561094066947,
+        "via_poses": 11,
+        "interior_stops": 0,
+        "joint_spline_degree": 7,
+        "cartesian_fit_midpoint_error_mm": 2.3593973932988644e-12,
+        "peak_velocity_rad_s": [
+          0.5903492629419758,
+          0.651580041562596,
+          0.431861889015855,
+          0.2778769666536427
+        ],
+        "peak_acceleration_rad_s2": [
+          0.9088340779727621,
+          1.4940179521197126,
+          1.1693612112321168,
+          0.7827528577379014
+        ],
+        "peak_jerk_rad_s3": [
+          2.9196760683398786,
+          6.169727267136879,
+          6.019854257706631,
+          3.543822637223131
+        ],
+        "retiming": "Global duration scaling from polynomial extrema; not time-optimal",
+        "joint_limits_checked_between_knots": true
+      },
+      "velocity_feedforward": true,
+      "preflight": {
+        "feasible": true,
+        "sample_period_s": 0.02,
+        "samples": 1039,
+        "collisions": [],
+        "scope": "Sampled robot versus fixed scene and carried box versus obstacles; carried box assumes no slip relative to the pick pose. Excludes self collision and object/support contacts. Not a continuous or dynamic safety guarantee.",
+        "minimum_joint_margin_rad": 0.1901838449603972,
+        "maximum_position_jacobian_condition": 2.035671562026895,
+        "planned_duration_s": 20.505577964217693,
+        "phase_durations_s": {
+          "SETTLE": 0.8,
+          "APPROACH_PICK": 1.3223842819155485,
+          "DESCEND_PICK": 1.4149940178682336,
+          "CLOSE": 0.8,
+          "HOLD": 0.8,
+          "LIFT": 1.4149940178682336,
+          "TRANSFER": 8.716561094066947,
+          "DESCEND_PLACE": 1.418322276249366,
+          "OPEN": 0.8,
+          "RELEASE_SETTLE": 0.8,
+          "RETRACT": 1.418322276249366,
+          "FINISH": 0.8
+        }
+      },
+      "execution": {
+        "engine": "MuJoCo 3.15.0",
+        "model_revision": "continuous-transfer-v1",
+        "order": 5,
+        "fingers": true,
+        "gravity_compensation": true,
+        "simulation_seconds": 20.537999999999496,
+        "wall_seconds": 2.7617924999794923,
+        "samples": 2054,
+        "joint_rmse_rad": [
+          0.0031022487975428128,
+          0.0013226524318767378,
+          0.007285813441412954,
+          0.006252051563034888
+        ],
+        "tcp_rmse_mm": 0.9483385002958078,
+        "final_workpiece_xyz_m": [
+          0.17061101885942612,
+          0.0601113413247558,
+          0.06494647905711956
+        ],
+        "placement_error_mm": 0.6233822491052866,
+        "maximum_lift_mm": 78.3683251558068,
+        "pad_contact_samples": 1276,
+        "pickup_lift_mm": 39.88875458371083,
+        "unwanted_contact_samples": 0,
+        "unwanted_contact_steps": 0,
+        "object_obstacle_contact_steps": 0,
+        "success": true,
+        "failure_reasons": [],
+        "peak_joint_torque_nm": [
+          0.24610396162909254,
+          0.7157446574404105,
+          0.63657082012881,
+          0.2751619628325557
+        ],
+        "peak_joint_velocity_rad_s": [
+          0.5914522630539686,
+          0.6547959977059385,
+          0.49808381137383884,
+          0.4383651725629359
+        ],
+        "requested_pad_friction": 1.2,
+        "measured_pad_friction_range": [
+          1.2,
+          1.2
+        ],
+        "metal_workpiece_contact_steps": 0,
+        "bilateral_transport_contact_fraction": 0.9951557093425606,
+        "transport_gripper_range_m": [
+          [
+            -0.008275206475172681,
+            -0.006521171797892073
+          ],
+          [
+            -0.00804251042263886,
+            -0.005965985980567142
+          ]
+        ],
+        "minimum_transport_obstacle_clearance_mm": null,
+        "closest_transport_obstacle_pair": null,
+        "object_attachment_used": false
+      },
+      "tracking": {
+        "samples": 872,
+        "tcp_tracking_rms_mm": 0.16821588615700736,
+        "tcp_tracking_max_mm": 0.2659041047412461,
+        "actual_contour_rms_mm": 0.10926948416366199,
+        "command_contour_rms_mm": 0.006308658535561758,
+        "pitch_tracking_rms_deg": 0.04437703483075898,
+        "peak_actual_tcp_speed_mm_s": 95.92427862894213,
+        "peak_actual_joint_velocity_rad_s": [
+          0.5914522630539686,
+          0.6547644641381091,
+          0.43465066280861414,
+          0.2785653883772455
+        ],
+        "pitch_command_range_deg": [
+          62.447791433508954,
+          74.48451336552579
+        ],
+        "reference_extent_xyz_mm": [
+          65.25388116908181,
+          109.99999999999999,
+          39.47998585308179
+        ],
+        "contour_method": "Nearest of 20001 ideal spline points; geometric distance, not time-indexed error"
+      },
+      "success": true
+    }
+  },
+  {
+    "name": "spatial_eight_uniform",
+    "family": "parameterization",
+    "variant": "uniform",
+    "task": {
+      "description": "spatial_eight continuous pose trajectory",
+      "pick": [
+        0.17,
+        -0.05,
+        0.065
+      ],
+      "place": [
+        0.17,
+        0.06,
+        0.065
+      ],
+      "pitch": 1.3,
+      "clearance": 0.04,
+      "workpiece_size": [
+        0.03,
+        0.024,
+        0.02
+      ],
+      "workpiece_mass": 0.03,
+      "gripper_open": 0.012,
+      "gripper_closed": -0.009,
+      "max_velocity": 0.8,
+      "max_acceleration": 1.5,
+      "dwell": 0.8,
+      "curve_transfer": {
+        "poses": [
+          [
+            0.17,
+            -0.05,
+            0.105,
+            1.3
+          ],
+          [
+            0.15,
+            0.0,
+            0.129,
+            1.18
+          ],
+          [
+            0.160332453,
+            0.026162951,
+            0.128391036,
+            1.218268343
+          ],
+          [
+            0.169091883,
+            0.037,
+            0.126656854,
+            1.250710678
+          ],
+          [
+            0.174944747,
+            0.026162951,
+            0.124061467,
+            1.272387953
+          ],
+          [
+            0.177,
+            0.0,
+            0.121,
+            1.28
+          ],
+          [
+            0.174944747,
+            -0.026162951,
+            0.117938533,
+            1.272387953
+          ],
+          [
+            0.169091883,
+            -0.037,
+            0.115343146,
+            1.250710678
+          ],
+          [
+            0.160332453,
+            -0.026162951,
+            0.113608964,
+            1.218268343
+          ],
+          [
+            0.15,
+            -0.0,
+            0.113,
+            1.18
+          ],
+          [
+            0.139667547,
+            0.026162951,
+            0.113608964,
+            1.141731657
+          ],
+          [
+            0.130908117,
+            0.037,
+            0.115343146,
+            1.109289322
+          ],
+          [
+            0.125055253,
+            0.026162951,
+            0.117938533,
+            1.087612047
+          ],
+          [
+            0.123,
+            0.0,
+            0.121,
+            1.08
+          ],
+          [
+            0.125055253,
+            -0.026162951,
+            0.124061467,
+            1.087612047
+          ],
+          [
+            0.130908117,
+            -0.037,
+            0.126656854,
+            1.109289322
+          ],
+          [
+            0.139667547,
+            -0.026162951,
+            0.128391036,
+            1.141731657
+          ],
+          [
+            0.15,
+            -0.0,
+            0.129,
+            1.18
+          ],
+          [
+            0.17,
+            0.06,
+            0.105,
+            1.3
+          ]
+        ],
+        "mode": "continuous",
+        "jerk_limit": 8.0,
+        "ik_samples": 401,
+        "velocity_feedforward": true,
+        "parameterization": "uniform"
+      }
+    },
+    "report": {
+      "plan": {
+        "mode": "continuous",
+        "parameterization": "uniform",
+        "transfer_duration_s": 19.388995764768996,
+        "via_poses": 19,
+        "interior_stops": 0,
+        "joint_spline_degree": 7,
+        "cartesian_fit_midpoint_error_mm": 7.132314256206667e-10,
+        "peak_velocity_rad_s": [
+          0.7429530066941692,
+          0.4697275701364312,
+          0.2193657580382482,
+          0.13504972698639828
+        ],
+        "peak_acceleration_rad_s2": [
+          1.4940179521197128,
+          1.0538125587306313,
+          0.7383623485841593,
+          0.37631656210101977
+        ],
+        "peak_jerk_rad_s3": [
+          5.567324017834481,
+          4.753048576663655,
+          3.9117674657170913,
+          1.9618128528004548
+        ],
+        "retiming": "Global duration scaling from polynomial extrema; not time-optimal",
+        "joint_limits_checked_between_knots": true
+      },
+      "velocity_feedforward": true,
+      "preflight": {
+        "feasible": true,
+        "sample_period_s": 0.02,
+        "samples": 1573,
+        "collisions": [],
+        "scope": "Sampled robot versus fixed scene and carried box versus obstacles; carried box assumes no slip relative to the pick pose. Excludes self collision and object/support contacts. Not a continuous or dynamic safety guarantee.",
+        "minimum_joint_margin_rad": 0.22865909262491413,
+        "maximum_position_jacobian_condition": 2.035671562026895,
+        "planned_duration_s": 31.178012634919742,
+        "phase_durations_s": {
+          "SETTLE": 0.8,
+          "APPROACH_PICK": 1.3223842819155485,
+          "DESCEND_PICK": 1.4149940178682336,
+          "CLOSE": 0.8,
+          "HOLD": 0.8,
+          "LIFT": 1.4149940178682336,
+          "TRANSFER": 19.388995764768996,
+          "DESCEND_PLACE": 1.418322276249366,
+          "OPEN": 0.8,
+          "RELEASE_SETTLE": 0.8,
+          "RETRACT": 1.418322276249366,
+          "FINISH": 0.8
+        }
+      },
+      "execution": {
+        "engine": "MuJoCo 3.15.0",
+        "model_revision": "continuous-transfer-v1",
+        "order": 5,
+        "fingers": true,
+        "gravity_compensation": true,
+        "simulation_seconds": 31.20999999999358,
+        "wall_seconds": 4.696571300039068,
+        "samples": 3121,
+        "joint_rmse_rad": [
+          0.0025253679327210316,
+          0.0010982215329051776,
+          0.005915685151504515,
+          0.0050787430590442
+        ],
+        "tcp_rmse_mm": 0.771259689247833,
+        "final_workpiece_xyz_m": [
+          0.1709599756954367,
+          0.060242000105304894,
+          0.06494623060050353
+        ],
+        "placement_error_mm": 0.9914678689291619,
+        "maximum_lift_mm": 73.25631635992197,
+        "pad_contact_samples": 2341,
+        "pickup_lift_mm": 39.88875458371083,
+        "unwanted_contact_samples": 0,
+        "unwanted_contact_steps": 0,
+        "object_obstacle_contact_steps": 0,
+        "success": true,
+        "failure_reasons": [],
+        "peak_joint_torque_nm": [
+          0.3225265629494487,
+          0.6438869271554282,
+          0.63657082012881,
+          0.2752251338014844
+        ],
+        "peak_joint_velocity_rad_s": [
+          0.7456701915384815,
+          0.4721116395123398,
+          0.49808381870575136,
+          0.43836517256293617
+        ],
+        "requested_pad_friction": 1.2,
+        "measured_pad_friction_range": [
+          1.2,
+          1.2
+        ],
+        "metal_workpiece_contact_steps": 0,
+        "bilateral_transport_contact_fraction": 0.9950521770421015,
+        "transport_gripper_range_m": [
+          [
+            -0.00827468114448416,
+            -0.006521171797892073
+          ],
+          [
+            -0.008041813534272977,
+            -0.005965985980567142
+          ]
+        ],
+        "minimum_transport_obstacle_clearance_mm": null,
+        "closest_transport_obstacle_pair": null,
+        "object_attachment_used": false
+      },
+      "tracking": {
+        "samples": 1939,
+        "tcp_tracking_rms_mm": 0.12754513359717184,
+        "tcp_tracking_max_mm": 0.2633635311664802,
+        "actual_contour_rms_mm": 0.08861964804575814,
+        "command_contour_rms_mm": 0.010076711773620725,
+        "pitch_tracking_rms_deg": 0.03841545095193965,
+        "peak_actual_tcp_speed_mm_s": 120.40467077782722,
+        "peak_actual_joint_velocity_rad_s": [
+          0.7456366436163266,
+          0.47209577609509223,
+          0.2211448065500012,
+          0.13584052796389592
+        ],
+        "pitch_command_range_deg": [
+          61.734206564700834,
+          74.48451336647844
+        ],
+        "reference_extent_xyz_mm": [
+          55.285238097944834,
+          109.99999999999996,
+          33.55777777432538
+        ],
+        "contour_method": "Nearest of 20001 ideal spline points; geometric distance, not time-indexed error"
+      },
+      "success": true
+    }
+  },
+  {
+    "name": "rising_helix_uniform",
+    "family": "parameterization",
+    "variant": "uniform",
+    "task": {
+      "description": "rising_helix continuous pose trajectory",
+      "pick": [
+        0.17,
+        -0.05,
+        0.065
+      ],
+      "place": [
+        0.17,
+        0.06,
+        0.065
+      ],
+      "pitch": 1.3,
+      "clearance": 0.04,
+      "workpiece_size": [
+        0.03,
+        0.024,
+        0.02
+      ],
+      "workpiece_mass": 0.03,
+      "gripper_open": 0.012,
+      "gripper_closed": -0.009,
+      "max_velocity": 0.8,
+      "max_acceleration": 1.5,
+      "dwell": 0.8,
+      "curve_transfer": {
+        "poses": [
+          [
+            0.17,
+            -0.05,
+            0.105,
+            1.3
+          ],
+          [
+            0.145,
+            -0.035,
+            0.108,
+            1.12
+          ],
+          [
+            0.156349762,
+            -0.031185228,
+            0.1092,
+            1.128719478
+          ],
+          [
+            0.165225425,
+            -0.020572484,
+            0.1104,
+            1.15297718
+          ],
+          [
+            0.169692209,
+            -0.005475206,
+            0.1116,
+            1.187485243
+          ],
+          [
+            0.168776413,
+            0.010815595,
+            0.1128,
+            1.22472136
+          ],
+          [
+            0.16267767,
+            0.024748737,
+            0.114,
+            1.256568542
+          ],
+          [
+            0.152725425,
+            0.033286978,
+            0.1152,
+            1.276084521
+          ],
+          [
+            0.141089138,
+            0.034569092,
+            0.1164,
+            1.279015067
+          ],
+          [
+            0.130305369,
+            0.028315595,
+            0.1176,
+            1.26472136
+          ],
+          [
+            0.122724837,
+            0.015889667,
+            0.1188,
+            1.23631924
+          ],
+          [
+            0.12,
+            0.0,
+            0.12,
+            1.2
+          ],
+          [
+            0.122724837,
+            -0.015889667,
+            0.1212,
+            1.16368076
+          ],
+          [
+            0.130305369,
+            -0.028315595,
+            0.1224,
+            1.13527864
+          ],
+          [
+            0.141089138,
+            -0.034569092,
+            0.1236,
+            1.120984933
+          ],
+          [
+            0.152725425,
+            -0.033286978,
+            0.1248,
+            1.123915479
+          ],
+          [
+            0.16267767,
+            -0.024748737,
+            0.126,
+            1.143431458
+          ],
+          [
+            0.168776413,
+            -0.010815595,
+            0.1272,
+            1.17527864
+          ],
+          [
+            0.169692209,
+            0.005475206,
+            0.1284,
+            1.212514757
+          ],
+          [
+            0.165225425,
+            0.020572484,
+            0.1296,
+            1.24702282
+          ],
+          [
+            0.156349762,
+            0.031185228,
+            0.1308,
+            1.271280522
+          ],
+          [
+            0.145,
+            0.035,
+            0.132,
+            1.28
+          ],
+          [
+            0.17,
+            0.06,
+            0.105,
+            1.3
+          ]
+        ],
+        "mode": "continuous",
+        "jerk_limit": 8.0,
+        "ik_samples": 401,
+        "velocity_feedforward": true,
+        "parameterization": "uniform"
+      }
+    },
+    "report": {
+      "plan": {
+        "mode": "continuous",
+        "parameterization": "uniform",
+        "transfer_duration_s": 23.994948031516117,
+        "via_poses": 23,
+        "interior_stops": 0,
+        "joint_spline_degree": 7,
+        "cartesian_fit_midpoint_error_mm": 1.8589427354647226e-09,
+        "peak_velocity_rad_s": [
+          0.21230675792240555,
+          0.6388775316838067,
+          0.6221831809037724,
+          0.375841892596063
+        ],
+        "peak_acceleration_rad_s2": [
+          0.5003744566833163,
+          1.4940179521197128,
+          1.336624059106022,
+          0.9688052036679942
+        ],
+        "peak_jerk_rad_s3": [
+          1.6584447470579347,
+          4.512754823179118,
+          4.9768856759774005,
+          3.0349693838960023
+        ],
+        "retiming": "Global duration scaling from polynomial extrema; not time-optimal",
+        "joint_limits_checked_between_knots": true
+      },
+      "velocity_feedforward": true,
+      "preflight": {
+        "feasible": true,
+        "sample_period_s": 0.02,
+        "samples": 1803,
+        "collisions": [],
+        "scope": "Sampled robot versus fixed scene and carried box versus obstacles; carried box assumes no slip relative to the pick pose. Excludes self collision and object/support contacts. Not a continuous or dynamic safety guarantee.",
+        "minimum_joint_margin_rad": 0.06560587759966685,
+        "maximum_position_jacobian_condition": 2.035671562026895,
+        "planned_duration_s": 35.78396490166686,
+        "phase_durations_s": {
+          "SETTLE": 0.8,
+          "APPROACH_PICK": 1.3223842819155485,
+          "DESCEND_PICK": 1.4149940178682336,
+          "CLOSE": 0.8,
+          "HOLD": 0.8,
+          "LIFT": 1.4149940178682336,
+          "TRANSFER": 23.994948031516117,
+          "DESCEND_PLACE": 1.418322276249366,
+          "OPEN": 0.8,
+          "RELEASE_SETTLE": 0.8,
+          "RETRACT": 1.418322276249366,
+          "FINISH": 0.8
+        }
+      },
+      "execution": {
+        "engine": "MuJoCo 3.15.0",
+        "model_revision": "continuous-transfer-v1",
+        "order": 5,
+        "fingers": true,
+        "gravity_compensation": true,
+        "simulation_seconds": 35.81599999999781,
+        "wall_seconds": 5.457871000049636,
+        "samples": 3582,
+        "joint_rmse_rad": [
+          0.002360699688300194,
+          0.001028534514091413,
+          0.005527050817780791,
+          0.004741387502084492
+        ],
+        "tcp_rmse_mm": 0.7221425542964182,
+        "final_workpiece_xyz_m": [
+          0.17036813438946147,
+          0.06001640338100333,
+          0.06494657843446804
+        ],
+        "placement_error_mm": 0.37235180042049626,
+        "maximum_lift_mm": 75.26081358371167,
+        "pad_contact_samples": 2803,
+        "pickup_lift_mm": 39.88875458371083,
+        "unwanted_contact_samples": 0,
+        "unwanted_contact_steps": 0,
+        "object_obstacle_contact_steps": 0,
+        "success": true,
+        "failure_reasons": [],
+        "peak_joint_torque_nm": [
+          0.24610396162909254,
+          0.676258946669801,
+          0.644828826613491,
+          0.29273420336051004
+        ],
+        "peak_joint_velocity_rad_s": [
+          0.43266136244328346,
+          0.6411910198126132,
+          0.6245897332992658,
+          0.43836517256293567
+        ],
+        "requested_pad_friction": 1.2,
+        "measured_pad_friction_range": [
+          1.2,
+          1.2
+        ],
+        "metal_workpiece_contact_steps": 0,
+        "bilateral_transport_contact_fraction": 0.9956032491243759,
+        "transport_gripper_range_m": [
+          [
+            -0.008275100473199003,
+            -0.006521171797892073
+          ],
+          [
+            -0.008042417750939296,
+            -0.005965985980567142
+          ]
+        ],
+        "minimum_transport_obstacle_clearance_mm": null,
+        "closest_transport_obstacle_pair": null,
+        "object_attachment_used": false
+      },
+      "tracking": {
+        "samples": 2400,
+        "tcp_tracking_rms_mm": 0.13260934045453177,
+        "tcp_tracking_max_mm": 0.24968910893382718,
+        "actual_contour_rms_mm": 0.07915342341402805,
+        "command_contour_rms_mm": 0.007459347583915998,
+        "pitch_tracking_rms_deg": 0.031853570927269946,
+        "peak_actual_tcp_speed_mm_s": 76.0101500681991,
+        "peak_actual_joint_velocity_rad_s": [
+          0.2130990374339721,
+          0.6411865398660673,
+          0.6245518978520395,
+          0.3772755954666018
+        ],
+        "pitch_command_range_deg": [
+          60.11353587589996,
+          74.4845133666391
+        ],
+        "reference_extent_xyz_mm": [
+          51.79400031699577,
+          110.0,
+          37.553867710493364
+        ],
+        "contour_method": "Nearest of 20001 ideal spline points; geometric distance, not time-indexed error"
+      },
+      "success": true
+    }
+  },
+  {
+    "name": "multi_corner_chord",
+    "family": "parameterization",
+    "variant": "chord",
+    "task": {
+      "description": "multi_corner continuous pose trajectory",
+      "pick": [
+        0.17,
+        -0.05,
+        0.065
+      ],
+      "place": [
+        0.17,
+        0.06,
+        0.065
+      ],
+      "pitch": 1.3,
+      "clearance": 0.04,
+      "workpiece_size": [
+        0.03,
+        0.024,
+        0.02
+      ],
+      "workpiece_mass": 0.03,
+      "gripper_open": 0.012,
+      "gripper_closed": -0.009,
+      "max_velocity": 0.8,
+      "max_acceleration": 1.5,
+      "dwell": 0.8,
+      "curve_transfer": {
+        "poses": [
+          [
+            0.17,
+            -0.05,
+            0.105,
+            1.3
+          ],
+          [
+            0.145,
+            -0.045,
+            0.12,
+            1.15
+          ],
+          [
+            0.12,
+            -0.025,
+            0.135,
+            1.15
+          ],
+          [
+            0.12,
+            0.025,
+            0.135,
+            1.15
+          ],
+          [
+            0.145,
+            0.04,
+            0.12,
+            1.15
+          ],
+          [
+            0.18,
+            0.025,
+            0.11,
+            1.15
+          ],
+          [
+            0.18,
+            -0.02,
+            0.11,
+            1.15
+          ],
+          [
+            0.155,
+            -0.03,
+            0.13,
+            1.15
+          ],
+          [
+            0.135,
+            0.0,
+            0.14,
+            1.15
+          ],
+          [
+            0.155,
+            0.03,
+            0.13,
+            1.15
+          ],
+          [
+            0.17,
+            0.06,
+            0.105,
+            1.3
+          ]
+        ],
+        "mode": "continuous",
+        "jerk_limit": 8.0,
+        "ik_samples": 401,
+        "velocity_feedforward": true,
+        "parameterization": "chord"
+      }
+    },
+    "report": {
+      "plan": {
+        "mode": "continuous",
+        "parameterization": "chord",
+        "transfer_duration_s": 11.202258838298011,
+        "via_poses": 11,
+        "interior_stops": 0,
+        "joint_spline_degree": 7,
+        "cartesian_fit_midpoint_error_mm": 8.175139063428629e-12,
+        "peak_velocity_rad_s": [
+          0.34937534676771875,
+          0.6976058796140399,
+          0.4435692295920004,
+          0.23446314386417647
+        ],
+        "peak_acceleration_rad_s2": [
+          0.473945445288464,
+          1.4940179521197126,
+          1.1396894173945815,
+          0.6853860969873878
+        ],
+        "peak_jerk_rad_s3": [
+          1.0023414443264245,
+          5.705621374475065,
+          5.51209312599892,
+          3.1093951934306285
+        ],
+        "retiming": "Global duration scaling from polynomial extrema; not time-optimal",
+        "joint_limits_checked_between_knots": true
+      },
+      "velocity_feedforward": true,
+      "preflight": {
+        "feasible": true,
+        "sample_period_s": 0.02,
+        "samples": 1164,
+        "collisions": [],
+        "scope": "Sampled robot versus fixed scene and carried box versus obstacles; carried box assumes no slip relative to the pick pose. Excludes self collision and object/support contacts. Not a continuous or dynamic safety guarantee.",
+        "minimum_joint_margin_rad": 0.15565856096220343,
+        "maximum_position_jacobian_condition": 2.035671562026895,
+        "planned_duration_s": 22.991275708448757,
+        "phase_durations_s": {
+          "SETTLE": 0.8,
+          "APPROACH_PICK": 1.3223842819155485,
+          "DESCEND_PICK": 1.4149940178682336,
+          "CLOSE": 0.8,
+          "HOLD": 0.8,
+          "LIFT": 1.4149940178682336,
+          "TRANSFER": 11.202258838298011,
+          "DESCEND_PLACE": 1.418322276249366,
+          "OPEN": 0.8,
+          "RELEASE_SETTLE": 0.8,
+          "RETRACT": 1.418322276249366,
+          "FINISH": 0.8
+        }
+      },
+      "execution": {
+        "engine": "MuJoCo 3.15.0",
+        "model_revision": "continuous-transfer-v1",
+        "order": 5,
+        "fingers": true,
+        "gravity_compensation": true,
+        "simulation_seconds": 23.023999999998118,
+        "wall_seconds": 3.1455241999938153,
+        "samples": 2303,
+        "joint_rmse_rad": [
+          0.0029289607381411883,
+          0.001251523638522416,
+          0.0068824714139844095,
+          0.005905357246186883
+        ],
+        "tcp_rmse_mm": 0.8964824916665269,
+        "final_workpiece_xyz_m": [
+          0.17045182390772232,
+          0.060050529408957824,
+          0.06494655105330124
+        ],
+        "placement_error_mm": 0.45777161845431963,
+        "maximum_lift_mm": 76.2071277090664,
+        "pad_contact_samples": 1525,
+        "pickup_lift_mm": 39.88875458371083,
+        "unwanted_contact_samples": 0,
+        "unwanted_contact_steps": 0,
+        "object_obstacle_contact_steps": 0,
+        "success": true,
+        "failure_reasons": [],
+        "peak_joint_torque_nm": [
+          0.24610396162909254,
+          0.714805232348116,
+          0.63657082012881,
+          0.2751011937533008
+        ],
+        "peak_joint_velocity_rad_s": [
+          0.43266136244328346,
+          0.7006035914803165,
+          0.498083798663319,
+          0.4383651725629355
+        ],
+        "requested_pad_friction": 1.2,
+        "measured_pad_friction_range": [
+          1.2,
+          1.2
+        ],
+        "metal_workpiece_contact_steps": 0,
+        "bilateral_transport_contact_fraction": 0.9954435426455931,
+        "transport_gripper_range_m": [
+          [
+            -0.008275220114185897,
+            -0.006521171797892073
+          ],
+          [
+            -0.008042385889253819,
+            -0.005965985980567142
+          ]
+        ],
+        "minimum_transport_obstacle_clearance_mm": null,
+        "closest_transport_obstacle_pair": null,
+        "object_attachment_used": false
+      },
+      "tracking": {
+        "samples": 1121,
+        "tcp_tracking_rms_mm": 0.15741829905188895,
+        "tcp_tracking_max_mm": 0.2569544474295913,
+        "actual_contour_rms_mm": 0.10783776839330315,
+        "command_contour_rms_mm": 0.006312108732117774,
+        "pitch_tracking_rms_deg": 0.04274799952684782,
+        "peak_actual_tcp_speed_mm_s": 74.76636144645747,
+        "peak_actual_joint_velocity_rad_s": [
+          0.34964907650134214,
+          0.7005778831979427,
+          0.44619144654870424,
+          0.2347934206183494
+        ],
+        "pitch_command_range_deg": [
+          60.20818739566616,
+          74.48451336700691
+        ],
+        "reference_extent_xyz_mm": [
+          67.77984889077011,
+          109.99999999999999,
+          37.48842568067617
+        ],
+        "contour_method": "Nearest of 20001 ideal spline points; geometric distance, not time-indexed error"
+      },
+      "success": true
+    }
+  },
+  {
+    "name": "corner_jerk2",
+    "family": "jerk_sensitivity",
+    "variant": "2.0",
+    "task": {
+      "description": "multi_corner continuous pose trajectory",
+      "pick": [
+        0.17,
+        -0.05,
+        0.065
+      ],
+      "place": [
+        0.17,
+        0.06,
+        0.065
+      ],
+      "pitch": 1.3,
+      "clearance": 0.04,
+      "workpiece_size": [
+        0.03,
+        0.024,
+        0.02
+      ],
+      "workpiece_mass": 0.03,
+      "gripper_open": 0.012,
+      "gripper_closed": -0.009,
+      "max_velocity": 0.8,
+      "max_acceleration": 1.5,
+      "dwell": 0.8,
+      "curve_transfer": {
+        "poses": [
+          [
+            0.17,
+            -0.05,
+            0.105,
+            1.3
+          ],
+          [
+            0.145,
+            -0.045,
+            0.12,
+            1.15
+          ],
+          [
+            0.12,
+            -0.025,
+            0.135,
+            1.15
+          ],
+          [
+            0.12,
+            0.025,
+            0.135,
+            1.15
+          ],
+          [
+            0.145,
+            0.04,
+            0.12,
+            1.15
+          ],
+          [
+            0.18,
+            0.025,
+            0.11,
+            1.15
+          ],
+          [
+            0.18,
+            -0.02,
+            0.11,
+            1.15
+          ],
+          [
+            0.155,
+            -0.03,
+            0.13,
+            1.15
+          ],
+          [
+            0.135,
+            0.0,
+            0.14,
+            1.15
+          ],
+          [
+            0.155,
+            0.03,
+            0.13,
+            1.15
+          ],
+          [
+            0.17,
+            0.06,
+            0.105,
+            1.3
+          ]
+        ],
+        "mode": "continuous",
+        "jerk_limit": 2.0,
+        "ik_samples": 401,
+        "velocity_feedforward": true,
+        "parameterization": "uniform"
+      }
+    },
+    "report": {
+      "plan": {
+        "mode": "continuous",
+        "parameterization": "uniform",
+        "transfer_duration_s": 12.71427371985101,
+        "via_poses": 11,
+        "interior_stops": 0,
+        "joint_spline_degree": 7,
+        "cartesian_fit_midpoint_error_mm": 2.3593973932988644e-12,
+        "peak_velocity_rad_s": [
+          0.4047274371037707,
+          0.4467055975904854,
+          0.2960727936766467,
+          0.1905049088795977
+        ],
+        "peak_acceleration_rad_s2": [
+          0.4271612475321731,
+          0.7022036120019318,
+          0.5496116462972401,
+          0.36790179343463886
+        ],
+        "peak_jerk_rad_s3": [
+          0.940796156983765,
+          1.9880478404786606,
+          1.9397548285118429,
+          1.1419125410125741
+        ],
+        "retiming": "Global duration scaling from polynomial extrema; not time-optimal",
+        "joint_limits_checked_between_knots": true
+      },
+      "velocity_feedforward": true,
+      "preflight": {
+        "feasible": true,
+        "sample_period_s": 0.02,
+        "samples": 1445,
+        "collisions": [],
+        "scope": "Sampled robot versus fixed scene and carried box versus obstacles; carried box assumes no slip relative to the pick pose. Excludes self collision and object/support contacts. Not a continuous or dynamic safety guarantee.",
+        "minimum_joint_margin_rad": 0.19016463730051836,
+        "maximum_position_jacobian_condition": 2.035671562026895,
+        "planned_duration_s": 28.6086464517518,
+        "phase_durations_s": {
+          "SETTLE": 0.8,
+          "APPROACH_PICK": 2.0991542002189534,
+          "DESCEND_PICK": 2.246162992492743,
+          "CLOSE": 0.8,
+          "HOLD": 0.8,
+          "LIFT": 2.246162992492743,
+          "TRANSFER": 12.71427371985101,
+          "DESCEND_PLACE": 2.251446273348175,
+          "OPEN": 0.8,
+          "RELEASE_SETTLE": 0.8,
+          "RETRACT": 2.251446273348175,
+          "FINISH": 0.8
+        }
+      },
+      "execution": {
+        "engine": "MuJoCo 3.15.0",
+        "model_revision": "continuous-transfer-v1",
+        "order": 5,
+        "fingers": true,
+        "gravity_compensation": true,
+        "simulation_seconds": 28.639999999995005,
+        "wall_seconds": 3.979726399993524,
+        "samples": 2864,
+        "joint_rmse_rad": [
+          0.002131028849346879,
+          0.0009935336173100971,
+          0.004996036735849946,
+          0.0042915111660960506
+        ],
+        "tcp_rmse_mm": 0.6446155512696875,
+        "final_workpiece_xyz_m": [
+          0.1703990424009404,
+          0.060032549499117925,
+          0.06494656897185244
+        ],
+        "placement_error_mm": 0.4039172964976823,
+        "maximum_lift_mm": 77.93919077117609,
+        "pad_contact_samples": 1841,
+        "pickup_lift_mm": 39.7510447082169,
+        "unwanted_contact_samples": 0,
+        "unwanted_contact_steps": 0,
+        "object_obstacle_contact_steps": 0,
+        "success": true,
+        "failure_reasons": [],
+        "peak_joint_torque_nm": [
+          0.16811767065201622,
+          0.6023949247869389,
+          0.5485962632681165,
+          0.20876845374067443
+        ],
+        "peak_joint_velocity_rad_s": [
+          0.4050961081482013,
+          0.44777718918347903,
+          0.31446727856001777,
+          0.27673054005426306
+        ],
+        "requested_pad_friction": 1.2,
+        "measured_pad_friction_range": [
+          1.2,
+          1.2
+        ],
+        "metal_workpiece_contact_steps": 0,
+        "bilateral_transport_contact_fraction": 0.9952386482406225,
+        "transport_gripper_range_m": [
+          [
+            -0.00827500598451207,
+            -0.006521115454037079
+          ],
+          [
+            -0.00804234971218515,
+            -0.005965917481865493
+          ]
+        ],
+        "minimum_transport_obstacle_clearance_mm": null,
+        "closest_transport_obstacle_pair": null,
+        "object_attachment_used": false
+      },
+      "tracking": {
+        "samples": 1272,
+        "tcp_tracking_rms_mm": 0.15730214317192698,
+        "tcp_tracking_max_mm": 0.2489439817388447,
+        "actual_contour_rms_mm": 0.10587320947958032,
+        "command_contour_rms_mm": 0.0063049921316662046,
+        "pitch_tracking_rms_deg": 0.04327871494115176,
+        "peak_actual_tcp_speed_mm_s": 65.62022061781747,
+        "peak_actual_joint_velocity_rad_s": [
+          0.4050961081482013,
+          0.44777718918347903,
+          0.29701434842911667,
+          0.19071734351549458
+        ],
+        "pitch_command_range_deg": [
+          62.447904597486044,
+          74.48451336667956
+        ],
+        "reference_extent_xyz_mm": [
+          65.25388116908181,
+          109.99999999999999,
+          39.47998585308179
+        ],
+        "contour_method": "Nearest of 20001 ideal spline points; geometric distance, not time-indexed error"
+      },
+      "success": true
+    }
+  },
+  {
+    "name": "corner_jerk30",
+    "family": "jerk_sensitivity",
+    "variant": "30.0",
+    "task": {
+      "description": "multi_corner continuous pose trajectory",
+      "pick": [
+        0.17,
+        -0.05,
+        0.065
+      ],
+      "place": [
+        0.17,
+        0.06,
+        0.065
+      ],
+      "pitch": 1.3,
+      "clearance": 0.04,
+      "workpiece_size": [
+        0.03,
+        0.024,
+        0.02
+      ],
+      "workpiece_mass": 0.03,
+      "gripper_open": 0.012,
+      "gripper_closed": -0.009,
+      "max_velocity": 0.8,
+      "max_acceleration": 1.5,
+      "dwell": 0.8,
+      "curve_transfer": {
+        "poses": [
+          [
+            0.17,
+            -0.05,
+            0.105,
+            1.3
+          ],
+          [
+            0.145,
+            -0.045,
+            0.12,
+            1.15
+          ],
+          [
+            0.12,
+            -0.025,
+            0.135,
+            1.15
+          ],
+          [
+            0.12,
+            0.025,
+            0.135,
+            1.15
+          ],
+          [
+            0.145,
+            0.04,
+            0.12,
+            1.15
+          ],
+          [
+            0.18,
+            0.025,
+            0.11,
+            1.15
+          ],
+          [
+            0.18,
+            -0.02,
+            0.11,
+            1.15
+          ],
+          [
+            0.155,
+            -0.03,
+            0.13,
+            1.15
+          ],
+          [
+            0.135,
+            0.0,
+            0.14,
+            1.15
+          ],
+          [
+            0.155,
+            0.03,
+            0.13,
+            1.15
+          ],
+          [
+            0.17,
+            0.06,
+            0.105,
+            1.3
+          ]
+        ],
+        "mode": "continuous",
+        "jerk_limit": 30.0,
+        "ik_samples": 401,
+        "velocity_feedforward": true,
+        "parameterization": "uniform"
+      }
+    },
+    "report": {
+      "plan": {
+        "mode": "continuous",
+        "parameterization": "uniform",
+        "transfer_duration_s": 8.716561094066947,
+        "via_poses": 11,
+        "interior_stops": 0,
+        "joint_spline_degree": 7,
+        "cartesian_fit_midpoint_error_mm": 2.3593973932988644e-12,
+        "peak_velocity_rad_s": [
+          0.5903492629419758,
+          0.651580041562596,
+          0.431861889015855,
+          0.2778769666536427
+        ],
+        "peak_acceleration_rad_s2": [
+          0.9088340779727621,
+          1.4940179521197126,
+          1.1693612112321168,
+          0.7827528577379014
+        ],
+        "peak_jerk_rad_s3": [
+          2.9196760683398786,
+          6.169727267136879,
+          6.019854257706631,
+          3.543822637223131
+        ],
+        "retiming": "Global duration scaling from polynomial extrema; not time-optimal",
+        "joint_limits_checked_between_knots": true
+      },
+      "velocity_feedforward": true,
+      "preflight": {
+        "feasible": true,
+        "sample_period_s": 0.02,
+        "samples": 987,
+        "collisions": [],
+        "scope": "Sampled robot versus fixed scene and carried box versus obstacles; carried box assumes no slip relative to the pick pose. Excludes self collision and object/support contacts. Not a continuous or dynamic safety guarantee.",
+        "minimum_joint_margin_rad": 0.1901838449603972,
+        "maximum_position_jacobian_condition": 2.035671562026895,
+        "planned_duration_s": 19.41993766819686,
+        "phase_durations_s": {
+          "SETTLE": 0.8,
+          "APPROACH_PICK": 1.086121374489774,
+          "DESCEND_PICK": 1.202191764398952,
+          "CLOSE": 0.8,
+          "HOLD": 0.8,
+          "LIFT": 1.202191764398952,
+          "TRANSFER": 8.716561094066947,
+          "DESCEND_PLACE": 1.206435835421117,
+          "OPEN": 0.8,
+          "RELEASE_SETTLE": 0.8,
+          "RETRACT": 1.206435835421117,
+          "FINISH": 0.8
+        }
+      },
+      "execution": {
+        "engine": "MuJoCo 3.15.0",
+        "model_revision": "continuous-transfer-v1",
+        "order": 5,
+        "fingers": true,
+        "gravity_compensation": true,
+        "simulation_seconds": 19.454000000000097,
+        "wall_seconds": 2.6192810999928042,
+        "samples": 1946,
+        "joint_rmse_rad": [
+          0.003491187188411498,
+          0.0014348899133258494,
+          0.00807555851215643,
+          0.006926488049441426
+        ],
+        "tcp_rmse_mm": 1.0595335782943704,
+        "final_workpiece_xyz_m": [
+          0.17063691918249277,
+          0.060117970943269324,
+          0.06494646568728778
+        ],
+        "placement_error_mm": 0.6499608535294,
+        "maximum_lift_mm": 78.38789873650414,
+        "pad_contact_samples": 1234,
+        "pickup_lift_mm": 39.913066038404516,
+        "unwanted_contact_samples": 0,
+        "unwanted_contact_steps": 0,
+        "object_obstacle_contact_steps": 0,
+        "success": true,
+        "failure_reasons": [],
+        "peak_joint_torque_nm": [
+          0.30958406270377203,
+          0.7157523170235045,
+          0.6910473984964014,
+          0.32107507114386635
+        ],
+        "peak_joint_velocity_rad_s": [
+          0.5914471571305014,
+          0.6547944734164671,
+          0.5847448246603206,
+          0.5146755489939826
+        ],
+        "requested_pad_friction": 1.2,
+        "measured_pad_friction_range": [
+          1.2,
+          1.2
+        ],
+        "metal_workpiece_contact_steps": 0,
+        "bilateral_transport_contact_fraction": 0.9947916666666666,
+        "transport_gripper_range_m": [
+          [
+            -0.008275241515205312,
+            -0.006521161495729367
+          ],
+          [
+            -0.008042490640565284,
+            -0.005965991927425169
+          ]
+        ],
+        "minimum_transport_obstacle_clearance_mm": null,
+        "closest_transport_obstacle_pair": null,
+        "object_attachment_used": false
+      },
+      "tracking": {
+        "samples": 872,
+        "tcp_tracking_rms_mm": 0.16823511273960348,
+        "tcp_tracking_max_mm": 0.26590891075295053,
+        "actual_contour_rms_mm": 0.10929718372627768,
+        "command_contour_rms_mm": 0.006308658535561758,
+        "pitch_tracking_rms_deg": 0.04437553238306381,
+        "peak_actual_tcp_speed_mm_s": 95.92427855453373,
+        "peak_actual_joint_velocity_rad_s": [
+          0.5914468898297022,
+          0.6547649670563006,
+          0.4346506756103145,
+          0.2785652784808443
+        ],
+        "pitch_command_range_deg": [
+          62.447791433508954,
+          74.48451336552579
+        ],
+        "reference_extent_xyz_mm": [
+          65.25388116908181,
+          109.99999999999999,
+          39.47998585308179
+        ],
+        "contour_method": "Nearest of 20001 ideal spline points; geometric distance, not time-indexed error"
+      },
+      "success": true
+    }
+  },
+  {
+    "name": "blocked_curve",
+    "family": "rejection",
+    "variant": "obstacle",
+    "task": {
+      "description": "multi_corner continuous pose trajectory",
+      "pick": [
+        0.17,
+        -0.05,
+        0.065
+      ],
+      "place": [
+        0.17,
+        0.06,
+        0.065
+      ],
+      "pitch": 1.3,
+      "clearance": 0.04,
+      "workpiece_size": [
+        0.03,
+        0.024,
+        0.02
+      ],
+      "workpiece_mass": 0.03,
+      "gripper_open": 0.012,
+      "gripper_closed": -0.009,
+      "max_velocity": 0.8,
+      "max_acceleration": 1.5,
+      "dwell": 0.8,
+      "curve_transfer": {
+        "poses": [
+          [
+            0.17,
+            -0.05,
+            0.105,
+            1.3
+          ],
+          [
+            0.145,
+            -0.045,
+            0.12,
+            1.15
+          ],
+          [
+            0.12,
+            -0.025,
+            0.135,
+            1.15
+          ],
+          [
+            0.12,
+            0.025,
+            0.135,
+            1.15
+          ],
+          [
+            0.145,
+            0.04,
+            0.12,
+            1.15
+          ],
+          [
+            0.18,
+            0.025,
+            0.11,
+            1.15
+          ],
+          [
+            0.18,
+            -0.02,
+            0.11,
+            1.15
+          ],
+          [
+            0.155,
+            -0.03,
+            0.13,
+            1.15
+          ],
+          [
+            0.135,
+            0.0,
+            0.14,
+            1.15
+          ],
+          [
+            0.155,
+            0.03,
+            0.13,
+            1.15
+          ],
+          [
+            0.17,
+            0.06,
+            0.105,
+            1.3
+          ]
+        ],
+        "mode": "continuous",
+        "jerk_limit": 8.0,
+        "ik_samples": 401,
+        "velocity_feedforward": true,
+        "parameterization": "uniform"
+      },
+      "obstacles": [
+        {
+          "position": [
+            0.12,
+            0,
+            0.13
+          ],
+          "size": [
+            0.025,
+            0.025,
+            0.06
+          ]
+        }
+      ]
+    },
+    "report": {
+      "plan": {
+        "mode": "continuous",
+        "parameterization": "uniform",
+        "transfer_duration_s": 8.716561094066947,
+        "via_poses": 11,
+        "interior_stops": 0,
+        "joint_spline_degree": 7,
+        "cartesian_fit_midpoint_error_mm": 2.3593973932988644e-12,
+        "peak_velocity_rad_s": [
+          0.5903492629419758,
+          0.651580041562596,
+          0.431861889015855,
+          0.2778769666536427
+        ],
+        "peak_acceleration_rad_s2": [
+          0.9088340779727621,
+          1.4940179521197126,
+          1.1693612112321168,
+          0.7827528577379014
+        ],
+        "peak_jerk_rad_s3": [
+          2.9196760683398786,
+          6.169727267136879,
+          6.019854257706631,
+          3.543822637223131
+        ],
+        "retiming": "Global duration scaling from polynomial extrema; not time-optimal",
+        "joint_limits_checked_between_knots": true
+      },
+      "velocity_feedforward": true,
+      "preflight": {
+        "feasible": false,
+        "sample_period_s": 0.02,
+        "samples": 1039,
+        "collisions": [
+          {
+            "phase": "SETTLE",
+            "geoms": [
+              "obstacle_1",
+              ""
+            ]
+          },
+          {
+            "phase": "APPROACH_PICK",
+            "geoms": [
+              "obstacle_1",
+              ""
+            ]
+          },
+          {
+            "phase": "DESCEND_PICK",
+            "geoms": [
+              "obstacle_1",
+              ""
+            ]
+          },
+          {
+            "phase": "CLOSE",
+            "geoms": [
+              "obstacle_1",
+              ""
+            ]
+          },
+          {
+            "phase": "HOLD",
+            "geoms": [
+              "obstacle_1",
+              ""
+            ]
+          },
+          {
+            "phase": "LIFT",
+            "geoms": [
+              "obstacle_1",
+              ""
+            ]
+          },
+          {
+            "phase": "TRANSFER",
+            "geoms": [
+              "obstacle_1",
+              ""
+            ]
+          },
+          {
+            "phase": "TRANSFER",
+            "geoms": [
+              "obstacle_1",
+              "left_metal_contact"
+            ]
+          },
+          {
+            "phase": "TRANSFER",
+            "geoms": [
+              "obstacle_1",
+              "left_pad"
+            ]
+          },
+          {
+            "phase": "TRANSFER",
+            "geoms": [
+              "obstacle_1",
+              "right_metal_contact"
+            ]
+          },
+          {
+            "phase": "TRANSFER",
+            "geoms": [
+              "obstacle_1",
+              "right_pad"
+            ]
+          },
+          {
+            "phase": "TRANSFER",
+            "geoms": [
+              "obstacle_1",
+              "workpiece_geom"
+            ]
+          }
+        ],
+        "scope": "Sampled robot versus fixed scene and carried box versus obstacles; carried box assumes no slip relative to the pick pose. Excludes self collision and object/support contacts. Not a continuous or dynamic safety guarantee.",
+        "minimum_joint_margin_rad": 0.1901838449603972,
+        "maximum_position_jacobian_condition": 2.035671562026895,
+        "planned_duration_s": 20.505577964217693,
+        "phase_durations_s": {
+          "SETTLE": 0.8,
+          "APPROACH_PICK": 1.3223842819155485,
+          "DESCEND_PICK": 1.4149940178682336,
+          "CLOSE": 0.8,
+          "HOLD": 0.8,
+          "LIFT": 1.4149940178682336,
+          "TRANSFER": 8.716561094066947,
+          "DESCEND_PLACE": 1.418322276249366,
+          "OPEN": 0.8,
+          "RELEASE_SETTLE": 0.8,
+          "RETRACT": 1.418322276249366,
+          "FINISH": 0.8
+        },
+        "rejection": "Commanded robot or carried box intersects fixed scene at sampled configurations"
+      },
+      "success": false,
+      "rejection": "Commanded robot or carried box intersects fixed scene at sampled configurations"
+    }
+  },
+  {
+    "name": "unreachable_curve",
+    "family": "rejection",
+    "variant": "reach",
+    "task": {
+      "description": "multi_corner continuous pose trajectory",
+      "pick": [
+        0.17,
+        -0.05,
+        0.065
+      ],
+      "place": [
+        0.17,
+        0.06,
+        0.065
+      ],
+      "pitch": 1.3,
+      "clearance": 0.04,
+      "workpiece_size": [
+        0.03,
+        0.024,
+        0.02
+      ],
+      "workpiece_mass": 0.03,
+      "gripper_open": 0.012,
+      "gripper_closed": -0.009,
+      "max_velocity": 0.8,
+      "max_acceleration": 1.5,
+      "dwell": 0.8,
+      "curve_transfer": {
+        "poses": [
+          [
+            0.17,
+            -0.05,
+            0.105,
+            1.3
+          ],
+          [
+            0.145,
+            -0.045,
+            0.12,
+            1.15
+          ],
+          [
+            0.12,
+            -0.025,
+            0.135,
+            1.15
+          ],
+          [
+            0.12,
+            0.025,
+            0.135,
+            1.15
+          ],
+          [
+            0.145,
+            0.04,
+            0.12,
+            1.15
+          ],
+          [
+            0.5,
+            0.025,
+            0.11,
+            1.15
+          ],
+          [
+            0.18,
+            -0.02,
+            0.11,
+            1.15
+          ],
+          [
+            0.155,
+            -0.03,
+            0.13,
+            1.15
+          ],
+          [
+            0.135,
+            0.0,
+            0.14,
+            1.15
+          ],
+          [
+            0.155,
+            0.03,
+            0.13,
+            1.15
+          ],
+          [
+            0.17,
+            0.06,
+            0.105,
+            1.3
+          ]
+        ],
+        "mode": "continuous",
+        "jerk_limit": 8.0,
+        "ik_samples": 401,
+        "velocity_feedforward": true,
+        "parameterization": "uniform"
+      }
+    },
+    "report": {
+      "success": false,
+      "rejection": "IK branch discontinuity or undersampled curve"
+    }
+  }
+]
